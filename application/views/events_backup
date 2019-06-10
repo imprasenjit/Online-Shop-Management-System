@@ -1,0 +1,108 @@
+<script>
+	$(document).ready(function() {
+		$("#add_event").click(function() {
+			var event_date = prompt('Enter a date in YYYY-MM-DD format');
+			var event_name = prompt('Enter event details');
+			var date = moment(event_date);
+			if (date.isValid()) {
+				$('#calendar').fullCalendar('renderEvent', {
+					title: event_name,
+					start: date,
+					allDay: true
+				});
+				alert('Great. Now, update your database...');
+				save_events(event_date, event_name);
+			} else {
+				alert('Invalid date.');
+			}
+
+			//$('#myModal').modal('show');
+			//alert("enter event");
+		});
+
+		function save_events(event_date, event_name) {
+			var e_date = event_date;
+			var e_name = event_name;
+			$.ajax({
+				type: "post",
+				url: "<?= base_url('admin/dashboard/save_events') ?>",
+				data: {
+					event_date: e_date,
+					event_name: e_name
+				},
+				success: function(data) {
+					alert("Data saved successfully");
+				}
+			});
+		}
+
+		function get_events() {
+			$.ajax({
+				type: "get",
+				url: "<?= base_url('admin/dashboard/get_events') ?>",
+				dataType: "json",
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		}
+		get_events();
+
+		var todayDate = moment().startOf('day');
+		var YM = todayDate.format('YYYY-MM');
+		var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
+		var TODAY = todayDate.format('YYYY-MM-DD');
+		var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			navLinks: true,
+			backgroundColor: '#1f2e86',
+			eventTextColor: '#1f2e86',
+			textColor: '#378006',
+			dayClick: function(date, jsEvent, view) {
+
+				alert('Clicked on: ' + date.format());
+
+				alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+				alert('Current view: ' + view.name);
+
+				// change the day's background color just for fun
+				$(this).css('background-color', 'red');
+
+			},
+			eventSources: [
+
+				// your event source
+				{
+					url: '<?= base_url('admin/dashboard/get_events') ?>', // use the `url` property
+					color: 'yellow', // an option!
+					textColor: 'black' // an option!
+				}
+
+				// any other sources...
+
+			]
+		});
+
+
+	});
+	$("#delete_event").click(function() {
+		//alert("xxx");
+		//function clear_events() {
+		var result = confirm('Are you sure want to clear events?');
+		if (result) {
+			window.location = "<?php echo base_url(); ?>admin/dashboard/remove_events";
+		} else {
+			return false; // cancel button
+		}
+		//}
+	});
+</script>

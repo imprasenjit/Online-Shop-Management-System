@@ -1,0 +1,128 @@
+body{
+font-size: 0.8rem !important;
+}
+.btn-sm{
+  padding: 0.10rem 0.25rem !important;
+  font-size: 0.75rem !important;
+}
+.nav-item.dropdown > a >i{
+  font-size: 1rem !important;
+}
+.nav-item.dropdown > a >.badge{
+  font-size: 0.7rem !important;
+}
+.table th, .table td {
+  padding: 0.35rem !important;
+}
+.sidebar-dark .sidebar-brand {
+    background: #FFF;
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
+ white-space: initial !important;
+}
+.sidebar .nav-item .collapse, .sidebar .nav-item .collapsing {
+margin: 0 !important;
+}
+.full-width{
+  width: 100%;
+}
+.table-borderless th, .table-borderless td {
+  border-top: none;
+}
+.calculation-form input{
+  width:60% !important;
+  float:right;
+}
+.calculation-form > div{
+  margin:2px;
+}
+.page-link{
+  padding: 0.2rem 0.75rem !important;
+}
+.form-control-sm {
+  padding: 0.05rem 0.5rem !important;
+  font-size: 0.68rem !important;
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
+  color: #FFF !important;
+
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active:hover{
+  color: rgb(59, 56, 56) !important;
+ 
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item:hover{
+  color: rgb(59, 56, 56) !important;
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active {
+  font-weight: 700;
+}
+.add-button,.delete-button{
+  float: right;
+  margin-right: 10px;
+}
+label {
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+}
+.loading,
+.loading:before,
+.loading:after {
+  background: #58beee;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 0.5em;
+}
+.loading {
+  color: #58beee;
+  text-indent: -9999em;
+  margin:20px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loading:before,
+.loading:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loading:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loading:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 2em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 2em;
+  }
+}
+
