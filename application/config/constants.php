@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 defined('SHOW_DEBUG_BACKTRACE') OR define('SHOW_DEBUG_BACKTRACE', TRUE);
-defined('LOGO') OR define("LOGO","http://192.168.88.229/supplyorigin/assets/images/supply_logo.png");
+defined('LOGO') OR define("LOGO","assets/images/supply_logo.png");
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
