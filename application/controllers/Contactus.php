@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Contactus extends CI_Controller {
-
+//This is dev
     function __construct() {
         parent::__construct();
         $this->load->library('cart');
