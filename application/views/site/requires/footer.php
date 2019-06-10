@@ -56,6 +56,9 @@
                 <ul>
                     <li><span>Email :</span> <a href="mailto:sales@supplyorigin.com">sales@supplyorigin.com</a></li>
                 </ul>                
+                <ul>
+                    <li><a href="<?=base_url('feedback');?>">Send Feedback</a></li>
+                </ul>                
                 <ul class="footer-connected">
                     <li>Stay Connected&nbsp;&nbsp;</li>
                     <li><a href="#"><i class="fa fa-facebook-official"></i></a>&nbsp;&nbsp;&nbsp;</li>
@@ -81,9 +84,9 @@
         </div>
     </div>
 </div>
-<?php $this->load->view("requires/cart_modal.php"); ?>
-<?php $this->load->view("requires/login_modal.php"); ?>
-<?php $this->load->view("requires/register_modal.php"); ?>
+<?php $this->load->view("site/requires/cart_modal.php"); ?>
+<?php $this->load->view("site/requires/login_modal.php"); ?>
+<?php $this->load->view("site/requires/register_modal.php"); ?>
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/move-top.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/easing.js"></script>
