@@ -10,38 +10,26 @@
                         <h6 class="m-0 font-weight-bold text-primary">Blogs</h6>
 
                     </div>
-                    <!-- Card Body its me don-->
+                    <!-- Card Body -->
                     <div class="card-body">
 
                       <form action="<?php echo $action; ?>" method="post">
                           <div class="row">
                               <div class="col-md-12 form-group">
                                   <label>Title<span class="text-danger">*</span></label>
-                                  <textarea type="text" class="form-control form-control-sm" name="description" id="description" placeholder="Enter Brand description."><?php echo $description; ?></textarea>
+                                  <textarea type="text" id="blog_title" class="form-control form-control-sm" name="blog_title" ><?php echo $blog_title; ?></textarea>
                               </div>
                               <div class="col-md-12 form-group">
                                   <label>Blog<span class="text-danger">*</span></label>
-                                  <input name="display_order" value="<?=$display_order?>" type="text" class="form-control form-control-sm" />
-                              </div>  
-                          </div>
-
-                          <div class="row">
-                              <div class=" col-md-12 form-group">
-                                  <label for="varchar">Upload Image <?php echo form_error('picture') ?></label>
-                                  <?php if ($file_path) { ?>
-                                      <input type="file" name="picture" id="picture" data-error="Please upload  image." value="<?php echo $file_path; ?>" />
-                                      <br/><img src="<?php echo $file_path; ?>" class="img-responsive"  style="width:120px;height:100px;">
-
-                                  <?php } else { ?>
-                                      <input type="file" name="picture" id="picture" data-error="Please upload product image." value="<?php echo $file_path; ?>" />
-                                  <?php } ?>
+                                  <textarea type="text" id="blog" class="form-control form-control-sm" name="blog" ><?php echo $blog; ?></textarea>
                               </div>
                           </div>
-                          <input type="hidden" name="id" value="<?php echo $slider_id; ?>" />
+
+                          <input type="hidden" name="id" value="<?php echo $blogs_id; ?>" />
                           <div class="row">
                               <div class="col-md-12" ></br>
                                   <button type="submit" class="btn btn-primary btn-sm"><?php echo $button ?></button>
-                                  <a href="<?php echo site_url('admin/home_page_slider') ?>" class="btn btn-info btn-sm">Cancel</a>
+                                  <a href="<?php echo site_url('admin/blogs') ?>" class="btn btn-info btn-sm">Cancel</a>
                               </div>
                           </div>
                       </form>
@@ -49,17 +37,18 @@
                   </div>
                 </div>
               </div>
-              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-              <script type="text/javascript" src="<?= base_url(); ?>public/pekeupload/js/pekeUpload.js" ></script>
-              <script type="text/javascript">
-                  $(document).ready(function ($) {
-                      $("#picture").pekeUpload({
-                          bootstrap: true,
-                          url: "<?= base_url(); ?>upload/",
-                          data: {file: "picture"},
-                          limit: 1,
-                          allowedExtensions: "JPG|JPEG|GIF|PNG|PDF|jpg|jpeg|gif|png|pdf"
-                      });
 
+              <link href="<?= base_url("assets/admin/summernote/summernote-bs4.css"); ?>" rel="stylesheet">
+              <script src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
+              <script>
+                  $(document).ready(function($) {
+                    $('#blog_title').summernote({
+                        tabsize: 2,
+                        height: 50
+                    });
+                    $('#blog').summernote({
+                        tabsize: 2,
+                        height: 600
+                    });
                   });
               </script>
