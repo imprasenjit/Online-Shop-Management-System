@@ -22,7 +22,7 @@
                               <div class="col-md-12 form-group">
                                   <label>Blog<span class="text-danger">*</span></label>
                                   <input name="display_order" value="<?=$display_order?>" type="text" class="form-control form-control-sm" />
-                              </div>
+                              </div>  
                           </div>
 
                           <div class="row">
