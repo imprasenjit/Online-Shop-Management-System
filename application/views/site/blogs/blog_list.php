@@ -1,78 +1,28 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<br/>
+<div>
 <div class="container">
-  <div class="well">
-      <div class="media">
-      	<a class="pull-left" href="#">
-    		<img class="media-object" src="http://placekitten.com/150/150">
-  		</a>
-  		<div class="media-body">
-    		<h4 class="media-heading">Receta 1</h4>
-          <p class="text-right">By Francisco</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-Aliquam in felis sit amet augue.</p>
-          <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-            <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-            <li>|</li>
-            <li>
-               <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-            </li>
-            <li>|</li>
-            <li>
-            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-              <span><i class="fa fa-facebook-square"></i></span>
-              <span><i class="fa fa-twitter-square"></i></span>
-              <span><i class="fa fa-google-plus-square"></i></span>
-            </li>
-			</ul>
-       </div>
+<?php $this->load->helper('text');?>
+  <?php foreach ($blogs as $key => $blog): ?>
+    <div class="well">
+        <div class="media">
+        	<a class="pull-left" href="<?=base_url()?>blogs/<?=url_title(trim($blog->blog_title), '-', TRUE)?>/<?=$blog->blogs_id;?>">
+      		<img class="media-object" src="<?=base_url($blog->image);?> " width="200" height="200">
+    		</a>
+    		<div class="media-body">
+      		<h4 class="media-heading"><?=$blog->blog_title;?></h4>
+            <!-- <p class="text-right">By Francisco</p> -->
+            <p><?=word_limiter($blog->blog,100)?></p>
+            <ul class="list-inline list-unstyled">
+    			<li><span><i class="glyphicon glyphicon-calendar"></i><?php $date=date_create($blog->created_at);
+echo date_format($date,"M d,Y H:i"); ?></span></li>
+              <!-- <li>|</li> -->
+              <!-- <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span> -->
+
+
+  			</ul>
+         </div>
+      </div>
     </div>
-  </div>
-   <div class="well">
-      <div class="media">
-  		<a class="pull-left" href="#">
-    		<img class="media-object" src="http://placekitten.com/150/150">
-  		</a>
-  		<div class="media-body">
-    		<h4 class="media-heading">Receta 2</h4>
-          <p class="text-right">By Anailuj</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-Aliquam in felis sit amet augue.</p>
-          <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-            <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-            <li>|</li>
-            <li>
-               <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-            </li>
-            <li>|</li>
-            <li>
-            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-              <span><i class="fa fa-facebook-square"></i></span>
-              <span><i class="fa fa-twitter-square"></i></span>
-              <span><i class="fa fa-google-plus-square"></i></span>
-            </li>
-			</ul>
-       </div>
-    </div>
-  </div>
+  <?php endforeach; ?>
+</div>
 </div>

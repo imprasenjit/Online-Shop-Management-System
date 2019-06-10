@@ -24,6 +24,16 @@
                                   <textarea type="text" id="blog" class="form-control form-control-sm" name="blog" ><?php echo $blog; ?></textarea>
                               </div>
                           </div>
+                          <div class=" col-md-12">
+                              <br />
+                              <label> Image <?php echo form_error('image') ?></label>
+                              <?php if ($image) { ?>
+                                  <input type="file" name="image" id="image" data-error="Please upload blog image." value="" />
+                                  <img src="<?php echo base_url($image); ?>" class="img-responsive" style="width:120px;height:100px;">
+                              <?php } else { ?>
+                                  <input type="file" name="image" id="image" data-error="Please upload product image." />
+                              <?php } ?>
+                          </div>
 
                           <input type="hidden" name="id" value="<?php echo $blogs_id; ?>" />
                           <div class="row">
@@ -37,7 +47,7 @@
                   </div>
                 </div>
               </div>
-
+              <script type="text/javascript" src="<?= base_url(); ?>public/pekeupload/js/pekeUpload.js"></script>
               <link href="<?= base_url("assets/admin/summernote/summernote-bs4.css"); ?>" rel="stylesheet">
               <script src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
               <script>
@@ -49,6 +59,15 @@
                     $('#blog').summernote({
                         tabsize: 2,
                         height: 600
+                    });
+                    $("#image").pekeUpload({
+                        bootstrap: true,
+                        url: "<?= base_url(); ?>upload/",
+                        data: {
+                            file: "image"
+                        },
+                        limit: 1,
+                        allowedExtensions: "JPG|JPEG|GIF|PNG|PDF|jpg|jpeg|gif|png|pdf"
                     });
                   });
               </script>

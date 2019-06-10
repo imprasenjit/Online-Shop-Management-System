@@ -15,6 +15,7 @@
           <div>
             <?=$blog_title?>
           </div>
+          <div><img src="<?=base_url($image)?>" width="300" height="300"/></div>
           <div>
             <?=$blog?>
           </div>

@@ -28,7 +28,8 @@ class Blogs extends Aipl_admin {
             $data = array(
                 'blogs_id' => $row->blogs_id,
                 'blog' => $row->blog,
-                'blog_title' => $row->blog_title
+                'blog_title' => $row->blog_title,
+                'image' => $row->image
             );
             $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
             $this->breadcrumbs->push('Blog List', '/admin/blogs');
@@ -51,6 +52,7 @@ class Blogs extends Aipl_admin {
             'blogs_id' => set_value('blogs_id'),
             'blog' => set_value('blog'),
             'blog_title' => set_value('blog_title'),
+            'image' => set_value('image'),
         );
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Blog List', '/admin/blogs');
@@ -72,6 +74,11 @@ class Blogs extends Aipl_admin {
                 'blog_title' => $this->input->post('blog_title', TRUE),
                 'created_by' => $this->session->id,
             );
+            if ($this->input->post("upload_image")) {
+                $picture = moveFile(3, $this->input->post("upload_image"), "image");
+                $data['image']=$picture[0];
+            }
+
             $this->blogs_model->insert($data);
             $this->session->set_flashdata('message', 'Successfully Blog Added');
             $this->session->set_flashdata('type', 'success');
@@ -90,7 +97,8 @@ class Blogs extends Aipl_admin {
                 'action' => site_url('admin/blogs/update_action'),
                 'blogs_id' => set_value('blogs_id', $row->blogs_id),
                 'blog' => set_value('description', $row->blog),
-                'blog_title' => set_value('blog_title', $row->blog_title)
+                'blog_title' => set_value('blog_title', $row->blog_title),
+                'image' => set_value('image', $row->image)
             );
             $this->load->view('admin/requires/header', array('title' => 'Blogs'));
             $this->load->view('admin/blogs/blog_form', $data);
@@ -113,7 +121,10 @@ class Blogs extends Aipl_admin {
             $data_to_save['blog_title'] = $this->input->post('blog_title', TRUE);
             $data_to_save['updated_by'] = $this->session->id;
             $data_to_save['updated_at'] = date("Y-m-d H:i:s");
-
+            if ($this->input->post("upload_image")) {
+                $picture = moveFile(3, $this->input->post("upload_image"), "image");
+                $data_to_save['image']=$picture[0];
+            }
             $this->blogs_model->update($this->input->post('id', TRUE), $data_to_save);
             $this->session->set_flashdata('message', 'Successfully Record Updated');
             $this->session->set_flashdata('type', 'success');
