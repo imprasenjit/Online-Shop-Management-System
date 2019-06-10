@@ -49,7 +49,7 @@ class Home extends CI_Controller {
         $this->load->view('site/partnerprograms');
         $this->load->view('site/requires/footer');
     }
-	public function get_feedback()
+	public function feedback()
 	{
 		$this->load->view('site/requires/header');
 		$this->load->view('site/get_feedback');
