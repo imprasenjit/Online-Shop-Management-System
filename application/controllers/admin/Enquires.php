@@ -23,7 +23,6 @@ class Enquires extends Aipl_admin
         $this->load->view('admin/enquires/enquires_list');
         $this->load->view('admin/requires/footer');
     }
-    
     public function read($id)
     {
         $row = $this->enquires_model->get_by_id($id);
@@ -215,7 +214,6 @@ class Enquires extends Aipl_admin
         xlsEOF();
         exit();
     }
-
     function get_dtrecords() {
         $columns = array(
             0 => "enquiry_id",
@@ -226,6 +224,7 @@ class Enquires extends Aipl_admin
         );
         $limit = $this->input->post("length");
         $start = $this->input->post("start");
+        $sl_no=$start+1;
         $order = $columns[$this->input->post("order")[0]["column"]];
         $dir = $this->input->post("order")[0]["dir"];
         $totalData = $this->enquires_model->tot_rows();
@@ -239,11 +238,9 @@ class Enquires extends Aipl_admin
         }//End of if else
         $data = array();
         if (!empty($records)) {
-            $sl_no=1;
             foreach ($records as $rows) {
                 $viewBtn = anchor(site_url('admin/enquires/enquiry_details/' . $rows->enquiry_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $editBtn = anchor(site_url('admin/quotation/send_quotation/' . $rows->enquiry_id), 'Send', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
-
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["unique_id"] = $rows->unique_id;
                 $nestedData["enquiry_placed_date"] = date("d-m-Y",strtotime($rows->enquiry_placed_date));

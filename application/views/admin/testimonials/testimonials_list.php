@@ -24,12 +24,10 @@
                                         targets: 4
                                     }],
                                 "columns": [
-                                    {"data": "slno"},
-                                    {"data": "name", width: 200},
+                                    {"data": "sl_no"},
+                                    {"data": "name"},
                                     {"data": "email"},
                                     {"data": "contact"},
-                                    {"data": "address"},
-                                    {"data": "message"},
                                     {"data": "id"}
                                 ],
                                 "processing": true,
@@ -50,12 +48,10 @@
                     <table class="table table-bordered" id="dtbl">
                         <thead>
                             <tr>
-                                <th>Sl. No.</th>
+                                <th>(#)</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact</th>
-                                <th>Address</th>
-                                <th>Message</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
