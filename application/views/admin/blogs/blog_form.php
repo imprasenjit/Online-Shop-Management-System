@@ -10,7 +10,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Blogs</h6>
 
                     </div>
-                    <!-- Card Body -->
+                    <!-- Card Body its me don-->
                     <div class="card-body">
 
                       <form action="<?php echo $action; ?>" method="post">
