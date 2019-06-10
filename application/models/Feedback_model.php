@@ -5,17 +5,14 @@ if (!defined('BASEPATH'))
 
 class Feedback_model extends CI_Model
 {
-
-	public $table = 'quotes';
-    public $quotes_id = 'quotes_id';
+	public $table = 'feedback';
+    public $quotes_id = 'feedback';
     public $order = 'DESC';
-
     function __construct()
     {
         parent::__construct();
 		
     }
-
     // insert data
 	function insert($data)
     {

@@ -51,7 +51,8 @@ class Home extends CI_Controller {
     }
 	public function feedback()
 	{
-		$this->load->view('site/requires/header');
+		$data = array("page" => "Feedback");
+		$this->load->view('site/requires/header',$data);
 		$this->load->view('site/get_feedback');
 		$this->load->view('site/requires/footer');
 	}
@@ -67,7 +68,7 @@ class Home extends CI_Controller {
 	    );
 		$this->feedback_model->insert($data);
         $this->session->set_flashdata('message', 'Thank you for contacting us. We will respond as soon as possible.');
-		redirect(site_url("home/get_feedback"));
+		redirect(site_url("home/feedback"));
 	}
 	public function get_services()
 	{

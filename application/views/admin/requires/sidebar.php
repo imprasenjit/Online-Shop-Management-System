@@ -4,7 +4,6 @@
                             <div class="sidebar-brand-text mx-3"> <img src="<?= base_url("assets/images/supply_logo.png"); ?>" width="150px"></div>
                             <img src="<?= base_url("assets/images/supply_logo.png"); ?>" width="50px">
                         </a>
-
                         <hr class="sidebar-divider my-0">
                         <?php if ($this->session->isadmin) { ?>
                             <li class="nav-item">
@@ -21,11 +20,9 @@
                                     <div class="bg-primary py-2 collapse-inner">
                                         <a <?php if($this->router->class=="users" AND  $this->router->method=="index" OR $this->router->method=="create"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?>   href="<?= base_url("admin/users") ?>">Users List</a>
                                         <a <?php if($this->router->class=="roles" AND $this->router->method=="index" OR $this->router->method=="create"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?>   href="<?= base_url("admin/roles") ?>">Users Role</a>
-
                                     </div>
                                 </div>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapseTwo">
                                     <i class="fas fa-users"></i>
@@ -130,12 +127,12 @@
                                     <div class="bg-primary py-2 collapse-inner">
                                         <a <?php if($this->router->class=="home_page_slider" AND $this->router->method=="index" OR $this->router->method=="create" ){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/home_page_slider") ?>">Home Page Slider</a>
                                         <a <?php if($this->router->class=="associated_brands" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/associated_brands"); ?>">Associated Brands</a>
+                                        <a <?php if($this->router->class=="testimonials" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/testimonials"); ?>">Testimonials</a>
                                         <a <?php if($this->router->class=="aboutus" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/aboutus"); ?>">About Us</a>
                                         <a <?php if($this->router->class=="downloads" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/downloads"); ?>">Downloads</a>
                                         <a <?php if($this->router->class=="settings" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/settings"); ?>">Settings</a>
                                     </div>
                                 </div>
-
                             </li>
                         <?php } else if ($this->session->issupplier) { ?>
                             <li class="nav-item">
@@ -150,10 +147,6 @@
                                     <span>Dashboard</span></a>
                             </li>
                         <?php } ?>
-
-
-
-
                         <div class="text-center d-none d-md-inline">
                             <button class="rounded-circle border-0" id="sidebarToggle"></button>
                         </div>

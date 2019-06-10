@@ -57,7 +57,7 @@
                     <li><span>Email :</span> <a href="mailto:sales@supplyorigin.com">sales@supplyorigin.com</a></li>
                 </ul>                
                 <ul>
-                    <li><a href="<?=base_url('feedback');?>">Send Feedback</a></li>
+                    <li><a href="<?=base_url('home/feedback');?>">Send Feedback</a></li>
                 </ul>                
                 <ul class="footer-connected">
                     <li>Stay Connected&nbsp;&nbsp;</li>
