@@ -20,7 +20,7 @@
                                   <textarea type="text" class="form-control form-control-sm" name="description" id="description" placeholder="Enter Brand description."><?php echo $description; ?></textarea>
                               </div>
                               <div class="col-md-12 form-group">
-                                  <label>Display Order<span class="text-danger">*</span></label>
+                                  <label>Blog<span class="text-danger">*</span></label>
                                   <input name="display_order" value="<?=$display_order?>" type="text" class="form-control form-control-sm" />
                               </div>
                           </div>
