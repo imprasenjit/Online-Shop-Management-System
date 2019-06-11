@@ -11,18 +11,9 @@
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <!--<div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>-->
-                            </div>
                         </div>
                     </div>
-                    <!-- Card Body -->
                     <div class="card-body">
-                        <link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
                         <link href="<?= base_url('public/datatables/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
                         <script src="<?= base_url('public/datatables/js/jquery.dataTables.min.js') ?>"></script>
                         <script src="<?= base_url('public/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
