@@ -134,6 +134,29 @@
                                     </div>
                                 </div>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogs" aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Blogs</span>
+                                </a>
+                                <div id="blogs" <?php if($this->router->class=="blogs"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                    <div class="bg-primary py-2 collapse-inner">
+                                        <a <?php if($this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/blogs") ?>">Blogs</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#roles" aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Admin Roles</span>
+                                </a>
+                                <div id="roles" <?php if($this->router->class=="roles"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                    <div class="bg-primary py-2 collapse-inner">
+                                        <a <?php if($this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/roles") ?>">Roles</a>
+                                    </div>
+                                </div>
+                            </li>
                         <?php } else if ($this->session->issupplier) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= base_url("admin/suppliers/dashboard"); ?>">

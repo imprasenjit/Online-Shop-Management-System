@@ -52,6 +52,7 @@ class Blogs extends Aipl_admin {
             'blogs_id' => set_value('blogs_id'),
             'blog' => set_value('blog'),
             'blog_title' => set_value('blog_title'),
+            'short_description' => set_value('short_description'),
             'image' => set_value('image'),
         );
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
@@ -72,6 +73,7 @@ class Blogs extends Aipl_admin {
             $data = array(
                 'blog' => $this->input->post('blog', TRUE),
                 'blog_title' => $this->input->post('blog_title', TRUE),
+                'short_description' => $this->input->post('short_description', TRUE),
                 'created_by' => $this->session->id,
             );
             if ($this->input->post("upload_image")) {
@@ -96,8 +98,9 @@ class Blogs extends Aipl_admin {
                 'button' => 'Update',
                 'action' => site_url('admin/blogs/update_action'),
                 'blogs_id' => set_value('blogs_id', $row->blogs_id),
-                'blog' => set_value('description', $row->blog),
+                'blog' => set_value('blog', $row->blog),
                 'blog_title' => set_value('blog_title', $row->blog_title),
+                'short_description' => set_value('short_description', $row->short_description),
                 'image' => set_value('image', $row->image)
             );
             $this->load->view('admin/requires/header', array('title' => 'Blogs'));
@@ -119,6 +122,7 @@ class Blogs extends Aipl_admin {
 
             $data_to_save['blog'] = $this->input->post('blog', TRUE);
             $data_to_save['blog_title'] = $this->input->post('blog_title', TRUE);
+            $data_to_save['short_description'] = $this->input->post('short_description', TRUE);
             $data_to_save['updated_by'] = $this->session->id;
             $data_to_save['updated_at'] = date("Y-m-d H:i:s");
             if ($this->input->post("upload_image")) {
@@ -150,6 +154,7 @@ class Blogs extends Aipl_admin {
     public function _rules() {
         $this->form_validation->set_rules('blogs_id', ' ', 'trim');
         $this->form_validation->set_rules('blog', 'Blog', 'trim|required');
+        $this->form_validation->set_rules('short_description', 'Short Description', 'trim|required');
         $this->form_validation->set_rules('blog_title', 'Blog Title', 'trim|required');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

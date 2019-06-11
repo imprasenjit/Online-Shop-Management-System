@@ -722,8 +722,8 @@ label.error {
     border: 1px solid #ddd !important;
     border-collapse: collapse;
     border-spacing: 0;
-    margin-left:0 !important; 
-    margin-top:20px !important; 
+    margin-left:0 !important;
+    margin-top:20px !important;
 }
 
 .product-weight-chart table tr td {
@@ -731,4 +731,55 @@ label.error {
     padding: 8px !important;
     line-height: 1.42857143 !important;
     vertical-align: top !important;
-} 
+}
+
+
+/* Sahebul */
+.blog-page-background {
+    content: "";
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient( rgba(81, 132, 169, 0.87), transparent, rgba(1, 5, 8, 0.87)), url('https://supplyorigin.com/assets/images/banner2.jpg');
+    background-color: rgba(34, 41, 46, .87);
+    background-size: cover !important;
+    padding: 100px 0 100px;
+    margin-bottom: 40px;
+}
+.blog-date{
+  color: white;
+  font-size: 15px;
+}
+.post.post-thumb {
+    position: relative;
+}
+.post {
+    margin-bottom: 40px;
+}
+.post .post-img {
+    display: block;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+.post.post-thumb .post-body {
+    position: absolute;
+    bottom: 0px;
+    padding: 20px 15px;
+}
+.post.post-thumb .post-title {
+    font-size: 22px;
+
+}
+.post .post-img > img {
+    width: 100%;
+}
+.section-title{
+margin-top: 20px;
+margin-bottom: 20px;
+}
+.post-title a{
+      color: #151719;
+      font-size: 18px;
+}

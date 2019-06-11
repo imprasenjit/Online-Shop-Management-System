@@ -29,8 +29,10 @@ class Blogs extends CI_Controller {
     }
     public function blog_details($title,$id){
       $blog_data=$this->blogs_model->get_by_id($id);
-      $data = array("page" => $blog_data->blog_title);
+
+      $data = array("page" =>url_title(trim( $blog_data->blog_title), '-', TRUE));
       $data['blog_details']=$blog_data;//var_dump($data['blog_details']);die;
+      $data['recent_blogs']=$this->blogs_model->get_recent_blogs();//var_dump($data['recent_blogs']);die;
       $this->load->view('site/requires/header', $data);
       $this->load->view('site/blogs/blog_details',$data);
       $this->load->view('site/requires/footer');

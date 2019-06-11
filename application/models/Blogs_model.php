@@ -38,7 +38,13 @@ class Blogs_model extends CI_Model {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
-
+    function get_recent_blogs(){
+      $this->db->SELECT("")
+              ->FROM($this->table)
+              ->ORDER_BY('blogs_id',"DESC")
+              ->limit ("4");
+              return $this->db->get()->result();
+    }
     //For datatable
     function tot_rows() {
         $this->db->select("*");

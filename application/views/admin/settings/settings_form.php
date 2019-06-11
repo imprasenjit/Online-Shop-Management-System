@@ -18,7 +18,7 @@
                       <label for="varchar">Header Image </label>
                       <?php if ($sett_pdf_header) { ?>
                           <input type="file" name="header_image" id="header_image" data-error="Please upload  image." value="<?php echo $sett_pdf_header['values']; ?>" />
-                          <br/><img src="<?php echo $sett_pdf_header['values']; ?>" class="img-responsive"  style="width:120px;height:100px;">
+                          <br/><img src="<?php echo base_url($sett_pdf_header['values']); ?>" class="img-responsive"  style="width:120px;height:100px;">
                             <input type="hidden" name="header_setting_id" value="<?=$sett_pdf_header['settings_id'];?>" />
                       <?php } else { ?>
                           <input type="file" name="header_image" id="header_image" data-error="Please upload product image." />
@@ -31,7 +31,7 @@
                       <label for="varchar">Footer Image <?php echo form_error('picture') ?></label>
                       <?php if ($sett_pdf_footer) {?>
                           <input type="file" name="footer_image" id="footer_image" data-error="Please upload  image." value="<?php echo $sett_pdf_footer['values']; ?>" />
-                          <br/><img src="<?php echo $sett_pdf_footer['values']; ?>" class="img-responsive"  style="width:120px;height:100px;">
+                          <br/><img src="<?php echo base_url($sett_pdf_footer['values']); ?>" class="img-responsive"  style="width:120px;height:100px;">
                           <input type="hidden" name="footer_setting_id" value="<?=$sett_pdf_footer['settings_id'];?>" />
 
                       <?php } else { ?>

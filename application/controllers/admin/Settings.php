@@ -57,26 +57,26 @@ class Settings extends Aipl_admin
           $picture = moveFile(2, $this->input->post("upload_header_image"), "header_image"); //var_dump($picture);die;
           $data['key']="PDF_HEADER";
           $data['values']=$picture[0];
-          $success=$this->settings_model->update($this->input->post('header_setting_id'),$data);
-          unset($data);
+          $success=$this->settings_model->update($this->input->post('header_setting_id'),$data);//var_dump($success);die;
+          //unset($data);
       }
       if ($this->input->post("upload_footer_image")) {
           $picture = moveFile(2, $this->input->post("upload_footer_image"), "footer_image"); //var_dump($picture);die;
           $data['key']="PDF_FOOTER";
           $data['values']=$picture[0];
-          $success=$this->settings_model->update($this->input->post('footer_setting_id'),$data);
-          unset($data);
+          $success=$this->settings_model->update($this->input->post('footer_setting_id'),$data);//var_dump($success);die;
+        //  unset($data);
       }
       if($this->input->post("color_code")){
         $success=$this->settings_model->update($this->input->post('color_setting_id'),array('key'=>"COLOR",'values'=>$this->input->post("color_code")));
       }
-      if($success){
+      //if($success){
         $this->session->set_flashdata('message', 'Successfully Settings Added');
         $this->session->set_flashdata('type', 'success');
-      }else {
-        $this->session->set_flashdata('message', 'Something Went Wrong');
-        $this->session->set_flashdata('type', 'warning');
-      }
+      // }else {
+      //   $this->session->set_flashdata('message', 'Something Went Wrong');
+      //   $this->session->set_flashdata('type', 'warning');
+      // }
       redirect(site_url('admin/settings'));
     }
 
@@ -108,10 +108,10 @@ class Settings extends Aipl_admin
               $value="";
               $key="";
               if($rows->key =="PDF_HEADER"){
-                $value="<img src=".$rows->values." width='50' height='50'>";
+                $value="<img src=".base_url($rows->values)." width='50' height='50'>";
                 $key="Header";
               }elseif ($rows->key =="PDF_FOOTER") {
-                $value="<img src=".$rows->values." width='50' height='50'>";
+                $value="<img src=".base_url($rows->values)." width='50' height='50'>";
                 $key="Footer";
               }else {
                 $value= $rows->values;

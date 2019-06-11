@@ -20,6 +20,10 @@
                                   <textarea type="text" id="blog_title" class="form-control form-control-sm" name="blog_title" ><?php echo $blog_title; ?></textarea>
                               </div>
                               <div class="col-md-12 form-group">
+                                  <label>Short Description<span class="text-danger">*</span></label>
+                                  <textarea type="text" id="short_description" class="form-control form-control-sm" name="short_description" ><?php echo $blog_title; ?></textarea>
+                              </div>
+                              <div class="col-md-12 form-group">
                                   <label>Blog<span class="text-danger">*</span></label>
                                   <textarea type="text" id="blog" class="form-control form-control-sm" name="blog" ><?php echo $blog; ?></textarea>
                               </div>
@@ -52,10 +56,7 @@
               <script src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
               <script>
                   $(document).ready(function($) {
-                    $('#blog_title').summernote({
-                        tabsize: 2,
-                        height: 50
-                    });
+                    
                     $('#blog').summernote({
                         tabsize: 2,
                         height: 600

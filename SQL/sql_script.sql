@@ -35,6 +35,7 @@ CREATE TABLE `settings`(
 CREATE TABLE `blogs`(
   `blogs_id` int(10) AUTO_INCREMENT,
   `blog_title` TEXT NOT NULL,
+  `short_description` TEXT NOT NULL,
   `blog` TEXT NOT NULL,
   `image` TEXT DEFAULT NULL,
   `created_at`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

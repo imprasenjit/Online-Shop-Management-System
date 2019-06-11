@@ -11,7 +11,7 @@
     		<div class="media-body">
       		<h4 class="media-heading"><?=$blog->blog_title;?></h4>
             <!-- <p class="text-right">By Francisco</p> -->
-            <p><?=word_limiter($blog->blog,100)?></p>
+            <p><?=word_limiter($blog->short_description,100)?></p>
             <ul class="list-inline list-unstyled">
     			<li><span><i class="glyphicon glyphicon-calendar"></i><?php $date=date_create($blog->created_at);
 echo date_format($date,"M d,Y H:i"); ?></span></li>
