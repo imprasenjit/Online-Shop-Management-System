@@ -103,7 +103,7 @@
                 //Add this at top
                 prepend: '<img src="<?= base_url('assets/admin/img/header.png') ?>" style="width: 100%; height:200px" />',
                 //Add this on bottom
-                append: '<img src="<?= base_url('assets/admin/img/footer.png') ?>" style="width: 100%; height:200px" />',
+                append: '<img src="<?= base_url('assets/admin/img/footer.png') ?>" style="width: 100%; height:200px; position:absolute;top:0;bottom:0" />',
                 //Log to console when printing is done via a deffered callback
                 deferred: $.Deferred().done(function () {
                     console.log('Printing done', arguments);
