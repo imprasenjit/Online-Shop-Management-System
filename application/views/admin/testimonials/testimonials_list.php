@@ -61,3 +61,49 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $(document).on("click", ".activate", function() {
+            var element = $(this);
+            var feedback_id = $(this).attr("data-id");
+            var feedback_status = parseInt($(this).attr("data-status"));
+            $(this).empty().append("Processing...");
+            $.ajax({
+                url: "<?= base_url("admin/testimonials/activate/") ?>",
+                method: "POST",
+                data: {
+                    feedback_id: feedback_id,
+                    feedback_status:feedback_status
+                },
+                dataType: "json",
+                success: function(jsn) {
+                    if (jsn.x == 1) {
+                        element.removeClass("btn-danger").addClass("btn-success");
+                        if(feedback_status==1){
+                            element.empty().append('<i class="glyphicon glyphicon-ok"></i>&nbsp;Activated');
+                        }else{
+                            element.empty().append('<i class="glyphicon glyphicon-ok"></i>&nbsp;Deactivated');
+                        }
+                        
+                        $.notify({
+                            message: 'Testimonials Activated Successfully'
+                        }, {
+                            // settings
+                            type: 'success',
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            offset: {
+                                x: 20,
+                                y: 100
+                            }
+                        });
+                    } else {
+                        element.empty().append('<i class="glyphicon glyphicon-warning-sign"></i>&nbsp;Error');
+                    }
+                }
+            });
+        });
+    });
+</script>

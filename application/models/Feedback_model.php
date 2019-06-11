@@ -28,6 +28,12 @@ class Feedback_model extends CI_Model
     {
         $this->db->insert($this->table, $data);
     }
+    // Update data
+    function update($id,$data)
+    {
+        $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
     //For datatable
     function tot_rows()
     {
