@@ -137,12 +137,13 @@ class Message extends Aipl_admin {
         $subject = $this->input->post('subject');
         $message = $this->input->post('message');
         
+        $this->load->helper('fileupload');
         if ($this->input->post("upload_download_file")) {
             $download_file = moveFile(3, $this->input->post("upload_download_file"), "download_file");
         } else {
             $download_file = NULL;
         }//End of if else
-            
+        //die("File : ".$download_file[0]);
         $data = array(
             'send_to' => $send_to,
             'subject' => $subject,
@@ -153,7 +154,7 @@ class Message extends Aipl_admin {
         $sub = $subject;
         $msgBody = $message;
         //$msgFooter =  "Regards, \n Supply Origin \n Guwahati Assam";
-        $status = sendmail($send_to, $sub, $msgBody, $download_file);
+        $status = sendmail($send_to, $sub, $msgBody, $download_file[0]);
         $this->session->set_flashdata('message', 'Email Sent');
         redirect(site_url('admin/message'));
     }
