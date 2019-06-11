@@ -7,46 +7,32 @@
 			<div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary"><?php echo $button ?> Attribute</h6>
-					<!--<div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>-->
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-						<form class="form-horizontal" action="<?php echo $action; ?>" method="post">
-									<div class="form-group">
-										<label>Product Name</label>							
-												<select class="form-control form-control-sm form-control-sm" name="product_id" id="product_id">
-													<option value="">Please Select</option>
-													<?php foreach ($product_id as $p) { ?>
-														<option value="<?= $p->id ?>"><?= $p->product_name ?></option>
-													<?php } ?>
-												</select>
-									</div>
-									<div class="form-group">
-										<div id="attributes"> </div>
-									</div>
-										<input type="hidden" name="id" value="<?php echo $id; ?>" />
-										<button type="submit" class="btn btn-sm btn-primary"><?php echo $button ?></button>
-										<a href="<?php echo site_url('admin/attribute') ?>" class="btn btn-sm btn-info">Cancel</a>
-						</form>
-					</div>
+					<form class="form-horizontal" action="<?php echo $action; ?>" method="post">
+						<div class="form-group">
+							<label>Product Name</label>
+							<select class="form-control form-control-sm form-control-sm" name="product_id" id="product_id">
+								<option value="">Please Select</option>
+								<?php foreach ($product_id as $p) { ?>
+									<option value="<?= $p->id ?>"><?= $p->product_name ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<div id="attributes"> </div>
+						</div>
+						<input type="hidden" name="id" value="<?php echo $id; ?>" />
+						<button type="submit" class="btn btn-sm btn-primary"><?php echo $button ?></button>
+						<a href="<?php echo site_url('admin/attribute') ?>" class="btn btn-sm btn-info">Cancel</a>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		//alert("yy");
@@ -72,7 +58,7 @@
 				$(data.data).each(function(key, value) {
 					$('#attributes').append('<div class="form-group"> <label class="col-md-12">' + value + ': </label> <div class="col-md-12"> <input value="" id="attributes' + (key + 1) + '" class="form-control form-control-sm attr_values" size="10" name="attributes' + (key + 1) + '"> </div> </div>');
 				});
-				console.log(data.data);
+				//console.log(data.data);
 			}
 		});
 	});
