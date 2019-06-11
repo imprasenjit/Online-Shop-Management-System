@@ -11,6 +11,18 @@ class Feedback_model extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * get_all_active_feedbacks
+     *
+     * @return mysql_result_object
+     */
+    public function get_all_active_feedbacks()
+    {
+        $this->db->where('status', "1");
+        $this->db->where("activation_status",1);
+        return $this->db->get($this->table)->result();
+    }
+
    /**
     * get_by_id
     *

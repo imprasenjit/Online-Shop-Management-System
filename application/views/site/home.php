@@ -35,7 +35,7 @@
             }
         } else {
             echo '<img class="" src="' . base_url("assets/images/banner8.png") . '" />';
-        } 
+        }
         ?>
     </div>
     <div class="owl-theme">
@@ -223,6 +223,33 @@
 </div>
 <br />
 <div class="clearfix"></div>
+<div class="container content">
+    <div class="owl-carousel owl-theme" id="testimonials-carousel">
+        <?php
+        $testimonials = $this->feedback_model->get_all_active_feedbacks();
+        $i = 1;
+        if ($testimonials) {
+            foreach ($testimonials as $feedback) {
+                ?>
+                <div class="testimonials item">
+                        <blockquote>
+                            <p><?=$feedback->message?></p>
+                        </blockquote>
+                        <div class="carousel-info">
+                            <div class="pull-left">
+                                <span class="testimonials-name"><?=$feedback->name?></span>
+                                <span class="testimonials-post"><?=$feedback->email?></span>
+                            </div>
+                        </div>
+                </div>
+                <?php
+                $i++;
+            }
+        }
+        ?>
+    </div>
+</div>
+<div class="clearfix"></div>
 <br /><br />
 <div class="two-grids">
     <div class="container">
@@ -251,6 +278,25 @@
 <!-- //Slider -->
 <script>
     $(document).ready(function() {
+          $('#testimonials-carousel').owlCarousel({
+            autoplay: true,
+            margin: 10,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
+            smartSpeed: 500,
+            loop: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 2
+                }
+            }
+        });
         var owl = $('#brands-carousel');
         owl.owlCarousel({
             autoplay: true,
@@ -272,18 +318,6 @@
             }
         });
     });
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
-        scrollFunction()
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-            //document.getElementById("myBtn").style.display = "block";
-        } else {
-            //document.getElementById("myBtn").style.display = "none";
-        }
-    }
 </script>
 </div>
 </div>
