@@ -125,7 +125,6 @@
                 </div>
             </div>
         </div>
-
 <?php
 $rowHeader=$this->settings_model->get_row("key", "PDF_HEADER");
 $headerImg = $rowHeader?$rowHeader->values:'assets/admin/img/header.png';
@@ -143,8 +142,8 @@ $footerImg = $rowFooter?$rowFooter->values:'assets/admin/img/footer.png';
                 stylesheet: "<?= base_url("assets/admin/css/print.css"); ?>",
                 iframe: false,
                 noPrintSelector: ".btn",
-                prepend: '<img src="<?=base_url($headerImg)?>" style="width: 100%; height:200px" />',
-                append: '<div style="position:fixed;left:0;bottom:0"><img src="<?=base_url($footerImg)?>" style="width: 100%; height:200px;" /></div>',
+                prepend: '<div style="position:relative;left:0;top:0;width:100%; height:50mm"><img src="<?=base_url($headerImg)?>" style="width: 100%; height:100%" /></div>',
+                append: '<div style="position:fixed;left:0;bottom:0;width:100%; height:50mm"><img src="<?= base_url($footerImg) ?>" style="width: 100%; height:100%;" /></div>',
                 deferred: $.Deferred().done(function () {
                     console.log('Printing done', arguments);
                 })

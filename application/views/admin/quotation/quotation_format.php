@@ -87,32 +87,29 @@
 		</div>
 	</div>
 </div>
+<?php
+$rowHeader=$this->settings_model->get_row("key", "PDF_HEADER");
+$headerImg = $rowHeader?$rowHeader->values:'assets/admin/img/header.png';
+
+$rowFooter=$this->settings_model->get_row("key", "PDF_FOOTER");
+$footerImg = $rowFooter?$rowFooter->values:'assets/admin/img/footer.png';
+?>
 <script src="<?= base_url("assets/admin/js/jquery.print.js"); ?>"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-    $(document).on("click","#print_content",function(){
-                    //Print ele4 with custom options
-                    $("#print_html").print({
-                        //Use Global styles
-                        globalStyles : true,
-                        //Add link with attrbute media=print
-                        mediaPrint : true,
-                        //Custom stylesheet
-                        stylesheet : "<?=base_url("assets/admin/css/sb-admin-2.css");?>",
-                        stylesheet : "<?=base_url("assets/admin/css/print.css");?>",
-                        //Print in a hidden iframe
-                        iframe : false,
-                        //Don't print this
-                        noPrintSelector : ".btn",
-                        //Add this at top
-                        prepend : "Quotation",
-                        //Add this on bottom
-                        append : "<span><br/></span>",
-                        //Log to console when printing is done via a deffered callback
-                        deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
-
-                    });
-                });
-                });
-
+    $(document).ready(function () {
+        $(document).on("click", "#print_content", function () {
+            $("#print_html").print({
+                globalStyles: true,
+                mediaPrint: true,
+                stylesheet: "<?= base_url("assets/admin/css/print.css"); ?>",
+                iframe: false,
+                noPrintSelector: ".btn",
+                prepend: '<div style="position:relative;left:0;top:0;width:100%; height:50mm"><img src="<?=base_url($headerImg)?>" style="width: 100%; height:100%" /></div>',
+                append: '<div style="position:fixed;left:0;bottom:0;width:100%; height:50mm"><img src="<?= base_url($footerImg) ?>" style="width: 100%; height:100%;" /></div>',
+                deferred: $.Deferred().done(function () {
+                    console.log('Printing done', arguments);
+                })
+            });
+        });
+    });
 </script>
