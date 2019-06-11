@@ -8,44 +8,21 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Send Quotation to Customer</h6>
                     </div>
-                    <!-- Card Body -->
                     <div class="card-body">
-						<?=validation_errors();?>
 					<form class="form-horizontal" action="<?= base_url("admin/quotation/create_action/"); ?>" method="post" id="myform">
 					        <div class="float-right">
 								<p class="text-left">									
 									Quotation Date: <?php echo date("d-m-Y"); ?> 
 								</p>
-							</div>
-									<?php									
-									$result = $this->enquires_model->get_by_id($enquiry_id);
-									if ($result) {
-										?>
-										To ,<br />
-										<?= $result->name ?><br>
-										<?= $result->contact ?><br>
-										<?= $result->email ?><br>
-										<?= $result->address ?><br>
-										<span>Billing State : <?=ucfirst($result->state);?></span>
-										<div class="col-md-4">
-											<input type="hidden" class="form-control" name="enquiry_id" id="enquiry_id" value="<?=$enquiry_id;?>"/>
-											<input type="hidden" class="form-control" name="send_to" id="send_to" value="<?php echo $result->email; ?>" /></div>
-										<br />
-										<?php
-									}
-									?>
-						<?php						
-						$sl = 1;
-						if ($result) {
-							?>
+							</div>									
 							<textarea id="editordata" name="editordata">
-																	Ref : With reference to Enquiry No.<strong>  <?php echo $result->unique_id; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($result->enquiry_placed_date)); ?> .<br />
-																	Dear <?=$result->name?> <br />
+																	Ref : With reference to Enquiry No.<strong>   </strong>placed on  .<br />
+																	Dear  <br />
 																	Thank-you for your enquiry. <br/><br/>
 																	We are pleased to quote our lowest rates for your requirement -
 																</textarea>
 																<br/>
-							<table name="objectTable1" id="objectTable1" class="table table-bordered">
+							<table class="table table-bordered">
 								<thead>
 									<tr>
 										<th width="2%">(#)</th>
@@ -57,96 +34,11 @@
 										<th width="3%">Action</th>
 									</tr>
 								</thead>
-								<tbody>
-									<?php
-									$rows = $this->enquires_model->get_enquiry_details_by_enquery_id($enquiry_id);
-									foreach ($rows as $products) {
-										$id = $products->productid;
-										$product_details = $this->products_model->get_by_id($products->productid);
-										$quantity = $products->quantity;
-										$product_unit = $products->product_unit;
-										$attributes = $products->attributes;
-										?>
-										<tr>
-											<td class="text-left"><?= $sl; ?></td>
-											<?php $product_id = $this->products_model->get_all(); ?>
-											<td class="text-left">
-												<select class="form-control form-control-sm product_select_option" name="product_id[]">
-													<option value="">Please Select</option>
-													<?php foreach ($product_id as $p) { ?>
-														<option value="<?= $p->id ?>" <?= ($products->productid == $p->id) ? "selected" : ""; ?>><?= $p->product_name ?></option>
-													<?php } ?>
-												</select>
-											</td>
-											<td class="text-left">
-												<input type="text" style="float:left;width:40% !important;" class="form-control form-control-sm quantity_cal" name="quantity[]" value="<?= $quantity; ?>">
-												<select style="width:50% !important;" class="form-control form-control-sm" name="product_unit[]">
-													<option value="MT" <?= ($products->product_unit == "MT") ? "selected" : ""; ?>>MT</option>
-													<option value="KG" <?= ($products->product_unit == "KG") ? "selected" : ""; ?>>KG</option>
-													<option value="Pcs" <?= ($products->product_unit == "Pcs") ? "selected" : ""; ?>>Pcs</option>
-												</select>
-											</td>
-											<td class="text-left">
-												<span class="attribute_place">
-												<?php
-												if ($attributes != "") {
-													$sl_count=0;
-													$attributes_decoded = json_decode($attributes, true);													
-													foreach ($attributes_decoded["attributes"] as $key => $values) {
-														?>
-														<?= $values[0];
-														$attribute_value = $this->attribute_model->get_attribute_value($products->productid, $key);
-														?> : 
-														<select class="form-control form-control-sm attr_values" name="product_attr[]">
-															<option value="">Please Select</option>
-															<?php foreach ($attribute_value as $value) { ?>
-																<option value="<?= $value->attr_value; ?>" <?= ($values[1] == $value->attr_value) ? "selected" : ""; ?>><?= $value->attr_value ?>
-																</option>
-															<?php
-														} ?>
-														</select>
-										
-													<?php
-													$sl_count++;
-												}?>
-												<input type="hidden" name="product_attr_count[]" value="<?=$sl_count?>">
-											<?php }
-											?>
-											</span>
-											Others : <input type="text" class="form-control form-control-sm" name="others[]" value="<?=$products->others?>">
-											</td>
-											<td class="text-left">
-												<label>Basic Price</label>
-												<input type="text" class="form-control form-control-sm price_cal" name="product_price[]" /><br/>
-												<label>Tax Rate</label>
-												<input type="text" class="form-control form-control-sm tax_rate" name="tax_rate[]" value="<?=$product_details->tax_rate;?>" readonly/>
-											</td>
-											<td class="text-left calculation-form" >
-																	CGST<input type="text" class="form-control form-control-sm cgst_cal" name="cgst[]" value="" readonly />
-																	<div class="clearfix"></div>
-																	SGST<input type="text" class="form-control form-control-sm sgst_cal" name="sgst[]" value="" readonly />
-																	<div class="clearfix"></div>
-																	IGST<input type="hidden" name="state" class="state_val" value="<?= $result->state; ?>">
-																	<input type="text" class="form-control form-control-sm igst_cal" name="igst[]" value="" readonly />
-																	<div class="clearfix"></div>
-																	Ex-yard<input type="text" class="form-control form-control-sm exyard_cal" name="exyard[]" value="" readonly />
-																	<div class="clearfix"></div>
-																	Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]"  value="" />
-																	<div class="clearfix"></div>
-																	Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" value="" readonly />
-																</td>
-											 <td class="text-left"><a href="#!" class="btn btn-sm btn-danger remove_tr"><i class="fa fa-times-circle"></i></a>
-												 </td>
-											
-										</tr>
-										 <?php	$sl++;
-													
-												}
-											?>
-									 </tbody>
+								<tbody id="objectTable1">
+
+							   </tbody>
 								<script>
-									$(document).ready(function() {
-										//alert("d");
+									$(document).ready(function() {		
 										$(document).on('keyup', '.price_cal', function() {
 											var qty = $(this).parent().parent().children().children('.quantity_cal').val();
 											var basic_price = $(this).parent().parent().children().children('.price_cal').val();
@@ -189,7 +81,7 @@
 							<br/>
 							<script>
 								$(document).ready(function() {
-											var sl = <?= $sl++; ?>;
+											var sl = 1;
 											$(document).on('change', '.product_select_option', function() {
 												var attr = $(this);
 												var id = $(this).val();
@@ -221,6 +113,7 @@
 												$(this).parent().parent().remove();
 											});
 											$(document).on("click", ".add_new_product", function() {
+                                                <?php $product_id = $this->products_model->get_all(); ?>
 													$('#objectTable1').append('<tr><td>' + sl + '</td>\
 																<td><select class="form-control form-control-sm product_select_option" name="product_id[]">\
 																		<option value="">Please Select</option>\																		<?php foreach ($product_id as $p) {
@@ -254,9 +147,6 @@
 													});
 											});
 							</script>
-						<?php } else { ?>
-							<h3>No records found!</h3>
-						<?php } ?>
 						<textarea id="editordata2" name="editordata2">
 											<u>Terms &amp; Conditions -</u>
 											<br />1) Rates are Ex-Warehouse (Amingaon, Guwahati). Material can be delivered at the desired address with extra transportation charges. Unloading charges not in our account.
@@ -274,7 +164,6 @@
 									<textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from" rows="5"><?php echo "\n\nRegards, \nSupply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
 								</div>
 						</div>
-						<input type="hidden" name="id" value="<?php echo $id; ?>" />
 						<div align="center">
 							<a href="<?php echo site_url('admin/quotation') ?>" class="btn btn-sm btn-default">Cancel</a>
 							<button type="submit" class="btn btn-sm btn-sm btn-primary">Send Quotation</button>

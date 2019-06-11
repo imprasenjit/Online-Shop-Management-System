@@ -1,4 +1,3 @@
-
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -8,18 +7,14 @@
 							$email=$send_to;
 							$quotation_id=$this->uri->segment(4);
 							$quotation_details=$this->quotation_model->get_by_id($quotation_id);
-
 							$order_detail = $this->orders_model->get_by_id($quotation_details->enquiry_id);
-							//print_r($quotation_details);
 						?>
-
 							<table class="table">
 								<tr><td>Customer Name</td><td><?php echo $order_detail->name; ?></td></tr>
 								<tr><td>To</td><td><?php echo $quotation_details->send_to; ?></td></tr>
 								<?php $enq_unique_id = $this->orders_model->get_enquiry_details2($enquiry_id)->unique_id; ?>
 								<tr><td>Enquiry No.</td><td><?php echo $enq_unique_id; ?></td></tr>
 							</table>
-
 							<div class="table-responsive">
 								<table class="table table-hover" id="quotation" style="width:100%">
 									<thead>
@@ -34,9 +29,7 @@
 									<tbody>
 										<?php
 										$quotation_id = $this->uri->segment(4);
-										//$results = $this->orders_model->get_product_quotations($quotation_id);
 										$results= $this->quotation_model->get_by_price($id);
-										//print_r($results);
 										$sl = 0;
 										if ($results) {
 											foreach ($results as $row) {
@@ -46,8 +39,6 @@
 												$quantity = $row->quantity;
 												$attributes = $row->attributes;
 												$product_price = $row->product_price;
-
-
 										?>
 										<tr>
 											<td class="text-left"><?= $sl+1; ?></td>
@@ -73,7 +64,6 @@
 										<?php
 											$sl++;
 											}
-
 										}
 									   ?>
 									</tbody>
@@ -82,11 +72,8 @@
 							<div align="center">
 							<a href="<?= base_url();?>admin/quotation"><input type="button" class="btn btn-danger" value="Cancel"></a>
 							</div>
-
 						</div>
-
                     </div>
-
                 </div>
             </div>
     </div>

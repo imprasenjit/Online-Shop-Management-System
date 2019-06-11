@@ -80,7 +80,6 @@ $editordata= $this->quotation_model->get_by_id($qid)->editordata; //$qid passes 
 				<?php
 						if($quantity!=""){
 							$quantity_decoded=json_decode($quantity,true);
-							//print_r($quantity_decoded);
 							$sl=1;
 							foreach ($quantity_decoded as $key=>$values) {
 								if($values!=""){
