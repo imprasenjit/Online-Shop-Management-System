@@ -16,6 +16,7 @@ class Proforma_invoice extends Aipl_admin
         $this->load->model('customers_model');
         $this->load->library('form_validation');
         $this->load->library('breadcrumbs');
+        $this->load->model('settings_model');
     }
 	public function index()
     {
