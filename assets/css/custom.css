@@ -783,6 +783,12 @@ margin-bottom: 20px;
       color: #151719;
       font-size: 18px;
 }
+.socials-connected li{
+display: inline;
+list-style-type: none;
+float: left;
+font-size: x-large;
+}
 
 /* Testimonials */
 .testimonials blockquote {
@@ -801,14 +807,14 @@ margin-bottom: 20px;
     font-size: 0.9rem !important;
 }
 .testimonials blockquote::before {
-    width: 0; 
+    width: 0;
     height: 0;
 	right: 0;
 	bottom: 0;
-	content: " "; 
-	display: block; 
+	content: " ";
+	display: block;
 	position: absolute;
-    border-bottom: 20px solid #fff;    
+    border-bottom: 20px solid #fff;
 	border-right: 0 solid transparent;
 	border-left: 15px solid transparent;
 	border-left-style: inset; /*FF fixes*/
