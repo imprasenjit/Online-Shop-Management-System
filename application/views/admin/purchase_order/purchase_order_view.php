@@ -83,20 +83,12 @@
     </div>
 </div>
 <?php
-/*
-$this->load->model('settings_model');
-    $row=$this->settings_model->settings();
-    foreach ($row as $key => $value) {
-        if($value->key=="PDF_HEADER"){
-          $data['sett_pdf_header']=array("settings_id"=>$value->settings_id,"values"=>$value->values);
-          // array_push();
-        }elseif ($value->key=="PDF_FOOTER") {
-          $data['sett_pdf_footer']=array("settings_id"=>$value->settings_id,"values"=>$value->values);
-        }else {
-          $data['sett_color']=array("settings_id"=>$value->settings_id,"values"=>$value->values);
-        }
-    }*/
-    ?>
+$rowHeader=$this->settings_model->get_row("key", "PDF_HEADER");
+$headerImg = $rowHeader?$rowHeader->values:'assets/admin/img/header.png';
+
+$rowFooter=$this->settings_model->get_row("key", "PDF_FOOTER");
+$footerImg = $rowFooter?$rowFooter->values:'assets/admin/img/footer.png';
+?>
 <script src="<?= base_url("assets/admin/js/jquery.print.js"); ?>"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -107,8 +99,8 @@ $this->load->model('settings_model');
                 stylesheet: "<?= base_url("assets/admin/css/print.css"); ?>",
                 iframe: false,
                 noPrintSelector: ".btn",
-                prepend: '<img src="<?= base_url('assets/admin/img/header.png') ?>" style="width: 100%; height:200px" />',
-                append: '<div style="position:fixed;left:0;bottom:0"><img src="<?= base_url('assets/admin/img/footer.png') ?>" style="width: 100%; height:200px;" /></div>',
+                prepend: '<img src="<?=base_url($headerImg)?>" style="width: 100%; height:200px" />',
+                append: '<div style="position:fixed;left:0;bottom:0"><img src="<?=base_url($footerImg)?>" style="width: 100%; height:200px;" /></div>',
                 deferred: $.Deferred().done(function () {
                     console.log('Printing done', arguments);
                 })

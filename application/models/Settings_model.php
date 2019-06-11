@@ -11,6 +11,13 @@ class Settings_model extends CI_Model
         $this->db->from("settings");
         return $this->db->get()->row();
     }
+    
+    function get_row($fld, $val){
+        $this->db->select('*');
+        $this->db->where($fld,$val);
+        $this->db->from("settings");
+        return $this->db->get()->row();
+    }
 
     function insert($data){
         $this->db->insert("settings",$data);
@@ -26,7 +33,7 @@ class Settings_model extends CI_Model
       $this->db->from("settings");
       $this->db->where("status","1");
       $this->db->group_by('settings_id');
-    return $this->db->get()->result();
+        return $this->db->get()->result();
     }
 
     //For datatable

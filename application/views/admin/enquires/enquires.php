@@ -126,22 +126,29 @@
             </div>
         </div>
 
-        <script src="<?= base_url("assets/admin/js/jquery.print.js"); ?>"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(document).on("click", "#print_content", function () {
-                    $("#print_html").print({
-                        globalStyles: true,
-                        mediaPrint: true,
-                        stylesheet: "<?= base_url("assets/admin/css/print.css"); ?>",
-                        iframe: false,
-                        noPrintSelector: ".btn",
-                        prepend: '<div style="position:relative;left:0;top:0;width:100%; height:50mm"><img src="<?= base_url('assets/admin/img/header.png') ?>" style="width: 100%; height:100%" /></div>',
-                        append: '<div style="position:fixed;left:0;bottom:0;width:100%; height:50mm"><img src="<?= base_url('assets/admin/img/footer.png') ?>" style="width: 100%; height:100%;" /></div>',
-                        deferred: $.Deferred().done(function () {
-                            console.log('Printing done', arguments);
-                        })
-                    });
-                });
+<?php
+$rowHeader=$this->settings_model->get_row("key", "PDF_HEADER");
+$headerImg = $rowHeader?$rowHeader->values:'assets/admin/img/header.png';
+
+$rowFooter=$this->settings_model->get_row("key", "PDF_FOOTER");
+$footerImg = $rowFooter?$rowFooter->values:'assets/admin/img/footer.png';
+?>
+<script src="<?= base_url("assets/admin/js/jquery.print.js"); ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", "#print_content", function () {
+            $("#print_html").print({
+                globalStyles: true,
+                mediaPrint: true,
+                stylesheet: "<?= base_url("assets/admin/css/print.css"); ?>",
+                iframe: false,
+                noPrintSelector: ".btn",
+                prepend: '<img src="<?=base_url($headerImg)?>" style="width: 100%; height:200px" />',
+                append: '<div style="position:fixed;left:0;bottom:0"><img src="<?=base_url($footerImg)?>" style="width: 100%; height:200px;" /></div>',
+                deferred: $.Deferred().done(function () {
+                    console.log('Printing done', arguments);
+                })
             });
-        </script>
+        });
+    });
+</script>

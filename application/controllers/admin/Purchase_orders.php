@@ -14,6 +14,7 @@ class Purchase_orders extends Aipl_admin
         $this->load->model("suppliers_model");
         $this->load->library('form_validation');
         $this->load->library('breadcrumbs');
+        $this->load->model('settings_model');
     }
     public function index()
     {
