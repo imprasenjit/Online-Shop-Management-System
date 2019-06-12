@@ -23,6 +23,7 @@ class Quotation extends Aipl_admin
         $this->load->library('form_validation');
         $this->load->library('breadcrumbs');
         $this->load->model('settings_model');
+        
     }
     /**
      * index
@@ -37,18 +38,7 @@ class Quotation extends Aipl_admin
         $this->load->view('admin/quotation/quotation_list');
         $this->load->view('admin/requires/footer');
     }
-    /**
-     * send_quotation_to_customer
-     *
-     * @param mixed $enquiry_id
-     * @return void
-     */
-    public function send_quotation_to_customer()
-    {
-        $this->load->view('admin/requires/header', array('title' => 'quotation'));
-        $this->load->view('admin/quotation/quotation_for_customer');
-        $this->load->view('admin/requires/footer');
-    }
+
     /**
      * send_quotation
      *
@@ -64,7 +54,7 @@ class Quotation extends Aipl_admin
             'button' => 'Create',
             'action' => site_url('admin/quotation/create_action'),
             'id' => set_value('id'),
-            'enquiry_id' => set_value('enquiry_id',$enquiry_id),
+            'enquiry_id' => set_value('enquiry_id', $enquiry_id),
             'send_to' => set_value('send_to'),
             'product_price' => set_value('product_price'),
             'cgst' => set_value('cgst'),
@@ -124,35 +114,34 @@ class Quotation extends Aipl_admin
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('message', 'Quotation could not be Sent');
             $this->session->set_flashdata('type', 'danger');
-            $this->send_quotation($this->input->post('enquiry_id',TRUE));
+            $this->send_quotation($this->input->post('enquiry_id', TRUE));
         } else {
-            $attr_count=$this->input->post("product_attr_count");
-            $product_attributes = $this->input->post('product_attr',TRUE);
-            $product_ids=$this->input->post('product_id',TRUE);
+            $attr_count = $this->input->post("product_attr_count");
+            $product_attributes = $this->input->post('product_attr', TRUE);
+            $product_ids = $this->input->post('product_id', TRUE);
             $temp_array = array();
-            $d_key=0;
-            foreach($attr_count as $key=>$key_value){ 
-                $attributes=array();
-                $mykey=0;
-                while($key_value >0) {
-                    $attributes[$mykey] = $product_attributes[$d_key];                    
+            $d_key = 0;
+            foreach ($attr_count as $key => $key_value) {
+                $attributes = array();
+                $mykey = 0;
+                while ($key_value > 0) {
+                    $attributes[$mykey] = $product_attributes[$d_key];
                     $key_value--;
                     $d_key++;
                     $mykey++;
                 }
-
-                array_push($temp_array,array($product_ids[$key]=>$attributes));
+                array_push($temp_array, array($product_ids[$key] => $attributes));
             }
             $products = json_encode($product_ids);
-            $enquiry_id = $this->input->post('enquiry_id',TRUE);
-            $send_to = $this->input->post('send_to',TRUE);
-            $editordata = $this->input->post('editordata',TRUE);
-            $editordata2 = $this->input->post('editordata2',TRUE);
-            $product_quantity = json_encode($this->input->post('quantity',TRUE));
-            $product_unit = json_encode($this->input->post('product_unit',TRUE));
+            $enquiry_id = $this->input->post('enquiry_id', TRUE);
+            $send_to = $this->input->post('send_to', TRUE);
+            $editordata = $this->input->post('editordata', TRUE);
+            $editordata2 = $this->input->post('editordata2', TRUE);
+            $product_quantity = json_encode($this->input->post('quantity', TRUE));
+            $product_unit = json_encode($this->input->post('product_unit', TRUE));
             $product_attributes = json_encode($temp_array);
-            $product_price = json_encode($this->input->post('product_price',TRUE));
-            $tax_rate = json_encode($this->input->post('tax_rate',TRUE));
+            $product_price = json_encode($this->input->post('product_price', TRUE));
+            $tax_rate = json_encode($this->input->post('tax_rate', TRUE));
             $cgst = json_encode($this->input->post('cgst', TRUE));
             $sgst = json_encode($this->input->post('sgst', TRUE));
             $igst = json_encode($this->input->post('igst', TRUE));
@@ -162,7 +151,7 @@ class Quotation extends Aipl_admin
             $others = json_encode($this->input->post('others', TRUE));
             $data = array(
                 'enquiry_id' => $enquiry_id,
-                'email' => $send_to,
+                'customer_id' => $send_to,
                 'productid' => $products,
                 'quantity' =>  $product_quantity,
                 'product_unit' =>  $product_unit,
@@ -192,6 +181,100 @@ class Quotation extends Aipl_admin
                 redirect(site_url('admin/enquires'));
             } else {
                 redirect(site_url('admin/enquires'));
+            }
+        }
+    }
+    /**
+     * send_quotation_to_customer
+     *
+     * @param mixed $enquiry_id
+     * @return void
+     */
+    public function send_quotation_to_customer()
+    {
+        
+        $this->load->model('suppliers_model');
+        $this->load->view('admin/requires/header', array('title' => 'quotation'));
+        $this->load->view('admin/quotation/quotation_for_customer');
+        $this->load->view('admin/requires/footer');
+    }
+    /**
+     * create_action_for_customer
+     *
+     * @return void
+     */
+    public function create_action_for_customer()
+    {
+       
+        $this->_rules();
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', 'Quotation could not be Sent <br/>');
+            $this->session->set_flashdata('type', 'danger');
+            $this->send_quotation_to_customer();
+        } else {
+            $attr_count = $this->input->post("product_attr_count");
+            $product_attributes = $this->input->post('product_attr', TRUE);
+            $product_ids = $this->input->post('product_id', TRUE);
+            $temp_array = array();
+            $d_key = 0;
+            foreach ($attr_count as $key => $key_value) {
+                $attributes = array();
+                $mykey = 0;
+                while ($key_value > 0) {
+                    $attributes[$mykey] = $product_attributes[$d_key];
+                    $key_value--;
+                    $d_key++;
+                    $mykey++;
+                }
+                array_push($temp_array, array($product_ids[$key] => $attributes));
+            }
+            $products = json_encode($product_ids);
+            $send_to = $this->input->post('send_to', TRUE);
+            $editordata = $this->input->post('editordata', TRUE);
+            $editordata2 = $this->input->post('editordata2', TRUE);
+            $product_quantity = json_encode($this->input->post('quantity', TRUE));
+            $product_unit = json_encode($this->input->post('product_unit', TRUE));
+            $product_attributes = json_encode($temp_array);
+            $product_price = json_encode($this->input->post('product_price', TRUE));
+            $tax_rate = json_encode($this->input->post('tax_rate', TRUE));
+            $cgst = json_encode($this->input->post('cgst', TRUE));
+            $sgst = json_encode($this->input->post('sgst', TRUE));
+            $igst = json_encode($this->input->post('igst', TRUE));
+            $exyard = json_encode($this->input->post('exyard', TRUE));
+            $frieght = json_encode($this->input->post('frieght', TRUE));
+            $total = json_encode($this->input->post('total_price', TRUE));
+            $others = json_encode($this->input->post('others', TRUE));
+            $data = array(
+                'customer_id' => $send_to,
+                'productid' => $products,
+                'quantity' =>  $product_quantity,
+                'product_unit' =>  $product_unit,
+                'attributes' =>  $product_attributes,
+                'editordata' =>  $editordata,
+                'editordata2' =>  $editordata2,
+                'product_price' =>  $product_price,
+                'tax_rate' =>  $tax_rate,
+                'cgst' =>  $cgst,
+                'sgst' =>  $sgst,
+                'igst' =>  $igst,
+                'exyard' =>  $exyard,
+                'frieght' =>  $frieght,
+                'total' =>  $total,
+                'others' => $others
+            );
+            $qid = $this->quotation_model->insert($data);
+            if ($qid) {
+                /*$sub = "Quotation for Enquiry";
+            $msgBody = "Hello";
+            $msgBody = $this->load->view('admin/quotation/quotation_view', array("qid"=>$qid), true);
+            $status = sendmail($send_to, $sub, $msgBody);
+            print_r($status);die();
+            */
+                $this->session->set_flashdata('message', 'Quotation Sent');
+                $this->session->set_flashdata('type', 'success');
+                redirect(site_url('admin/quotation/'));
+            } else {
+                redirect(site_url('admin/quotation'));
             }
         }
     }
@@ -280,18 +363,17 @@ class Quotation extends Aipl_admin
      */
     public function _rules()
     {
-        $this->form_validation->set_rules('send_to', ' ', 'trim');
-        $this->form_validation->set_rules('product_price', ' ', 'trim');
-        $this->form_validation->set_rules('frieght[]', 'Frieght', 'trim|required',array('required' => 'You must provide %s value.'));
-        $this->form_validation->set_rules('enquiry_id', ' ', 'trim');
+        $this->form_validation->set_rules('send_to', 'Customer', 'trim|required');
+        $this->form_validation->set_rules('product_price[]', 'Product Price', 'trim|required');
+        $this->form_validation->set_rules('frieght[]', 'Frieght', 'trim|required', array('required' => 'You must provide %s value.'));
         $this->form_validation->set_rules('id', 'id', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span><br/>');
     }
-   /**
-    * get_dtrecords
-    *
-    * @return void
-    */
+    /**
+     * get_dtrecords
+     *
+     * @return void
+     */
     function get_dtrecords()
     {
         $columns = array(
@@ -302,7 +384,7 @@ class Quotation extends Aipl_admin
         );
         $limit = $this->input->post("length");
         $start = $this->input->post("start");
-        $sl_no = $start+1;
+        $sl_no = $start + 1;
         $order = $columns[$this->input->post("order")[0]["column"]];
         $dir = $this->input->post("order")[0]["dir"];
         $totalData = $this->quotation_model->tot_rows();
@@ -315,9 +397,9 @@ class Quotation extends Aipl_admin
             $totalFiltered = $this->quotation_model->tot_search_rows($search);
         } //End of if else
         $data = array();
-        if (!empty($records)) {           
-            foreach ($records as $rows) {
-                $custRow = $this->enquires_model->get_by_id($rows->enquiry_id);
+        if (!empty($records)) {
+            foreach ($records as $rows) {                
+                $custRow = $this->customers_model->get_by_id($rows->customer_id);
                 $custName = $custRow ? $custRow->name : "Not found";
                 $viewBtn = anchor(site_url('admin/quotation/view_quotation/' . $rows->quotation_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $editBtn = anchor(site_url('admin/quotation/send_quotation/' . $rows->quotation_id), 'Send', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";

@@ -281,7 +281,7 @@
           $('#testimonials-carousel').owlCarousel({
             autoplay: true,
             margin: 10,
-            autoplayTimeout: 2000,
+            autoplayTimeout: 5000,
             autoplayHoverPause: true,
             smartSpeed: 500,
             loop: true,

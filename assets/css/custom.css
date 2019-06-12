@@ -791,6 +791,12 @@ font-size: x-large;
 }
 
 /* Testimonials */
+.testimonials blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
 .testimonials blockquote {
     background: #f8f8f8 none repeat scroll 0 0;
     border: medium none;

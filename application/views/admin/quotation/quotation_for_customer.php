@@ -9,11 +9,32 @@
                         <h6 class="m-0 font-weight-bold text-primary">Send Quotation to Customer</h6>
                     </div>
                     <div class="card-body">
-					<form class="form-horizontal" action="<?= base_url("admin/quotation/create_action/"); ?>" method="post" id="myform">
-					        <div class="float-right">
-								<p class="text-left">									
+					<?php  echo validation_errors()?>
+					<form class="form-horizontal" action="<?= base_url("admin/quotation/create_action_for_customer/"); ?>" method="post" id="myform">
+					        <div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="varchar">Select Customer</label>
+									<input type="text" class="form-control form-control-sm" name="send_to_autocomplete" id="send_to_autocomplete" placeholder="Type Customer Name" />
+									<input type="hidden" name="send_to" id="send_to" value="">
+									<span id="cust_details"></span>
+								</div>	
+								<div class="form-group">
+									<label for="varchar">Billing State</label>
+                                    <select class="form-control form-control-sm" name="state" id="state">
+										<option value="">Select State<option>
+                                        <?php $states = $this->suppliers_model->get_all_states();
+                                        foreach ($states as $state_detail) { ?>
+                                            <option value="<?= $state_detail->state_name; ?>"><?= $state_detail->state_name; ?></option>
+                                        <?php } ?>
+                                    </select>
+								</div>	
+							</div>	
+							<div class="col-md-6 text-right">
+								<p class="text-right">									
 									Quotation Date: <?php echo date("d-m-Y"); ?> 
 								</p>
+							</div>									
 							</div>									
 							<textarea id="editordata" name="editordata">
 																	Ref : With reference to Enquiry No.<strong>   </strong>placed on  .<br />
@@ -48,8 +69,9 @@
 											var cgst = Math.ceil(price * (parseFloat(state_gst) / 100));
 											var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
 											var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
-											var state=$(this).parent().parent().children().children('.state_val').val();
-											if(state=="assam"){
+											var state=$('#state').val().replace(/ /g,'');
+				
+											if(state=="Assam"){
 												$(this).parent().parent().children().children('.cgst_cal').val(cgst);
 												$(this).parent().parent().children().children('.sgst_cal').val(sgst);
 												$(this).parent().parent().children().children('.igst_cal').val(0);
@@ -136,7 +158,7 @@
 														<td class="text-left calculation-form"> \
 														CGST<input type="text" class="form-control form-control-sm cgst_cal" name="cgst[]" id="cgst[]" readonly /> \
 														<div class="clearfix"></div>SGST<input type="text" class="form-control form-control-sm sgst_cal" name="sgst[]" id="sgst[]" readonly /> \
-														<div class="clearfix"></div>IGST<input type="hidden" name="state" class="state_val" value="<?= $result->state; ?>"><input type="text" class="form-control form-control-sm igst_cal" name="igst[]" id="igst[]" readonly /> \
+														<div class="clearfix"></div>IGST<input type="hidden" name="state" class="state_val" value=""><input type="text" class="form-control form-control-sm igst_cal" name="igst[]" id="igst[]" readonly /> \
 														<div class="clearfix"></div>Ex-Yard<input type="text" class="form-control form-control-sm exyard_cal" name="exyard[]" id="exyard[]" readonly/> \
 														<div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" /> \
 														<div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \
@@ -176,6 +198,8 @@
 </div>
 <link href="<?= base_url("assets/admin/summernote/summernote-bs4.css"); ?>" rel="stylesheet">
 <script src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
+<link href="<?=base_url('public/jqueryui/jquery-ui.min.css')?>" rel="stylesheet" type="text/css" />
+<script src="<?=base_url('public/jqueryui/jquery-ui.min.js')?>"></script>
 <script>
 	$('#editordata').summernote({
 		tabsize: 2,
@@ -185,4 +209,19 @@
 		tabsize: 2,
 		height: 350
 	});
+	$(document).ready(function(){        
+        $("#send_to_autocomplete").autocomplete({
+            source:"<?=base_url('admin/message/get_custnames')?>", 
+            minLength:1,
+            select: function(event,ui){ 
+                $("#cust_details").html(ui.item.label);
+				$('#send_to').val(ui.item.id);
+            },
+			open: function(){
+        		setTimeout(function () {
+           			 $('.ui-autocomplete').css('z-index', 99999999999999);
+        		}, 0);
+   			 }
+        }); //End of autocomplete #cust_search_box
+    });
 </script>

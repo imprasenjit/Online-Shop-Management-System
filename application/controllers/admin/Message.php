@@ -112,6 +112,11 @@ class Message extends Aipl_admin {
         $this->load->view('admin/requires/footer');
     }
     
+   /**
+    * get_custnames
+    *
+    * @return void
+    */
     function get_custnames(){
         $term = trim(strip_tags($this->input->get("term", TRUE)));
         $a_json = array();
