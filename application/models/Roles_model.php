@@ -14,6 +14,13 @@ class Roles_model extends CI_Model
     {
         parent::__construct();
     }
+    function get_rights(){
+      $this->db->select("rights_id,display_name");
+      $this->db->from("rights");
+      $this->db->where('status', "1");
+      $query = $this->db->get();
+      return $query->result();
+    }
 
     // get all
     function get_all()

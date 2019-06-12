@@ -19,6 +19,20 @@
           <div>
             <?=$blog?>
           </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="tags"><b>Tags: </b></label><?php $all_tags='';$len=count($tags)-1; foreach ($tags as $key => $value) {
+                    $all_tags .= $value->value;
+                    if($key != $len)
+                    $all_tags .= ",";
+                  }
+                  echo $all_tags;
+                  ?>
+
+                </div>
+            </div>
+          </div>
 
         </div>
         </div>

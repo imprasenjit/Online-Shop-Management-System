@@ -45,3 +45,15 @@ CREATE TABLE `blogs`(
   `status` TINYINT(1) DEFAULT '1',
    primary key(`blogs_id`)
 );
+ALTER TABLE `blogs` ADD `is_published` TINYINT(1) NOT NULL DEFAULT '0' AFTER `image`;
+ALTER TABLE `blogs` ADD `tags` TEXT NULL DEFAULT NULL AFTER `is_published`;
+CREATE TABLE `rights`(
+  `rights_id` int(10) AUTO_INCREMENT,
+  `controller_name` VARCHAR(30) NOT NULL,
+  `method_name` VARCHAR(30) NOT NULL,
+  `display_name` VARCHAR(30) NOT NULL,
+  `created_at`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT 0,
+  `status` TINYINT(1) DEFAULT '1',
+   primary key(`rights_id`)
+);

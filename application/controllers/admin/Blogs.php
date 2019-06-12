@@ -29,6 +29,7 @@ class Blogs extends Aipl_admin {
                 'blogs_id' => $row->blogs_id,
                 'blog' => $row->blog,
                 'blog_title' => $row->blog_title,
+                'tags' => json_decode($row->tags),
                 'image' => $row->image
             );
             $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
@@ -47,11 +48,12 @@ class Blogs extends Aipl_admin {
     public function create() {
 
         $data = array(
-            'button' => 'Add',
+            'button' => 'Save As Draft',
             'action' => site_url('admin/blogs/create_action'),
             'blogs_id' => set_value('blogs_id'),
             'blog' => set_value('blog'),
             'blog_title' => set_value('blog_title'),
+            'tags' => set_value('tags'),
             'short_description' => set_value('short_description'),
             'image' => set_value('image'),
         );
@@ -74,6 +76,7 @@ class Blogs extends Aipl_admin {
                 'blog' => $this->input->post('blog', TRUE),
                 'blog_title' => $this->input->post('blog_title', TRUE),
                 'short_description' => $this->input->post('short_description', TRUE),
+                'tags' => $this->input->post('tags', TRUE),
                 'created_by' => $this->session->id,
             );
             if ($this->input->post("upload_image")) {
@@ -86,6 +89,16 @@ class Blogs extends Aipl_admin {
             $this->session->set_flashdata('type', 'success');
             redirect(site_url('admin/blogs'));
         }
+    }
+    public function publish(){
+      $blogs_id=$this->input->post("blogs_id");
+      $is_published=$this->input->post('is_published');
+      $result=$this->blogs_model->update($blogs_id, array('is_published'=>$is_published));
+      if($result){
+        echo "success";
+      }else {
+        echo "failed";
+      }
     }
 
     public function update($id) {
@@ -101,6 +114,7 @@ class Blogs extends Aipl_admin {
                 'blog' => set_value('blog', $row->blog),
                 'blog_title' => set_value('blog_title', $row->blog_title),
                 'short_description' => set_value('short_description', $row->short_description),
+                'tags' => set_value('tags', ($row->tags)),
                 'image' => set_value('image', $row->image)
             );
             $this->load->view('admin/requires/header', array('title' => 'Blogs'));
@@ -123,6 +137,7 @@ class Blogs extends Aipl_admin {
             $data_to_save['blog'] = $this->input->post('blog', TRUE);
             $data_to_save['blog_title'] = $this->input->post('blog_title', TRUE);
             $data_to_save['short_description'] = $this->input->post('short_description', TRUE);
+            $data_to_save['tags'] = $this->input->post('tags', TRUE);
             $data_to_save['updated_by'] = $this->session->id;
             $data_to_save['updated_at'] = date("Y-m-d H:i:s");
             if ($this->input->post("upload_image")) {
@@ -184,11 +199,16 @@ class Blogs extends Aipl_admin {
                 $viewBtn = anchor(site_url('admin/blogs/read/' . $rows->blogs_id), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
                 $editBtn = anchor(site_url('admin/blogs/update/' . $rows->blogs_id), 'Edit', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
                 $deleteBtn = anchor(site_url('admin/blogs/delete/' . $rows->blogs_id), 'Delete', array('class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm(\'Are You Sure you want to delete?\')')) . "&nbsp;";
-
+                if($rows->is_published=="1"){
+                  $published_toogle="<input type='checkbox' data-blogs_id='".$rows->blogs_id."' checked data-toggle='toggle' id='is_published_toggle'>";
+                }else {
+                  $published_toogle="<input type='checkbox' data-blogs_id='".$rows->blogs_id."' data-toggle='toggle' id='is_published_toggle'>";
+                }
 
                 $nestedData["blogs_id"] = $rows->blogs_id;
                 $nestedData["blog_title"] = $rows->blog_title;
                 $nestedData["blog"] = $rows->blog;
+                $nestedData["is_published"] = $published_toogle;
                 $nestedData["action"] = $viewBtn . $editBtn . $deleteBtn;
                 $data[] = $nestedData;
             }//End of for

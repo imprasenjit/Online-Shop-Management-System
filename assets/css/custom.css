@@ -865,3 +865,23 @@ font-size: x-large;
     color: #656565;
     font-size: 12px;
 }
+.tags-widget ul li {
+     display:inline-block;
+     margin-right:3px;
+     margin-bottom:5px;
+}
+ .tags-widget ul li a {
+     display:block;
+     color:#fff;
+     background-color: #212631;
+     padding:3px 10px;
+     font-weight:600;
+     border-radius:2px;
+     -webkit-transition:0.2s opacity;
+     transition:0.2s opacity;
+}
+ .tags-widget ul li a:hover, .tags-widget ul li a:focus {
+     opacity:0.9;
+     color:#fff;
+     text-decoration:none;
+}

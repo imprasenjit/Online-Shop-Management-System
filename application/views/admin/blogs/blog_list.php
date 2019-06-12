@@ -3,6 +3,8 @@
       <div class="mb-4">
         <?=$this->breadcrumbs->show();?>
       </div>
+      <link href="<?=base_url()?>assets/css/bootstrap-toggle.min.css" rel="stylesheet">
+      <script src="<?=base_url()?>assets/js/bootstrap-toggle.min.js"></script>
         <div class="row">
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-4">
@@ -16,10 +18,13 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
+
                         <link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
                         <link href="<?= base_url('public/datatables/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
                         <script src="<?= base_url('public/datatables/js/jquery.dataTables.min.js') ?>"></script>
                         <script src="<?= base_url('public/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
+
+
                         <script type="text/javascript">
                             $(document).ready(function () {
                               $.extend($.fn.DataTable.ext.classes, {
@@ -34,21 +39,49 @@
                                     "columns": [
                                         {"data": "blogs_id"},
                                         {"data": "blog_title"},
+                                        {"data": "is_published"},
                                         {"data": "action"}
-
                                     ],
                                     "processing": true,
                                     "serverSide": true,
                                     "ajax": {
                                         "url": "<?= base_url("admin/blogs/get_records") ?>",
                                         "dataType": "json",
-                                        "type": "POST",
+                                        "type": "POST"
                                     },
+                                    "fnDrawCallback": function() {
+                                        jQuery('#dtbl #is_published_toggle').bootstrapToggle();
+                                      },
                                     language: {
                                         processing: "<div class='loading'></div>",
                                     },
                                     "order": [[0, 'asc']],
                                     "lengthMenu": [[20, 30, 50, 100, 200], [20, 30, 50, 100, 200]]
+                                });
+
+                                $("#dtbl").on("change","#is_published_toggle",function(){
+                                  var is_published='';
+                                  var blogs_id=$(this).attr("data-blogs_id");
+                                  if($(this,"#is_published_toggle").prop("checked") == true){
+                                    is_published='1';
+                                  }else {
+                                    is_published='0';
+                                  }
+
+                                  $.ajax({
+                                         type: "post",
+                                         url: "<?=base_url();?>admin/blogs/publish",
+                                         data: {
+                                             is_published: is_published,
+                                             blogs_id: blogs_id,
+                                         },
+                                         success: function(data) {
+                                           var myTable = $('#dtbl').DataTable();
+                                           myTable.ajax.reload( null, false );
+                                         }
+                                     });
+
+
                                 });
                             });
                         </script>
@@ -57,6 +90,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Title</th>
+                                    <th>Publish</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

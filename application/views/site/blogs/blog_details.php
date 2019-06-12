@@ -37,7 +37,15 @@
                   </div>
         </div>
       <?php endforeach; ?>
-
+      <div class="tags-widget">
+				<ul>
+          <?php if($tags){
+            foreach ($tags as $key => $value) {?>
+              	<li><a href="#"><?=$value?></a></li>
+            <?php }
+          }?>
+				</ul>
+		 </div>
     </div>
   </div>
 </div>

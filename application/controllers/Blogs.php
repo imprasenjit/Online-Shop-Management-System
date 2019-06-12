@@ -29,13 +29,29 @@ class Blogs extends CI_Controller {
     }
     public function blog_details($title,$id){
       $blog_data=$this->blogs_model->get_by_id($id);
+      $blog_tags=$this->blogs_model->get_tags();
 
       $data = array("page" =>url_title(trim( $blog_data->blog_title), '-', TRUE));
       $data['blog_details']=$blog_data;//var_dump($data['blog_details']);die;
       $data['recent_blogs']=$this->blogs_model->get_recent_blogs();//var_dump($data['recent_blogs']);die;
+      $data['tags']=$this->filter_tags($blog_tags);
       $this->load->view('site/requires/header', $data);
       $this->load->view('site/blogs/blog_details',$data);
       $this->load->view('site/requires/footer');
+    }
+    function filter_tags($data){
+      $tags=array();
+      if($data){
+        foreach ($data as $key => $value) {
+          $tag=$value->tags;
+          if($tag){
+            foreach (json_decode($tag) as $key => $t) {
+              array_push($tags,$t->value);
+            }
+          }
+        }
+      }
+      return $tags;
     }
 
 //End of get_dtrecords()

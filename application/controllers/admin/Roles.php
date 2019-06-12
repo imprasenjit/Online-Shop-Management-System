@@ -29,7 +29,7 @@ class Roles extends Aipl_admin {
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Admin roles', '/admin/roles');
         $this->breadcrumbs->push('Add role', '/admin/roles/create');
-
+        $data['all_rights']=$this->roles_model->get_rights();
         $this->load->view('admin/requires/header',array('title'=>'Add role'));
         $this->load->view('admin/roles/role_form', $data);
         $this->load->view('admin/requires/footer');
@@ -69,16 +69,17 @@ class Roles extends Aipl_admin {
         $row = $this->roles_model->get_by_id($id);
 
         if ($row) {
-        $data = array(
-        'button' => 'Update',
-        'action' => site_url('admin/roles/update_action'),
-        'id' => set_value('id', $row->role_id),
-        'name' => set_value('name', $row->name),
-        'rights' => set_value('rights', json_decode($row->rights)),
-      );
-    $this->load->view('admin/requires/header',array('title'=>'Edit roles'));
+          $data = array(
+          'button' => 'Update',
+          'action' => site_url('admin/roles/update_action'),
+          'id' => set_value('id', $row->role_id),
+          'name' => set_value('name', $row->name),
+          'rights' => set_value('rights', json_decode($row->rights)),
+        );
+        $data['all_rights']=$this->roles_model->get_rights();
+        $this->load->view('admin/requires/header',array('title'=>'Edit roles'));
         $this->load->view('admin/roles/role_form', $data);
-    $this->load->view('admin/requires/footer');
+        $this->load->view('admin/requires/footer');
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('admin/roles'));
