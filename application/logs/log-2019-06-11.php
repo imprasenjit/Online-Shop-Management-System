@@ -1751,3 +1751,69 @@ DEBUG - 2019-06-11 17:02:02 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-11 17:02:02 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-11 17:02:02 --> Breadcrumbs Class Initialized
 DEBUG - 2019-06-11 17:02:02 --> Total execution time: 0.0288
+DEBUG - 2019-06-11 17:08:25 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:25 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:25 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:25 --> Total execution time: 0.0287
+DEBUG - 2019-06-11 17:08:25 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:25 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:25 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:25 --> Total execution time: 0.0236
+DEBUG - 2019-06-11 17:08:27 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:27 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:27 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:27 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:27 --> Total execution time: 0.0272
+DEBUG - 2019-06-11 17:08:30 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:30 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:30 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:30 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:30 --> Total execution time: 0.0241
+DEBUG - 2019-06-11 17:08:32 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:32 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:32 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:32 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:32 --> Total execution time: 0.0331
+DEBUG - 2019-06-11 17:08:33 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:33 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:33 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:33 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:33 --> Total execution time: 0.0274
+DEBUG - 2019-06-11 17:08:48 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:48 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:48 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:48 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:48 --> Total execution time: 0.0232
+DEBUG - 2019-06-11 17:08:48 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:48 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:48 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:48 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:48 --> Total execution time: 0.0297
+DEBUG - 2019-06-11 17:08:52 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:52 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:52 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:52 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:52 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:52 --> Total execution time: 0.0228
+DEBUG - 2019-06-11 17:08:53 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:53 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:53 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:53 --> Total execution time: 0.0258
+DEBUG - 2019-06-11 17:08:59 --> UTF-8 Support Enabled
+DEBUG - 2019-06-11 17:08:59 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2019-06-11 17:08:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2019-06-11 17:08:59 --> Config file loaded: /opt/lampp/htdocs/supplyorigin/application/config/breadcrumbs.php
+DEBUG - 2019-06-11 17:08:59 --> Breadcrumbs Class Initialized
+DEBUG - 2019-06-11 17:08:59 --> Total execution time: 0.0373

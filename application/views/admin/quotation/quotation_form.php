@@ -7,18 +7,6 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Send Quotation to Customer</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -282,8 +270,8 @@
 						<br />
 						<div class="row" style="margin-right:2px;">							
 								<div class="col-md-3">
-									<label for="varchar">Regards, <?php echo form_error('send_from') ?></label>
-									<textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from" rows="5"><?php echo "Supply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
+									<label for="varchar"><?php echo form_error('send_from') ?></label>
+									<textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from" rows="5"><?php echo "\n\nRegards, \nSupply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
 								</div>
 						</div>
 						<input type="hidden" name="id" value="<?php echo $id; ?>" />

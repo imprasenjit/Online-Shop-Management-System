@@ -12,8 +12,11 @@ class Blogs_model extends CI_Model {
 
     // get all
     function get_all() {
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->result();
+        $this->db->select("*")
+                  ->from($this->table)
+                  ->where("status",'1')
+                  ->order_by($this->id, $this->order);
+        return $this->db->get()->result();
     }
 
     // get data by id
@@ -41,6 +44,7 @@ class Blogs_model extends CI_Model {
     function get_recent_blogs(){
       $this->db->SELECT("")
               ->FROM($this->table)
+              ->where('status',"1")
               ->ORDER_BY('blogs_id',"DESC")
               ->limit ("4");
               return $this->db->get()->result();

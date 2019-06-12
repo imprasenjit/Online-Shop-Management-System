@@ -14,9 +14,10 @@
       <div class="socials">
         <div class="wt-blog__post__cta__content">
             <h3>Don't forget to share this post!</h3>
-        <ul class="footer-connected">
-          <li><a href="#"><i class="fa fa-facebook-official"></i></a>&nbsp;&nbsp;&nbsp;</li>
-          <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+        <ul class="socials-connected">
+          <?php $share_url=urlencode(base_url()."blogs/".url_title(trim($blog_details->blog_title), '-', TRUE)."/".$blog_details->blogs_id); ?>
+          <li><a href="http://www.facebook.com/sharer.php?u=<?php echo $share_url;?>" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;&nbsp;&nbsp;</li>
+          <li><a  href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $share_url; ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
         </ul>
       </div>
     </div>

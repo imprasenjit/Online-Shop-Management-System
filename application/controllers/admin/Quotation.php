@@ -4,6 +4,11 @@ if (!defined('BASEPATH')) {
 }
 class Quotation extends Aipl_admin
 {
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -19,6 +24,11 @@ class Quotation extends Aipl_admin
         $this->load->library('breadcrumbs');
         $this->load->model('settings_model');
     }
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
@@ -27,6 +37,24 @@ class Quotation extends Aipl_admin
         $this->load->view('admin/quotation/quotation_list');
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * send_quotation_to_customer
+     *
+     * @param mixed $enquiry_id
+     * @return void
+     */
+    public function send_quotation_to_customer()
+    {
+        $this->load->view('admin/requires/header', array('title' => 'quotation'));
+        $this->load->view('admin/quotation/quotation_for_customer');
+        $this->load->view('admin/requires/footer');
+    }
+    /**
+     * send_quotation
+     *
+     * @param mixed $enquiry_id
+     * @return void
+     */
     public function send_quotation($enquiry_id)
     {
         $this->load->library('email');
@@ -49,6 +77,11 @@ class Quotation extends Aipl_admin
         $this->load->view('admin/quotation/quotation_form', $data);
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * view_quotation
+     *
+     * @return void
+     */
     public function view_quotation()
     {
         $this->load->library('email');
@@ -61,6 +94,11 @@ class Quotation extends Aipl_admin
         $this->load->view('admin/quotation/quotation_format');
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * create
+     *
+     * @return void
+     */
     public function create()
     {
         $data = array(
@@ -75,6 +113,11 @@ class Quotation extends Aipl_admin
         $this->load->view('admin/quotation/quotation_form', $data);
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * create_action
+     *
+     * @return void
+     */
     public function create_action()
     {
         $this->_rules();
@@ -165,6 +208,12 @@ class Quotation extends Aipl_admin
     $this->load->view('quotation/quotation_view');
     }
      */
+    /**
+     * update
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function update($id)
     {
         $row = $this->quotation_model->get_by_id($id);
@@ -185,6 +234,11 @@ class Quotation extends Aipl_admin
             redirect(site_url('admin/quotation'));
         }
     }
+    /**
+     * update_action
+     *
+     * @return void
+     */
     public function update_action()
     {
         $this->_rules();
@@ -201,6 +255,12 @@ class Quotation extends Aipl_admin
             redirect(site_url('admin/quotation'));
         }
     }
+    /**
+     * delete
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function delete($id)
     {
         $row = $this->quotation_model->get_by_id($id);
@@ -213,6 +273,11 @@ class Quotation extends Aipl_admin
             redirect(site_url('admin/quotation'));
         }
     }
+    /**
+     * _rules
+     *
+     * @return void
+     */
     public function _rules()
     {
         $this->form_validation->set_rules('send_to', ' ', 'trim');
@@ -222,16 +287,11 @@ class Quotation extends Aipl_admin
         $this->form_validation->set_rules('id', 'id', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span><br/>');
     }
-    public function word()
-    {
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=quotation.doc");
-        $data = array(
-            'quotation_data' => $this->quotation_model->get_all(),
-            'start' => 0,
-        );
-        $this->load->view('admin/quotation/quotation_html', $data);
-    }
+   /**
+    * get_dtrecords
+    *
+    * @return void
+    */
     function get_dtrecords()
     {
         $columns = array(
