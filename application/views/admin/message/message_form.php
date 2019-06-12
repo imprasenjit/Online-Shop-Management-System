@@ -29,13 +29,10 @@
                             <div class="product-status-wrap">
 
                                 <form action="<?php echo $action; ?>" method="post">
-                                    <!--<div class="form-group">
-                                                    <label for="varchar">From <?php echo form_error('send_from') ?></label>
-                                                    <input type="text" class="form-control form-control-sm" name="send_from" id="send_from" placeholder="From :" value="<?php echo $send_from; ?>" />
-                                    </div>-->
                                     <div class="form-group">
                                         <label for="varchar">To <?php echo form_error('send_to') ?></label>
                                         <input type="text" class="form-control form-control-sm" name="send_to" id="send_to" placeholder="To : " value="<?php echo $send_to; ?>" />
+                                        <span id="cust_details"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="varchar">Subject <?php echo form_error('subject') ?></label>
@@ -64,6 +61,8 @@
         </div>
     </div>
 </div>
+<link href="<?=base_url('public/jqueryui/jquery-ui.min.css')?>" rel="stylesheet" type="text/css" />
+<script src="<?=base_url('public/jqueryui/jquery-ui.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url(); ?>public/pekeupload/js/pekeUpload.js" ></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -74,5 +73,13 @@
           limit: 1,
           allowedExtensions: "JPG|JPEG|GIF|PNG|PDF|jpg|jpeg|gif|png|pdf"
         });
+        
+        $("#send_to").autocomplete({
+            source:"<?=base_url('admin/message/get_custnames')?>", 
+            minLength:1,
+            select: function(event,ui){ 
+                $("#cust_details").html(ui.item.label);
+            },
+        }); //End of autocomplete #cust_search_box
     });
 </script>
