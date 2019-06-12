@@ -111,6 +111,31 @@ class Message extends Aipl_admin {
         $this->load->view('admin/message/message_form', $data);
         $this->load->view('admin/requires/footer');
     }
+    
+    function get_custnames(){
+        $term = trim(strip_tags($this->input->get("term", TRUE)));
+        $a_json = array();
+        $a_json_row = array();
+        
+        $this->load->model('customers_model');
+        $records = $this->customers_model->search_rows(10, 0, $term, "name", $term);
+        if($records) {
+            foreach($records as $rows) {
+                $a_json_row["id"] = $rows->id;
+                $a_json_row["label"] = $rows->name." : ".$rows->address;
+                $a_json_row["value"] = $rows->email;
+                array_push($a_json, $a_json_row);
+            }//End foreach()
+            echo json_encode($a_json);
+            flush();
+        } else {
+            $a_json_row["id"] = "XXX";
+            $a_json_row["value"] = "No customer found. Register a customer";
+            array_push($a_json, $a_json_row);
+            echo json_encode($a_json);
+            flush();
+        }//End of if else
+    }//End of get_custnames()
 
     public function create_action() {
         /* $this->_rules();
