@@ -110,7 +110,23 @@ class Roles_model extends CI_Model
     }//End of tot_search_rows()
 
     function get_roles_name($data){
-      var_dump(json_decode($data));die;
+      $res='';
+      if($data){
+        $data=json_decode($data);
+      }
+      $this->db->select('display_name')
+                ->from('rights')
+                ->where_in('rights_id',$data);
+      $result=$this->db->get()->result();
+      if($result){
+        foreach ($result as $key => $value) {
+          $res .=$value->display_name;
+          if($key !=(count($result)-1))
+          $res .=',';
+        }
+      }
+      return $res;
+      // var_dump($result);die;
     }
 
 }

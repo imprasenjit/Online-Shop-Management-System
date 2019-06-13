@@ -28,15 +28,7 @@
 										<div class="col-md-12"><label>Rights<span class="text-danger">*</span></label></div>
 										<div class="col-md-12">
                       <select class="form-control form-control-sm mark_to "  multiple name="rights[]" id="rights">
-                        <!-- <?php foreach ($rights_array as $key => $value) {
-                          if (in_array($value, $rights))
-                          { ?>
-                          <option value="<?php echo $value;?>" selected><?php echo $value;?></option>
-                        <?php }
-                          else
-                          {?>
-                            <option value="<?php echo $value;?>"><?php echo $value;?></option>
-                        <?php }} ?> -->
+                        
                         <?php if($all_rights){
                           foreach ($all_rights as $key => $right) {
                             if (in_array($right->rights_id,$rights)){ ?>

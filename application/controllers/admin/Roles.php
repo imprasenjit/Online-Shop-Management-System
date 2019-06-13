@@ -156,7 +156,7 @@ class Roles extends Aipl_admin {
               $deleteBtn = anchor(site_url('admin/roles/delete/' . $id), 'Delete', array('class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm(\'Are You Sure you want to delete?\')')) . "&nbsp;";
               $nestedData["slno"] = $slno++;
               $nestedData["name"] = $rows->name;
-              $nestedData["rights"] = $rows->rights;
+              $nestedData["rights"] = $this->roles_model->get_roles_name($rows->rights);
               $nestedData["id"] =  $editBtn . $deleteBtn;
               $data[] = $nestedData;
           } //End of for

@@ -19,7 +19,7 @@
                                 <div id="collapseAdminUser" <?php if($this->router->class=="users" OR $this->router->class=="roles"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                     <div class="bg-primary py-2 collapse-inner">
                                         <a <?php if($this->router->class=="users" AND  $this->router->method=="index" OR $this->router->method=="create"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?>   href="<?= base_url("admin/users") ?>">Users List</a>
-                                        <a <?php if($this->router->class=="roles" AND $this->router->method=="index" OR $this->router->method=="create"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?>   href="<?= base_url("admin/roles") ?>">Users Role</a>
+                                        <a <?php if($this->router->class=="roles" AND $this->router->method=="index" OR $this->router->method=="create"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?>   href="<?= base_url("admin/roles") ?>">Admin Role</a>
                                     </div>
                                 </div>
                             </li>
@@ -123,7 +123,9 @@
                                     <i class="fas fa-tasks"></i>
                                     <span>Website Management</span>
                                 </a>
-                                <div id="webManagment" <?php if($this->router->class=="settings" OR $this->router->class=="home_page_slider" OR $this->router->class=="associated_brands" OR $this->router->class=="aboutus" OR $this->router->class=="downloads"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div id="webManagment" <?php
+                                if($this->router->class=="settings" OR $this->router->class=="home_page_slider" OR $this->router->class=="associated_brands"
+                                OR $this->router->class=="aboutus" OR $this->router->class=="downloads" OR $this->router->class=="blogs"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                     <div class="bg-primary py-2 collapse-inner">
                                         <a <?php if($this->router->class=="home_page_slider" AND $this->router->method=="index" OR $this->router->method=="create" ){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/home_page_slider") ?>">Home Page Slider</a>
                                         <a <?php if($this->router->class=="associated_brands" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/associated_brands"); ?>">Associated Brands</a>
@@ -131,32 +133,13 @@
                                         <a <?php if($this->router->class=="aboutus" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/aboutus"); ?>">About Us</a>
                                         <a <?php if($this->router->class=="downloads" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/downloads"); ?>">Downloads</a>
                                         <a <?php if($this->router->class=="settings" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/settings"); ?>">Settings</a>
+                                        <a <?php if($this->router->class=="blogs" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/blogs") ?>">Blogs</a>
                                     </div>
                                 </div>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogs" aria-expanded="true" aria-controls="collapseTwo">
-                                    <i class="fas fa-bus"></i>
-                                    <span>Blogs</span>
-                                </a>
-                                <div id="blogs" <?php if($this->router->class=="blogs"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                                    <div class="bg-primary py-2 collapse-inner">
-                                        <a <?php if($this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/blogs") ?>">Blogs</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#roles" aria-expanded="true" aria-controls="collapseTwo">
-                                    <i class="fas fa-bus"></i>
-                                    <span>Admin Roles</span>
-                                </a>
-                                <div id="roles" <?php if($this->router->class=="roles"){ echo 'class="collapse show"';}else{ echo 'class="collapse"';} ?>  aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                                    <div class="bg-primary py-2 collapse-inner">
-                                        <a <?php if($this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';}?> href="<?= base_url("admin/roles") ?>">Roles</a>
-                                    </div>
-                                </div>
-                            </li>
+
+
                         <?php } else if ($this->session->issupplier) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= base_url("admin/suppliers/dashboard"); ?>">
