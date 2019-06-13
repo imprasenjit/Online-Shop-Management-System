@@ -127,4 +127,21 @@ public function get_tags(){
             ->where('status','1');
   return $this->db->get()->result();
 }
+public function get_all_by_tags($tags){
+  $this->db->select('*')
+            ->from($this->table)
+            ->where(array('status'=>'1'))
+            ->like('tags',$tags);
+  return $this->db->get()->result();
+}
+public function get_all_by_search_term($search_term){
+  $this->db->select('*')
+            ->from($this->table)
+            ->where(array('status'=>'1'))
+            ->like('blog_title',$search_term)
+            ->or_like('tags',$search_term);
+return $this->db->get()->result();
+   // var_dump($this->db->last_query());die;
+}
+
 }

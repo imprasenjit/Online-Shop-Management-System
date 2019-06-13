@@ -23,12 +23,25 @@
     </div>
     </div>
     <div class="col-md-4">
+      <div class="search-container">
+        <form action="<?=base_url();?>search" method="post">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
       <div class="section-title">
 				<h2>Recent Posts</h2>
 			</div>
       <?php foreach ($recent_blogs as $key => $recent): ?>
         <div class="post post-thumb">
-                  <a class="post-img" href="<?=base_url()?>blogs/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>"><img src="<?=base_url($recent->image)?>" alt=""></a>
+                  <a class="post-img" href="<?=base_url()?>blogs/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>">
+                    <?php if($recent->image){ ?>
+                      <img src="<?=base_url($recent->image)?>" alt="">
+                    <?php }else { ?>
+                      <img src="<?=base_url("assets/images/not-found.png")?>"  alt="">
+                    <?php } ?>
+
+                  </a>
                   <div class="post-body">
                     <h3 class="post-title"><a href="<?=base_url()?>blogs/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>"><?=$recent->blog_title;?></a></h3>
                     <div class="post-meta">
@@ -41,7 +54,7 @@
 				<ul>
           <?php if($tags){
             foreach ($tags as $key => $value) {?>
-              	<li><a href="#"><?=$value?></a></li>
+              	<li><a href="<?=base_url()?>blogs/<?=$value?>"><?=$value?></a></li>
             <?php }
           }?>
 				</ul>

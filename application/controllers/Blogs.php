@@ -20,9 +20,24 @@ class Blogs extends CI_Controller {
         $this->load->helper('sendmail');
     }
 
-    public function index() {
+    public function index($tags=null) {
+
       $data = array("page" => "Blogs");
-      $data['blogs']=$this->blogs_model->get_all();//var_dump($data['blogs']);die;
+      if($tags){
+        $data['blogs']=$this->blogs_model->get_all_by_tags($tags);//var_dump($data['blogs']);die;
+      }else {
+        $data['blogs']=$this->blogs_model->get_all();//var_dump($data['blogs']);die;
+      }
+      $data['search_term']='';
+      $this->load->view('site/requires/header', $data);
+      $this->load->view('site/blogs/blog_list',$data);
+      $this->load->view('site/requires/footer');
+    }
+    public function search(){
+      $data = array("page" => "Blogs");
+      $search_term=$this->input->post('search');
+      $data['blogs']=$this->blogs_model->get_all_by_search_term($search_term);//var_dump($data['blogs']);die;
+      $data['search_term']=$search_term;
       $this->load->view('site/requires/header', $data);
       $this->load->view('site/blogs/blog_list',$data);
       $this->load->view('site/requires/footer');

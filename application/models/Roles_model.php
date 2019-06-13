@@ -109,6 +109,10 @@ class Roles_model extends CI_Model
         return $query->num_rows();
     }//End of tot_search_rows()
 
+    function get_roles_name($data){
+      var_dump(json_decode($data));die;
+    }
+
 }
 
 /* End of file roles_model.php */

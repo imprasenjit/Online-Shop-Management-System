@@ -57,7 +57,9 @@ $route['products'] = 'products/index';
 //$route['admin'] = 'admin/login';
 $route['view-all-sub-category'] = 'products/subcategory';
 $route['view-all-products-by-category/(:any)'] = 'products/category/$1';
+$route['blogs/(:any)'] = 'blogs/index/$1';
 $route['blogs/(:any)/(:any)'] = 'blogs/blog_details/$1/$2';
+$route['search'] = 'blogs/search';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
