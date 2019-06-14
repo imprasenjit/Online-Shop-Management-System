@@ -26,8 +26,7 @@ class Proforma_invoice extends Aipl_admin
         $this->load->view('admin/proforma_invoice/proforma_invoice_list');
         $this->load->view('admin/requires/footer');
     }
-    public function send_pi_to_customer($purchase_order_id)
-    {
+    public function send_pi_to_customer($purchase_order_id) {
         $this->load->library('email');
 		$this->load->model("enquires_model");
         $this->load->model("products_model");
@@ -107,17 +106,33 @@ class Proforma_invoice extends Aipl_admin
             'created_at'=> date("Y-m-d H:i:s"),
             'created_by'=>$this->session->userdata("id")
         );
-
+        //var_dump($data); die();
         $qid=$this->proforma_invoice_model->insert($data);
         if ($qid) {
+            $data['row']=$this->proforma_invoice_model->get_by_id($qid);
+            $this->load->view('test_view', $data);
+            $html = $this->output->get_output();
+            $this->load->library('dompdflib');
+            $this->dompdf->loadHtml($html);
+            $this->dompdf->setPaper('A4', 'landscape');
+            $this->dompdf->render();
+            $output = $this->dompdf->output();
+            $pdfName = time().".pdf";
+            $pdfPath = 'storage/temps/'.$pdfName;
+            //$this->dompdf->stream($pdfPath, array("Attachment"=>0)); die();
+            file_put_contents($pdfPath, $output);
+
+            $this->load->helper("sendmail");
+            //$send_to = 'ashraful@avantikain.com';
             $sub = "Porforma Invoice";
-            //$msgBody = $this->load->view('admin/quotation/quotation_view', array("qid"=>$qid), true);
-            //$status = sendmail($send_to, $sub, $msgBody);
-            $this->session->set_flashdata('message', 'Proforma Invoice Sent');
+            $msgBody = "Please find the attachment below";
+            sendmail($send_to, $sub, $msgBody, $pdfPath);
+            unlink($pdfPath);
+            $this->session->set_flashdata('message', 'Proforma Invoice has been sent successfully');
             redirect(site_url('admin/proforma_invoice'));
         } else {
             redirect(site_url('admin/proforma_invoice'));
-        }
+        }//End of if else
     }
     public function view($id)
     {
