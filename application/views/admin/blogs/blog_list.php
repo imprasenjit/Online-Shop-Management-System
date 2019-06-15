@@ -3,8 +3,9 @@
       <div class="mb-4">
         <?=$this->breadcrumbs->show();?>
       </div>
-      <link href="<?=base_url()?>assets/css/bootstrap-toggle.min.css" rel="stylesheet">
-      <script src="<?=base_url()?>assets/js/bootstrap-toggle.min.js"></script>
+      <!-- <link href="<?=base_url()?>assets/css/bootstrap-toggle.min.css" rel="stylesheet">
+      <script src="<?=base_url()?>assets/js/bootstrap-toggle.min.js"></script> -->
+        <link href="<?=base_url()?>assets/css/custom.css" rel="stylesheet">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-4">
@@ -50,7 +51,7 @@
                                         "type": "POST"
                                     },
                                     "fnDrawCallback": function() {
-                                        jQuery('#dtbl #is_published_toggle').bootstrapToggle();
+                                      //  jQuery('#dtbl #is_published_toggle').bootstrapToggle();
                                       },
                                     language: {
                                         processing: "<div class='loading'></div>",

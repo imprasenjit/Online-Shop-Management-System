@@ -200,9 +200,11 @@ class Blogs extends Aipl_admin {
                 $editBtn = anchor(site_url('admin/blogs/update/' . $rows->blogs_id), 'Edit', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
                 $deleteBtn = anchor(site_url('admin/blogs/delete/' . $rows->blogs_id), 'Delete', array('class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm(\'Are You Sure you want to delete?\')')) . "&nbsp;";
                 if($rows->is_published=="1"){
-                  $published_toogle="<input type='checkbox' data-blogs_id='".$rows->blogs_id."' checked data-toggle='toggle' id='is_published_toggle'>";
+                  $published_toogle='<label class="switch"><input id="is_published_toggle" data-blogs_id='.$rows->blogs_id.' type="checkbox" checked > <span class="slider round"></span></label>';
+                //  $published_toogle="<input type='checkbox' data-blogs_id='".$rows->blogs_id."' checked data-toggle='toggle' id='is_published_toggle'>";
                 }else {
-                  $published_toogle="<input type='checkbox' data-blogs_id='".$rows->blogs_id."' data-toggle='toggle' id='is_published_toggle'>";
+                  // $published_toogle="<input type='checkbox' data-blogs_id='".$rows->blogs_id."' data-toggle='toggle' id='is_published_toggle'>";
+                  $published_toogle='<label class="switch"><input id="is_published_toggle" data-blogs_id='.$rows->blogs_id.' type="checkbox" > <span class="slider round"></span></label>';
                 }
 
                 $nestedData["blogs_id"] = $rows->blogs_id;

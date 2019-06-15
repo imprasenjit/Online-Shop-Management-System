@@ -28,7 +28,7 @@
 						<?php
 						$qid = $this->uri->segment(4);
 						$rowq = $this->quotation_model->get_by_id($qid);
-						
+
 						if ($rowq) {
 							$cust_result = $this->enquires_model->get_by_id($rowq->enquiry_id);
 							?>
@@ -55,19 +55,19 @@
 						<div class="clearfix"></div>
 
 							<p><?php echo $rowq->editordata; ?></p>
-						<?php 
-						$enq_unique_id = $cust_result->unique_id;
-						$enquiry_placed_date = $cust_result->enquiry_placed_date;
+						<?php
+						$enq_unique_id = !empty($cust_result->unique_id)?$cust_result->unique_id:"";
+						$enquiry_placed_date = !empty($cust_result->enquiry_placed_date)?$cust_result->enquiry_placed_date:"";
 						$sl = 1;
 						$quotation_id = $rowq->quotation_id;
 						$enquiry_id = $rowq->enquiry_id;
 						$editordata = $rowq->editordata;
 						$editordata2 = $rowq->editordata2;
-						$this->load->view("admin/products/product_table_format",array("product"=>$rowq));	
+						$this->load->view("admin/products/product_table_format",array("product"=>$rowq));
 						?>
-							
+
 							<p><?php echo $rowq->editordata2; ?></p>
-						
+
 						<div class="row">
 							<div class="col-md-12 pl-4">
 								From <br />

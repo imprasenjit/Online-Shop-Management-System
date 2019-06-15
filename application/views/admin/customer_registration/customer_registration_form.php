@@ -79,7 +79,7 @@
                                 <?php if($key==0){?>
                                 <div class="col-md-1 form-group" style="margin-top:30px">
                                   <!-- <label>Action<span class="text-danger">*</span></label> -->
-                                    <button type="button" class="btn btn-primary btn-sm"><i id="experience_fields"  onclick="add_additional_address();" class="fas fa-plus cursor"></i></button>
+                                    <button type="button" onclick="add_additional_address();" class="btn btn-primary btn-sm"><i id="experience_fields"   class="fas fa-plus cursor"></i></button>
                                 </div>
                                  <?php }?>
                             </div>
@@ -102,7 +102,7 @@
                               </div>
                               <div class="col-md-1 form-group" style="margin-top:30px">
                                 <!-- <label>Action<span class="text-danger">*</span></label> -->
-                                  <button class="btn btn-primary btn-sm" type="button"><i id="experience_fields"  onclick="add_additional_address();" class="fas fa-plus cursor"></i></button>
+                                  <button onclick="add_additional_address();" class="btn btn-primary btn-sm" type="button"><i id="experience_fields"   class="fas fa-plus cursor"></i></button>
                               </div>
                           </div>
                         <?php } ?>
@@ -150,7 +150,7 @@
     '<div class=" col-sm-8">'+
             '<textarea type="text" class="form-control form-control-sm" name="customer_address[]" required ></textarea>'+
     '</div>'+
-    '<div class="col-sm-1"><a onclick=removeAdditionalField("add_experience' + room + '");><i class="fa fa-times cursor" aria-hidden="true"></i> </a></div>'+
+    '<div class="col-sm-1"><a class="btn btn-danger btn-sm text-white" onclick=removeAdditionalField("add_experience' + room + '");><i class="fa fa-times cursor" aria-hidden="true"></i> </a></div>'+
     '</div>';
     objToExperienceFields.appendChild(divtest)
 }
