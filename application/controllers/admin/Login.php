@@ -230,6 +230,7 @@ class Login extends Aipl_admin
             $this->load->model("login_model");
             $admin=$this->login_model->process($username);
               if (crypt($password, $admin->password) == $admin->password) {
+                $rights=$this->login_model->get_rights($admin->rights);
                 $id = $admin->id;
                 $username = $admin->username;
                 $name = $admin->name;
@@ -238,6 +239,8 @@ class Login extends Aipl_admin
                     "username" => $username,
                     "id" => $id,
             				"status" => "1",
+                    "role_id" => $admin->role_id,
+                    "rights" => $rights,
                     "login" => true,
                     "isadmin" => true
                 );

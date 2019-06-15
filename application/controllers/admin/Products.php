@@ -286,7 +286,7 @@ class Products extends Aipl_admin {
         }//End of if else
         $data = array();
         if (!empty($records)) {
-            
+
             foreach ($records as $rows) {
                 $product_name = $rows->product_name;
                 $description = $rows->description;

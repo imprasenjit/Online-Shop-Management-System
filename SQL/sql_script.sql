@@ -648,3 +648,13 @@ CREATE TABLE `rights`(
   `status` TINYINT(1) DEFAULT '1',
    primary key(`rights_id`)
 );
+CREATE TABLE `customer_address`(
+  `address_id` int(10) AUTO_INCREMENT,
+  `customer_id` INT(10) NOT NULL,
+  `address_type` enum('delivery_address','billing_address'),
+  `address` TEXT NOT NULL,
+  `created_at`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT 0,
+  `status` TINYINT(1) DEFAULT '1',
+  primary key(`address_id`)
+);

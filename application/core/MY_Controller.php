@@ -11,6 +11,7 @@ class Aipl_admin extends MY_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->model('roles_model');
   }
   public function pr($arr)
   {
@@ -26,14 +27,53 @@ class Aipl_admin extends MY_Controller
     $this->output->set_profiler_sections($sections);
     $this->output->enable_profiler(TRUE);
   }
-  public function isAdminloggedin($right = null)
+  public function isAdminloggedin()
   {
     if ($this->session->isadmin) {
-      return true;
+      $access=$this->check_rights();
+      if($access){
+        return true;
+      }else {
+        $this->add_controllers();
+        $this->session->set_flashdata("message", "Access Denied! Please contact administrator");
+        $this->session->set_flashdata('type', 'danger');
+        redirect(site_url("admin/dashboard"), "refresh");
+      }
+
     } else {
-      $this->session->set_flashdata("accessMsg", "Session has been Expired!");
+      $this->session->set_flashdata("message", "Session has been Expired!");
+      $this->session->set_flashdata('type', 'danger');
       redirect(site_url("admin/login"), "refresh");
     }
+  }
+  public function check_rights(){
+    // var_dump($this->session-);die;
+    if($this->session->role_id=="1"){
+      return true;
+    }
+    if($this->router->class =="dashboard" && $this->router->method=="index"){
+      return true;
+    }
+    $access=false;
+    $user_rights=$this->session->rights;
+    foreach ($user_rights as $key => $value) {
+      if($value->controller_name == $this->router->class && $value->method_name==$this->router->method){
+        $access=true;
+      }
+    }
+    return $access;
+
+  }
+  public function add_controllers(){
+    $cn=$this->router->class;
+    $mn=$this->router->method;
+    $checkController=$this->roles_model->check_exist_controller($cn,$mn);
+    if($checkController){
+      $data_to_save=array("controller_name"=>$cn,"method_name"=>$mn,"display_name"=>$cn."/".$mn);
+      $this->roles_model->add_controllers($data_to_save);
+    }
+
+
   }
   public function isSuppliersloggedin($right = null)
   {

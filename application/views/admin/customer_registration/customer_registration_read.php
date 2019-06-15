@@ -56,12 +56,25 @@
 										<td>Registration Date</td>
 										<td><?php echo date("d-m-Y h:i A", strtotime($reg_date)); ?></td>
 									</tr>
+									<?php if($additional_address){
+										foreach ($additional_address as $key => $value) { ?>
+											<tr>
+												<td><?php if($value->address_type=="delivery_address"){
+														echo "Delivery Address";
+												}elseif ($value->address_type=="billing_address") {
+												 		echo "Billing Address";	
+												}?></td>
+												<td><?=$value->address;?></td>
+											</tr>
+										<?php }
+										}?>
 								</table>
+
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="card-footer">					
+				<div class="card-footer">
 					<a href="<?php echo site_url('admin/customers/update/'.$id) ?>" class="btn btn-sm btn-warning">Edit</a>
 					<a href="<?php echo site_url('admin/customers') ?>" class="btn btn-sm btn-info">Close</a>
 				</div>

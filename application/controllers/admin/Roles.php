@@ -151,12 +151,19 @@ class Roles extends Aipl_admin {
           $slno = 1;
           foreach ($records as $rows) {
               $id = $rows->role_id;
-
-              $editBtn = anchor(site_url('admin/roles/update/' . $id), 'Edit', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
-              $deleteBtn = anchor(site_url('admin/roles/delete/' . $id), 'Delete', array('class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm(\'Are You Sure you want to delete?\')')) . "&nbsp;";
+              if($id == "1"){
+                $editBtn = anchor(site_url('admin/roles/update/' . $id), 'Edit', array('class' => 'btn btn-sm btn-warning disabled')) . "&nbsp;";
+                $deleteBtn = anchor(site_url('admin/roles/delete/' . $id), 'Delete', array('class' => 'btn btn-sm btn-danger disabled', 'onclick' => 'return confirm(\'Are You Sure you want to delete?\')')) . "&nbsp;";
+                $nestedData["rights"] = "All";
+              }else {
+                $editBtn = anchor(site_url('admin/roles/update/' . $id), 'Edit', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
+                $deleteBtn = anchor(site_url('admin/roles/delete/' . $id), 'Delete', array('class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm(\'Are You Sure you want to delete?\')')) . "&nbsp;";
+                $nestedData["rights"] = $this->roles_model->get_roles_name($rows->rights);
+              }
               $nestedData["slno"] = $slno++;
               $nestedData["name"] = $rows->name;
-              $nestedData["rights"] = $this->roles_model->get_roles_name($rows->rights);
+
+
               $nestedData["id"] =  $editBtn . $deleteBtn;
               $data[] = $nestedData;
           } //End of for

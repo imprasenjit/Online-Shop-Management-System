@@ -18,7 +18,7 @@
                                 <?php echo form_error('name') ?>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Address<span class="text-danger">*</span></label>
+                                <label>Customer Address<span class="text-danger">*</span></label>
                                 <textarea type="text" class="form-control form-control-sm" name="address" id="address"><?php echo $address; ?></textarea>
                                 <?php echo form_error('address') ?>
                             </div>
@@ -57,6 +57,58 @@
                                 <?php echo form_error('cpassword') ?>
                             </div>
                         </div>
+                        <?php  if($additional_address){
+                          foreach ($additional_address as $key => $value) { ?>
+                            <div class="row">
+                                <input type="hidden" name="existing_address_id[]" value="<?php echo $value->address_id;?>"/>
+                                <div class=" col-md-3 form-group">
+                                    <?php if($key==0){?><label>Address Type<span class="text-danger">*</span></label> <?php }?>
+                                    <select class="form-control form-control-sm" name="address_type[]" required>
+                                      <option value="">Select</option>
+                                      <option <?php if($value->address_type == "delivery_address"){echo "selected";}?> value="delivery_address"> Delivery Address</option>
+                                      <option <?php if($value->address_type == "billing_address"){echo "selected";}?> value="billing_address">Billing Address</option>
+                                    </select>
+                                    <?php echo form_error('address_type[]') ?>
+                                </div>
+                                <div class="col-md-8 form-group">
+
+                                    <?php if($key==0){?><label>Address<span class="text-danger">*</span></label> <?php }?>
+                                    <textarea type="text" class="form-control form-control-sm" name="customer_address[]" required><?= $value->address; ?> </textarea>
+                                    <?php echo form_error('customer_address[]') ?>
+                                </div>
+                                <?php if($key==0){?>
+                                <div class="col-md-1 form-group" style="margin-top:30px">
+                                  <!-- <label>Action<span class="text-danger">*</span></label> -->
+                                    <button type="button" class="btn btn-primary btn-sm"><i id="experience_fields"  onclick="add_additional_address();" class="fas fa-plus cursor"></i></button>
+                                </div>
+                                 <?php }?>
+                            </div>
+                          <?php }
+                          }else { ?>
+                          <div class="row">
+                              <div class=" col-md-3 form-group">
+                                  <label>Address Type<span class="text-danger">*</span></label>
+                                  <select class="form-control form-control-sm" name="address_type[]" required>
+                                    <option value="">Select</option>
+                                    <option value="delivery_address"> Delivery Address</option>
+                                    <option value="billing_address">Billing Address</option>
+                                  </select>
+                                  <?php echo form_error('address_type[]') ?>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                  <label>Address<span class="text-danger">*</span></label>
+                                  <textarea type="text" class="form-control form-control-sm" name="customer_address[]" required></textarea>
+                                  <?php echo form_error('customer_address[]') ?>
+                              </div>
+                              <div class="col-md-1 form-group" style="margin-top:30px">
+                                <!-- <label>Action<span class="text-danger">*</span></label> -->
+                                  <button class="btn btn-primary btn-sm" type="button"><i id="experience_fields"  onclick="add_additional_address();" class="fas fa-plus cursor"></i></button>
+                              </div>
+                          </div>
+                        <?php } ?>
+
+
+                        <div id="additional_address"></div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>" />
                 </div>
                 <div class="card-footer">
@@ -81,4 +133,28 @@
         else
             document.getElementById("cpassword").setCustomValidity('');
     }
+    room =1;
+    function add_additional_address() {
+    room++;
+    var objToExperienceFields = document.getElementById('additional_address')
+    var divtest = document.createElement("div");
+
+    divtest.innerHTML = '<div class="row " id="add_experience' + room + '">'+
+     '<div class=" col-sm-3">'+
+            '<select class="form-control form-control-sm" name="address_type[]" required>'+
+              '<option value="">Select</option>'+
+              '<option value="delivery_address"> Delivery Address</option>'+
+              '<option value="billing_address">Billing Address</option>'+
+            '</select>'+
+    '</div>'+
+    '<div class=" col-sm-8">'+
+            '<textarea type="text" class="form-control form-control-sm" name="customer_address[]" required ></textarea>'+
+    '</div>'+
+    '<div class="col-sm-1"><a onclick=removeAdditionalField("add_experience' + room + '");><i class="fa fa-times cursor" aria-hidden="true"></i> </a></div>'+
+    '</div>';
+    objToExperienceFields.appendChild(divtest)
+}
+removeAdditionalField=function(value){
+													$("#"+value).remove();
+												}
 </script>

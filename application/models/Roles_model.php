@@ -26,7 +26,7 @@ class Roles_model extends CI_Model
     function get_all()
     {
         $this->db->order_by($this->id, $this->order);
-        $this->db->where("status","1");
+        $this->db->where(array("status"=>"1","role_id !="=>"1"));
         return $this->db->get($this->table)->result();
     }
 
@@ -127,6 +127,20 @@ class Roles_model extends CI_Model
       }
       return $res;
       // var_dump($result);die;
+    }
+    function add_controllers($data){
+      $this->db->insert("rights",$data);
+    }
+    function check_exist_controller($cn,$mn){
+      $this->db->select("*")
+                ->from("rights")
+                ->where(array("status"=>"1","controller_name"=>$cn,"method_name"=>$mn));
+      $result=$this->db->get()->num_rows();
+      if($result){
+        return false;
+      }else {
+        return true;
+      }
     }
 
 }

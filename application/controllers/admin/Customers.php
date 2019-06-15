@@ -14,7 +14,7 @@ class Customers extends Aipl_admin{
         $this->load->library('form_validation');
         $this->load->library('breadcrumbs');
     }
-    
+
     public function index(){
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Customer List', '/admin/customers');
@@ -22,9 +22,10 @@ class Customers extends Aipl_admin{
         $this->load->view('admin/customer_registration/customer_registration_list');
         $this->load->view('admin/requires/footer');
     }
-    
+
     public function read($id) {
         $row = $this->customers_model->get_by_id($id);
+        $additional_address = $this->customers_model->get_address_by_id($id);
         if ($row) {
             $data = array(
                 'id' => $row->id,
@@ -37,6 +38,7 @@ class Customers extends Aipl_admin{
                 'reg_date' => $row->reg_date,
                 'password' => $row->password,
             );
+            $data['additional_address']=$additional_address;
             $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
             $this->breadcrumbs->push('Customer List', '/admin/customers');
             $this->breadcrumbs->push('Customer Details', '/admin/customers/read');
@@ -48,7 +50,7 @@ class Customers extends Aipl_admin{
             redirect(site_url('admin/customer_registration'));
         }
     }
-    
+
     public function report($customer_id) {
         $customer_detail=$this->customers_model->get_by_id($customer_id);
         $data = array(
@@ -58,7 +60,7 @@ class Customers extends Aipl_admin{
         $this->load->view('admin/customer_registration/customer_registration_report', $data);
         $this->load->view('admin/requires/footer');
     }
-    
+
     public function create() {
         $data = array(
             'button' => 'Create',
@@ -72,6 +74,7 @@ class Customers extends Aipl_admin{
             'pan_no' => set_value('pan_no'),
             'password' => set_value('password'),
         );
+        $data['additional_address']="";
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Customer List', '/admin/customers');
         $this->breadcrumbs->push('Add Customer', '/admin/customers/create');
@@ -79,12 +82,13 @@ class Customers extends Aipl_admin{
         $this->load->view('admin/customer_registration/customer_registration_form', $data);
         $this->load->view('admin/requires/footer');
     }
-    
+
     public function create_action() {
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+
             $pass = ($this->input->post('password', TRUE));
             $salt = uniqid("", true);
             $algo = "6";
@@ -105,7 +109,15 @@ class Customers extends Aipl_admin{
               $this->session->set_flashdata('message', 'Customer email already exist');
               $this->session->set_flashdata('type', 'warning');
             }else {
-              $this->customers_model->insert($data);
+              $customer_id=$this->customers_model->insert($data);
+              if($this->input->post('address_type[]',TRUE)){
+                $address_type=$this->input->post('address_type[]',TRUE);
+                $address=$this->input->post('customer_address[]',TRUE);
+                foreach ($address_type as $key => $value) {
+                  $address_data=array('address_type'=>$address_type[$key],'address'=>$address[$key],'customer_id'=>$customer_id);
+                  $this->customers_model->add_address($address_data);
+                }
+              }
               $this->session->set_flashdata('message', 'Create Record Success');
               $this->session->set_flashdata('type', 'success');
             }
@@ -113,12 +125,13 @@ class Customers extends Aipl_admin{
             redirect(site_url('admin/customers'));
         }
     }
-    
+
     public function update($id) {
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Customer List', '/admin/customers');
         $this->breadcrumbs->push('Edit Customer', '/admin/customers/update');
         $row = $this->customers_model->get_by_id($id);
+        $additional_address = $this->customers_model->get_address_by_id($id);
         if ($row) {
             $data = array(
                 'button' => 'Update',
@@ -132,8 +145,8 @@ class Customers extends Aipl_admin{
                 'pan_no' => set_value('pan_no', $row->pan_no),
                 'password' => set_value('password', "1234567890abcdbefghijklmnopqrstuvwxyz"),
                 'cpassword' => set_value('cpassword', "1234567890abcdbefghijklmnopqrstuvwxyz"),
-                //'status' => set_value('status', $row->status),
             );
+            $data['additional_address']=$additional_address;
             $this->load->view('admin/requires/header', array('title' => 'customer_registration'));
             $this->load->view('admin/customer_registration/customer_registration_form', $data);
             $this->load->view('admin/requires/footer');
@@ -142,12 +155,13 @@ class Customers extends Aipl_admin{
             redirect(site_url('admin/customer_registration'));
         }
     }
-    
+
     public function update_action() {
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id', TRUE));
         } else {
+          // var_dump($this->input->post());die;
             $data = array(
                 'name' => $this->input->post('name', TRUE),
                 'address' => $this->input->post('address', TRUE),
@@ -158,12 +172,24 @@ class Customers extends Aipl_admin{
               $data['password']=md5($this->input->post('password', TRUE));
             }
             $this->customers_model->update($this->input->post('id', TRUE), $data);
+            if($this->input->post('address_type[]',TRUE)){
+              $address_type=$this->input->post('address_type[]',TRUE);
+              $address=$this->input->post('customer_address[]',TRUE);
+              $exiting_customer_id=$this->input->post('existing_address_id[]',TRUE);
+              foreach ($address_type as $key => $value) {
+                if($exiting_customer_id[$key]){
+                  $this->customers_model->update_address($exiting_customer_id[$key],array('address_type'=>$address_type[$key],'address'=>$address[$key],'updated_at'=>date('Y-m-d H:i:s')));
+                }else {
+                  $this->customers_model->add_address(array('address_type'=>$address_type[$key],'address'=>$address[$key],'customer_id'=>$this->input->post('id', TRUE)));
+                }
+              }
+            }
             $this->session->set_flashdata('message', 'Customer details updated successfully');
             $this->session->set_flashdata('type', 'success');
             redirect(site_url('admin/customers'));
         }
     }
-    
+
     public function delete($id) {
         $row = $this->customers_model->get_by_id($id);
         if ($row) {
@@ -177,7 +203,7 @@ class Customers extends Aipl_admin{
             redirect(site_url('admin/customers'));
         }
     }
-    
+
     public function _rules() {
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
@@ -189,7 +215,7 @@ class Customers extends Aipl_admin{
 
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
-    
+
     public function excel() {
         $this->load->helper('exportexcel');
         $namaFile = "customer_registration.xls";
@@ -304,7 +330,7 @@ class Customers extends Aipl_admin{
             $records = $this->customers_model->get_enquiry_details_by_customer_id($customer_id,$limit, $start, $search, $order, $dir);
             $totalFiltered = $this->customers_model->get_enquiry_details_by_customer_tot_search_rows($customer_id);
         } //End of if else
-        
+
         $data = array();
         if (!empty($records)) {
             $slno =1;

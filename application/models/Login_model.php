@@ -14,10 +14,10 @@ class Login_model extends CI_Model {
     }
 
     function process($username) {
-        $this->db->select('*');
-        $this->db->from('admin_login');
-        $this->db->where("username", $username);
-        //$this->db->where("password", $password);
+        $this->db->select('al.*,ar.rights');
+        $this->db->from('admin_login as al');
+        $this->db->where("al.username", $username);
+        $this->db->join("admin_roles as ar","al.role_id=ar.role_id",'left');
         $query = $this->db->get();
         if ($query->num_rows() == 1) {
             return $query->row();
@@ -41,7 +41,7 @@ class Login_model extends CI_Model {
             return false;
         }
     }
-    
+
     function mobile_login($mobnum) {
         $this->db->select('*');
         $this->db->where("contact", $mobnum);
@@ -64,6 +64,15 @@ class Login_model extends CI_Model {
     function update($id, $data) {
         $this->db->where($this->id, $id);
         $this->db->update("admin_login", $data);
+    }
+    function get_rights($rights){
+      if($rights){
+        $rights=json_decode($rights);
+      }
+      $this->db->select('rights_id,controller_name,method_name,display_name')
+              ->from('rights')
+              ->where_in('rights_id',$rights);
+      return $this->db->get()->result();
     }
 
 }
