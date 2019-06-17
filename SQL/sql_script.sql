@@ -321,16 +321,6 @@ CREATE TABLE `services` (
   `message` varchar(1000) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `settings` (
-  `settings_id` int(10) NOT NULL,
-  `key` enum('PDF_HEADER','PDF_FOOTER','COLOR') DEFAULT NULL,
-  `values` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_by` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `smes` (
   `sme_id` int(11) NOT NULL,
@@ -589,29 +579,7 @@ ALTER TABLE `warehouse_user`
   MODIFY `warehouse_user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
-CREATE TABLE `home_page_slider`(
-  `slider_id` int(10) AUTO_INCREMENT,
-  `description` VARCHAR(255) DEFAULT NULL,
-  `name` VARCHAR(100) DEFAULT NULL,
-  `file_path` TEXT NOT NULL,
-  `created_at`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` INT(11) NOT NULL,
-  `updated_at` TIMESTAMP DEFAULT 0,
-  `updated_by` INT(11) DEFAULT NULL,
-  `status` TINYINT(1) DEFAULT '1',
-   primary key(`slider_id`)
-);
-CREATE TABLE `admin_roles`(
-  `role_id` int(10) AUTO_INCREMENT,
-  `name` VARCHAR(100) DEFAULT NULL,
-  `rights` TEXT NOT NULL,
-  `created_at`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` INT(11) NOT NULL,
-  `updated_at` TIMESTAMP DEFAULT 0,
-  `updated_by` INT(11) DEFAULT NULL,
-  `status` TINYINT(1) DEFAULT '1',
-   primary key(`role_id`)
-);
+
 CREATE TABLE `settings`(
   `settings_id` int(10) AUTO_INCREMENT,
   `key` enum ('PDF_HEADER','PDF_FOOTER',"COLOR"),
