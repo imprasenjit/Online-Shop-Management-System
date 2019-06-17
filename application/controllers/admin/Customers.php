@@ -169,7 +169,12 @@ class Customers extends Aipl_admin{
                 // 'email' => $this->input->post('email', TRUE),
             );
             if($this->input->post('password') != "1234567890abcdbefghijklmnopqrstuvwxyz"){
-              $data['password']=md5($this->input->post('password', TRUE));
+              $salt = uniqid("", true);
+              $algo = "6";
+              $rounds = "5050";
+              $cryptSalt = '$' . $algo . '$rounds=' . $rounds . '$' . $salt;
+              $hashedPassword = crypt($this->input->post('password'), $cryptSalt);
+              $data['password']=$hashedPassword;
             }
             $this->customers_model->update($this->input->post('id', TRUE), $data);
             if($this->input->post('address_type[]',TRUE)){

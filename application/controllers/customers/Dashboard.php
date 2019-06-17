@@ -20,38 +20,38 @@ class Dashboard extends Aipl_admin
 	{
 
 		$data = array("page" => "Dashboard");
-		$this->load->view('requires/header', $data);
+		$this->load->view('site/requires/header', $data);
 		$this->load->view('site/customers/dashboard/customer_dashboard');
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
 	}
 	public function customer_dashboard()
 	{
 		$data = array("page" => "Dashboard");
-		$this->load->view('requires/header', $data);
+		$this->load->view('site/requires/header', $data);
 		$this->load->view('site/customers/customer_dashboard');
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
 	}
 	public function enquiry_details()
 	{
 
 		$this->breadcrumbs->push('Dashboard', '/customers/dashboard');
 		$this->breadcrumbs->push('Enquires View', '/enquires');
-		$this->load->view('requires/header', array("page" => "Enquiry"));
+		$this->load->view('site/requires/header', array("page" => "Enquiry"));
 		$this->load->view('site/customers/enquires/enquires_view');
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
 	}
 	public function quoted_price_details()
 	{
-		$this->load->view('requires/header', array("page" => "View Quotation"));
+		$this->load->view('site/requires/header', array("page" => "View Quotation"));
 		$this->load->view('site/customers/quotation/quoted_price_details');
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
 	}
 	public function send_purchase_order($quotation_id)
 	{
 		$this->load->model('attribute_model');
-		$this->load->view('requires/header', array("page" => "Purchase order"));
+		$this->load->view('site/requires/header', array("page" => "Purchase order"));
 		$this->load->view('site/customers/purchase_order/send_purchase_order', array("quotation_id" => $quotation_id));
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
 	}
 	public function send_po()
 	{

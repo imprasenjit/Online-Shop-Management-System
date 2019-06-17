@@ -17,9 +17,9 @@ class Purchase_order extends Aipl_admin
     }
     public function index()
     {
-        $this->load->view('requires/header', array('page' => 'Purchase Orders'));
+        $this->load->view('site/requires/header', array('page' => 'Purchase Orders'));
         $this->load->view('site/customers/purchase_order/po_list');
-        $this->load->view('requires/footer');
+        $this->load->view('site/requires/footer');
     }
 
     public function view($id)
@@ -34,9 +34,9 @@ class Purchase_order extends Aipl_admin
         }
         $data=(array)$po;
         //echo '<pre>';print_r($data);die;
-		$this->load->view('requires/header',array("page"=>"Purchase Orders"));
+		$this->load->view('site/requires/header',array("page"=>"Purchase Orders"));
 		$this->load->view('site/customers/purchase_order/purchase_order_view',$data);
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
     }
 
     public function getPurchaseOrders(){

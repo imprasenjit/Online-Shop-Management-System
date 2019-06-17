@@ -41,13 +41,13 @@
 									},
 									{
 										"data": "customer"
-									},	
+									},
 									{
 										"data": "supplier"
-									},	
+									},
                                     {
 										"data": "po_date"
-									},		
+									},
 									{
 										"data": "action"
 									}
@@ -69,23 +69,23 @@
 									[20, 30, 50, 100, 200],
 									[20, 30, 50, 100, 200]
 								]
-							});	
-							});	
+							});
+							});
 							</script>
-							
+
 					<table class="table table-bordered" id="dtbl">
 						<thead>
 							<tr>
                                 <th>(#)</th>
                                 <th>Customer</th>
                                 <th>Supplier</th>
-                                <th>PO Date</th> 
+                                <th>PO Date</th>
                                 <th style="text-align:right">Action</th>
 							</tr>
 					</table>
-                    
+
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -94,7 +94,7 @@
 	$(document).ready(function(){
 		$(document).on("click",".goods_dispatch",function(){
 			var element=$(this);
-			var po_id=$(this).attr("data-po-id");
+			var po_id=$(this).attr("data-po-id");console.log(po_id);
 			$(this).empty().append("Processing...");
 			$.ajax({
 				url:"<?=base_url("admin/warehouse/goods_dispatch_status/")?>",

@@ -161,8 +161,20 @@ class Warehouse_model extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }//End of tot_search_rows()
+    public function add_dispatch_details($purchase_order_to_supplier_id,$data){
+      $this->db->where("purchase_order_supplier_id",$purchase_order_to_supplier_id);
+      $this->db->update("purchase_order_to_supplier",$data);
+      return $this->db->affected_rows();
+    }
+    public function get_goods_dispatch_details($po_id){
+      $this->db->select("dispatch_doc")
+              ->from("purchase_order_to_supplier")
+              ->where(array("purchase_order_supplier_id"=>$po_id,"status"=>"1"));
+      return $this->db->get()->row();
+    }
 
 }
+
 
 /* End of file Suppliers_model.php */
 /* Location: ./application/models/Suppliers_model.php */

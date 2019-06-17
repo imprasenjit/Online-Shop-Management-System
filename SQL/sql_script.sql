@@ -626,3 +626,4 @@ CREATE TABLE `customer_address`(
   `status` TINYINT(1) DEFAULT '1',
   primary key(`address_id`)
 );
+ALTER TABLE `purchase_order_to_supplier` ADD `dispatch_doc` TEXT NULL DEFAULT NULL AFTER `goods_dispatch_status`;

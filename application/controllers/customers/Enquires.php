@@ -35,9 +35,9 @@ class Enquires extends Aipl_admin
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->load->view('requires/header', array('page' => 'Enquires'));
+        $this->load->view('site/requires/header', array('page' => 'Enquires'));
         $this->load->view('site/customers/enquires/enquires_list', $data);
-        $this->load->view('requires/footer');
+        $this->load->view('site/requires/footer');
     }
 
     public function getEnquiries(){

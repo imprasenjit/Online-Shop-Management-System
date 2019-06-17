@@ -18,9 +18,9 @@ class Quotations extends Aipl_admin
     }
     public function index()
     {
-        $this->load->view('requires/header', array('page' => 'Quotation'));
+        $this->load->view('site/requires/header', array('page' => 'Quotation'));
         $this->load->view('site/customers/quotation/quotation_list');
-        $this->load->view('requires/footer');
+        $this->load->view('site/requires/footer');
     }
 
     public function getQuatations(){

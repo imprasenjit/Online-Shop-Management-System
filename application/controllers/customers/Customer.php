@@ -67,9 +67,9 @@ class Customer extends CI_Controller
                 'password' => set_value('password', "1234567345qwertyuiopasdfghjklzsercgyhawikdgbdjdkdb"),
                 'cpassword' => set_value('cpassword', "1234567345qwertyuiopasdfghjklzsercgyhawikdgbdjdkdb"),
             );
-            $this->load->view('requires/header', array('page' => 'Customer Profile'));
+            $this->load->view('site/requires/header', array('page' => 'Customer Profile'));
             $this->load->view('site/customers/dashboard/edit_profile', $data);
-            $this->load->view('requires/footer');
+            $this->load->view('site/requires/footer');
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('customers/dashboard'));

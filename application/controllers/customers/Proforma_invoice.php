@@ -34,9 +34,9 @@ class Proforma_invoice extends Aipl_admin
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->load->view('requires/header', array('page' => 'Proforma Orders'));
+        $this->load->view('site/requires/header', array('page' => 'Proforma Orders'));
         $this->load->view('site/customers/proforma_invoice/pi_list', $data);
-        $this->load->view('requires/footer');
+        $this->load->view('site/requires/footer');
 
     }
 
@@ -50,9 +50,9 @@ class Proforma_invoice extends Aipl_admin
         }
         $data=(array)$po;
         //echo '<pre>';print_r($po);die;
-		$this->load->view('requires/header',array("page"=>"Proforma Invoice"));
+		$this->load->view('site/requires/header',array("page"=>"Proforma Invoice"));
 		$this->load->view('site/customers/proforma_invoice/proforma_invoice_view',$data);
-		$this->load->view('requires/footer');
+		$this->load->view('site/requires/footer');
     }
 
     public function getProformaInvoice(){
