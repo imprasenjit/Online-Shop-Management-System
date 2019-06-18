@@ -143,27 +143,21 @@ class Message extends Aipl_admin {
     }//End of get_custnames()
 
     public function create_action() {
-        /* $this->_rules();
-
-          if ($this->form_validation->run() == FALSE) {
-          $this->create();
-          } else {
-          $data = array(
-          'send_from' => $this->input->post('send_from',TRUE),
-          'send_to' => $this->input->post('send_to',TRUE),
-          'subject' => $this->input->post('subject',TRUE),
-          'message' => $this->input->post('message',TRUE),
-          );
-
-          $this->message_model->insert($data);
-          $this->session->set_flashdata('message', 'Create Record Success');
-          redirect(site_url('message'));
-          }
-         */
-
+        if($this->input->post('sendall')) {
+            $this->load->model('customers_model');
+            $records = $this->customers_model->get_all();
+            if($records) {
+                $emails = null;
+                foreach($records as $rows) {
+                    $emails = $emails.",".$rows->email;
+                }//End foreach()
+                $send_to = trim($emails,",");
+            }//End of if
+        } else {
+            $send_to = $this->input->post('send_to');
+        }//End of if else
 
         $this->load->helper("sendmail");
-        $send_to = $this->input->post('send_to');
         $subject = $this->input->post('subject');
         $message = $this->input->post('message');
         
@@ -184,7 +178,7 @@ class Message extends Aipl_admin {
         $sub = $subject;
         $msgBody = $message;
         //$msgFooter =  "Regards, \n Supply Origin \n Guwahati Assam";
-        $status = sendmail($send_to, $sub, $msgBody, $download_file[0]);
+        $status = sendtoall($send_to, $sub, $msgBody, $download_file[0]);
         $this->session->set_flashdata('message', 'Email Sent');
         redirect(site_url('admin/message'));
     }
