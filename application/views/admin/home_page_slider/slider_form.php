@@ -34,7 +34,7 @@
                         <label for="varchar">Upload Image <?php echo form_error('picture') ?></label>
                         <?php if ($file_path) { ?>
                             <input type="file" name="picture" id="picture" data-error="Please upload  image." value="<?php echo $file_path; ?>" />
-                            <br/><img src="<?php echo $file_path; ?>" class="img-responsive"  style="width:120px;height:100px;">
+                            <br/><img src="<?php echo base_url($file_path); ?>" class="img-responsive"  style="width:120px;height:100px;">
 
                         <?php } else { ?>
                             <input type="file" name="picture" id="picture" data-error="Please upload product image." value="<?php echo $file_path; ?>" />
