@@ -231,17 +231,17 @@ class Purchase_orders extends Aipl_admin
         if (!empty($records)) {
             $sl_no = 1;
             foreach ($records as $rows) {
-                $customer_id = $rows->customer_id;
                 $purchase_order_supplier_id = $rows->purchase_order_supplier_id;
-                $supplier_id = $rows->supplier_id;
                 $supplier_name = $rows->supplier_name ? $rows->supplier_name : "Not found";
                 $invoice_status = $rows->invoice_status;
-                $purchase_order_supplier_id = $rows->purchase_order_supplier_id;
+                $this->load->library('encryption');
+                $encoded_purchase_order_supplier_id = $this->encryption->encrypt($purchase_order_supplier_id);
+                $encoded = str_replace(array('+', '/', '='), array('-', '_', '~'), $encoded_purchase_order_supplier_id);
                 if ($rows->invoice_status != NULL) {
                     if ($rows->send_to_warehouse_status == 1) {
                         $poBtn = '<a class="btn btn-success btn-sm"href="#!"><i class="glyphicon glyphicon-ok"></i>&nbsp;Sent</a>';
                     } else {
-                        $poBtn = '<a class="btn btn-warning btn-sm send_to_warehouse" data-po-id="' . $rows->purchase_order_supplier_id . '" href="#!">Send to Warehouse</a>';
+                        $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/warehouse/send_to_warehouse/".$encoded) . '">Send to Warehouse</a>';
                     }
                 } else {
                     $poBtn = '';
@@ -324,20 +324,21 @@ class Purchase_orders extends Aipl_admin
         echo json_encode($json_data);
     } //End of get_dtrecords()
 
-    function get_suppliernames(){
+    function get_suppliernames()
+    {
         $term = trim(strip_tags($this->input->get("term", TRUE)));
         $a_json = array();
         $a_json_row = array();
 
         $this->load->model('suppliers_model');
         $records = $this->suppliers_model->search_rows(10, 0, $term, "name", $term);
-        if($records) {
-            foreach($records as $rows) {
+        if ($records) {
+            foreach ($records as $rows) {
                 $a_json_row["id"] = $rows->supplier_id;
                 $a_json_row["label"] = $rows->name;
                 $a_json_row["value"] = $rows->name;
                 array_push($a_json, $a_json_row);
-            }//End foreach()
+            } //End foreach()
             echo json_encode($a_json);
             flush();
         } else {
@@ -346,6 +347,6 @@ class Purchase_orders extends Aipl_admin
             array_push($a_json, $a_json_row);
             echo json_encode($a_json);
             flush();
-        }//End of if else
-    }//End of get_suppliernames()
+        } //End of if else
+    } //End of get_suppliernames()
 };

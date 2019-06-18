@@ -15,7 +15,6 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
                     <link href="<?= base_url('public/datatables/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
                     <script src="<?= base_url('public/datatables/js/jquery.dataTables.min.js') ?>"></script>
                     <script src="<?= base_url('public/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
