@@ -20,6 +20,12 @@
                                         <input type="text" class="form-control form-control-sm" name="send_to" id="send_to" placeholder="To : " value="<?php echo $send_to; ?>" />
                                         <span id="cust_details"></span>
                                     </div>
+                                    <h3 style="font-size: 16px">Or</h3>
+                                    <div class="form-group form-check">
+                                        <input name="sendall" type="checkbox" class="form-check-input" id="sendAll">
+                                        <label class="form-check-label" for="sendAll" style="line-height: 10px">Send to all</label>
+                                    </div>
+                                    
                                     <div class="form-group">
                                         <label for="varchar">Subject <?php echo form_error('subject') ?></label>
                                         <input type="text" class="form-control form-control-sm" name="subject" id="subject" placeholder="Subject :" value="<?php echo $subject; ?>" />

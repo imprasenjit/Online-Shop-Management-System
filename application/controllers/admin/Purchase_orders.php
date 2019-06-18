@@ -264,4 +264,63 @@ class Purchase_orders extends Aipl_admin
         );
         echo json_encode($json_data);
     } //End of get_supdtrecords()
+
+    public function purchase_order_to_warehouse_list()
+    {
+        $this->isAdminloggedin();
+        log_message('error', '' . print_r($this->session->userdata(), 1));
+        $this->load->library('breadcrumbs');
+        $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
+        $this->breadcrumbs->push('Purchase Orders To Warehouse', '/purchase_orders/purchase_order_to_warehouse_list/');
+        $this->load->view('admin/requires/header', array('title' => 'Purchase order to warehouse'));
+        $this->load->view('admin/purchase_order/purchase_order_to_warehouse_list');
+        $this->load->view('admin/requires/footer');
+    }
+
+    function get_dtrecords_purchase_order_to_warehouse()
+    {
+        $columns = array(
+            0 => "potoadmin_id",
+            1 => "customer_id",
+            2 => "created_at",
+            3 => "status"
+        );
+        $limit = $this->input->post("length");
+        $start = $this->input->post("start");
+        $sl_no = $start + 1;
+        $order = $columns[$this->input->post("order")[0]["column"]];
+        $dir = $this->input->post("order")[0]["dir"];
+        $totalData = $this->purchase_order_model->tot_rows();
+        $totalFiltered = $totalData;
+        if (empty($this->input->post("search")["value"])) {
+            $records = $this->purchase_order_model->all_rows($limit, $start, $order, $dir);
+        } else {
+            $search = $this->input->post("search")["value"];
+            $records = $this->purchase_order_model->search_rows($limit, $start, $search, $order, $dir);
+            $totalFiltered = $this->purchase_order_model->tot_search_rows($search);
+        } //End of if else
+        $data = array();
+        if (!empty($records)) {
+            foreach ($records as $rows) {
+                $potoadmin_id = $rows->potoadmin_id;
+                $customerInfos = $rows->name . "<br/>" . $rows->contact . "<br/>" . $rows->email . "<br/>" . $rows->address . "<br/>";
+                $created_at = $rows->created_at;
+                $viewBtn = anchor(site_url('admin/purchase_orders/view/' . $potoadmin_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
+                $cancelBtn = '<a class="btn btn-danger btn-sm cancel_po" data-po-id="' . $potoadmin_id . '"  href="#!">Cancel PO</a>';
+                $nestedData["sl_no"] = $sl_no++;
+                $nestedData["potoadmin_id"] = $potoadmin_id;
+                $nestedData["name"] = $customerInfos;
+                $nestedData["created_at"] = date("d-m-Y", strtotime($created_at));
+                $nestedData["status"] = $viewBtn . $cancelBtn;
+                $data[] = $nestedData;
+            } //End of for
+        } //End of if
+        $json_data = array(
+            "draw" => intval($this->input->post("draw")),
+            "recordsTotal" => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data
+        );
+        echo json_encode($json_data);
+    } //End of get_dtrecords()
 };
