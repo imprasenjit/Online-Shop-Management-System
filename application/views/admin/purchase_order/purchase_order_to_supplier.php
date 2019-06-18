@@ -14,7 +14,7 @@
 						</div>
 					</div>
 					<!-- Card Body -->
-					<div class="card-body">	
+					<div class="card-body">
                             From:<br />
                                 <?php
                                 $customer = $this->customers_model->get_by_id($purchase_order["customer_id"]);
@@ -37,7 +37,7 @@
                                         "exyard"=>$purchase_order["exyard"],
                                         "frieght"=>$purchase_order["frieght"],
                                         "total"=>$purchase_order["total"],
-                                    );    
+                                    );
 									$this->load->view("admin/products/product_table_format",array("product"=>(object)$product));
 									$product_id_s = json_decode($purchase_order["product"], true);
 									$quantity_decoded = json_decode($purchase_order["quantity"], true);
@@ -68,7 +68,7 @@
                         </div>
                         <div class="row">
                                             <div class="col-md-6">
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="supplier">Select Supplier:</label>
                                                 <select class="form-control form-control-sm" name="supplier_id" id="supplier">
                                                     <option value="">Select</option>
@@ -78,10 +78,16 @@
                                                     }
                                                     ?>
                                                 </select>
-                                            </div>
+                                            </div> -->
+																						<div class="form-group">
+																							<label for="varchar">Select Supplier</label>
+																							<input type="text" class="form-control form-control-sm" name="send_to_autocomplete" id="send_to_autocomplete" placeholder="Type Customer Name" />
+																							<input type="hidden" name="supplier_id" id="supplier_id" value="">
+																							<span id="supplier_details"></span>
+																						</div>
                                         </div>
                                         </div>
-                                 
+
                                         <table name="objectTable1" id="objectTable1" class="table table-bordered">
 													<thead>
 														<tr>
@@ -227,12 +233,12 @@
                                                 <a class="btn btn-sm btn-warning add_new_product" href="#!"><i class="fa fa-plus" aria-hidden="true"></i></a>
 
                                             </div>
-                        <div class="row">                             
+                        <div class="row">
                                 <div class="col-md-5">
                                     <label for="varchar">Regards, <?php echo form_error('send_from'); ?></label>
                                     <textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from" placeholder="From : "><?php echo "Supply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
                                 </div>
-                   
+
                         </div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>" />
                         <input type="hidden" name="potoadmin_id" value="<?php echo $purchase_order["potoadmin_id"]; ?>" />
@@ -244,11 +250,13 @@
                     </form>
                     </div>
                     </div>
-                        
+
 
                 </div>
             </div>
         </div>
+				<link href="<?=base_url('public/jqueryui/jquery-ui.min.css')?>" rel="stylesheet" type="text/css" />
+				<script src="<?=base_url('public/jqueryui/jquery-ui.min.js')?>"></script>
 <script>
     $(document).ready(function() {
         $(document).on('change', '.product_select_option', function() {
@@ -326,15 +334,30 @@
     });
 </script>
 <script>
-    $('#editordata').summernote({
-        placeholder: 'Type your message here',
-        //var a = $('#form-enquiry_id-9102').val();
-        tabsize: 2,
-        height: 350
-    });
-    $('#editordata2').summernote({
-        placeholder: 'Type your message here',
-        tabsize: 2,
-        height: 350
-    });
+// $('#editordata').summernote({
+	//     placeholder: 'Type your message here',
+	//     //var a = $('#form-enquiry_id-9102').val();
+	//     tabsize: 2,
+	//     height: 350
+	// });
+	// $('#editordata2').summernote({
+	//     placeholder: 'Type your message here',
+	//     tabsize: 2,
+	//     height: 350
+	// });
+	$(document).ready(function(){
+				$("#send_to_autocomplete").autocomplete({
+						source:"<?=base_url('admin/purchase_orders/get_suppliernames')?>",
+						minLength:1,
+						select: function(event,ui){
+								//$("#supplier_details").html(ui.item.label);
+				$('#supplier_id').val(ui.item.id);
+						},
+			open: function(){
+						setTimeout(function () {
+								 $('.ui-autocomplete').css('z-index', 99999999999999);
+						}, 0);
+				 }
+				}); //End of autocomplete #cust_search_box
+		});
 </script>

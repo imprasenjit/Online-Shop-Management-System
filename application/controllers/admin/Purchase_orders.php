@@ -323,4 +323,29 @@ class Purchase_orders extends Aipl_admin
         );
         echo json_encode($json_data);
     } //End of get_dtrecords()
+
+    function get_suppliernames(){
+        $term = trim(strip_tags($this->input->get("term", TRUE)));
+        $a_json = array();
+        $a_json_row = array();
+
+        $this->load->model('suppliers_model');
+        $records = $this->suppliers_model->search_rows(10, 0, $term, "name", $term);
+        if($records) {
+            foreach($records as $rows) {
+                $a_json_row["id"] = $rows->supplier_id;
+                $a_json_row["label"] = $rows->name;
+                $a_json_row["value"] = $rows->name;
+                array_push($a_json, $a_json_row);
+            }//End foreach()
+            echo json_encode($a_json);
+            flush();
+        } else {
+            $a_json_row["id"] = "XXX";
+            $a_json_row["value"] = "No supplier found. Register a supplier";
+            array_push($a_json, $a_json_row);
+            echo json_encode($a_json);
+            flush();
+        }//End of if else
+    }//End of get_suppliernames()
 };
