@@ -110,7 +110,7 @@ class Proforma_invoice extends Aipl_admin
         $qid=$this->proforma_invoice_model->insert($data);
         if ($qid) {
             $data['row']=$this->proforma_invoice_model->get_by_id($qid);
-            $this->load->view('test_view', $data);
+            $this->load->view('admin/proforma_invoice/proforma_invoice_pdf', $data);
             $html = $this->output->get_output();
             $this->load->library('dompdflib');
             $this->dompdf->loadHtml($html);

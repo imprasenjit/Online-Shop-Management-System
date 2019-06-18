@@ -264,20 +264,34 @@ class Quotation extends Aipl_admin
             );
             $qid = $this->quotation_model->insert($data);
             if ($qid) {
-                /*$sub = "Quotation for Enquiry";
-            $msgBody = "Hello";
-            $msgBody = $this->load->view('admin/quotation/quotation_view', array("qid"=>$qid), true);
-            $status = sendmail($send_to, $sub, $msgBody);
-            print_r($status);die();
-            */
-                $this->session->set_flashdata('message', 'Quotation Sent');
+/*                
+                $data['row']=$this->enquires_model->get_by_id($qid);
+                $this->load->view('admin/quotation/quotation_pdf', $data);
+                $html = $this->output->get_output();
+                $this->load->library('dompdflib');
+                $this->dompdf->loadHtml($html);
+                $this->dompdf->setPaper('A4', 'landscape');
+                $this->dompdf->render();
+                $output = $this->dompdf->output();
+                $pdfName = time().".pdf";
+                $pdfPath = 'storage/temps/'.$pdfName;
+                //$this->dompdf->stream($pdfPath, array("Attachment"=>0)); die();
+                file_put_contents($pdfPath, $output);
+
+                $this->load->helper("sendmail");
+                //$send_to = 'ashraful@avantikain.com';
+                $sub = "Quotation for Enquiry";
+                $msgBody = "Please find the attachment below";
+                sendmail($send_to, $sub, $msgBody, $pdfPath);
+                unlink($pdfPath);*/
+                $this->session->set_flashdata('message', 'Quotation has been sent successfully');
                 $this->session->set_flashdata('type', 'success');
-                redirect(site_url('admin/quotation/'));
+                redirect(site_url('admin/quotation'));
             } else {
                 redirect(site_url('admin/quotation'));
             }
         }
-    }
+    }//End of create_action_for_customer()
     /*public function generatePDFFile() {
     $data = array();
     $htmlContent='';
@@ -397,7 +411,7 @@ class Quotation extends Aipl_admin
             $totalFiltered = $this->quotation_model->tot_search_rows($search);
         } //End of if else
         $data = array();
-        if (!empty($records)) {
+        if ($records) {
             foreach ($records as $rows) {                
                 $custRow = $this->customers_model->get_by_id($rows->customer_id);
                 $custName = $custRow ? $custRow->name : "Not found";
@@ -409,8 +423,8 @@ class Quotation extends Aipl_admin
                 $nestedData["customer_details"] = $custName;
                 $nestedData["action"] = $viewBtn;
                 $data[] = $nestedData;
-            } //End of for
-        } //End of if
+            }//End of for
+        }//End of if
         $json_data = array(
             "draw" => intval($this->input->post("draw")),
             "recordsTotal" => intval($totalData),
@@ -418,5 +432,5 @@ class Quotation extends Aipl_admin
             "data" => $data
         );
         echo json_encode($json_data);
-    } //End of get_dtrecords()
+    }//End of get_dtrecords()
 };
