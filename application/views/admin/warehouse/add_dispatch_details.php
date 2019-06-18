@@ -19,22 +19,23 @@
                                 <input type="file" name="dispatch_doc" id="dispatch_doc" data-error="Please upload Invoice." />
                             </div>
                         </div>
+                        <?php if($docs_info->dispatch_doc){ ?>
                         <div class="row">
                           <br/>
                           <div class="col-sm-12">
-                            <label class="control-label">Dispatch Information : </label><br/>
+                            <label class="control-label">Dispatch docs : </label><br/>
                           </div>
                           <div class="col-sm-12">
-                            <?php if($docs_info){
+                            <?php
                               foreach (json_decode($docs_info->dispatch_doc) as $key => $value) {?>
-                                <img src="<?=base_url($value)?>" width="200" height="200"/>&nbsp;&nbsp;
-                              <?php }
-                            }?>
+                                <a href="<?=base_url($value)?>" target="_blank">Document <?=$key+1;?></a>&nbsp;&nbsp;<br/>
+                              <?php }?>
                             <p><i>Note: On upload of new document above document will be deleted permanently.</i></p>
                           </div>
 
 
                         </div>
+                      <?php }?>
                         <script type="text/javascript" src="<?= base_url(); ?>public/pekeupload/js/pekeUpload.js"></script>
                         <script>
                             $(document).ready(function($) {
