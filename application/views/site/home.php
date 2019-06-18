@@ -33,9 +33,7 @@
             foreach ($imgRows as $irows) {
                 echo '<div class="item"><img class="" src="' . base_url($irows->file_path) . '" /></div>';
             }
-        } else {
-            echo '<img class="" src="' . base_url("assets/images/banner8.png") . '" />';
-        }
+        } 
         ?>
     </div>
     <div class="owl-theme">

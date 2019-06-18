@@ -627,3 +627,32 @@ CREATE TABLE `customer_address`(
   primary key(`address_id`)
 );
 ALTER TABLE `purchase_order_to_supplier` ADD `dispatch_doc` TEXT NULL DEFAULT NULL AFTER `goods_dispatch_status`;
+
+/** Create Table statement for purchase_order_to_warehouse*/
+CREATE TABLE `purchase_order_to_warehouse` (
+ `purchase_order_to_warehouse_id` int(11) NOT NULL AUTO_INCREMENT,
+ `purchase_order_to_supplier_id` int(55) DEFAULT NULL,
+ `purchase_order_from_customer_id` int(55) DEFAULT NULL,
+ `customer_id` int(55) DEFAULT NULL,
+ `warehouse_user_id` int(55) DEFAULT NULL,
+ `goods_dispatch_status` int(55) DEFAULT NULL COMMENT 'null=not dispatched,1=dispatched',
+ `dispatch_doc` text DEFAULT NULL,
+ `goods_dispatch_time` timestamp NULL DEFAULT NULL,
+ `products` varchar(2000) DEFAULT NULL,
+ `quantity` varchar(255) DEFAULT NULL,
+ `product_unit` varchar(500) NOT NULL,
+ `attributes` varchar(1000) DEFAULT NULL,
+ `others` varchar(1000) NOT NULL,
+ `product_price` varchar(500) DEFAULT NULL,
+ `tax_rate` varchar(1000) NOT NULL,
+ `cgst` varchar(355) DEFAULT NULL,
+ `sgst` varchar(355) DEFAULT NULL,
+ `igst` varchar(355) DEFAULT NULL,
+ `exyard` varchar(355) DEFAULT NULL,
+ `frieght` varchar(355) DEFAULT NULL,
+ `total` varchar(500) NOT NULL,
+ `status` enum('0','1') DEFAULT '1',
+ `created_at` timestamp NULL DEFAULT NULL,
+ `created_by` int(55) DEFAULT NULL,
+ PRIMARY KEY (`purchase_order_to_warehouse_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1

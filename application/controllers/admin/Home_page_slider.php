@@ -112,7 +112,7 @@ class Home_page_slider extends Aipl_admin {
             $this->update($this->input->post('id', TRUE));
         } else {
             if ($this->input->post("upload_picture")) {
-                $picture = moveFile(1, $this->input->post("upload_picture"), "picture");
+                $picture = moveFile(3, $this->input->post("upload_picture"), "picture");
                 $data_to_save['file_path'] = $picture[0];
             }
             $data_to_save['description'] = $this->input->post('description', TRUE);
@@ -181,7 +181,7 @@ class Home_page_slider extends Aipl_admin {
 
 
                 $nestedData["description"] = $description;
-                $nestedData["picture"] = '<img src="' . $picture . '" style="width:80px;height:50px;">';
+                $nestedData["picture"] = '<img src="' . base_url($picture) . '" style="width:80px;height:50px;">';
                 $nestedData["slider_id"] = $viewBtn . $editBtn . $deleteBtn;
                 $data[] = $nestedData;
             }//End of for
