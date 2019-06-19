@@ -216,7 +216,7 @@
 						<div class="row">
 							<div class="col-md-5">
 								<label for="varchar">Regards, <?php echo form_error('send_from'); ?></label>
-								<textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from" placeholder="From : "><?php echo "Supply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
+								<textarea type="text" class="form-control form-control-sm" rows="4" name="send_from" id="send_from" placeholder="From : "><?php echo "Supply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
 							</div>
 
 						</div>
@@ -314,17 +314,6 @@
 	});
 </script>
 <script>
-	// $('#editordata').summernote({
-	//     placeholder: 'Type your message here',
-	//     //var a = $('#form-enquiry_id-9102').val();
-	//     tabsize: 2,
-	//     height: 350
-	// });
-	// $('#editordata2').summernote({
-	//     placeholder: 'Type your message here',
-	//     tabsize: 2,
-	//     height: 350
-	// });
 	$(document).ready(function() {
 		$("#send_to_autocomplete").autocomplete({
 			source: "<?= base_url('admin/purchase_orders/get_suppliernames') ?>",
