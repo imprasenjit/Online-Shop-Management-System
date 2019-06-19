@@ -43,6 +43,11 @@ class Purchase_order_model extends CI_Model
         return $this->db->insert_id();
     }
 
+    function insert_purchse_order_to_warehouse(){
+        $this->db->insert("purchase_order_to_warehouse", $data);
+        return $this->db->insert_id();
+    }
+
     function total_rows_purchase_order(){
         $this->db->select('*');
         $this->db->from("purchase_order_to_admin");
