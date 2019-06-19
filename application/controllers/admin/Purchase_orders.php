@@ -241,7 +241,7 @@ class Purchase_orders extends Aipl_admin
                     if ($rows->send_to_warehouse_status == 1) {
                         $poBtn = '<a class="btn btn-success btn-sm"href="#!"><i class="glyphicon glyphicon-ok"></i>&nbsp;Sent</a>';
                     } else {
-                        $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/warehouse/send_to_warehouse/".$encoded) . '">Send to Warehouse</a>';
+                        $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/purchase_orders/send_to_warehouse/".$encoded) . '">Send to Warehouse</a>';
                     }
                 } else {
                     $poBtn = '';
@@ -349,4 +349,37 @@ class Purchase_orders extends Aipl_admin
             flush();
         } //End of if else
     } //End of get_suppliernames()
+    public function send_to_warehouse($send_id)
+    {
+        $this->load->library('encryption');
+        $dec_send_id = str_replace(array('-', '_', '~'), array('+', '/', '='), $send_id);
+        $dec_send_id = $this->encryption->decrypt($dec_send_id);
+        $row=$this->purchase_order_model->get_by_id_purchase_order_to_supplier($dec_send_id);
+        $this->load->view('admin/requires/header', array('title' => 'warehouse'));
+        $this->load->view('admin/purchase_order/purchase_order_to_warehouse');
+        $this->load->view('admin/requires/footer');
+        /*         
+            $data=array(
+            "purchase_order_to_supplier_id"=>$row->purchase_order_supplier_id,
+            "purchase_order_from_customer_id"=>$row->purchase_order_from_customer_id,
+            "customer_id"=>$row->customer_id,
+            "products"=>$row->products,
+            "quantity"=>$row->quantity,
+            "product_unit"=>$row->product_unit,
+            "attributes"=>$row->attributes,
+            "others"=>$row->others,
+            "product_price"=>$row->product_price,
+            "tax_rate"=>$row->tax_rate,
+            "cgst"=>$row->cgst,
+            "sgst"=>$row->sgst,
+            "igst"=>$row->igst,
+            "exyard"=>$row->exyard,
+            "frieght"=>$row->frieght,
+            "total"=>$row->total,
+            'created_at' => date("Y-m-d H:i:s"),
+            'created_by' => $this->session->userdata('id')
+        );
+        $this->purchase_order_model->insert_purchse_order_to_warehouse($data); */
+        
+    }
 };

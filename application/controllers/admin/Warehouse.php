@@ -19,20 +19,7 @@ class Warehouse extends Aipl_admin
         $this->load->view('admin/warehouse/dashboard');
         $this->load->view('admin/requires/footer');
     }
-    public function send_to_warehouse($send_id)
-    {
-        $this->load->library('encryption');
-        $dec_send_id = str_replace(array('-', '_', '~'), array('+', '/', '='), $send_id);
-        $dec_send_id = $this->encryption->decrypt($dec_send_id);
-        echo $dec_send_id;die;
-        $purchase_order_to_supplier_id = $this->input->post("po_to_supplier_id", TRUE);
-        $data = array(
-            "send_to_warehouse_status" => 1,
-            "send_to_warehouse_time" => date("Y-m-d H:i:s")
-        );
-        $this->purchase_order_model->update_purchase_order_to_supplier($purchase_order_to_supplier_id, $data);
-        echo json_encode(array("x" => 1));
-    }
+    
     public function goods_dispatch_status()
     {
         $purchase_order_to_supplier_id = $this->input->post("po_to_supplier_id", TRUE);
