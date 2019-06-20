@@ -19,7 +19,7 @@ class Warehouse extends Aipl_admin
         $this->load->view('admin/warehouse/dashboard');
         $this->load->view('admin/requires/footer');
     }
-    
+
     public function goods_dispatch_status()
     {
         $purchase_order_to_warehouse_id = $this->input->post("purchase_order_to_warehouse_id", TRUE);

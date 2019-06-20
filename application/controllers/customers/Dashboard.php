@@ -50,7 +50,7 @@ class Dashboard extends Aipl_admin
 	{
 		$this->load->model('attribute_model');
 		$this->load->view('site/requires/header', array("page" => "Purchase order"));
-		$this->load->view('site/customers/purchase_order/send_purchase_order', array("quotation_id" => $quotation_id));
+		$this->load->view('site/customers/purchase_order/send_purchase_order', array("quotation_id" => base64_decode(urldecode($quotation_id))));
 		$this->load->view('site/requires/footer');
 	}
 	public function send_po()
@@ -58,7 +58,7 @@ class Dashboard extends Aipl_admin
 		//echo '<pre>';print_r($this->input->post());die;
 		$this->_rules();
 		if ($this->form_validation->run() == FALSE) {
-			$this->send_purchase_order($this->input->post("quotation_id", TRUE));
+			$this->send_purchase_order(urlencode(base64_encode($this->input->post("quotation_id", TRUE))));
 		} else {
 			$temp_array = array();
 			$product_attributes = $this->input->post('product_attr',TRUE);
