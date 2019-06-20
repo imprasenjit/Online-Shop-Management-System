@@ -29,6 +29,7 @@
                                     <?php if (empty($username)) { ?>
                                         <input type="text" class="form-control form-control-sm" name="username" id="username" placeholder="" value="<?php echo $username; ?>" />
                                     <?php } else { ?>
+                                      <input type="hidden" class="form-control form-control-sm" name="username" id="username" placeholder="" value="<?php echo $username; ?>" />
                                         :<?= $username; ?><br />
                                         Username cant be changed.
                                     <?php } ?>

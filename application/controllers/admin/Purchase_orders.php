@@ -86,7 +86,6 @@ class Purchase_orders extends Aipl_admin
                     $d_key++;
                     $mykey++;
                 }
-
                 array_push($temp_array, array($product_ids[$key] => $attributes));
             }
             $products = json_encode($this->input->post("product_id", TRUE));
@@ -231,17 +230,17 @@ class Purchase_orders extends Aipl_admin
         if (!empty($records)) {
             $sl_no = 1;
             foreach ($records as $rows) {
-                $customer_id = $rows->customer_id;
                 $purchase_order_supplier_id = $rows->purchase_order_supplier_id;
-                $supplier_id = $rows->supplier_id;
                 $supplier_name = $rows->supplier_name ? $rows->supplier_name : "Not found";
                 $invoice_status = $rows->invoice_status;
-                $purchase_order_supplier_id = $rows->purchase_order_supplier_id;
+                $this->load->library('encryption');
+                $encoded_purchase_order_supplier_id = $this->encryption->encrypt($purchase_order_supplier_id);
+                $encoded = str_replace(array('+', '/', '='), array('-', '_', '~'), $encoded_purchase_order_supplier_id);
                 if ($rows->invoice_status != NULL) {
                     if ($rows->send_to_warehouse_status == 1) {
                         $poBtn = '<a class="btn btn-success btn-sm"href="#!"><i class="glyphicon glyphicon-ok"></i>&nbsp;Sent</a>';
                     } else {
-                        $poBtn = '<a class="btn btn-warning btn-sm send_to_warehouse" data-po-id="' . $rows->purchase_order_supplier_id . '" href="#!">Send to Warehouse</a>';
+                        $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/purchase_orders/send_to_warehouse/" . $encoded) . '">Send to Warehouse</a>';
                     }
                 } else {
                     $poBtn = '';
@@ -264,4 +263,212 @@ class Purchase_orders extends Aipl_admin
         );
         echo json_encode($json_data);
     } //End of get_supdtrecords()
+    function get_suppliernames()
+    {
+        $term = trim(strip_tags($this->input->get("term", TRUE)));
+        $a_json = array();
+        $a_json_row = array();
+        $this->load->model('suppliers_model');
+        $records = $this->suppliers_model->search_rows(10, 0, $term, "name", $term);
+        if ($records) {
+            foreach ($records as $rows) {
+                $a_json_row["id"] = $rows->supplier_id;
+                $a_json_row["label"] = $rows->name;
+                $a_json_row["value"] = $rows->name;
+                array_push($a_json, $a_json_row);
+            } //End foreach()
+            echo json_encode($a_json);
+            flush();
+        } else {
+            $a_json_row["id"] = "XXX";
+            $a_json_row["value"] = "No supplier found. Register a supplier";
+            array_push($a_json, $a_json_row);
+            echo json_encode($a_json);
+            flush();
+        } //End of if else
+    } //End of get_suppliernames()
+    //** Purchase Order to Warehouse Functions */
+    public function purchase_order_to_warehouse_list()
+    {
+        $this->isAdminloggedin();
+        $this->load->library('breadcrumbs');
+        $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
+        $this->breadcrumbs->push('Purchase Orders To Warehouse', '/purchase_orders/purchase_order_to_warehouse_list/');
+        $this->load->view('admin/requires/header', array('title' => 'Purchase order to warehouse'));
+        $this->load->view('admin/purchase_order/purchase_order_to_warehouse_list');
+        $this->load->view('admin/requires/footer');
+    }
+    function get_dtrecords_purchase_order_to_warehouse()
+    {
+        $columns = array(
+            0 => "potoadmin_id",
+            1 => "customer_id",
+            2 => "created_at",
+            3 => "status"
+        );
+        $limit = $this->input->post("length");
+        $start = $this->input->post("start");
+        $sl_no = $start + 1;
+        $order = $columns[$this->input->post("order")[0]["column"]];
+        $dir = $this->input->post("order")[0]["dir"];
+        $totalData = $this->purchase_order_model->total_rows_purchase_order_to_warehouse();
+        $totalFiltered = $totalData;
+        if (empty($this->input->post("search")["value"])) {
+            $records = $this->purchase_order_model->all_rows_purchase_order_to_warehouse($limit, $start, $order, $dir);
+        } else {
+            $search = $this->input->post("search")["value"];
+            $records = $this->purchase_order_model->search_rows_purchase_order_to_warehouse($limit, $start, $search, $order, $dir);
+            $totalFiltered = $this->purchase_order_model->tot_search_rows_purchase_order_to_warehouse($search);
+        } //End of if else
+        $data = array();
+        if (!empty($records)) {
+            foreach ($records as $rows) {
+                $purchase_order_to_warehouse_id = $rows->purchase_order_to_warehouse_id;
+                $customerInfos = $rows->name . "<br/>" . $rows->contact . "<br/>" . $rows->email . "<br/>" . $rows->address . "<br/>";
+                $created_at = $rows->created_at;
+                $viewBtn = anchor(site_url('admin/purchase_orders/purchase_order_to_warehouse_view/' . $purchase_order_to_warehouse_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
+                $cancelBtn = '<a class="btn btn-danger btn-sm cancel_po" data-po-id="' . $purchase_order_to_warehouse_id . '"  href="#!">Cancel PO</a>';
+                $nestedData["sl_no"] = $sl_no++;
+                $nestedData["potoadmin_id"] = $purchase_order_to_warehouse_id;
+                $nestedData["name"] = $customerInfos;
+                $nestedData["created_at"] = date("d-m-Y", strtotime($created_at));
+                $nestedData["status"] = $viewBtn;
+                $data[] = $nestedData;
+            } //End of for
+        } //End of if
+        $json_data = array(
+            "draw" => intval($this->input->post("draw")),
+            "recordsTotal" => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data
+        );
+        echo json_encode($json_data);
+    } //End of get_dtrecords()
+    public function send_to_warehouse($send_id = NULL)
+    {
+        $this->isAdminloggedin();
+        $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
+        $this->breadcrumbs->push('purchase Orders to Warehouse List', '/admin/purchase_orders/purchase_order_to_warehouse_list');
+        $this->breadcrumbs->push('purchase Orders to Warehouse', '/admin/purchase_orders/send_to_warehouse');
+        if ($send_id != NULL) {
+            $this->load->library('encryption');
+            $dec_send_id = str_replace(array('-', '_', '~'), array('+', '/', '='), $send_id);
+            $dec_send_id = $this->encryption->decrypt($dec_send_id);
+            $row = $this->purchase_order_model->get_by_id_purchase_order_to_supplier($dec_send_id);
+            $data = array(
+                "purchase_order_to_supplier_id" => $row->purchase_order_supplier_id,
+                "supplier_id" => $row->supplier_id,
+                "invoice_id" => $row->invoice_id,
+                "purchase_order_from_customer_id" => $row->purchase_order_from_customer_id,
+                "customer_id" => $row->customer_id,
+                "products" => $row->products,
+                "quantity" => $row->quantity,
+                "product_unit" => $row->product_unit,
+                "attributes" => $row->attributes,
+                "others" => $row->others,
+                "product_price" => $row->product_price,
+                "tax_rate" => $row->tax_rate,
+                "cgst" => $row->cgst,
+                "sgst" => $row->sgst,
+                "igst" => $row->igst,
+                "exyard" => $row->exyard,
+                "frieght" => $row->frieght,
+                "total" => $row->total,
+                'created_at' => date("Y-m-d H:i:s"),
+                'created_by' => $this->session->userdata('id')
+            );
+            $this->purchase_order_model->insert_purchse_order_to_warehouse($data);
+            $this->purchase_order_model->insert_purchse_order_to_warehouse($data);
+            $this->session->set_flashdata('message', 'Purchase Order has been sent successfully');
+            $this->session->set_flashdata('type', 'success');
+            redirect(site_url('admin/purchase_orders/purchase_order_to_warehouse_list'));
+        } else {
+            $this->load->view('admin/requires/header', array('title' => 'Purchase Order to Warehouse'));
+            $this->load->view('admin/purchase_order/purchase_order_to_warehouse');
+            $this->load->view('admin/requires/footer');
+        }
+    }
+    public function send_to_warehouse_action()
+    {
+        //$this->pr($this->input->post());
+        $this->isAdminloggedin();
+        $this->form_validation->set_rules('send_to', 'Customer', 'trim|required');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', 'Purchase Order could not be Sent to warehouse <br/>');
+            $this->session->set_flashdata('type', 'danger');
+            $this->send_to_warehouse();
+        } else {
+            $attr_count = $this->input->post("product_attr_count");
+            $product_attributes = $this->input->post('product_attr', TRUE);
+            $product_ids = $this->input->post('product_id', TRUE);
+            $temp_array = array();
+            $d_key = 0;
+            foreach ($attr_count as $key => $key_value) {
+                $attributes = array();
+                $mykey = 0;
+                while ($key_value > 0) {
+                    $attributes[$mykey] = $product_attributes[$d_key];
+                    $key_value--;
+                    $d_key++;
+                    $mykey++;
+                }
+                array_push($temp_array, array($product_ids[$key] => $attributes));
+            }
+            $products = json_encode($product_ids);
+            $send_to = $this->input->post('send_to', TRUE);
+            $customer_address = $this->customers_model->get_address_by_address_id($this->input->post('address_selector', TRUE));
+            $editordata = $this->input->post('editordata', TRUE);
+            $editordata2 = $this->input->post('editordata2', TRUE);
+            $product_quantity = json_encode($this->input->post('quantity', TRUE));
+            $product_unit = json_encode($this->input->post('product_unit', TRUE));
+            $product_attributes = json_encode($temp_array);
+            $product_price = json_encode($this->input->post('product_price', TRUE));
+            $tax_rate = json_encode($this->input->post('tax_rate', TRUE));
+            $cgst = json_encode($this->input->post('cgst', TRUE));
+            $sgst = json_encode($this->input->post('sgst', TRUE));
+            $igst = json_encode($this->input->post('igst', TRUE));
+            $exyard = json_encode($this->input->post('exyard', TRUE));
+            $frieght = json_encode($this->input->post('frieght', TRUE));
+            $total = json_encode($this->input->post('total_price', TRUE));
+            $others = json_encode($this->input->post('others', TRUE));
+            $data = array(
+                'customer_id' => $send_to,
+                'customer_address' => $customer_address->address,
+                'products' => $products,
+                'quantity' =>  $product_quantity,
+                'product_unit' =>  $product_unit,
+                'attributes' =>  $product_attributes,
+                'product_price' =>  $product_price,
+                'tax_rate' =>  $tax_rate,
+                'cgst' =>  $cgst,
+                'sgst' =>  $sgst,
+                'igst' =>  $igst,
+                'exyard' =>  $exyard,
+                'frieght' =>  $frieght,
+                'total' =>  $total,
+                'others' => $others,
+                'created_at' => date("Y-m-d H:i:s"),
+                'created_by' => $this->session->userdata('id')
+            );
+            $this->purchase_order_model->insert_purchse_order_to_warehouse($data);
+            $this->session->set_flashdata('message', 'Purchase Order has been sent successfully');
+            $this->session->set_flashdata('type', 'success');
+            redirect(site_url('admin/purchase_orders/purchase_order_to_warehouse_list'));
+        }
+    }
+    public function purchase_order_to_warehouse_view($purchase_order_to_warehouse_id)
+    {
+        $this->load->model('suppliers_model');
+        $this->load->model('products_model');
+        $this->load->model('customers_model');
+        $this->load->model('invoice_model');
+        $data = array("page" => "Purchase Order");
+        $po = $this->purchase_order_model->get_by_id_purchase_order_to_warehouse($purchase_order_to_warehouse_id);
+        $data = (array)$po;
+        $this->load->view('admin/requires/header', array("title" => "Purchase Orders"));
+        $this->load->view('admin/purchase_order/purchase_order_view_for_warehouse', $data);
+        $this->load->view('admin/requires/footer');
+    }
+    //** Purchase Order to Warehouse Functions */
 };

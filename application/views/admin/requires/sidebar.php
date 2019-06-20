@@ -71,6 +71,7 @@
                                         <a <?php if($this->router->class=="purchase_orders" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?> href="<?= base_url("admin/purchase_orders") ?>">Purchase orders From Customer</a>
                                         <a <?php if($this->router->class=="proforma_invoice" AND $this->router->method=="index"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?> href="<?= base_url("admin/proforma_invoice") ?>">Proforma invoice to customer</a>
                                         <a <?php if($this->router->class=="purchase_orders" AND $this->router->method=="purchase_order_to_supplier_list"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?> href="<?= base_url("admin/purchase_orders/purchase_order_to_supplier_list") ?>">Purchase orders to suppliers</a>
+                                        <a <?php if($this->router->class=="purchase_orders" AND $this->router->method=="purchase_order_to_warehouse_list"){ echo 'class="collapse-item active"';}else{ echo 'class="collapse-item"';} ?> href="<?= base_url("admin/purchase_orders/purchase_order_to_warehouse_list") ?>">Purchase orders to Warehouse</a>
                                   </div>
                                 </div>
                             </li>

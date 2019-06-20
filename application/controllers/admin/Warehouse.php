@@ -12,43 +12,37 @@ class Warehouse extends Aipl_admin
         $this->load->library('form_validation');
         $this->load->library('breadcrumbs');
     }
-    public function dashboard(){
+    public function dashboard()
+    {
         $this->isWarehouseLoggedIn();
         $this->load->view('admin/requires/header', array('title' => 'warehouse'));
         $this->load->view('admin/warehouse/dashboard');
         $this->load->view('admin/requires/footer');
     }
-    public function send_to_warehouse()
-    {
-        $purchase_order_to_supplier_id=$this->input->post("po_to_supplier_id",TRUE);
-        $data=array(
-            "send_to_warehouse_status"=>1,
-            "send_to_warehouse_time"=>date("Y-m-d H:i:s")
-        );
-        $this->purchase_order_model->update_purchase_order_to_supplier($purchase_order_to_supplier_id,$data);
-        echo json_encode(array("x"=>1));
-    }
+
     public function goods_dispatch_status()
     {
-        $purchase_order_to_supplier_id=$this->input->post("po_to_supplier_id",TRUE);
-        $data=array(
-            "goods_dispatch_status"=>1,
-            "goods_dispatch_time"=>date("Y-m-d H:i:s")
+        $purchase_order_to_warehouse_id = $this->input->post("purchase_order_to_warehouse_id", TRUE);
+        $data = array(
+            "goods_dispatch_status" => 1,
+            "goods_dispatch_time" => date("Y-m-d H:i:s")
         );
-        $this->purchase_order_model->update_purchase_order_to_supplier($purchase_order_to_supplier_id,$data);
-        echo json_encode(array("x"=>1));
+        $this->purchase_order_model->update_purchase_order_to_warehouse($purchase_order_to_warehouse_id, $data);
+        echo json_encode(array("x" => 1));
     }
-    public function purchase_order_view_for_warehouse($id){
+    public function purchase_order_view_for_warehouse($id)
+    {
+        $this->isWarehouseLoggedIn();
         $this->load->model('suppliers_model');
         $this->load->model('products_model');
         $this->load->model('customers_model');
         $this->load->model('invoice_model');
         $data = array("page" => "Purchase Order");
-        $po=$this->purchase_order_model->get_by_id_purchase_order_to_supplier($id);
-        $data=(array)$po;
-		$this->load->view('admin/requires/header',array("title"=>"Purchase Orders"));
-		$this->load->view('admin/warehouse/purchase_order_view_for_warehouse',$data);
-		$this->load->view('admin/requires/footer');
+        $po = $this->purchase_order_model->get_by_id_purchase_order_to_warehouse($id);
+        $data = (array)$po;
+        $this->load->view('admin/requires/header', array("title" => "Purchase Orders"));
+        $this->load->view('admin/warehouse/purchase_order_view_for_warehouse', $data);
+        $this->load->view('admin/requires/footer');
     }
     public function index()
     {
@@ -244,7 +238,8 @@ class Warehouse extends Aipl_admin
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
-    function get_dtrecords() {
+    function get_dtrecords()
+    {
         $columns = array(
             0 => "name",
             1 => "mobile",
@@ -264,10 +259,10 @@ class Warehouse extends Aipl_admin
             $search = $this->input->post("search")["value"];
             $records = $this->warehouse_model->search_rows($limit, $start, $search, $order, $dir);
             $totalFiltered = $this->warehouse_model->tot_search_rows($search);
-        }//End of if else
+        } //End of if else
         $data = array();
         if (!empty($records)) {
-            $slno=1;
+            $slno = 1;
             foreach ($records as $rows) {
                 $warehouse_user_id = $rows->warehouse_user_id;
                 $mobile = $rows->mobile;
@@ -283,10 +278,10 @@ class Warehouse extends Aipl_admin
                 $nestedData["mobile"] = $mobile;
                 $nestedData["address"] = $address;
                 $nestedData["username"] = $username;
-                $nestedData["warehouse_user_id"] = $viewBtn.$editBtn.$deleteBtn;
+                $nestedData["warehouse_user_id"] = $viewBtn . $editBtn . $deleteBtn;
                 $data[] = $nestedData;
-            }//End of for
-        }//End of if
+            } //End of for
+        } //End of if
         $json_data = array(
             "draw" => intval($this->input->post("draw")),
             "recordsTotal" => intval($totalData),
@@ -294,14 +289,14 @@ class Warehouse extends Aipl_admin
             "data" => $data
         );
         echo json_encode($json_data);
-    }//End of get_dtrecords()
+    } //End of get_dtrecords()
 
     public function get_dtrecords_for_warehouse()
     {
         $this->load->model("customers_model");
         $this->load->model("suppliers_model");
         $columns = array(
-            0 => "purchase_order_supplier_id",
+            0 => "purchase_order_to_warehouse_id",
         );
         $limit = $this->input->post("length");
         $start = $this->input->post("start");
@@ -312,31 +307,30 @@ class Warehouse extends Aipl_admin
         $records = $this->purchase_order_model->index_limit_purchase_order_to_warehouse($limit, $start, $search, $order, $dir);
         $data = array();
         if (!empty($records)) {
-            $slno=1;
+            $slno = 1;
             foreach ($records as $rows) {
                 $customer_details = $this->customers_model->get_by_id($rows->customer_id);
-                $suppliers_details = $this->suppliers_model->get_by_id($rows->supplier_id);
-                if($rows->goods_dispatch_status==1){
-                    $editBtn='<a href="#!" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i>&nbsp;sent</a>&nbsp;';
-                }else{
-                    $editBtn='<a href="#!" data-po-id="'.$rows->purchase_order_supplier_id.'" class="btn btn-sm btn-warning goods_dispatch">Goods Dispatch</a>&nbsp;';
+                if ($rows->goods_dispatch_status == 1) {
+                    $editBtn = '<a href="#!" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i>&nbsp;sent</a>&nbsp;';
+                } else {
+                    $editBtn = '<a href="#!" data-po-id="' . $rows->purchase_order_to_warehouse_id . '" class="btn btn-sm btn-warning goods_dispatch">Goods Dispatch</a>&nbsp;';
                 }
-                $viewBtn = anchor(site_url('admin/warehouse/purchase_order_view_for_warehouse/'.$rows->purchase_order_supplier_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
-                $dispatchBtn = anchor(site_url('admin/warehouse/add_dispatch_details/'.$rows->purchase_order_supplier_id), 'Dispatch Info', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
+                $viewBtn = anchor(site_url('admin/warehouse/purchase_order_view_for_warehouse/' . $rows->purchase_order_to_warehouse_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
+                $dispatchBtn = anchor(site_url('admin/warehouse/add_dispatch_details/' . $rows->purchase_order_to_warehouse_id), 'Dispatch Info', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $nestedData["sl_no"] = $slno++;
-                $nestedData["customer"] = $customer_details->name.'<br/>'.$customer_details->contact.'<br/>'.$customer_details->address;
-                $nestedData["supplier"] = $suppliers_details->name.'<br/>'.$suppliers_details->mobile.'<br/>'.$suppliers_details->address;
-                $nestedData["po_date"] = date("d-m-Y",strtotime($rows->created_at));
-                $nestedData["action"] = $viewBtn.$editBtn.$dispatchBtn;
+                $nestedData["customer"] = $customer_details->name . '<br/>' . $customer_details->contact . '<br/>' . $customer_details->address;
+                //$nestedData["supplier"] = $suppliers_details->name . '<br/>' . $suppliers_details->mobile . '<br/>' . $suppliers_details->address;
+                $nestedData["po_date"] = date("d-m-Y", strtotime($rows->created_at));
+                $nestedData["action"] = $viewBtn . $editBtn . $dispatchBtn;
                 $data[] = $nestedData;
-            }//End of for
+            } //End of for
             $json_data = array(
                 "draw" => intval($this->input->post("draw")),
                 "recordsTotal" => count($records),
                 "recordsFiltered" => count($records),
                 "data" => $data
             );
-        }else{
+        } else {
             $json_data = array(
                 "draw" => intval($this->input->post("draw")),
                 "recordsTotal" => 0,
@@ -347,32 +341,34 @@ class Warehouse extends Aipl_admin
 
         echo json_encode($json_data);
     }
-    public function add_dispatch_details($po_id){
-      $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
-      $this->breadcrumbs->push('Warehouse', '/admin/warehouse');
-      $this->breadcrumbs->push('Update Warehouse', '/admin/warehouse/add_dispatch_details');
-      $this->load->view('admin/requires/header',array("title"=>"Add Dispatch Information"));
-      $data['po_id']=$po_id;
-      $data['docs_info']=$this->warehouse_model->get_goods_dispatch_details($po_id);
-      $this->load->view('admin/warehouse/add_dispatch_details',$data);
-      $this->load->view('admin/requires/footer');
+    public function add_dispatch_details($po_id)
+    {
+        $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
+        $this->breadcrumbs->push('Warehouse', '/admin/warehouse');
+        $this->breadcrumbs->push('Update Warehouse', '/admin/warehouse/add_dispatch_details');
+        $this->load->view('admin/requires/header', array("title" => "Add Dispatch Information"));
+        $data['po_id'] = $po_id;
+        $data['docs_info'] = $this->warehouse_model->get_goods_dispatch_details($po_id);
+        $this->load->view('admin/warehouse/add_dispatch_details', $data);
+        $this->load->view('admin/requires/footer');
     }
-    public function add_dispatch_details_action(){
-      $res=false;
-      $purchase_order_to_supplier_id=$this->input->post('purchase_order_to_supplier_id');
-      if($this->input->post('upload_dispatch_doc')){
-        $this->load->helper("fileupload");
-        $doc = moveFile(0, $this->input->post("upload_dispatch_doc"), "dispatch_doc");
-        $res=$this->warehouse_model->add_dispatch_details($purchase_order_to_supplier_id,array('dispatch_doc'=>json_encode($doc)));
-      }
-      if($res){
-        $this->session->set_flashdata('message', 'Record Updated Successfully');
-        $this->session->set_flashdata('type', 'success');
-        redirect(site_url('admin/warehouse/dashboard'));
-      }else {
-        $this->session->set_flashdata('message', 'Unable to update. Please try again');
-        $this->session->set_flashdata('type', 'danger');
-        redirect(site_url('admin/warehouse/dashboard'));
-      }
+    public function add_dispatch_details_action()
+    {
+        $res = false;
+        $purchase_order_to_warehouse_id = $this->input->post('purchase_order_to_warehouse_id');
+        if ($this->input->post('upload_dispatch_doc')) {
+            $this->load->helper("fileupload");
+            $doc = moveFile(0, $this->input->post("upload_dispatch_doc"), "dispatch_doc");
+            $res = $this->warehouse_model->add_dispatch_details($purchase_order_to_warehouse_id, array('dispatch_doc' => json_encode($doc)));
+        }
+        if ($res) {
+            $this->session->set_flashdata('message', 'Record Updated Successfully');
+            $this->session->set_flashdata('type', 'success');
+            redirect(site_url('admin/warehouse/dashboard'));
+        } else {
+            $this->session->set_flashdata('message', 'Unable to update. Please try again');
+            $this->session->set_flashdata('type', 'danger');
+            redirect(site_url('admin/warehouse/dashboard'));
+        }
     }
 };

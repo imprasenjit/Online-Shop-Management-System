@@ -16,7 +16,6 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
                         <link href="<?= base_url('public/datatables/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
                         <script src="<?= base_url('public/datatables/js/jquery.dataTables.min.js') ?>"></script>
                         <script src="<?= base_url('public/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
@@ -29,11 +28,12 @@
                                   "columnDefs": [{
                                       className: 'text-right',
                                       orderable: false,
-                                      targets: 2
+                                      targets: 3
                                   }],
                                     "columns": [
+                                        {"data": "sl_no"},
                                         {"data": "picture"},
-                                        {"data": "description"},
+                                        {"data": "order"},
                                         {"data": "slider_id", width: 200}
                                     ],
                                     "processing": true,
@@ -54,8 +54,9 @@
                         <table class="table table-bordered" id="dtbl">
                             <thead>
                                 <tr>
+                                    <th>(#)</th>
                                     <th>Picture</th>
-                                    <th>Description</th>
+                                    <th>Order</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

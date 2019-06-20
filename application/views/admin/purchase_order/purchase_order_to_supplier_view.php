@@ -10,19 +10,6 @@
 					<!-- Card Header - Dropdown -->
 					<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 						<h6 class="m-0 font-weight-bold text-primary">Purchase Order To Supplier </h6>
-						<div class="dropdown no-arrow">
-							<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-								<!--<div class="dropdown-header">Dropdown Header:</div>
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                -->
-							</div>
-						</div>
 					</div>
 					<!-- Card Body -->
 					<div class="card-body" id="print_html">
@@ -62,7 +49,7 @@
                                                 <tr><td>Invoice Date :</td><td> <?=date("d-m-Y",strtotime($invoice_details->invoice_date));?></td></tr>
                                                 <tr><td>Lorry No : </td><td><?=$invoice_details->lorry_no;?></td></tr>
                                                 <tr><td>Date : </td><td><?=date("d-m-Y",strtotime($invoice_details->lorry_date));?></td></tr>
-                                                <tr><td>Invoice Document :</td><td> <a href="<?=$invoice_details->invoice_doc?>" target="_blank" class="btn btn-primary btn-sm">Download</a></td></tr>
+                                                <tr><td>Invoice Document :</td><td> <a href="<?=base_url($invoice_details->invoice_doc);?>" target="_blank" class="btn btn-primary btn-sm">Download</a></td></tr>
                                         </tbody>
                                             </table>
                                         <?php } else {
@@ -73,7 +60,7 @@
                             </tbody>
                         </table>
 
-												<a href="<?= base_url("admin/purchase_orders/purchase_order_to_supplier_list"); ?>" class="btn btn-sm btn-primary float-right">Close</a>
+												<a href="<?= base_url("admin/purchase_orders/purchase_order_to_supplier_list"); ?>" class="btn btn-sm btn-primary">Close</a>
 						            <a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
                     </div>
 

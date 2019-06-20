@@ -14,64 +14,10 @@ class Message extends Aipl_admin {
     }
 
     public function index() {
-        $keyword = '';
-        $this->load->library('pagination');
-
-        $config['base_url'] = base_url() . 'admin/message/index/';
-        $config['total_rows'] = $this->message_model->total_rows();
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 4;
-        $config['suffix'] = '.html';
-        //$config['first_url'] = base_url() . 'message.html';
-        $this->pagination->initialize($config);
-
-        $start = $this->uri->segment(4, 0);
-        $message = $this->message_model->index_limit($config['per_page'], $start);
-
-        $data = array(
-            'message_data' => $message,
-            'keyword' => $keyword,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-        );
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Message List', '/admin/message');
         $this->load->view('admin/requires/header', array('title' => 'Message'));
-        $this->load->view('admin/message/message_list', $data);
-        $this->load->view('admin/requires/footer');
-    }
-
-    public function search() {
-        $keyword = $this->uri->segment(3, $this->input->post('keyword', TRUE));
-        $this->load->library('pagination');
-
-        if ($this->uri->segment(2) == 'search') {
-            $config['base_url'] = base_url() . 'admin/message/search/' . $keyword;
-        } else {
-            $config['base_url'] = base_url() . 'admin/message/index/';
-        }
-
-        $config['total_rows'] = $this->message_model->search_total_rows($keyword);
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 4;
-        $config['suffix'] = '.html';
-        $config['first_url'] = base_url() . 'admin/message/search/' . $keyword . '.html';
-        $this->pagination->initialize($config);
-
-        $start = $this->uri->segment(4, 0);
-        $message = $this->message_model->search_index_limit($config['per_page'], $start, $keyword);
-
-        $data = array(
-            'message_data' => $message,
-            'keyword' => $keyword,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-        );
-
-        $this->load->view('admin/requires/header', array('title' => 'message'));
-        $this->load->view('admin/message/message_list', $data);
+        $this->load->view('admin/message/message_list');
         $this->load->view('admin/requires/footer');
     }
 
@@ -129,6 +75,8 @@ class Message extends Aipl_admin {
                 $a_json_row["id"] = $rows->id;
                 $a_json_row["label"] = $rows->name." : ".$rows->address;
                 $a_json_row["value"] = $rows->email;
+                $a_json_row["name"] = $rows->name;
+                $a_json_row["address"]=$this->customers_model->get_address_by_id($rows->id);
                 array_push($a_json, $a_json_row);
             }//End foreach()
             echo json_encode($a_json);
@@ -143,27 +91,21 @@ class Message extends Aipl_admin {
     }//End of get_custnames()
 
     public function create_action() {
-        /* $this->_rules();
-
-          if ($this->form_validation->run() == FALSE) {
-          $this->create();
-          } else {
-          $data = array(
-          'send_from' => $this->input->post('send_from',TRUE),
-          'send_to' => $this->input->post('send_to',TRUE),
-          'subject' => $this->input->post('subject',TRUE),
-          'message' => $this->input->post('message',TRUE),
-          );
-
-          $this->message_model->insert($data);
-          $this->session->set_flashdata('message', 'Create Record Success');
-          redirect(site_url('message'));
-          }
-         */
-
+        if($this->input->post('sendall')) {
+            $this->load->model('customers_model');
+            $records = $this->customers_model->get_all();
+            if($records) {
+                $emails = null;
+                foreach($records as $rows) {
+                    $emails = $emails.",".$rows->email;
+                }//End foreach()
+                $send_to = trim($emails,",");
+            }//End of if
+        } else {
+            $send_to = $this->input->post('send_to');
+        }//End of if else
 
         $this->load->helper("sendmail");
-        $send_to = $this->input->post('send_to');
         $subject = $this->input->post('subject');
         $message = $this->input->post('message');
         
@@ -184,7 +126,7 @@ class Message extends Aipl_admin {
         $sub = $subject;
         $msgBody = $message;
         //$msgFooter =  "Regards, \n Supply Origin \n Guwahati Assam";
-        $status = sendmail($send_to, $sub, $msgBody, $download_file[0]);
+        $status = sendtoall($send_to, $sub, $msgBody, $download_file[0]);
         $this->session->set_flashdata('message', 'Email Sent');
         redirect(site_url('admin/message'));
     }
