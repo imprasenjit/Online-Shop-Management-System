@@ -49,7 +49,7 @@
                                                 <tr><td>Invoice Date :</td><td> <?=date("d-m-Y",strtotime($invoice_details->invoice_date));?></td></tr>
                                                 <tr><td>Lorry No : </td><td><?=$invoice_details->lorry_no;?></td></tr>
                                                 <tr><td>Date : </td><td><?=date("d-m-Y",strtotime($invoice_details->lorry_date));?></td></tr>
-                                                <tr><td>Invoice Document :</td><td> <a href="<?=$invoice_details->invoice_doc?>" target="_blank" class="btn btn-primary btn-sm">Download</a></td></tr>
+                                                <tr><td>Invoice Document :</td><td> <a href="<?=base_url($invoice_details->invoice_doc);?>" target="_blank" class="btn btn-primary btn-sm">Download</a></td></tr>
                                         </tbody>
                                             </table>
                                         <?php } else {
