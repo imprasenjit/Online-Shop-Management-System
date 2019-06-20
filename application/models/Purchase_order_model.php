@@ -43,7 +43,7 @@ class Purchase_order_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    function insert_purchse_order_to_warehouse(){
+    function insert_purchse_order_to_warehouse($data){
         $this->db->insert("purchase_order_to_warehouse", $data);
         return $this->db->insert_id();
     }
@@ -54,21 +54,14 @@ class Purchase_order_model extends CI_Model
         return $this->db->count_all_results();
     }// get total rows
 
-    function total_rows_purchase_order_to_warehouse(){
-        $this->db->select('*');
-        $this->db->where("send_to_warehouse_status",1);
-        $this->db->from("purchase_order_to_supplier");
-        return $this->db->count_all_results();
-    }// get total rows
-
     function index_limit_purchase_order_to_warehouse($limit, $start, $keyword=NULL, $col, $dir,$warehouse_id=NULL)
     {
         $this->db->select('*');
-        $this->db->where("send_to_warehouse_status",1);
-        $this->db->where('warehouse_user_id', $warehouse_id);
+        $this->db->where("status",1);
+        //$this->db->where('warehouse_user_id', $warehouse_id);
         $this->db->limit($limit, $start);
         $this->db->order_by($col, $dir);
-        $this->db->from("purchase_order_to_supplier");
+        $this->db->from("purchase_order_to_warehouse");
         $query = $this->db->get();
 
         if($query->num_rows() == 0) {
@@ -312,4 +305,44 @@ class Purchase_order_model extends CI_Model
         return $query->num_rows();
 
     }//End of tot_search_rows()
+
+    /** Purchase order to warehouse datatable functions */
+    function update_purchase_order_to_warehouse($id,$data)
+    {
+        $this->db->where("purchase_order_to_warehouse_id",$id);
+        $this->db->update("purchase_order_to_warehouse",$data);        
+    }
+    function get_by_id_purchase_order_to_warehouse($id){
+        $this->db->select('*');
+        $this->db->where("purchase_order_to_warehouse_id",$id);
+        $this->db->from("purchase_order_to_warehouse");
+        return $this->db->get()->row();
+    }
+    function all_rows_purchase_order_to_warehouse(){
+        $this->db->select('*');
+        $this->db->where("purchase_order_to_warehouse.status",1);
+        $this->db->from("purchase_order_to_warehouse");
+        $this->db->join('customers','purchase_order_to_warehouse.customer_id=customers.id','left');
+        return $this->db->get()->result();
+    }
+    function total_rows_purchase_order_to_warehouse(){
+        $this->db->select('*');
+        $this->db->where("purchase_order_to_warehouse.status",1);
+        $this->db->from("purchase_order_to_warehouse");
+        return $this->db->count_all_results();
+    }// get total rows
+    function search_rows_purchase_order_to_warehouse($limit, $start, $keyword, $col, $dir,$supplier_id){
+        $this->db->select('*');
+        $this->db->where("purchase_order_to_warehouse.status",1);
+        $this->db->from("purchase_order_to_warehouse"); 
+        $this->db->join('customers','purchase_order_to_warehouse.customer_id=customers.id','left');       
+        return $this->db->get()->result();
+    }// get total rows
+    function tot_search_rows_purchase_order_to_warehouse($keyword){
+        $this->db->select('*');
+        $this->db->where("purchase_order_to_warehouse.status",1);
+        $this->db->from("purchase_order_to_warehouse");        
+        return $this->db->get()->result();
+    }// get total rows
+    /** Purchase order to warehouse  datatable functions*/
 }

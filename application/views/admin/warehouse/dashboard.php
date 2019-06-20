@@ -1,27 +1,11 @@
 <div class="container-fluid">
 	<div class="row">
-		<!-- Area Chart -->
 		<div class="col-xl-12 col-lg-12">
 			<div class="card shadow mb-4">
-				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">Warehouse Dashboard</h6>
-					<div class="dropdown no-arrow">
-						<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-						</a>
-						<!--<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-							<div class="dropdown-header">Dropdown Header:</div>
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>-->
-					</div>
+					<h6 class="m-0 font-weight-bold text-primary">Warehouse Dashboard(Purchase Orders Recived)</h6>
 				</div>
-				<!-- Card Body -->
 				<div class="card-body">
-                <link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
 					<link href="<?= base_url('public/datatables/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
 					<script src="<?= base_url('public/datatables/js/jquery.dataTables.min.js') ?>"></script>
 					<script src="<?= base_url('public/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
@@ -34,16 +18,13 @@
 								"columnDefs": [{
 									className: 'text-right',
 									orderable: false,
-									targets: 4
+									targets: 3
 								}],
 								"columns": [{
 										"data": "sl_no"
 									},
 									{
 										"data": "customer"
-									},
-									{
-										"data": "supplier"
 									},
                                     {
 										"data": "po_date"
@@ -78,7 +59,6 @@
 							<tr>
                                 <th>(#)</th>
                                 <th>Customer</th>
-                                <th>Supplier</th>
                                 <th>PO Date</th>
                                 <th style="text-align:right">Action</th>
 							</tr>
@@ -99,7 +79,7 @@
 			$.ajax({
 				url:"<?=base_url("admin/warehouse/goods_dispatch_status/")?>",
 				method:"POST",
-				data:{po_to_supplier_id:po_id},
+				data:{purchase_order_to_warehouse_id:po_id},
 				dataType:"json",
 				success:function(jsn){
 					if(jsn.x==1){

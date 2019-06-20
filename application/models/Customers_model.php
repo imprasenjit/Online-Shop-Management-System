@@ -209,6 +209,7 @@ class Customers_model extends CI_Model
         return $query->num_rows();
     }//End of tot_search_rows()
 
+    //** Adress Related functions */
     function add_address($address_data){
       $this->db->insert("customer_address",$address_data);
     }
@@ -216,11 +217,18 @@ class Customers_model extends CI_Model
       $this->db->where("address_id",$id);
       $this->db->update("customer_address",$address_data);
     }
-    function get_address_by_id($id){
+    function get_address_by_id($customer_id){
       $this->db->select("*")
                 ->from("customer_address")
-                ->WHERE(array("customer_id"=>$id,"status"=>"1"));
+                ->WHERE(array("customer_id"=>$customer_id,"status"=>"1"));
       return $this->db->get()->result();
     }
+    function get_address_by_address_id($address_id){
+      $this->db->select("*")
+                ->from("customer_address")
+                ->WHERE(array("address_id"=>$address_id,"status"=>"1"));
+      return $this->db->get()->row();
+    }
+     //** Adress Related functions */
 
 }

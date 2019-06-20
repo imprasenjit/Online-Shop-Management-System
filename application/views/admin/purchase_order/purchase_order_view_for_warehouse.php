@@ -127,7 +127,7 @@
                         
                     </div>
                     <div class="card-footer">
-                    <a href="<?=base_url("admin/warehouse/dashboard");?>" class="btn btn-primary btn-sm">Close</a>
+                    <a href="<?=base_url("admin/purchase_orders/purchase_order_to_warehouse_list");?>" class="btn btn-primary btn-sm">Close</a>
                     </div>
                 </div>
             </div>

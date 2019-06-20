@@ -6,11 +6,11 @@
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Send Quotation to Customer</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Purchase Order To Warehouse</h6>
                     </div>
                     <div class="card-body">
 					<?php  echo validation_errors()?>
-					<form class="form-horizontal" action="<?= base_url("admin/quotation/create_action_for_customer/"); ?>" method="post" id="myform">
+					<form class="form-horizontal" action="<?= base_url("admin/purchase_orders/send_to_warehouse_action/"); ?>" method="post" id="myform">
 					        <div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
@@ -19,6 +19,9 @@
 									<input type="hidden" name="send_to" id="send_to" value="">
 									<span id="cust_details"></span>
 								</div>	
+								<div class="form-group" id="adrress_display">
+
+								</div>
 								<div class="form-group">
 									<label for="varchar">Billing State</label>
                                     <select class="form-control form-control-sm" name="state" id="state">
@@ -32,17 +35,10 @@
 							</div>	
 							<div class="col-md-6 text-right">
 								<p class="text-right">									
-									Quotation Date: <?php echo date("d-m-Y"); ?> 
+									Date: <?php echo date("d-m-Y"); ?> 
 								</p>
 							</div>									
 							</div>									
-							<textarea id="editordata" name="editordata">
-																	Ref : With reference to Enquiry No.<strong>   </strong>placed on  .<br />
-																	Dear  <br />
-																	Thank-you for your enquiry. <br/><br/>
-																	We are pleased to quote our lowest rates for your requirement -
-																</textarea>
-																<br/>
 							<table class="table table-bordered">
 								<thead>
 									<tr>
@@ -70,7 +66,10 @@
 											var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
 											var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
 											var state=$('#state').val().replace(/ /g,'');
-				
+											if(state==""){
+												alert("Please select state");exit;
+											}
+				                            
 											if(state=="Assam"){
 												$(this).parent().parent().children().children('.cgst_cal').val(cgst);
 												$(this).parent().parent().children().children('.sgst_cal').val(sgst);
@@ -169,26 +168,12 @@
 													});
 											});
 							</script>
-						<textarea id="editordata2" name="editordata2">
-											<u>Terms &amp; Conditions -</u>
-											<br />1) Rates are Ex-Warehouse (Amingaon, Guwahati). Material can be delivered at the desired address with extra transportation charges. Unloading charges not in our account.
-											<br />2) Rates are inclusive of GST 18%. Any variation in the same shall be to customer account.
-											<br />3) Material shall be supplied as per ordered grade in standard length if the order is not for customized length.
-											<br />4) Payment – 100% advance against Proforma Invoice.
-											<br />5) Offer Validity – ..................................................
-											<br />6) A quantity variation of +/-5% on the ordered quantity is applicable for closing the order.
-											<br />7) Weightment recorded at our weigh-bridge may please be treated at final. Variation of 0.5% on total weightment of material to be accepted by the buyer.
-											</textarea>
+
 						<br />
-						<div class="row" style="margin-right:2px;">							
-								<div class="col-md-3">
-									<label for="varchar"><?php echo form_error('send_from') ?></label>
-									<textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from" rows="5"><?php echo "\n\nRegards, \nSupply Origin \nG.S. Road Bhangagarh \nGuwahati "; ?></textarea>
-								</div>
 						</div>
-						<div align="center">
-							<a href="<?php echo site_url('admin/quotation') ?>" class="btn btn-sm btn-default">Cancel</a>
-							<button type="submit" class="btn btn-sm btn-sm btn-primary">Send Quotation</button>
+						<div class="card-footer">
+							<a href="<?php echo site_url('admin/purchase_orders/purchase_order_to_warehouse_list') ?>" class="btn btn-sm btn-default">Cancel</a>
+							<button type="submit" class="btn btn-sm btn-sm btn-primary">Send Purchase Order To Warehouse</button>
 						</div>
 					</form>
 				</div>
@@ -216,6 +201,9 @@
             select: function(event,ui){ 
                 $("#cust_details").html(ui.item.label);
 				$('#send_to').val(ui.item.id);
+				show_address(ui.item.address);
+				console.log(ui.item);
+				
             },
 			open: function(){
         		setTimeout(function () {
@@ -223,5 +211,17 @@
         		}, 0);
    			 }
         }); //End of autocomplete #cust_search_box
+
+		function show_address(address){
+			$("#adrress_display").empty();
+			$(address).each(function(key,value){
+				$("#adrress_display").append('<div class="row">\
+				<div class="col-md-1"><input type="radio" name="address_selector" value="'+value.address_id+'"></div>\
+				<div class="col-md-4">'+value.address_type+':</div>\
+				<div class="col-md-7">'+value.address+'</div>\
+				</div>');
+			});
+		    
+		}
     });
 </script>
