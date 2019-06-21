@@ -89,6 +89,9 @@
                                         <li class="dropdown" id="products">
                                             <a href="<?= base_url("view-all-sub-category"); ?>">Products</a>
                                         </li>
+                                        <li class="dropdown" id="blogs">
+                                            <a href="<?= base_url("blogs"); ?>">Blogs</a>
+                                        </li>
                                         <li id="contact"><a href="<?= base_url(); ?>home/contact">Contact</a></li>
                                     </ul>
                                 </nav>

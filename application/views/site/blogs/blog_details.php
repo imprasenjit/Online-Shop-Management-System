@@ -1,5 +1,10 @@
 <?php $date=date_create($blog_details->created_at);
  ?>
+ <script>
+ $(document).ready(function(){
+ $('#blogs').addClass('active');
+ });
+ </script>
 <div class="blog-page-background">
 <div class=" container">
 <h2 class="header-title-inner-page"><?=$blog_details->blog_title;?></h2>

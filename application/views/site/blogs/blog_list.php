@@ -1,3 +1,8 @@
+<script>
+$(document).ready(function(){
+$('#blogs').addClass('active');
+});
+</script>
 <br/>
 <div>
 <div class="container">

@@ -4,7 +4,7 @@
 		</div>
 		<div class="col-md-10">
 			<div class="profile-content" style="margin-top:10px;" id="print_html">
-
+					Ref : With reference to purchase order No. <?=$purchase_order_id;?>
 					<div class="table-responsive" width="100%" >
 						<?=validation_errors();?>
 						<table class="table table-bordered" id="proforma_table">

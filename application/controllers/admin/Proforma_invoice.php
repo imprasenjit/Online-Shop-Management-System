@@ -55,11 +55,11 @@ class Proforma_invoice extends Aipl_admin
         $product_ids=$this->input->post('product_id',TRUE);
         $temp_array = array();
         $d_key=0;
-        foreach($attr_count as $key=>$key_value){ 
+        foreach($attr_count as $key=>$key_value){
             $attributes=array();
             $mykey=0;
             while($key_value >0) {
-                $attributes[$mykey] = $product_attributes[$d_key];                    
+                $attributes[$mykey] = $product_attributes[$d_key];
                 $key_value--;
                 $d_key++;
                 $mykey++;
