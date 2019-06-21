@@ -14,7 +14,7 @@
 <div>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" style="text-align: justify;">
       <?=$blog_details->blog?>
       <div class="socials">
         <div class="wt-blog__post__cta__content">

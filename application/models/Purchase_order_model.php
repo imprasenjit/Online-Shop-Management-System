@@ -109,11 +109,13 @@ class Purchase_order_model extends CI_Model
     }//End of tot_rows()
 
     function all_rows($limit, $start, $col, $dir){
-        $this->db->select("*");
+        $this->db->select("purchase_order_to_admin.*,customers.*,proforma_invoice.porforma_invoice_id,purchase_order_to_supplier.purchase_order_supplier_id");
         $this->db->limit($limit, $start);
         $this->db->order_by($col, $dir);
         $this->db->from("purchase_order_to_admin");
         $this->db->join('customers','purchase_order_to_admin.customer_id=customers.id','left');
+        $this->db->join('proforma_invoice','proforma_invoice.purchase_order_id=purchase_order_to_admin.potoadmin_id','left');
+        $this->db->join('purchase_order_to_supplier','purchase_order_to_supplier.purchase_order_from_customer_id =purchase_order_to_admin.potoadmin_id','left');
         $this->db->where("purchase_order_to_admin.status","1");
         $this->db->group_by('purchase_order_to_admin.potoadmin_id');
         $query = $this->db->get();
