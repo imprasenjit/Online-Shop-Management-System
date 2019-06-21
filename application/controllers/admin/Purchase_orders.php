@@ -181,18 +181,28 @@ class Purchase_orders extends Aipl_admin
                 $customerInfos = $rows->name . "<br/>" . $rows->contact . "<br/>" . $rows->email . "<br/>" . $rows->address . "<br/>";
                 $created_at = $rows->created_at;
                 $viewBtn = anchor(site_url('admin/purchase_orders/view/' . $potoadmin_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
-                $poBtn = anchor(site_url('admin/purchase_orders/send_po_to_supplier/' . $potoadmin_id), 'Send PO', array('class' => 'btn btn-sm btn-info')) . "&nbsp;";
-                $piBtn = anchor(site_url('admin/proforma_invoice/send_pi_to_customer/' . $potoadmin_id), 'Send PI', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
+                if($rows->purchase_order_supplier_id){
+                    $poBtn = '<span class="text-success">PO Sent</span>&nbsp;';
+                }else {
+                    $poBtn = anchor(site_url('admin/purchase_orders/send_po_to_supplier/' . $potoadmin_id), 'Send PO', array('class' => 'btn btn-sm btn-info')) . "&nbsp;";
+                }
+
+                if($rows->porforma_invoice_id){
+                    $piBtn = '<span class="text-success">PI Sent</span>&nbsp;';
+                }else {
+                    $piBtn = anchor(site_url('admin/proforma_invoice/send_pi_to_customer/' . $potoadmin_id), 'Send PI', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
+                }
+
                 if ($rows->order_status) {
-                    $cancelBtn = '<a class="btn btn-danger btn-sm cancel_po" data-po-id="' . $potoadmin_id . '"  href="#!">Cancel PO</a>';
+                    $cancelBtn = '<a class="btn btn-danger btn-sm cancel_po" data-po-id="' . $potoadmin_id . '"  href="#!">Cancel PO</a>&nbsp;';
                 } else {
-                    $cancelBtn = '<span class="text-danger">PO canceled</span>';
+                    $cancelBtn = '<span class="text-danger">PO canceled</span>&nbsp;';
                 } //End of if else
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["potoadmin_id"] = $potoadmin_id;
                 $nestedData["name"] = $customerInfos;
                 $nestedData["created_at"] = date("d-m-Y", strtotime($created_at));
-                $nestedData["status"] = $viewBtn . $poBtn . $piBtn . $cancelBtn;
+                $nestedData["status"] = $viewBtn .$cancelBtn.$piBtn . $poBtn  ;
                 $data[] = $nestedData;
             } //End of for
         } //End of if
