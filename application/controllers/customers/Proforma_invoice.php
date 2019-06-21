@@ -49,6 +49,7 @@ class Proforma_invoice extends Aipl_admin
           redirect(base_url("customers/proforma_invoice"));
         }
         $data=(array)$po;
+        $data['purchase_order_id']=$po->purchase_order_id;
         //echo '<pre>';print_r($po);die;
 		$this->load->view('site/requires/header',array("page"=>"Proforma Invoice"));
 		$this->load->view('site/customers/proforma_invoice/proforma_invoice_view',$data);

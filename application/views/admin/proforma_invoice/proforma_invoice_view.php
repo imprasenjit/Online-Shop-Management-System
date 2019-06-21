@@ -25,6 +25,7 @@
     				</div>
     				<!-- Card Body -->
     				<div class="card-body" id="print_html">
+              Ref : With reference to Purchase Order No. <?=$purchase_order_id?>
     					<table class="table table-bordered" id="proforma_table">
     						<tbody>
     							<tr>
@@ -49,10 +50,10 @@
 											"exyard"=>$exyard,
 											"frieght"=>$frieght,
 											"total"=>$total,
-										);    
+										);
 										$this->load->view("admin/products/product_table_format",array("product"=>(object)$product_details)); ?>
-									
-    									
+
+
     								</td>
     							</tr>
     							<tr>

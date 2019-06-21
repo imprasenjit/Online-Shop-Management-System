@@ -21,7 +21,8 @@
 											Guwahati<br />
 											Subject: Purchase Order<br />
 											Format for product selection &amp; tax calculation as per Quotation and PI given previously.<br />
-											Terms &amp; Conditions valid as per quotation received.<br />
+											Terms &amp; Conditions valid as per quotation received.<br /><br/>
+											Ref : With reference to Quotation No. <?=$quotation_id?> 
 										</td>
 									</tr>
 									<tr>

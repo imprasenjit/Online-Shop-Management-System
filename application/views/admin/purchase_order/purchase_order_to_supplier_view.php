@@ -13,12 +13,14 @@
 					</div>
 					<!-- Card Body -->
 					<div class="card-body" id="print_html">
+
                         <?php $supplier = $this->suppliers_model->get_by_id($supplier_id); ?>
                                             To,<br />
                                             <?php
                                             echo $supplier->name . '<br/>';
                                             echo $supplier->address . '<br/>';
 											echo $supplier->mobile . '<br/>';
+											echo "Ref : With reference to Customer Purchase Order No. ".$purchase_order_from_customer_id.'<br/>';
 											echo '<hr/>';
                                             $product_details=array(
                                                 "productid"=>$products,
@@ -34,9 +36,9 @@
                                                 "exyard"=>$exyard,
                                                 "frieght"=>$frieght,
                                                 "total"=>$total,
-                                            );    
+                                            );
                                             $this->load->view("admin/products/product_table_format",array("product"=>(object)$product_details)); ?>
-                                       
+
                                         <?php if ($invoice_status != NULL) {
                                             $invoice_details=$this->invoice_model->get_by_id($invoice_id);
                                             ?>

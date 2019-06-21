@@ -22,6 +22,9 @@
                     Guwahati<br />
                     Subject: Purchase Order<br />
                     Terms &amp; Conditions valid as per quotation received.<br /><br />
+
+                    Ref : With reference to Quotation No. <?= $quotation_id ?>
+                    <br /><br />
                     <?php
                     $product = array(
                         "productid" => $product,
@@ -68,6 +71,14 @@
                     <hr/>
                     <div>
                         <a href="<?= base_url("admin/purchase_orders"); ?>" class="btn btn-sm btn-primary float-right">Close</a>
+                        <a href="<?= base_url("admin/purchase_orders/send_po_to_supplier/$potoadmin_id")?>"  class="btn btn-sm btn-info">Send PO</a>
+                        <a href="<?= base_url("admin/proforma_invoice/send_pi_to_customer/$potoadmin_id")?>"  class="btn btn-sm btn-warning">Send PI</a>
+                        <?php if($order_status){ ?>
+                          <a href="#!"  class="btn btn-sm btn-danger cancel_po"  data-po-id="<?=$potoadmin_id?>"  >Cancel PO</a>
+                        <?php }else { ?>
+                          <a href="#!"  class="btn btn-sm btn-danger disabled"  >Canceled</a>
+                        <?php } ?>
+
                         <a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
                     </div>
                 </div>
@@ -98,6 +109,42 @@ $footerImg = $rowFooter?$rowFooter->values:'assets/admin/img/footer.png';
                 deferred: $.Deferred().done(function () {
                     console.log('Printing done', arguments);
                 })
+            });
+        });
+
+        $(document).on("click", ".cancel_po", function() {
+            var element = $(this);
+            var po_id = $(this).attr("data-po-id");
+            $(this).empty().append("Processing...");
+            $.ajax({
+                url: "<?= base_url("admin/purchase_orders/cancel_purchase_order/") ?>",
+                method: "POST",
+                data: {
+                    po_id: po_id
+                },
+                dataType: "json",
+                success: function(jsn) {
+                    if (jsn.x == 1) {
+                        element.removeClass("btn-danger").addClass("disabled");
+                        element.empty().append('<i class="glyphicon glyphicon-ok"></i>&nbsp;Cancelled');
+                        $.notify({
+                            message: 'PO Canceled Successfully'
+                        }, {
+                            // settings
+                            type: 'success',
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            offset: {
+                                x: 20,
+                                y: 100
+                            }
+                        });
+                    } else {
+                        element.empty().append('<i class="glyphicon glyphicon-warning-sign"></i>&nbsp;Error');
+                    }
+                }
             });
         });
     });
