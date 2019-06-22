@@ -5,17 +5,22 @@
  $('#blogs').addClass('active');
  });
  </script>
-<div class="blog-page-background">
-<div class=" container">
-<h2 class="header-title-inner-page"><?=$blog_details->blog_title;?></h2>
-<div class="blog-date">Posted on <?php echo date_format($date,"M d,Y H:i"); ?></div>
-</div>
-</div>
-<div>
+ <div class="page-background">
+ <div class="text-center container">
+ <h2 class="header-title-inner-page">Blogs</h2>
+ </div>
+ </div>
+ <br/>
+<div style="margin-top:50px;">
 <div class="container">
   <div class="row">
     <div class="col-md-8" style="text-align: justify;">
-      <?=$blog_details->blog?>
+      <div class="feat_image">
+        <img src="<?=base_url($blog_details->image);?>" alt="" class="img-fluid">
+      </div>
+      <h5 class="blog_title text-left pt-20"><?=$blog_details->blog_title?></h5>
+      <p class="post_date">  <?php echo date_format($date,"M d,Y H:i"); ?></p>
+      <div class="blog_text_post"><?=$blog_details->blog?></div>
       <div class="socials">
         <div class="wt-blog__post__cta__content">
             <h3>Don't forget to share this post!</h3>
@@ -30,8 +35,19 @@
     <div class="col-md-4">
       <div class="search-container">
         <form action="<?=base_url();?>search" method="post">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <!-- <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button> -->
+          <div class="row">
+            <div class="col-sm-11">
+              <div class="form-group">
+                <input class="form-control " style="position:relative;"  type="text" required placeholder="Search.." name="search">
+                <button style="position:absolute; right: 0px;top: 0px;"  class="fa fa-search form-control-feedback" type="submit"></button>
+              </div>
+            </div>
+            <div class="col-sm-1">
+            </div>
+          </div>
+
         </form>
       </div>
       <div class="section-title">
