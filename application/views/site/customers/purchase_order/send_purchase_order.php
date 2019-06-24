@@ -149,7 +149,7 @@
 												var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
 												var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
 												var state=$(this).parent().parent().children().children('.state_val').val();
-												if (state == "assam") {
+												if (state == "Assam") {
 													$(this).parent().parent().children().children('.cgst_cal').val(cgst);
 													$(this).parent().parent().children().children('.sgst_cal').val(sgst);
 													$(this).parent().parent().children().children('.igst_cal').val(0);

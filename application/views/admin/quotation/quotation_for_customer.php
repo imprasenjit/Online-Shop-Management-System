@@ -191,14 +191,14 @@
 			<td class="text-left">\
 			<label>Basic Price</label>\
 			<input type="text" class="form-control form-control-sm price_cal" name="product_price[]" />\
-			<label>Frieght Unit Price</label>\
+			<label>Frieght Per Unit</label>\
 			<input type="text" class="form-control form-control-sm frieght_unit_cal" name="frieght_unit_price[]" />\
 			<label>Tax Rate</label>\
 			<input type="text" class="form-control form-control-sm tax_rate" name="tax_rate[]" readonly/></td>\
 			<td class="text-left calculation-form"> \
 			CGST<input type="text" class="form-control form-control-sm cgst_cal" name="cgst[]" id="cgst[]" readonly /> \
 			<div class="clearfix"></div>SGST<input type="text" class="form-control form-control-sm sgst_cal" name="sgst[]" id="sgst[]" readonly /> \
-			<div class="clearfix"></div>IGST<input type="hidden" name="state" class="state_val" value=""><input type="text" class="form-control form-control-sm igst_cal" name="igst[]" id="igst[]" readonly /> \
+			<div class="clearfix"></div>IGST<input type="text" class="form-control form-control-sm igst_cal" name="igst[]" id="igst[]" readonly /> \
 			<div class="clearfix"></div>Ex-Yard<input type="text" class="form-control form-control-sm exyard_cal" name="exyard[]" id="exyard[]" readonly/> \
 			<div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" readonly/> \
 			<div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \

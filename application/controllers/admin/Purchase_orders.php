@@ -57,7 +57,7 @@ class Purchase_orders extends Aipl_admin
         $data = array(
             'purchase_order' => $po_data
         );
-        $this->load->view('admin/requires/header', array("title" => "Proforma Orders"));
+        $this->load->view('admin/requires/header', array("title" => "Purchase Order to Supplier"));
         $this->load->view('admin/purchase_order/purchase_order_to_supplier', $data);
         $this->load->view('admin/requires/footer');
     }

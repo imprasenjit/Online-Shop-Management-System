@@ -49,17 +49,16 @@
                     $frieght_decoded = json_decode($purchase_order["frieght"], true);
                     $total_decoded = json_decode($purchase_order["total"], true);
                     ?>
-
                 </div>
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Proforma Invoice details</h6>
-
                 </div>
                 <div class="card-body">
                     <form class="form-horizontal" action="<?= base_url("admin/proforma_invoice/create_action/"); ?>" method="post" id="myform">
                         <input name="send_to" value="<?=$customer->email?>" type="text" />
+                        <input type="hidden" id="state" value="<?=$purchase_order["billing_state"];?>">
                         <div class="row">
                             <div class="col-md-12 text-right">
                                 <label for="varchar">Date. <?php echo date("d-m-Y"); ?> </label><br />
@@ -159,7 +158,6 @@
                                                     ?>
                                                     <?php
                                                     $attr_values = $attributes_decoded[$key][$product];
-
                                                     $attributes_from_product = $product_details->attributes;
                                                     $sl_count = 0;
                                                     $attributes_from_product_decoded = json_decode($attributes_from_product, true);
@@ -188,6 +186,8 @@
                                             <td class="text-left">
                                                 <label>Basic Price</label>
                                                 <input type="text" class="form-control form-control-sm price_cal" name="product_price[]" value="<?= $product_price_decoded[$key] ?>" />
+                                                <label>Frieght Per Unit</label>
+												<input type="text" class="form-control form-control-sm frieght_unit_cal" name="frieght_unit_price[]" />
                                                 <label>Tax Rate(%)</label>
                                                 <input type="text" class="form-control form-control-sm tax_rate" name="tax_rate[]" value="<?= $product_details->tax_rate; ?>" readonly />
                                             </td>
@@ -196,12 +196,12 @@
                                                 <div class="clearfix"></div>
                                                 SGST<input type="text" class="form-control form-control-sm sgst_cal" name="sgst[]" value="<?php echo $sgst_decoded[$key]; ?>" readonly />
                                                 <div class="clearfix"></div>
-                                                IGST<input type="hidden" name="state" class="state_val" value="<?= $purchase_order["billing_state"]; ?>">
+                                                IGST
                                                 <input type="text" class="form-control form-control-sm igst_cal" name="igst[]" value="<?php echo $igst_decoded[$key]; ?>" readonly />
                                                 <div class="clearfix"></div>
                                                 Ex-yard<input type="text" class="form-control form-control-sm exyard_cal" name="exyard[]" value="<?= $exyard_decoded[$key] ?>" readonly />
                                                 <div class="clearfix"></div>
-                                                Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" value="<?= $frieght_decoded[$key] ?>" />
+                                                Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" value="<?= $frieght_decoded[$key] ?>" readonly />
                                                 <div class="clearfix"></div>
                                                 Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" value="<?= $total_decoded[$key] ?>" readonly />
                                             </td>
@@ -212,54 +212,11 @@
                                         $slnew++;
                                     }
                                     ?>
-                                <script>
-                                    $(document).ready(function () {
-                                        var slno = 1;
-                                        $(document).on("click", ".remove_tr", function () {
-                                            $(this).parent().parent().remove();
-                                        });
-                                        $(document).on("click", ".add_new_product", function () {
-                                            $('#objectTable1').append('<tr><td>' + slno + '</td>\
-                                                <td><select class="form-control form-control-sm product_select_option" name="product_id[]">\
-                                                                <option  >Please Select</option>\
-<?php
-foreach ($product_id as $p) {
-    echo '<option value="' . $p->id . '">' . $p->product_name . '</option>';
-}
-?></td><td class = "text-left">\
-                                                                <input type="text" class="quantity_cal col-md-6 padding-zero" name="quantity[]"> \
-                                                                <select class="padding-zero" name="product_unit[]" id="product_unit[]"> \
-                                                                <option value="MT"> MT </option>\
-                                                                <option value="KG"> KG </option>\
-                                                                <option value="Pcs"> Pcs  </option>\
-                                                                        </select> \
-                                                                </div> </td> \
-                                                                <td ><span class="attribute_place"></span>Others : <input type="text" name="others[]"></td>\
-                                                                        <td class="text-left">\
-                                                                        <label>Basic Price</label>\
-                                                                        <input type="text" class="form-control form-control-sm price_cal" name="product_price[]" /><br/>\
-                                                                        <label>Tax Rate</label>\
-                                                                        <input type="text" class="form-control form-control-sm tax_rate" name="tax_rate[]" readonly/></td>\
-                                                                        <td class="text-left calculation-form"> \
-                                                                        CGST<input type="text" class="form-control form-control-sm cgst_cal" name="cgst[]" id="cgst[]" readonly /> \
-                                                                        <div class="clearfix"></div>SGST<input type="text" class="form-control form-control-sm sgst_cal" name="sgst[]" id="sgst[]" readonly /> \
-                                                                        <div class="clearfix"></div>IGST<input type="hidden" name="state" class="state_val" value="<?= $result->state; ?>"><input type="text" class="form-control form-control-sm igst_cal" name="igst[]" id="igst[]" readonly /> \
-                                                                        <div class="clearfix"></div>Ex-Yard<input type="text" class="form-control form-control-sm exyard_cal" name="exyard[]" id="exyard[]" readonly/> \
-                                                                        <div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" /> \
-                                                                        <div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \
-                                                                        </td>\
-                                                                        </td > <td> <a href = "#!" class = "btn btn-danger remove_tr"> <i class = "fa fa-times-circle" > </i> </a> </td> </tr> \
-                                                                ');
-                                            sl++;
-                                        });
-                                    });
-                                </script>
                                 </tbody>
                             </table>
                             <div align="right">
                                 <a class="btn btn-sm btn-warning add_new_product" href="#!"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
-
                             <textarea id="editordata2" name="editordata2">
 												<p><table class="table table-bordered">
 														<tbody>
@@ -308,6 +265,8 @@ foreach ($product_id as $p) {
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="<?= base_url("assets/admin/summernote/summernote-bs4.css"); ?>">
+<script type="text/javascript" src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
 <script>
     $(document).ready(function () {
         $(document).on('change', '.product_select_option', function () {
@@ -337,46 +296,38 @@ foreach ($product_id as $p) {
                 }
             });
         });
-        $(document).on('keyup', '.price_cal,.quantity_cal', function () {
-            var qty = $(this).parent().parent().children().children('.quantity_cal').val();
-            var basic_price = $(this).parent().parent().children().children('.price_cal').val();
-            var tax_rate = $(this).parent().parent().children().children('.tax_rate').val();
-            var state_gst = parseFloat(tax_rate) / 2;
-            var price = parseInt(qty) * basic_price;
-            var cgst = Math.ceil(price * (parseFloat(state_gst) / 100));
-            var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
-            var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
-            var state = $(this).parent().parent().children().children('.state_val').val();
-            if (state == "assam") {
-                $(this).parent().parent().children().children('.cgst_cal').val(cgst);
-                $(this).parent().parent().children().children('.sgst_cal').val(sgst);
-                $(this).parent().parent().children().children('.igst_cal').val(0);
-                var exyard = price + cgst + sgst;
-            } else {
-                $(this).parent().parent().children().children('.igst_cal').val(igst);
-                $(this).parent().parent().children().children('.cgst_cal').val(0);
-                $(this).parent().parent().children().children('.sgst_cal').val(0);
-                var exyard = price + igst;
-            }
-            $(this).parent().parent().children().children('.exyard_cal').val(exyard);
-            var frieght = $(this).parent().parent().children().children('.frieght_cal').val();
-            var total_price = Math.ceil(parseFloat(exyard) + parseFloat(frieght));
-            total_price = isNaN(total_price) ? 0 : total_price;
-            $(this).parent().parent().children().children('.total_price_cal').val(total_price);
-        });
-        $(document).on('keyup', '.frieght_cal', function () {
-            var frieght = $(this).val();
-            var exyard = $(this).parent().parent().children().children('.exyard_cal').val();
-            var total_price = Math.ceil(parseFloat(exyard) + parseFloat(frieght));
-            total_price = isNaN(total_price) ? 0 : total_price;
-            $(this).parent().parent().children().children('.total_price_cal').val(total_price);
-        });
-    });
-</script>
-<link href="<?= base_url("assets/admin/summernote/summernote-bs4.css"); ?>" rel="stylesheet">
-<script src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
-<script>
-    $(document).ready(function () {
+        $(document).on('keyup', '.price_cal,.frieght_unit_cal', function() {
+			var qty = $(this).parent().parent().children().children('.quantity_cal').val();
+			var basic_price = $(this).parent().parent().children().children('.price_cal').val();
+			var frieght_unit_price = $(this).parent().children('.frieght_unit_cal').val();
+			var tax_rate = $(this).parent().parent().children().children('.tax_rate').val();
+			var state_gst = parseFloat(tax_rate) / 2;
+			var price = parseInt(qty) * basic_price;
+			var frieght_total = parseInt(qty) * frieght_unit_price;
+			var cgst = Math.ceil(price * (parseFloat(state_gst) / 100));
+			var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
+			var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
+			var state = $('#state').val().replace(/ /g, '');
+			if (state == '') {
+				alert("Please select billing state");
+			}
+			if (state == "Assam") {
+				$(this).parent().parent().children().children('.cgst_cal').val(cgst);
+				$(this).parent().parent().children().children('.sgst_cal').val(sgst);
+				$(this).parent().parent().children().children('.igst_cal').val(0);
+				var exyard = price + cgst + sgst;
+			} else {
+				$(this).parent().parent().children().children('.igst_cal').val(igst);
+				$(this).parent().parent().children().children('.cgst_cal').val(0);
+				$(this).parent().parent().children().children('.sgst_cal').val(0);
+				var exyard = price + igst;
+			}
+			$(this).parent().parent().children().children('.exyard_cal').val(exyard);
+			$(this).parent().parent().children().children('.frieght_cal').val(frieght_total);
+			total_price = exyard + frieght_total;
+			total_price = isNaN(total_price) ? 0 : total_price;
+			$(this).parent().parent().children().children('.total_price_cal').val(total_price);
+		});
         $('#editordata').summernote({
             placeholder: 'Type your message here',
             //var a = $('#form-enquiry_id-9102').val();
@@ -388,5 +339,45 @@ foreach ($product_id as $p) {
             tabsize: 2,
             height: 350
         });
+    var slno = 1;
+    $(document).on("click", ".remove_tr", function () {
+        $(this).parent().parent().remove();
     });
+    $(document).on("click", ".add_new_product", function () {
+        $('#objectTable1').append('<tr><td>' + slno + '</td>\
+            <td><select class="form-control form-control-sm product_select_option" name="product_id[]">\
+                            <option  >Please Select</option>\
+<?php
+foreach ($product_id as $p) {
+    echo '<option value="' . $p->id . '">' . $p->product_name . '</option>';
+}
+?></td><td class = "text-left">\
+<input type="text" class="quantity_cal col-md-6 padding-zero" name="quantity[]"> \
+<select class="padding-zero" name="product_unit[]" id="product_unit[]"> \
+<option value="MT"> MT </option>\
+<option value="KG"> KG </option>\
+<option value="Pcs"> Pcs  </option>\
+        </select> \
+</div> </td> \
+<td ><span class="attribute_place"></span>Others : <input type="text" class="form-control form-control-sm" name="others[]"></td>\
+        <td class="text-left">\
+        <label>Basic Price</label>\
+        <input type="text" class="form-control form-control-sm price_cal" name="product_price[]" />\
+        <label>Frieght Per Unit</label>\
+		<input type="text" class="form-control form-control-sm frieght_unit_cal" name="frieght_unit_price[]" />\
+        <label>Tax Rate</label>\
+        <input type="text" class="form-control form-control-sm tax_rate" name="tax_rate[]" readonly/></td>\
+        <td class="text-left calculation-form"> \
+        CGST<input type="text" class="form-control form-control-sm cgst_cal" name="cgst[]" id="cgst[]" readonly /> \
+        <div class="clearfix"></div>SGST<input type="text" class="form-control form-control-sm sgst_cal" name="sgst[]" id="sgst[]" readonly /> \
+        <div class="clearfix"></div>IGST<input type="text" class="form-control form-control-sm igst_cal" name="igst[]" id="igst[]" readonly /> \
+        <div class="clearfix"></div>Ex-Yard<input type="text" class="form-control form-control-sm exyard_cal" name="exyard[]" id="exyard[]" readonly/> \
+        <div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" readonly/> \
+        <div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \
+        </td>\
+        </td > <td> <a href = "#!" class = "btn btn-danger remove_tr"> <i class = "fa fa-times-circle" > </i> </a> </td> </tr> \
+');
+sl++;
+});
+});
 </script>

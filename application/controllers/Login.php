@@ -34,11 +34,11 @@ class Login extends CI_Controller {
                 $data["message"] = "Login Successfull. Please wait.";
             } else {
                 $data["login"] = false;
-                $data["message"] = "Invalid Login.1";
+                $data["message"] = "Invalid Login.";
             }
         } else {
             $data["login"] = false;
-            $data["message"] = "Invalid Login.2";
+            $data["message"] = "Invalid Login.";
         }
         echo json_encode($data);
     }// End of process()

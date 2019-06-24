@@ -87,7 +87,7 @@ if ($cart = $this->cart->contents()) {
 									<h4 align="right">Where is your Billing Address?</h4><br />
 									<div class="form-group pull-right">
 										<label class="checkbox-inline">
-											<input type="radio" name="state" value="assam" checked> Assam
+											<input type="radio" name="state" value="Assam" checked> Assam
 										</label>
 										<label class="checkbox-inline">
 											<input type="radio" name="state" value="other"> Other States
