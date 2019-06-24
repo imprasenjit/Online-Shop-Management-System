@@ -363,7 +363,7 @@ class Purchase_orders extends Aipl_admin
         if ($send_id != NULL) {
             $this->load->library('encryption');
             $dec_send_id = str_replace(array('-', '_', '|'), array('+', '/', '='), $send_id);
-            $dec_send_id = $this->encryption->decrypt($dec_send_id);
+            $dec_send_id = $this->encryption->decrypt($dec_send_id);           
             $row = $this->purchase_order_model->get_by_id_purchase_order_to_supplier($dec_send_id);
             $data = array(
                 "purchase_order_to_supplier_id" => $row->purchase_order_supplier_id,
@@ -387,7 +387,6 @@ class Purchase_orders extends Aipl_admin
                 'created_at' => date("Y-m-d H:i:s"),
                 'created_by' => $this->session->userdata('id')
             );
-            $this->purchase_order_model->insert_purchse_order_to_warehouse($data);
             $this->purchase_order_model->insert_purchse_order_to_warehouse($data);
             $this->session->set_flashdata('message', 'Purchase Order has been sent successfully');
             $this->session->set_flashdata('type', 'success');
