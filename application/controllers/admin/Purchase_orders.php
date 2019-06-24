@@ -245,7 +245,7 @@ class Purchase_orders extends Aipl_admin
                 $invoice_status = $rows->invoice_status;
                 $this->load->library('encryption');
                 $encoded_purchase_order_supplier_id = $this->encryption->encrypt($purchase_order_supplier_id);
-                $encoded = str_replace(array('+', '/', '='), array('-', '_', '~'), $encoded_purchase_order_supplier_id);
+                $encoded = str_replace(array('+', '/', '='), array('-', '_', '|'), $encoded_purchase_order_supplier_id);
                 if ($rows->invoice_status != NULL) {
                     if ($rows->send_to_warehouse_status == 1) {
                         $poBtn = '<a class="btn btn-success btn-sm"href="#!"><i class="glyphicon glyphicon-ok"></i>&nbsp;Sent</a>';
@@ -362,7 +362,7 @@ class Purchase_orders extends Aipl_admin
         $this->breadcrumbs->push('purchase Orders to Warehouse', '/admin/purchase_orders/send_to_warehouse');
         if ($send_id != NULL) {
             $this->load->library('encryption');
-            $dec_send_id = str_replace(array('-', '_', '~'), array('+', '/', '='), $send_id);
+            $dec_send_id = str_replace(array('-', '_', '|'), array('+', '/', '='), $send_id);
             $dec_send_id = $this->encryption->decrypt($dec_send_id);
             $row = $this->purchase_order_model->get_by_id_purchase_order_to_supplier($dec_send_id);
             $data = array(
