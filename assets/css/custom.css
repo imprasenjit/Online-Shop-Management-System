@@ -964,12 +964,14 @@ width: 14px;
 
 .feat_title {
     text-align: justify;
-    font-family: 'RalewaySemiBold';
+    /* font-family: 'RalewaySemiBold'; */
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 19px;
 }
 .feat_title a {
   font-size: 1.75rem;
-  font-family: 'RalewaySemiBold';
+  /* font-family: 'RalewaySemiBold'; */
+  font-family: 'Roboto Condensed', sans-serif;
   color: #0c4da2;
 }
 
@@ -986,20 +988,23 @@ width: 14px;
     font-size: 13px;
 }
 .feat_desc {
-    font-family: 'OpenSansLight_0';
+    /* font-family: 'OpenSansLight_0'; */
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 17px;
     color: #000;
     margin-top: 10px;
 }
 .feat_desc p{
-    font-family: 'OpenSansLight_0';
+    /* font-family: 'OpenSansLight_0'; */
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 17px;
     text-align: justify;
     color: #000;
 }
 
 .feat_rm {
-    font-family: 'OpenSansSemibold_1';
+    /* font-family: 'OpenSansSemibold_1'; */
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 19px;
     color: #0c4da2;
 }
@@ -1034,18 +1039,21 @@ hr {
 }
 .blog_title {
     font-size: 25px;
-    font-family: 'RalewaySemiBold';
+    /* font-family: 'RalewaySemiBold'; */
+    font-family: 'Roboto Condensed', sans-serif;
     color: #0c4da2;
     padding-top: 10px;
     margin: 0;
 }
 .post_date {
-    font-family: 'raleway_extralight';
+    /* font-family: 'raleway_extralight'; */
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 15px;
     color: #7f7f7f;
 }
 .blog_text_post {
-    font-family: 'OpenSansRegular_0';
+    /* font-family: 'OpenSansRegular_0'; */
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
     color: #333;
     margin-top: 20px;
