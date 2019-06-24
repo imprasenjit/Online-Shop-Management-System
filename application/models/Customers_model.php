@@ -212,10 +212,12 @@ class Customers_model extends CI_Model
     //** Adress Related functions */
     function add_address($address_data){
       $this->db->insert("customer_address",$address_data);
+      return $this->db->insert_id();
     }
     function update_address($id,$address_data){
       $this->db->where("address_id",$id);
       $this->db->update("customer_address",$address_data);
+      return $this->db->affected_rows();
     }
     function get_address_by_id($customer_id){
       $this->db->select("*")

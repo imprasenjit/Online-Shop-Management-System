@@ -99,6 +99,35 @@ class Customer extends CI_Controller
             redirect(site_url('customers/customer/edit_profile'));
         }
     }
+    public function manage_address(){
+      $logged_id=$this->session->id;
+  		$data['customer_address']=$this->customers_model->get_address_by_id($logged_id);//var_dump($data['customer_address']);die;
+      $this->load->view('site/requires/header', array('page' => 'Customer Address'));
+      $this->load->view('site/customers/dashboard/customer_address', $data);
+    }
+    public function manage_address_action(){
+      $logged_id=$this->session->id;
+      if($logged_id){
+        $address_type=$this->input->post("address_type");
+        $address=$this->input->post("customer_address");
+        if($this->input->post("submit") =="save"){
+          $res=$this->customers_model->add_address(array('address_type'=>$address_type,'address'=>$address,'customer_id'=>$logged_id));
+        }else {
+          $res=$this->customers_model->update_address($this->input->post('customer_address_id'),array('address_type'=>$address_type,'address'=>$address,'updated_at'=>date('Y-m-d H:i:s')));
+        }
+
+        if($res){
+          $this->session->set_flashdata('message', 'successfully Address Saved');
+          redirect(site_url('customers/customer/manage_address'));
+        }else {
+          $this->session->set_flashdata('message', 'Something went wrong');
+          redirect(site_url('customers/customer/manage_address'));
+        }
+
+      }else {
+        redirect(site_url('/'));
+      }
+    }
     public function _rules()
     {
         $this->form_validation->set_rules('name', ' ', 'trim');

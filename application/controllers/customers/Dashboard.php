@@ -48,9 +48,13 @@ class Dashboard extends Aipl_admin
 	}
 	public function send_purchase_order($quotation_id)
 	{
+		$logged_id=$this->session->id;
+		$data['customer_address']=$this->customers_model->get_address_by_id($logged_id);//var_dump($data['customer_address']);die;
+		// $quotation_id=base64_decode(urldecode($quotation_id));
+		$data["quotation_id"] = $quotation_id;
 		$this->load->model('attribute_model');
 		$this->load->view('site/requires/header', array("page" => "Purchase order"));
-		$this->load->view('site/customers/purchase_order/send_purchase_order', array("quotation_id" => base64_decode(urldecode($quotation_id))));
+		$this->load->view('site/customers/purchase_order/send_purchase_order', $data);
 		$this->load->view('site/requires/footer');
 	}
 	public function send_po()

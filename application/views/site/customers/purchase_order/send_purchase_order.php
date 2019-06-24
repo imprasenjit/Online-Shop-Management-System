@@ -144,7 +144,7 @@
 												console.log("tax_rate" + tax_rate);
 												console.log("state_gst" + state_gst);
 												console.log("price" + price);
-												
+
 												var cgst = Math.ceil(price * (parseFloat(state_gst) / 100));
 												var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
 												var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
@@ -173,13 +173,41 @@
 								$i++;
 							}
 							?>
+							<div class="form-group" id="adrress_display">
+
+
+							</div>
+							<div class="form-group col-md-6">
+								<label for="billing_address">Select A Billing Address</label>
+								<?php if($customer_address){
+									foreach ($customer_address as $key => $address) { ?>
+										<div class="row">
+										<div class="col-md-1"><input type="radio" name="billing_address_selector" data-billing_address="<?=$address->address;?>" value="<?=$address->address_id;?>"></div>
+										<div class="col-md-11"><?=$address->address;?></div>
+										<!-- <div class="col-md-3"></div> -->
+										</div>
+									<?php }
+								} ?>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="billing_address">Select A Delivery Address</label>
+								<?php if($customer_address){
+									foreach ($customer_address as $key => $address) { ?>
+										<div class="row">
+										<div class="col-md-1"><input type="radio" name="delivery_address_selector" data-delivery_address="<?=$address->address;?>" value="<?=$address->address_id;?>"></div>
+										<div class="col-md-11"><?=$address->address;?></div>
+										<!-- <div class="col-md-3"></div> -->
+										</div>
+									<?php }
+								} ?>
+							</div>
 							<div class="form-group col-md-6">
 								<label for="billing_address">Billing Address</label>
-								<textarea name="billing_address" class="form-control " row="4"></textarea>
+								<textarea name="billing_address" class="form-control " id="textarea_billing_address" row="4"></textarea>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="delivery_address">Delivery Address</label>
-								<textarea name="delivery_address" class="form-control " row="4"></textarea>
+								<textarea name="delivery_address" class="form-control " id="textarea_delivery_address" row="4"></textarea>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="contact_person_name">Contact Person Name</label>
@@ -223,6 +251,12 @@
 		$('#submit').click(function() {
 			console.log("submitting");
 			$('#send_purchase_order_form').submit();
+		});
+		$("input[name='billing_address_selector']").click(function(){
+			$("#textarea_billing_address").val($(this).data('billing_address'));
+		});
+		$("input[name='delivery_address_selector']").click(function(){
+			$("#textarea_delivery_address").val($(this).data('delivery_address'));
 		});
 	});
 </script>
