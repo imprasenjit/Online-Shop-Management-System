@@ -39,6 +39,12 @@
 			</li>
 
 			<li>
+				<a href="<?= base_url("customers/customer/manage_address"); ?>">
+					<i class="glyphicon glyphicon-folder-open"></i>
+
+					Manage Address</a>
+			</li>
+			<li>
 				<a href="<?= base_url("customers/customer/edit_profile/"); ?>">
 					<i class="glyphicon glyphicon-user"></i>
 					Account Settings </a>
