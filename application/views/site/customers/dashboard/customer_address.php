@@ -27,8 +27,22 @@
                     <div class="col-sm-4">
                       <div class="panel panel-default">
                       <div class="panel-body">
-                        <div class="pull-right"> <a onclick="edit_address(this);" data-address_type="<?=$address->address_type;?>" data-address="<?=$address->address;?>"  data-address_id="<?=$address->address_id;?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-                        <?=$address->address;?>
+                        <div class="row">
+                          <div class="col-sm-10">
+                            <h5><?php if($address->address_type == "billing_address") echo "Billing Address"; else echo "Delivery Address";?></h5>
+                          </div>
+                          <div class="col-sm-2">
+                            <a onclick="edit_address(this);" data-address_type="<?=$address->address_type;?>" data-address="<?=$address->address;?>"  data-address_id="<?=$address->address_id;?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                        <div class="col-sm-12">
+                          <?=$address->address;?>
+                        </div>
+                      </div>
+                        <!-- <div class="pull-right"> </div> -->
+
                       </div>
                       </div>
                     </div>
