@@ -36,7 +36,7 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
-                                                    <td>Customer Details</td>
+                                                    <td width="30%">Customer Details</td>
                                                     <td>
                                                             <?php $customer_details = $this->customers_model->get_by_id($customer_id); 
                                                             ?>
