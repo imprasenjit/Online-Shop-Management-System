@@ -18,7 +18,7 @@
 									<input type="text" class="form-control form-control-sm" name="send_to_autocomplete" id="send_to_autocomplete" placeholder="Type Customer Name" />
 									<input type="hidden" name="send_to" id="send_to" value="">
 									<span id="cust_details"></span>
-								</div>	
+								</div>
 								<div class="form-group" id="adrress_display">
 								</div>
 								<div class="form-group">
@@ -27,17 +27,17 @@
 										<option value="">Select State<option>
                                         <?php $states = $this->suppliers_model->get_all_states();
                                         foreach ($states as $state_detail) { ?>
-                                            <option value="<?= $state_detail->state_name; ?>"><?= $state_detail->state_name; ?></option>
+                                            <option value="<?= trim($state_detail->state_name); ?>"><?= $state_detail->state_name; ?></option>
                                         <?php } ?>
                                     </select>
-								</div>	
-							</div>	
+								</div>
+							</div>
 							<div class="col-md-6 text-right">
-								<p class="text-right">									
-									Date: <?php echo date("d-m-Y"); ?> 
+								<p class="text-right">
+									Date: <?php echo date("d-m-Y"); ?>
 								</p>
-							</div>									
-							</div>									
+							</div>
+							</div>
 							<table class="table table-bordered">
 								<thead>
 									<tr>
@@ -84,11 +84,11 @@ $('#editordata2').summernote({
 	tabsize: 2,
 	height: 350
 });
-$(document).ready(function(){        
+$(document).ready(function(){
 $("#send_to_autocomplete").autocomplete({
-    source:"<?=base_url('admin/message/get_custnames')?>", 
+    source:"<?=base_url('admin/message/get_custnames')?>",
     minLength:1,
-    select: function(event,ui){ 
+    select: function(event,ui){
         $("#cust_details").html(ui.item.label);
 		$('#send_to').val(ui.item.id);
 		show_address(ui.item.address);
@@ -143,9 +143,9 @@ $(document).on('keyup', '.price_cal,.frieght_unit_cal', function() {
 	$(this).parent().parent().children().children('.total_price_cal').val(total_price);
 });
 $(document).on('keyup', '.frieght_cal', function() {
-	var frieght = $(this).val(); 
+	var frieght = $(this).val();
 	var exyard=$(this).parent().parent().children().children('.exyard_cal').val();
-	var total_price = Math.ceil(parseFloat(exyard) + parseFloat(frieght));											
+	var total_price = Math.ceil(parseFloat(exyard) + parseFloat(frieght));
 	total_price = isNaN(total_price) ? 0 : total_price;
 	$(this).parent().parent().children().children('.total_price_cal').val(total_price);
 });
@@ -161,7 +161,7 @@ $(document).on('change', '.product_select_option', function() {
 		},
 		dataType: 'html',
 		success: function(htm) {
-			attr.parent().parent().children().children('.attribute_place').empty().append(htm);														
+			attr.parent().parent().children().children('.attribute_place').empty().append(htm);
 		}
 	});
 	//get product tax_rate
@@ -173,7 +173,7 @@ $(document).on('change', '.product_select_option', function() {
 		},
 		dataType: 'json',
 		success: function(jsn) {
-			attr.parent().parent().children().children('.tax_rate').val(jsn.tax_rate);													
+			attr.parent().parent().children().children('.tax_rate').val(jsn.tax_rate);
 		}
 	});
 });

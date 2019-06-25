@@ -3,18 +3,19 @@ if ($product) {
 							?>
 							<table class="table table-hover table-bordered" id="quotation">
 								<thead>
-									<tr>
+									<tr class="text-center">
 										<th>(#)</th>
 										<th>Product Name</th>
 										<th>HSN/SAC</th>
 										<th>Quantity</th>
 										<th>Basic Price</th>
+										<th>Basic Total</th>
 										<th>Tax(%)</th>
 										<th>CGST</th>
 										<th>SGST</th>
 										<th>IGST</th>
-										<th>Ex-Yard(Rs./MT)</th>
-										<th>Frieght (Cost/MT)</th>
+										<th>Ex-Yard (Per Unit)</th>
+										<th>Frieght</th>
 										<th>Total</th>
 									</tr>
 								</thead>
@@ -39,7 +40,7 @@ if ($product) {
 									<tr>
 										<td class="text-left"><?= $slno; ?></td>
 										<td class="text-left">
-											<?php											
+											<?php
 											echo $product_details->product_name;
 											echo '<br/><small>';
 											foreach ($attributes_decoded[$key] as $product_key => $attr) {
@@ -49,7 +50,7 @@ if ($product) {
 													if(!empty($attr[$keyattr])){
 														echo $values . ' : ' . $attr[$keyattr] . '<br/>';
 													}
-													
+
 												}
 											}
 											?>
@@ -60,7 +61,7 @@ if ($product) {
 										</td>
 										<td class="text-left">
 											<?=	$product_details->hsn_code?>
-											
+
 										</td>
 										<td class="text-left">
 											<?php
@@ -73,6 +74,11 @@ if ($product) {
 										<td class="text-left">
 											<?php
 											echo '&#8377;' . $product_price_decoded[$key];
+											?>
+										</td>
+										<td class="text-left">
+											<?php
+											echo '&#8377;' . ($quantity_decoded[$key]*$product_price_decoded[$key]);
 											?>
 										</td>
 										<td class="text-left">

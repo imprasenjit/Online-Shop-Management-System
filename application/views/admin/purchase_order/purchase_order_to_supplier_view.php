@@ -55,7 +55,7 @@
                                         </tbody>
                                             </table>
                                         <?php } else {
-                                            echo '<span class="text-danger">Invoice is not generated.</span>';
+                                            echo '<span class="text-danger">Invoice is not uploaded.</span>';
                                         } ?>
                                     </td>
                                 </tr>

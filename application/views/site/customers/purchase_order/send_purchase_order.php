@@ -24,8 +24,8 @@
 								Hitech Industries<br />
 								Guwahati<br />
 								Subject: Purchase Order<br />
-								Terms &amp; Conditions valid as per quotation received.<br /><br />
-								<h5>Billing State : <?= $result->state; ?></h5>
+								Terms &amp; Conditions valid as per quotation received.<br />
+								Billing State : <?= $result->state; ?><br />
 								<input type="hidden" name="billing_state" value="<?= $result->state;?>">
 								<br />
 								<table name="objectTable1" id="objectTable1" class="table table-bordered">

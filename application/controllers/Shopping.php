@@ -190,7 +190,10 @@ public function save_order()
 }
 public function billing_success()
 {
+
+    $this->load->view('site/requires/header', array('page' => 'Success'));
     $this->load->view('site/shopping/billing_success');
+    $this->load->view('site/requires/footer');
 }
 }
 ?>

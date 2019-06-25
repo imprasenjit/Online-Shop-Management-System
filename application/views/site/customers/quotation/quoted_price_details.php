@@ -18,6 +18,9 @@
 						$enq_unique_id = $enquery_customer_details->unique_id;
 						$i = 1;
 						?>
+						<br/>
+						<br/>
+						<span class="pull-right">Quotation No. : <?= $row->quotation_id?></span><br/>
 						<span class="pull-right">Quotation Date : <?= date("d-m-Y", strtotime($row->quotation_date)); ?></span>
 						To, <br />
 						<?php

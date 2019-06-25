@@ -10,10 +10,14 @@
 					$enquiry_id = base64_decode(urldecode($this->uri->segment(4)));
 					$enquiry_details = $this->enquires_model->get_by_id($enquiry_id);
 					?>
-    				<strong>Enquiry Information : Enq. No. - <?php echo $enquiry_details->unique_id; ?></strong>
+    				<h5><strong>Enquiry Information </strong></h5>
     			</div>
     			<div class="panel-body">
-    				<h4>Billing Address: <?= $enquiry_details->state; ?></h4>
+            <h5>Enquiry No : <?php echo $enquiry_details->unique_id; ?></h5>
+            <br/>
+            <h5>Enquiry Date:<?php echo date("d-m-Y h:i A",strtotime($enquiry_details->enquiry_placed_date)); ?></h5>
+            <br/>
+    				<h5>Billing Address: <?= $enquiry_details->state; ?></h5>
     				<br />
     				<div class="table-responsive">
     					<?php
