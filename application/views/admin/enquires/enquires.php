@@ -30,20 +30,10 @@
                                     <td class="text-left"><?= $result->email; ?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7"><strong>Customer Address :</strong></td>
+                                    <td colspan="7"><strong>Customer Address :</strong>  <?= $result->address; ?>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7">
-                                        <?= $result->address; ?>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="7"><strong>Billing State :</strong></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="7">
-                                        <?= $result->state; ?>&nbsp;
-                                    </td>
+                                    <td colspan="7"><strong>Billing State :</strong> <?= $result->state; ?>&nbsp;</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -83,7 +73,7 @@
                                                         <tr>
                                                             <td class="text-left"><?= $slno; ?></td>
                                                             <td class="text-left"><?= $productname; ?></td>
-                                                            <td class="text-left"><?= $products->quantity; ?><?= $products->product_unit; ?></td>
+                                                            <td class="text-left"><?= $products->quantity; ?> <?= $products->product_unit; ?></td>
                                                             <td class="text-left">
                                                                 <?php
                                                                 if ($products->attributes != "") {

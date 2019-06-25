@@ -15,10 +15,11 @@
     			<div class="panel-body">
             <h5>Enquiry No : <?php echo $enquiry_details->unique_id; ?></h5>
             <br/>
-            <h5>Enquiry Date:<?php echo date("d-m-Y h:i A",strtotime($enquiry_details->enquiry_placed_date)); ?></h5>
+            <h5>Enquiry Date : <?php echo date("d-m-Y h:i A",strtotime($enquiry_details->enquiry_placed_date)); ?></h5>
             <br/>
-    				<h5>Billing Address: <?= $enquiry_details->state; ?></h5>
-    				<br />
+    				<h5>Billing State: <?= $enquiry_details->state; ?></h5>
+					<br />
+					<h5>Product Details :</h5><br/>
     				<div class="table-responsive">
     					<?php
 						$order_detail_id = base64_decode(urldecode($this->uri->segment(4)));
@@ -33,6 +34,7 @@
     									<th>Product Name</th>
     									<th>Quantity</th>
     									<th>Attributes</th>
+    									<th>Others</th>
     								</tr>
     							</thead>
     							<tbody>
@@ -40,14 +42,12 @@
 									foreach ($results as $products) {
 										$product_id = $products->productid;
 										$productname = $this->products_model->get_by_id($products->productid)->product_name;
-										//$productid = $products->productid;
-										$quantity = $products->quantity;
 										$attributes = $products->attributes;
 										?>
     									<tr>
     										<td class="text-left"><?= $s; ?></td>
     										<td class="text-left"><?= $productname; ?></td>
-    										<td class="text-left"><?= $quantity; ?></td>
+    										<td class="text-left"><?= $products->quantity.' '.$products->product_unit; ?></td>
     										<td class="text-left">
     											<?php
 												if ($attributes != "") {
@@ -63,7 +63,8 @@
 													}
 												}
 												?>
-    										</td>
+											</td>
+											<td><?= $products->others; ?></td>
     									</tr>
     									<?php
 										$s++;

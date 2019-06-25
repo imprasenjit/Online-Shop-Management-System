@@ -54,8 +54,8 @@
                                 <?php echo $item['others']; ?>
                             </td>
                             <td align="center">
-                                <a href="<?=base_url();?>shopping/remove/<?= $item['rowid'] ?>" ]>
-                                    <font color="red"><i class="fa fa-times" aria-hidden="true"></i></font>
+                                <a href="<?=base_url();?>shopping/remove/<?= $item['rowid'] ?>" class="btn btn-danger btn-circle" >
+                                    <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>

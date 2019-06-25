@@ -53,7 +53,7 @@ $i = 0;
 					 
         $products = $this->byproducts_model->get_all_by_subcategory($sub_category->id);
         foreach ($products as $product) {?>
-							<li><a href="<?=base_url(); ?>products/product_view/<?=$product->id ?>" target="_blank"><?=$product->product_name; ?></a></li>
+							<li><a href="<?=base_url(); ?>products/product_view/<?=$product->id ?>" ><?=$product->product_name; ?></a></li>
 							<?php } ?>
 						</ul>
 				</li>
@@ -76,7 +76,7 @@ if ($this->session->flashdata('flashMsg') != null) {
 $this->load->helper('text');
 foreach ($subcategory_list as $row) {
     ?>
-			<a class="product-link" href="<?=base_url("view-all-products-by-category/" . $row->id) ?>" target="_blank">
+			<a class="product-link" href="<?=base_url("view-all-products-by-category/" . $row->id) ?>" >
 				<div class="item grid-group-item  col-6 col-lg-4 col-md-4 col-sm-4">
 					<div class="thumbnail">
 						<img class="group list-group-image" src="<?php echo base_url($row->picture); ?>" />

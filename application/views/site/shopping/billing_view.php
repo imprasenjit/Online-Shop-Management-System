@@ -61,7 +61,7 @@ if ($cart = $this->cart->contents()) {
 																<div class="input-group-addon"><?php echo $item['product_unit']; ?></div>
 															</div>
 														</div>
-														<a href="#!" rowid="<?= $item['rowid'] ?>" class="btn btn-warning update_qty" title="Update Quantity">
+														<a href="#!" rowid="<?= $item['rowid'] ?>" class="btn btn-warning btn-circle update_qty" title="Update Quantity">
 														<i class="fa fa-refresh" aria-hidden="true"></i>
 													</a>
 													</form>
@@ -75,7 +75,7 @@ if ($cart = $this->cart->contents()) {
 													?>
 												</td>
 												<td><?php echo $item['others']; ?></td>
-												<td><a href="<?= base_url(); ?>shopping/remove/<?= $item['rowid'] ?>" class="btn btn-danger"><i class="fa fa-times-circle"></i></a></td>
+												<td class="text-center"><a href="<?= base_url(); ?>shopping/remove/<?= $item['rowid'] ?>" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></a></td>
 											<?php } ?>
 										</tr>
 									<?php } ?>

@@ -3,6 +3,11 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 class Purchase_orders extends Aipl_admin
 {
+   /**
+    * __construct
+    *
+    * @return void
+    */
     function __construct()
     {
         parent::__construct();
@@ -16,6 +21,11 @@ class Purchase_orders extends Aipl_admin
         $this->load->library('breadcrumbs');
         $this->load->model('settings_model');
     }
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
         $this->isAdminloggedin();
@@ -25,12 +35,23 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/purchase_order/purchase_order_list');
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * cancel_purchase_order
+     *
+     * @return void
+     */
     public function cancel_purchase_order()
     {
         $purchase_order_id = $this->input->post("po_id", TRUE);
         $this->purchase_order_model->update($purchase_order_id, array("order_status" => 0));
         echo json_encode(array("x" => true));
     }
+    /**
+     * view
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function view($id)
     {
         $this->isAdminloggedin();
@@ -44,6 +65,12 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/purchase_order/purchase_order_view', $data);
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * send_po_to_supplier
+     *
+     * @param mixed $purchase_order_id
+     * @return void
+     */
     public function send_po_to_supplier($purchase_order_id)
     {
         $this->isAdminloggedin();
@@ -61,6 +88,11 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/purchase_order/purchase_order_to_supplier', $data);
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * purchase_order_to_supplier_action
+     *
+     * @return void
+     */
     public function purchase_order_to_supplier_action()
     {
         $this->isAdminloggedin();
@@ -128,6 +160,12 @@ class Purchase_orders extends Aipl_admin
             redirect(base_url("admin/purchase_orders"));
         }
     }
+    /**
+     * purchase_order_to_supplier_view
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function purchase_order_to_supplier_view($id)
     {
         $this->load->model('invoice_model');
@@ -141,6 +179,11 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/purchase_order/purchase_order_to_supplier_view', $data);
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * purchase_order_to_supplier_list
+     *
+     * @return void
+     */
     public function purchase_order_to_supplier_list()
     {
         $this->isAdminloggedin();
@@ -152,6 +195,11 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/purchase_order/supplier_purchase_order_list');
         $this->load->view('admin/requires/footer');
     }
+   /**
+    * get_dtrecords
+    *
+    * @return void
+    */
     function get_dtrecords()
     {
         $columns = array(
@@ -182,15 +230,15 @@ class Purchase_orders extends Aipl_admin
                 $created_at = $rows->created_at;
                 $viewBtn = anchor(site_url('admin/purchase_orders/view/' . $potoadmin_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 if($rows->purchase_order_supplier_id){
-                    $poBtn = '<span class="text-success">PO Sent</span>&nbsp;';
+                    $poBtn = '<a href="#!" class="btn btn-outline-success btn-sm"><i class="fas fa-check"></i>PO Sent</a>&nbsp;';
                 }else {
-                    $poBtn = anchor(site_url('admin/purchase_orders/send_po_to_supplier/' . $potoadmin_id), 'Send PO', array('class' => 'btn btn-sm btn-info')) . "&nbsp;";
+                    $poBtn='';
                 }
 
                 if($rows->porforma_invoice_id){
-                    $piBtn = '<span class="text-success">PI Sent</span>&nbsp;';
+                    $piBtn = '<a href="#!" class="btn btn-outline-primary btn-sm"><i class="fas fa-check"></i>PI Sent</a>&nbsp;';
                 }else {
-                    $piBtn = anchor(site_url('admin/proforma_invoice/send_pi_to_customer/' . $potoadmin_id), 'Send PI', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
+                    $piBtn='';
                 }
 
                 if ($rows->order_status) {
@@ -214,6 +262,11 @@ class Purchase_orders extends Aipl_admin
         );
         echo json_encode($json_data);
     } //End of get_dtrecords()
+   /**
+    * get_supdtrecords
+    *
+    * @return void
+    */
     function get_supdtrecords()
     {
         $columns = array(
@@ -273,6 +326,11 @@ class Purchase_orders extends Aipl_admin
         );
         echo json_encode($json_data);
     } //End of get_supdtrecords()
+   /**
+    * get_suppliernames
+    *
+    * @return void
+    */
     function get_suppliernames()
     {
         $term = trim(strip_tags($this->input->get("term", TRUE)));

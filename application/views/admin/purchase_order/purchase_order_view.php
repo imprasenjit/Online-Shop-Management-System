@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
     <div class="mb-4">
         <?= $this->breadcrumbs->show(); ?>
@@ -41,25 +40,25 @@
                         "frieght" => $frieght,
                         "total" => $total,
                     );
-                    $this->load->view("admin/products/product_table_format", array("product" => (object) $product));
+                    $this->load->view("admin/products/product_table_format", array("product" => (object)$product));
                     ?>
                     <div class="row">
                         <div class="col-md-6">Billing Address:<br />
-<?php echo $billing_address; ?>
+                            <?php echo $billing_address; ?>
                         </div>
                         <div class="col-md-6">Delivery Address:<br />
-<?php echo $delivery_address; ?>
+                            <?php echo $delivery_address; ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">Contact Person Name:<br />
-<?php echo $contact_person_name; ?>
+                            <?php echo $contact_person_name; ?>
                         </div>
                         <div class="col-md-6">Contact Person Mobile:<br />
-<?php echo $contact_person_mobile; ?>
+                            <?php echo $contact_person_mobile; ?>
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                     Customer Details:<br />
                     <?php
                     $customer = $this->customers_model->get_by_id($customer_id);
@@ -68,15 +67,24 @@
                     echo $customer->email . "<br/>";
                     echo $customer->address . "<br/>";
                     ?>
-                    <hr/>
+                    <hr />
                     <div>
                         <a href="<?= base_url("admin/purchase_orders"); ?>" class="btn btn-sm btn-primary float-right">Close</a>
-                        <a href="<?= base_url("admin/purchase_orders/send_po_to_supplier/$potoadmin_id")?>"  class="btn btn-sm btn-info">Send PO</a>
-                        <a href="<?= base_url("admin/proforma_invoice/send_pi_to_customer/$potoadmin_id")?>"  class="btn btn-sm btn-warning">Send PI</a>
-                        <?php if($order_status){ ?>
-                          <a href="#!"  class="btn btn-sm btn-danger cancel_po"  data-po-id="<?=$potoadmin_id?>"  >Cancel PO</a>
-                        <?php }else { ?>
-                          <a href="#!"  class="btn btn-sm btn-danger disabled"  >Canceled</a>
+                        <?php if ($purchase_order_supplier_id) {?>
+                           <a href="#!" class="btn btn-outline-success btn-sm"><i class="fas fa-check"></i>PO Sent</a>&nbsp;
+                        <? } else { ?>
+                            <a href="<?= base_url("admin/purchase_orders/send_po_to_supplier/$potoadmin_id") ?>" class="btn btn-sm btn-info">Send PO</a>
+                        <?php }
+                    if ($porforma_invoice_id) {?>
+                        <a href="#!" class="btn btn-outline-primary btn-sm"><i class="fas fa-check"></i>PI Sent</a>&nbsp;
+                    <?php } else { ?>
+                            <a href="<?= base_url("admin/proforma_invoice/send_pi_to_customer/$potoadmin_id") ?>" class="btn btn-sm btn-warning">Send PI</a>
+                        <?php }
+                    ?>
+                        <?php if ($order_status) { ?>
+                            <a href="#!" class="btn btn-sm btn-danger cancel_po" data-po-id="<?= $potoadmin_id ?>">Cancel PO</a>
+                        <?php } else { ?>
+                            <a href="#!" class="btn btn-sm btn-danger disabled">Canceled</a>
                         <?php } ?>
 
                         <a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
@@ -88,25 +96,25 @@
 </div>
 
 <?php
-$rowHeader=$this->settings_model->get_row("key", "PDF_HEADER");
-$headerImg = $rowHeader?$rowHeader->values:'assets/admin/img/header.png';
+$rowHeader = $this->settings_model->get_row("key", "PDF_HEADER");
+$headerImg = $rowHeader ? $rowHeader->values : 'assets/admin/img/header.png';
 
-$rowFooter=$this->settings_model->get_row("key", "PDF_FOOTER");
-$footerImg = $rowFooter?$rowFooter->values:'assets/admin/img/footer.png';
+$rowFooter = $this->settings_model->get_row("key", "PDF_FOOTER");
+$footerImg = $rowFooter ? $rowFooter->values : 'assets/admin/img/footer.png';
 ?>
 <script src="<?= base_url("assets/admin/js/jquery.print.js"); ?>"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(document).on("click", "#print_content", function () {
+    $(document).ready(function() {
+        $(document).on("click", "#print_content", function() {
             $("#print_html").print({
                 globalStyles: true,
                 mediaPrint: true,
                 stylesheet: "<?= base_url("assets/admin/css/print.css"); ?>",
                 iframe: false,
                 noPrintSelector: ".btn",
-                prepend: '<div style="position:relative;left:0;top:0;width:100%; height:50mm"><img src="<?=base_url($headerImg)?>" style="width: 100%; height:100%" /></div>',
+                prepend: '<div style="position:relative;left:0;top:0;width:100%; height:50mm"><img src="<?= base_url($headerImg) ?>" style="width: 100%; height:100%" /></div>',
                 append: '<div style="position:fixed;left:0;bottom:0;width:100%; height:50mm"><img src="<?= base_url($footerImg) ?>" style="width: 100%; height:100%;" /></div>',
-                deferred: $.Deferred().done(function () {
+                deferred: $.Deferred().done(function() {
                     console.log('Printing done', arguments);
                 })
             });
