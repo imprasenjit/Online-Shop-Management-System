@@ -170,7 +170,7 @@ class Dashboard extends Aipl_admin
 							$nestedData["slno"] = $slno++;
 							$nestedData["unique_id"] = $id;
 							$nestedData["enquiry_placed_date"] = date_format(date_create($enquiry_placed_date),'d M, Y');
-							$nestedData["id"] = $viewEnquiry.$viewQoutation.$sendPO ;
+							$nestedData["id"] = $viewEnquiry.$viewQoutation ;
 							$data[] = $nestedData;
 					}//End of for
 			}//End of if

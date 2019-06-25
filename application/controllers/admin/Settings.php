@@ -120,9 +120,12 @@ class Settings extends Aipl_admin
               }elseif ($rows->key =="PDF_FOOTER") {
                 $value="<img src=".base_url($rows->values)." width='50' height='50'>";
                 $key="Footer";
-              }else {
+              }elseif($rows->key =="COLOR") {
                 $value= $rows->values;
                 $key="Color";
+              }else {
+                $value= $rows->values;
+                $key="Bank Details";
               }
                 $viewBtn = anchor(site_url('admin/settings/view/' . $rows->settings_id), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
                 $nestedData["slno"] = $slno++;
