@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 align="center" id="r_message"></h3>
-                            <form id="registration_form" action="<?= base_url(); ?>customers/customer/customer_save_modal" method="post">
+                            <form id="registration_form" autocomplete="off" action="<?= base_url(); ?>customers/customer/customer_save_modal" method="post">
                                 <div class="form-group">
                                     <label class="col-md-4">Name</label>
                                     <div class="col-md-8 form-group">
@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4">City/Location</label>
                                     <div class="col-md-8 form-group">
-                                        <input type="text" class="form-control"  id="address" name="address">
+                                        <input type="text" class="form-control" autocomplete="off" value="" id="address" name="address">
                                     </div>
                                 </div>
                                 <div class="form-group">
