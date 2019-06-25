@@ -38,10 +38,10 @@
 							</div>
 						</div>
 						<textarea id="editordata" name="editordata">
-																	Ref : With reference to Enquiry No.<strong>   </strong>placed on  .<br />
-																	Dear  <br />
-																	Thank-you for your enquiry. <br/><br/>
-																	We are pleased to quote our lowest rates for your requirement -
+																	Dear
+																	<span id="customer_name">Type Customer Name Here</span> ,
+																	<br/>
+																	We are pleased to quote our lowest rates for your requirement - <br/>
 																</textarea>
 						<br />
 						<table class="table table-bordered">
@@ -213,6 +213,7 @@
 				select: function(event, ui) {
 					$("#cust_details").html(ui.item.label);
 					$('#send_to').val(ui.item.id);
+					// $("#customer_name").empty().html(ui.item.name);
 				},
 				open: function() {
 					setTimeout(function() {

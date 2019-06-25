@@ -10,12 +10,13 @@
 					$quotation_id = base64_decode(urldecode($this->uri->segment(4)));
 					$row = $this->quotation_model->get_by_id($quotation_id);
 					if ($row) {
-						$id = $row->enquiry_id;
-						$email = $row->email;
-						$enquiry_id = $row->enquiry_id;
+						$id = !!empty($row->enquiry_id)?$row->enquiry_id:"";
+						$email = !empty($row->email)?$row->email:"";
+						$enquiry_id = !empty($row->enquiry_id)?$row->enquiry_id:"";
 						$enquery_customer_details = $this->enquires_model->get_enquery_detail_by_enquery_id($enquiry_id);
+						$customer_details = $this->customers_model->get_by_id($row->customer_id);//var_dump($customer_details);die;
 						$editordata = $row->editordata;
-						$enq_unique_id = $enquery_customer_details->unique_id;
+						$enq_unique_id = !empty($enquery_customer_details)?$enquery_customer_details->unique_id:"";
 						$i = 1;
 						?>
 						<br/>
@@ -24,11 +25,11 @@
 						<span class="pull-right">Quotation Date : <?= date("d-m-Y", strtotime($row->quotation_date)); ?></span>
 						To, <br />
 						<?php
-						echo $enquery_customer_details->name;
+						echo !empty($customer_details)?$customer_details->name:"";
 						echo "<br/>";
-						echo $enquery_customer_details->contact;
+						echo !empty($customer_details)?$customer_details->contact:"";
 						echo "<br/>";
-						echo $enquery_customer_details->email;
+						echo !empty($customer_details)?$customer_details->email:"";
 						echo "<br/>";
 						echo "<br/>";
 						echo $editordata;
