@@ -38,8 +38,10 @@ class Settings extends Aipl_admin
           // array_push();
         }elseif ($value->key=="PDF_FOOTER") {
           $data['sett_pdf_footer']=array("settings_id"=>$value->settings_id,"values"=>$value->values);
-        }else {
+        }elseif($value->key=="COLOR") {
           $data['sett_color']=array("settings_id"=>$value->settings_id,"values"=>$value->values);
+        }else {
+          $data['sett_bank']=array("settings_id"=>$value->settings_id,"values"=>$value->values);
         }
         }
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
@@ -55,20 +57,25 @@ class Settings extends Aipl_admin
       $success=null;
       if ($this->input->post("upload_header_image")) {
           $picture = moveFile(2, $this->input->post("upload_header_image"), "header_image"); //var_dump($picture);die;
-          $data['key']="PDF_HEADER";
+          // $data['key']="PDF_HEADER";
           $data['values']=$picture[0];
+          $data['updated_at']=date("Y-m-d H:i:s");
           $success=$this->settings_model->update($this->input->post('header_setting_id'),$data);//var_dump($success);die;
           //unset($data);
       }
       if ($this->input->post("upload_footer_image")) {
           $picture = moveFile(2, $this->input->post("upload_footer_image"), "footer_image"); //var_dump($picture);die;
-          $data['key']="PDF_FOOTER";
+          // $data['key']="PDF_FOOTER";
           $data['values']=$picture[0];
+          $data['updated_at']=date("Y-m-d H:i:s");
           $success=$this->settings_model->update($this->input->post('footer_setting_id'),$data);//var_dump($success);die;
         //  unset($data);
       }
       if($this->input->post("color_code")){
-        $success=$this->settings_model->update($this->input->post('color_setting_id'),array('key'=>"COLOR",'values'=>$this->input->post("color_code")));
+        $success=$this->settings_model->update($this->input->post('color_setting_id'),array('values'=>$this->input->post("color_code"),'updated_at'=>date("Y-m-d H:i:s")));
+      }
+      if($this->input->post("bank_details")){
+        $success=$this->settings_model->update($this->input->post('bank_setting_id'),array('values'=>$this->input->post("bank_details"),'updated_at'=>date("Y-m-d H:i:s")));
       }
       //if($success){
         $this->session->set_flashdata('message', 'Successfully Settings Added');

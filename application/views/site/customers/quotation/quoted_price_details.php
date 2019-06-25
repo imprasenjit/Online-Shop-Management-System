@@ -61,7 +61,7 @@
 				if (!$results_purchase_order) { ?>
 					<a href="<?= base_url("customers/dashboard/send_purchase_order/".urlencode(base64_encode($quotation_id))); ?>" class="btn btn-primary">Send Purchase Order<a>
 						<?php } else {
-						echo "Purchase Order Sent";
+						echo "<button type='button' disabled class='btn btn-outline-primary btn-sm'>Purchase Order Sent</button>";
 					} ?>
 					<a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
 			</div>

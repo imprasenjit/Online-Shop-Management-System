@@ -59,6 +59,18 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6 form-group ">
+                        <label>Bank Details</label>
+                          <?php if ($sett_bank) { ?>
+                            <textarea class="form-control form-control-sm" name="bank_details" rows="4"><?=$sett_bank['values']?></textarea>
+                            <input type="hidden" name="bank_setting_id" value="<?=$sett_bank['settings_id'];?>" />
+                          <?php  }else { ?>
+                            <textarea class="form-control form-control-sm" name="bank_details" rows="4"></textarea>
+                          <?php }?>
+
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12" ></br>

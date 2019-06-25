@@ -49,8 +49,10 @@ class Dashboard extends Aipl_admin
 	public function send_purchase_order($quotation_id)
 	{
 		$logged_id=$this->session->id;
+		$data['customer_name']=$this->session->name;
+		$data['customer_contact']=$this->session->contact;
 		$data['customer_address']=$this->customers_model->get_address_by_id($logged_id);//var_dump($data['customer_address']);die;
-		// $quotation_id=base64_decode(urldecode($quotation_id));
+		$quotation_id=base64_decode(urldecode($quotation_id));
 		$data["quotation_id"] = $quotation_id;
 		$this->load->model('attribute_model');
 		$this->load->view('site/requires/header', array("page" => "Purchase order"));
@@ -159,9 +161,9 @@ class Dashboard extends Aipl_admin
 								$viewQoutation=anchor(site_url('customers/dashboard/quoted_price_details/'.urlencode(base64_encode($results_q->quotation_id)) ), 'View Quotation', array('class' => 'btn btn-danger btn-sm')) . "&nbsp;";
 								$results_purchase_order = $this->purchase_order_model->check_purchase_order($results_q->quotation_id);
 								if(!$results_purchase_order){
-										$sendPO=anchor(site_url('customers/dashboard/send_purchase_order/'.$results_q->quotation_id ), 'Send PO', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
+										$sendPO=anchor(site_url('customers/dashboard/send_purchase_order/'.urlencode(base64_encode($results_q->quotation_id)) ), 'Send PO', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
 								}else {
-									  $sendPO="Purchase Order Sent";
+									  $sendPO="<button type='button' disabled class='btn btn-outline-primary btn-sm'>Purchase Order Sent</button>";
 								}
 
 							}

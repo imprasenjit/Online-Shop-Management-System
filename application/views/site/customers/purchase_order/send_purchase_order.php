@@ -211,11 +211,11 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label for="contact_person_name">Contact Person Name</label>
-								<input type="text" name="contact_person_name" class="form-control " >
+								<input type="text" name="contact_person_name" class="form-control " value="<?=$customer_name;?>" >
 							</div>
 							<div class="form-group col-md-6">
 								<label for="contact_person_mobile">Mobile</label>
-								<input type="text" name="contact_person_mobile" class="form-control " >
+								<input type="text" name="contact_person_mobile" class="form-control " value="<?=$customer_contact;?>" pattern="[1-9]{1}[0-9]{9}" >
 							</div>
 							<div class="form-group col-md-12">
 								<a href="#!" class="btn btn-warning" id="submitBtn">Send Purchase order</a>

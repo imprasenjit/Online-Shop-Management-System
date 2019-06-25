@@ -55,9 +55,10 @@ class Quotations extends Aipl_admin
                 $results_purchase_order = $this->purchase_order_model->check_purchase_order($quotation_id);
                 $viewBtn = anchor(site_url('customers/dashboard/quoted_price_details/'.urlencode(base64_encode($quotation_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
                 if(!$results_purchase_order){
-                $sendPoBtn = anchor(site_url("customers/dashboard/send_purchase_order/".urlencode(base64_encode($quotation_id)) ), 'Sent PO', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
+                // $sendPoBtn = anchor(site_url("customers/dashboard/send_purchase_order/".urlencode(base64_encode($quotation_id)) ), 'Sent PO', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
+                $sendPoBtn = "";
                 }else {
-                $sendPoBtn="Purchase Order Sent";
+                $sendPoBtn="<button type='button' disabled class='btn btn-outline-primary btn-sm'>Purchase Order Sent</button>";
                 }
 
 
