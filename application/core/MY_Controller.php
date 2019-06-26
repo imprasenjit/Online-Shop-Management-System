@@ -110,4 +110,23 @@ class Aipl_admin extends MY_Controller
       return false;
     }
   }
+  public function generate_unique_id($slug,$id,$date){
+  //  var_dump(date_f('')$date);die;
+    $date=date_create($date);
+    $formated_date=date_format($date,"Y");
+    $financial_year=$this->get_financial_year($formated_date);
+    return $slug.$financial_year."-".$id;
+  }
+  public function get_financial_year($year){
+    $financial_year="";
+    if ( date('m') >= 3 ) {
+      $current_year = date('y') + 1;
+      $financial_year=$year."".$current_year;
+    }
+    else {
+      $pre_year = date('Y')-1;
+      $financial_year=$pre_year."".substr($year,-2);
+    }
+    return $financial_year;
+  }
 }

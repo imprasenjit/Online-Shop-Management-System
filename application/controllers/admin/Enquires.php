@@ -157,6 +157,7 @@ class Enquires extends Aipl_admin
     public function enquiry_details($enquiry_id)
     {
         $row = $this->enquires_model->get_by_id($enquiry_id);
+        //$id=$this->generate_unique_id("ENQ",$enquiry_id,$row->enquiry_placed_date);
         $data=array(
             "result"=>$row
         );
