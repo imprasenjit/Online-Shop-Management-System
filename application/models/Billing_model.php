@@ -35,7 +35,7 @@ class Billing_model extends CI_Model
 	}
 	public function update_enquiry($id, $data)
 	{
-		$this->db->where('id', $id);
+		$this->db->where('enquiry_id', $id);
 		$this->db->update('enquires', $data);
 		return true;
 	}

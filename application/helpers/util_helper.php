@@ -6,7 +6,7 @@ if (!function_exists("genunqid")) {
     {
         $data = array(
             "0" => "ENQ",
-            "1" => "QTO",
+            "1" => "QTN",
             "2" => "POR",
             "3" => "POI",
         );

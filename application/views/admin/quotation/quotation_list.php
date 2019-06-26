@@ -30,7 +30,7 @@
                                   }],
                                     "columns": [
                                         {"data": "sl_no"},
-                                        {"data": "quotation_id"},
+                                        {"data": "quotation_ref"},
                                         {"data": "customer_details"},
                                         {"data": "date"},
                                         {"data": "action", width: 200}
@@ -54,7 +54,7 @@
                             <thead>
                                 <tr>
                                     <th>(#)</th>
-                                    <th>Quotation ID</th>
+                                    <th>Quotation Ref</th>
                                     <th>Customer Name</th>                                    
                                     <th>Date</th>
                                     <th>Action</th>

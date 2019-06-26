@@ -8,10 +8,9 @@
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">Send Quotation to Customer</h6>
 				</div>
-				<!-- Card Body -->
+				<form class="form-horizontal" action="<?= base_url("admin/quotation/create_action/"); ?>" method="post" id="myform">
 				<div class="card-body">
 					<?= validation_errors(); ?>
-					<form class="form-horizontal" action="<?= base_url("admin/quotation/create_action/"); ?>" method="post" id="myform">
 						<div class="float-right">
 							<p class="text-left">
 								Quotation Date: <?php echo date("d-m-Y"); ?>
@@ -172,8 +171,9 @@
 							</div>
 						</div>
 						<input type="hidden" name="id" value="<?php echo $id; ?>" />
-						<div align="center">
-							<a href="<?php echo site_url('admin/quotation') ?>" class="btn btn-sm btn-default">Cancel</a>
+						</div>
+						<div class="card-footer">
+						<a href="<?php echo site_url('admin/quotation') ?>" class="btn btn-sm btn-default">Cancel</a>
 							<button type="submit" class="btn btn-sm btn-sm btn-primary">Send Quotation</button>
 						</div>
 					</form>

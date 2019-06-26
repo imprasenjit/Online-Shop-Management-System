@@ -13,8 +13,6 @@
 						<form method="post" id="send_purchase_order_form" action="<?= base_url("customers/dashboard/send_po") ?>">
 							<?= validation_errors(); ?>
 							<?php
-							$row = $this->quotation_model->get_by_id($quotation_id);
-							$result = $this->enquires_model->get_by_id($row->enquiry_id);
 							if ($row) {
 								$i = 1;
 								?>

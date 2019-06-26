@@ -72,7 +72,7 @@ class Quotation extends Aipl_admin
      *
      * @return void
      */
-    public function view_quotation()
+    public function view_quotation($qid)
     {
         $this->load->library('email');
         $this->load->model("enquires_model");
@@ -80,27 +80,12 @@ class Quotation extends Aipl_admin
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
         $this->breadcrumbs->push('Quotation List', '/admin/quotation');
         $this->breadcrumbs->push('Quotation', '/admin/quotation/view_quotation');
-        $this->load->view('admin/requires/header', array('title' => 'Quotation'));
-        $this->load->view('admin/quotation/quotation_format');
-        $this->load->view('admin/requires/footer');
-    }
-    /**
-     * create
-     *
-     * @return void
-     */
-    public function create()
-    {
-        $data = array(
-            'button' => 'Create',
-            'action' => site_url('admin/quotation/create_action'),
-            'id' => set_value('id'),
-            'send_to' => set_value('send_to'),
-            'product_price' => set_value('product_price'),
-            'enquiry_id' => set_value('enquiry_id'),
+        $quotation_details = $this->quotation_model->get_by_id($qid);
+        $data=array(
+            "quotation_details"=>$quotation_details
         );
-        $this->load->view('admin/requires/header', array('title' => 'quotation'));
-        $this->load->view('admin/quotation/quotation_form', $data);
+        $this->load->view('admin/requires/header', array('title' => 'Quotation'));
+        $this->load->view('admin/quotation/quotation_format',$data);
         $this->load->view('admin/requires/footer');
     }
     /**
@@ -135,6 +120,7 @@ class Quotation extends Aipl_admin
             $products = json_encode($product_ids);
             $enquiry_id = $this->input->post('enquiry_id', TRUE);
             $send_to = $this->input->post('send_to', TRUE);
+            $billing_state = trim($this->input->post('state', TRUE));
             $editordata = $this->input->post('editordata', TRUE);
             $editordata2 = $this->input->post('editordata2', TRUE);
             $product_quantity = json_encode($this->input->post('quantity', TRUE));
@@ -150,6 +136,9 @@ class Quotation extends Aipl_admin
             $total = json_encode($this->input->post('total_price', TRUE));
             $others = json_encode($this->input->post('others', TRUE));
             $data = array(
+                'created_by' => $this->session->userdata("id"),
+                'quotation_date' => date("Y-m-d H:i:s"),
+                'billing_state' => $billing_state,
                 'enquiry_id' => $enquiry_id,
                 'customer_id' => $send_to,
                 'productid' => $products,
@@ -169,13 +158,9 @@ class Quotation extends Aipl_admin
                 'others' => $others
             );
             $qid = $this->quotation_model->insert($data);
+            $quotation_ref = genunqid(1, $qid);
+            $this->quotation_model->update($qid, array("quotation_ref" => $quotation_ref));
             if ($qid) {
-                /*$sub = "Quotation for Enquiry";
-            $msgBody = "Hello";
-            $msgBody = $this->load->view('admin/quotation/quotation_view', array("qid"=>$qid), true);
-            $status = sendmail($send_to, $sub, $msgBody);
-            print_r($status);die();
-            */
                 $this->session->set_flashdata('message', 'Quotation Sent');
                 $this->session->set_flashdata('type', 'success');
                 redirect(site_url('admin/enquires'));
@@ -230,6 +215,7 @@ class Quotation extends Aipl_admin
             }
             $products = json_encode($product_ids);
             $send_to = $this->input->post('send_to', TRUE);
+            $billing_state = trim($this->input->post('state', TRUE));
             $editordata = $this->input->post('editordata', TRUE);
             $editordata2 = $this->input->post('editordata2', TRUE);
             $product_quantity = json_encode($this->input->post('quantity', TRUE));
@@ -246,6 +232,9 @@ class Quotation extends Aipl_admin
             $others = json_encode($this->input->post('others', TRUE));
             $data = array(
                 'customer_id' => $send_to,
+                'created_by' => $this->session->userdata("id"),
+                'quotation_date' => date("Y-m-d H:i:s"),
+                'billing_state' => $billing_state,
                 'productid' => $products,
                 'quantity' =>  $product_quantity,
                 'product_unit' =>  $product_unit,
@@ -263,6 +252,8 @@ class Quotation extends Aipl_admin
                 'others' => $others
             );
             $qid = $this->quotation_model->insert($data);
+            $quotation_ref = genunqid(1, $qid);
+            $this->quotation_model->update($qid, array("quotation_ref" => $quotation_ref));
             if ($qid) {
 /*                
                 $data['row']=$this->enquires_model->get_by_id($qid);
@@ -418,7 +409,7 @@ class Quotation extends Aipl_admin
                 $viewBtn = anchor(site_url('admin/quotation/view_quotation/' . $rows->quotation_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $editBtn = anchor(site_url('admin/quotation/send_quotation/' . $rows->quotation_id), 'Send', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
                 $nestedData["sl_no"] = $sl_no++;
-                $nestedData["quotation_id"] = $rows->quotation_id;
+                $nestedData["quotation_ref"] = $rows->quotation_ref;
                 $nestedData["date"] = date("d-m-Y h:i A", strtotime($rows->quotation_date));
                 $nestedData["customer_details"] = $custName;
                 $nestedData["action"] = $viewBtn;

@@ -186,7 +186,7 @@ public function save_order()
         }
         $ord_id = $this->billing_model->insert_enquiry($customer);
         $enq_ref = genunqid(0, $ord_id);
-        $this->billing_model->update($ord_id, array("enq_ref" => $enq_ref));
+        $this->billing_model->update_enquiry($ord_id, array("enq_ref" => $enq_ref));
         foreach ($cart as $item) {
             $attributes_array = [];
             for ($i = 1; $i < (count($item["attributes"]) + 1); $i++) {

@@ -39,7 +39,7 @@ class Enquires extends Aipl_admin
     public function enquiry_details($enquiry_id)
     {
         $row = $this->enquires_model->get_by_id($enquiry_id);
-        //$id=$this->generate_enq_ref("ENQ",$enquiry_id,$row->enquiry_placed_date);
+        
         $data=array(
             "result"=>$row
         );
@@ -82,13 +82,13 @@ class Enquires extends Aipl_admin
         if (!empty($records)) {
             foreach ($records as $rows) {
                 $viewBtn = anchor(site_url('admin/enquires/enquiry_details/' . $rows->enquiry_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
-                $editBtn = anchor(site_url('admin/quotation/send_quotation/' . $rows->enquiry_id), 'Send', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
+                //$editBtn = anchor(site_url('admin/quotation/send_quotation/' . $rows->enquiry_id), 'Send', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["enq_ref"] = $rows->enq_ref;
                 $nestedData["enquiry_placed_date"] = date("d-m-Y",strtotime($rows->enquiry_placed_date));
                 $nestedData["name"] = $rows->name;
                 $nestedData["email"] = $rows->email;
-                $nestedData["enquiry_id"] = $viewBtn.$editBtn;
+                $nestedData["enquiry_id"] = $viewBtn;
                 $data[] = $nestedData;
             }//End of for
         }//End of if

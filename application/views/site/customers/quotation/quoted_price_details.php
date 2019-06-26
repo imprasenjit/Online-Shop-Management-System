@@ -7,22 +7,20 @@
 				<h3 align="center">Quotation Details</h3>
 				<div class="table-responsive" width="100%" id="print_html">
 					<?php
-					$quotation_id = base64_decode(urldecode($this->uri->segment(4)));
-					$row = $this->quotation_model->get_by_id($quotation_id);
-					if ($row) {
-						$id = !!empty($row->enquiry_id)?$row->enquiry_id:"";
-						$email = !empty($row->email)?$row->email:"";
-						$enquiry_id = !empty($row->enquiry_id)?$row->enquiry_id:"";
+					if ($quotation_details) {
+						$id = !!empty($quotation_details->enquiry_id)?$quotation_details->enquiry_id:"";
+						$email = !empty($quotation_details->email)?$quotation_details->email:"";
+						$enquiry_id = !empty($quotation_details->enquiry_id)?$quotation_details->enquiry_id:"";
 						$enquery_customer_details = $this->enquires_model->get_enquery_detail_by_enquery_id($enquiry_id);
-						$customer_details = $this->customers_model->get_by_id($row->customer_id);//var_dump($customer_details);die;
-						$editordata = $row->editordata;
+						$customer_details = $this->customers_model->get_by_id($quotation_details->customer_id);//var_dump($customer_details);die;
+						$editordata = $quotation_details->editordata;
 						$enq_enq_ref = !empty($enquery_customer_details)?$enquery_customer_details->enq_ref:"";
 						$i = 1;
 						?>
 						<br/>
 						<br/>
-						<span class="pull-right">Quotation No. : <?= $row->quotation_id?></span><br/>
-						<span class="pull-right">Quotation Date : <?= date("d-m-Y", strtotime($row->quotation_date)); ?></span>
+						<span class="pull-right">Quotation No. : <?= $quotation_details->quotation_ref?></span><br/>
+						<span class="pull-right">Quotation Date : <?= date("d-m-Y", strtotime($quotation_details->quotation_date)); ?></span>
 						To, <br />
 						<?php
 						echo !empty($customer_details)?$customer_details->name:"";
@@ -35,22 +33,22 @@
 						echo $editordata;
 						echo "<br/>";
 						$product_details = array(
-							"productid" => $row->productid,
-							"others" => $row->others,
-							"quantity" => $row->quantity,
-							"product_unit" => $row->product_unit,
-							"tax_rate" => $row->tax_rate,
-							"attributes" => $row->attributes,
-							"product_price" => $row->product_price,
-							"cgst" => $row->cgst,
-							"sgst" => $row->sgst,
-							"igst" => $row->igst,
-							"exyard" => $row->exyard,
-							"frieght" => $row->frieght,
-							"total" => $row->total,
+							"productid" => $quotation_details->productid,
+							"others" => $quotation_details->others,
+							"quantity" => $quotation_details->quantity,
+							"product_unit" => $quotation_details->product_unit,
+							"tax_rate" => $quotation_details->tax_rate,
+							"attributes" => $quotation_details->attributes,
+							"product_price" => $quotation_details->product_price,
+							"cgst" => $quotation_details->cgst,
+							"sgst" => $quotation_details->sgst,
+							"igst" => $quotation_details->igst,
+							"exyard" => $quotation_details->exyard,
+							"frieght" => $quotation_details->frieght,
+							"total" => $quotation_details->total,
 						);
 						$this->load->view("admin/products/product_table_format", array("product" => (object)$product_details)); ?>
-						<?= $row->editordata2; ?>
+						<?= $quotation_details->editordata2; ?>
 
 					<?php
 				} else { ?>
@@ -58,9 +56,9 @@
 					<?php } ?>
 				</div>
 				<hr/>
-				<?php $results_purchase_order = $this->purchase_order_model->check_purchase_order($quotation_id);
+				<?php $results_purchase_order = $this->purchase_order_model->check_purchase_order($quotation_details->quotation_id);
 				if (!$results_purchase_order) { ?>
-					<a href="<?= base_url("customers/dashboard/send_purchase_order/".urlencode(base64_encode($quotation_id))); ?>" class="btn btn-primary">Send Purchase Order<a>
+					<a href="<?= base_url("customers/dashboard/send_purchase_order/".urlencode(base64_encode($quotation_details->quotation_id))); ?>" class="btn btn-primary">Send Purchase Order<a>
 						<?php } else {
 						echo "<button type='button' disabled class='btn btn-outline-primary btn-sm'>Purchase Order Sent</button>";
 					} ?>
