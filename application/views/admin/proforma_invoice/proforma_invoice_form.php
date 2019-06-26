@@ -5,17 +5,45 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order Details from customer</h6>
-                </div>
+                <a href="#quotaton_card_body" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary">Quotation Details (<?= genunqid(1,$quotation_details->quotation_id,$quotation_details->quotation_date);?>) | <?=date("d-m-Y",strtotime($quotation_details->quotation_date))?></h6>
+                </a>
+                <div class="collapse hide" id="quotaton_card_body" >
                 <div class="card-body">
-                    From:<br />
                     <?php
-                    $customer = $this->customers_model->get_by_id($purchase_order["customer_id"]);
+                    //$this->pr(array());
+                    $product = array(
+                        "productid" => $quotation_details->productid,
+                        "others" => $quotation_details->others,
+                        "quantity" => $quotation_details->quantity,
+                        "product_unit" => $quotation_details->product_unit,
+                        "tax_rate" => $quotation_details->tax_rate,
+                        "attributes" => $quotation_details->attributes,
+                        "product_price" => $quotation_details->product_price,
+                        "cgst" => $quotation_details->cgst,
+                        "sgst" => $quotation_details->sgst,
+                        "igst" => $quotation_details->igst,
+                        "exyard" => $quotation_details->exyard,
+                        "frieght" => $quotation_details->frieght,
+                        "total" => $quotation_details->total,
+                    );
+                    $this->load->view("admin/products/product_table_format", array("product" => (object)$product));                    
+                    echo 'From:<br />';
                     echo $customer->name . "<br/>";
                     echo $customer->contact . "<br/>";
                     echo $customer->email . "<br/>";
                     echo $customer->address . "<br/>";
+                    ?>
+                </div>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+            <a href="#purchase_order_card_body" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order (<?=genunqid(2,$purchase_order["potoadmin_id"],$purchase_order["created_at"])?>) | <?=date("d-m-Y",strtotime($purchase_order["created_at"]));?></h6>
+                    </a>
+                <div class="collapse hide" id="purchase_order_card_body" >
+                <div class="card-body">
+                    <?php
                     $product = array(
                         "productid" => $purchase_order["product"],
                         "others" => $purchase_order["others"],
@@ -31,85 +59,71 @@
                         "frieght" => $purchase_order["frieght"],
                         "total" => $purchase_order["total"],
                     );
-                    $this->load->view("admin/products/product_table_format", array("product" => (object) $product));
-                    ?>
-                    <?php
-                    $sl = 1;
-                    $product_id_s = json_decode($purchase_order["product"], true);
-                    $quantity_decoded = json_decode($purchase_order["quantity"], true);
-                    $product_unit_decoded = json_decode($purchase_order["unit"], true);
-                    $attributes_decoded = json_decode($purchase_order["attributes"], true);
-                    $others_decoded = json_decode($purchase_order["others"], true);
-                    $product_price_decoded = json_decode($purchase_order["price"], true);
-                    $tax_rate_decoded = json_decode($purchase_order["tax_rate"], true);
-                    $cgst_decoded = json_decode($purchase_order["cgst"], true);
-                    $sgst_decoded = json_decode($purchase_order["sgst"], true);
-                    $igst_decoded = json_decode($purchase_order["igst"], true);
-                    $exyard_decoded = json_decode($purchase_order["exyard"], true);
-                    $frieght_decoded = json_decode($purchase_order["frieght"], true);
-                    $total_decoded = json_decode($purchase_order["total"], true);
+                    $this->load->view("admin/products/product_table_format", array("product" => (object)$product));
+                    echo 'From:<br />';
+                    echo $customer->name . "<br/>";
+                    echo $customer->contact . "<br/>";
+                    echo $customer->email . "<br/>";
+                    echo $customer->address . "<br/>";
                     ?>
                 </div>
             </div>
+            </div>
+            <?php
+            $sl = 1;
+            $product_id_s = json_decode($purchase_order["product"], true);
+            $quantity_decoded = json_decode($purchase_order["quantity"], true);
+            $product_unit_decoded = json_decode($purchase_order["unit"], true);
+            $attributes_decoded = json_decode($purchase_order["attributes"], true);
+            $others_decoded = json_decode($purchase_order["others"], true);
+            $product_price_decoded = json_decode($purchase_order["price"], true);
+            $tax_rate_decoded = json_decode($purchase_order["tax_rate"], true);
+            $cgst_decoded = json_decode($purchase_order["cgst"], true);
+            $sgst_decoded = json_decode($purchase_order["sgst"], true);
+            $igst_decoded = json_decode($purchase_order["igst"], true);
+            $exyard_decoded = json_decode($purchase_order["exyard"], true);
+            $frieght_decoded = json_decode($purchase_order["frieght"], true);
+            $total_decoded = json_decode($purchase_order["total"], true);
+            ?>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Proforma Invoice details</h6>
+                    <div class="dropdown no-arrow">
+                    <label for="varchar">Date. <?php echo date("d-m-Y"); ?> </label>
+					</div>
                 </div>
+                <form class="form-horizontal" action="<?= base_url("admin/proforma_invoice/create_action/"); ?>" method="post" id="myform">
                 <div class="card-body">
-                    <form class="form-horizontal" action="<?= base_url("admin/proforma_invoice/create_action/"); ?>" method="post" id="myform">
-                        <input name="send_to" value="<?=$customer->email?>" type="text" />
-                        <input type="hidden" id="state" value="<?=$purchase_order["billing_state"];?>">
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <label for="varchar">Date. <?php echo date("d-m-Y"); ?> </label><br />
-                            </div>
-                        </div>
+                    
+                        <input name="send_to" value="<?= $customer->email ?>" type="hidden" />
+                        <input type="hidden" id="state" value="<?= $purchase_order["billing_state"]; ?>">
                         <table class="table table-bordered">
                             <textarea id="editordata" name="editordata">
 												<p><table class="table table-bordered">
 														<tbody>
 														<tr>
-															<td>PROFORMA INVOICE NO.-</td>
-														</tr>
+															<td width="40%">SUPPLIER QUOTATION REF.-<?= genunqid(1,$quotation_details->quotation_id,$quotation_details->quotation_date);?></td>
+                                                            <td>DATE-<?=date("d-m-Y",strtotime($quotation_details->quotation_date))?></td>
+                                                        </tr>
 														<tr>
-															<td>DATE-</td>
-														</tr>
-														<tr>
-															<td>SUPPLIER QUOTATION REF.-</td>
-														</tr>
-														<tr>
-															<td>DATE-</td>
+                                                        <td>BUYERS'S PO NO.-<?=genunqid(2,$purchase_order["potoadmin_id"],$purchase_order["created_at"])?></td>
+                                                        <td>DATE-<?=date("d-m-Y",strtotime($purchase_order["created_at"]));?></td>
 														</tr>
 														<tr>
 															<td>CONSIGNEE -
 														<br/>
-                                                <?php
-                                                echo $customer->name . "<br/>";
-                                                echo $customer->contact . "<br/>";
-                                                echo $customer->email . "<br/>";
-                                                echo $customer->address . "<br/>";
+                                                        <?php
+                                                        echo $customer->name . "<br/>";
+                                                        echo $customer->contact . "<br/>";
+                                                        echo $customer->email . "<br/>";
+                                                        echo $customer->address . "<br/>";
                                                 ?>
-														</td>
-														<td>BUYERS'S PO NO.-</td>
+                                                        </td>
+                                                        <td>BUYER-
+															<br/><?= $purchase_order["billing_address"] ?>														
 														</tr>
-														<tr>
-															<td>DATE-</td>
-														</tr>
-														<tr>
-															<td>DESPATCHED THROUGH- </td>
-														</tr>
-														<tr>
-															<td>DESTINATION-</td>
-														</tr>
-														<tr>
-															<td>BUYER-
-															<br/><?= $purchase_order["billing_address"] ?>
-															</tr>
-															<tr>
-														</td>
-															<td>TERMS OF DELIVERY-</td>
-														</tr>
-													</tbody></table>
+                                                    </tbody>
+                                                </table>
                             </textarea>
                             <table name="objectTable1" id="objectTable1" class="table table-bordered">
                                 <thead>
@@ -118,7 +132,7 @@
                                         <th width="10%">Product Name</th>
                                         <th width="15%">Quantity</th>
                                         <th width="20%">Attributes</th>
-                                        <th width="10%">Basic Price(in Rs.)</th>
+                                        <th width="10%">Basic Price</th>
                                         <th width="20%">Required Details</th>
                                         <th width="5%">Action</th>
                                     </tr>
@@ -172,9 +186,9 @@
                                                             <?php foreach ($attribute_value as $value) { ?>
                                                                 <option value="<?= $value->attr_value; ?>" <?= ($value_attr == $value->attr_value) ? "selected" : ""; ?>><?= $value->attr_value ?>
                                                                 </option>
-                                                                <?php }
-                                                            ?>
-                                                        </select>														
+                                                            <?php }
+                                                        ?>
+                                                        </select>
                                                         <?php
                                                         $sl_count++;
                                                     }
@@ -187,7 +201,7 @@
                                                 <label>Basic Price</label>
                                                 <input type="text" class="form-control form-control-sm price_cal" name="product_price[]" value="<?= $product_price_decoded[$key] ?>" />
                                                 <label>Frieght Per Unit</label>
-												<input type="text" class="form-control form-control-sm frieght_unit_cal" name="frieght_unit_price[]" />
+                                                <input type="text" class="form-control form-control-sm frieght_unit_cal" name="frieght_unit_price[]" />
                                                 <label>Tax Rate(%)</label>
                                                 <input type="text" class="form-control form-control-sm tax_rate" name="tax_rate[]" value="<?= $product_details->tax_rate; ?>" readonly />
                                             </td>
@@ -205,7 +219,7 @@
                                                 <div class="clearfix"></div>
                                                 Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" value="<?= $total_decoded[$key] ?>" readonly />
                                             </td>
-                                            <td class="text-left"><a href="#!" class="btn btn-sm btn-danger remove_tr"><i class="fa fa-times-circle"></i></a>
+                                            <td class="text-center"><a href="#!" class="btn btn-sm btn-danger btn-circle remove_tr"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -240,27 +254,24 @@
 												<br />3) Material shall be supplied as per ordered grade in standard length if the order is not for customized length.
 												<br />4) Payment – 100% advance against Proforma Invoice. <br />
 																	</td>
-																</tr>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Regards,<br/>  Supply Origin <br/>G.S. Road Bhangagarh Guwahati</td>
+                                                                </tr>
 														</tbody>
 													</table>
 															</p>
                             </textarea>
-                            <br />
-                            <div class="form-group">
-                                <div class="col-md-3">
-                                    <label for="varchar">Regards, <?php echo form_error('send_from'); ?></label>
-                                    <textarea type="text" class="form-control form-control-sm" name="send_from" id="send_from">Supply Origin G.S. Road Bhangagarh Guwahati</textarea>
-                                </div>
-                            </div>
                             <input type="hidden" name="id" value="<?php echo $id; ?>" />
                             <input type="hidden" name="potoadmin_id" value="<?php echo $purchase_order["potoadmin_id"]; ?>" />
                             <input type="hidden" name="customer_id" value="<?php echo $purchase_order["customer_id"]; ?>" />
-                            <div align="center">
-                                <a href="<?php echo site_url('admin/proforma_invoice'); ?>" class="btn btn-sm btn-default">Cancel</a>
-                                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                            </div>
-                    </form>
+                 
                 </div>
+                <div class="card-footer">
+                <a href="<?php echo site_url('admin/proforma_invoice'); ?>" class="btn btn-sm btn-default">Cancel</a>
+                                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -268,8 +279,8 @@
 <link rel="stylesheet" href="<?= base_url("assets/admin/summernote/summernote-bs4.css"); ?>">
 <script type="text/javascript" src="<?= base_url("assets/admin/summernote/summernote-bs4.js"); ?>"></script>
 <script>
-    $(document).ready(function () {
-        $(document).on('change', '.product_select_option', function () {
+    $(document).ready(function() {
+        $(document).on('change', '.product_select_option', function() {
             var attr = $(this);
             var id = $(this).val();
             $.ajax({
@@ -279,7 +290,7 @@
                     product: id
                 },
                 dataType: 'html',
-                success: function (htm) {
+                success: function(htm) {
                     attr.parent().parent().children().children('.attribute_place').empty().append(htm);
                 }
             });
@@ -291,43 +302,43 @@
                     product: id
                 },
                 dataType: 'json',
-                success: function (jsn) {
+                success: function(jsn) {
                     attr.parent().parent().children().children('.tax_rate').val(jsn.tax_rate);
                 }
             });
         });
         $(document).on('keyup', '.price_cal,.frieght_unit_cal', function() {
-			var qty = $(this).parent().parent().children().children('.quantity_cal').val();
-			var basic_price = $(this).parent().parent().children().children('.price_cal').val();
-			var frieght_unit_price = $(this).parent().children('.frieght_unit_cal').val();
-			var tax_rate = $(this).parent().parent().children().children('.tax_rate').val();
-			var state_gst = parseFloat(tax_rate) / 2;
-			var price = parseInt(qty) * basic_price;
-			var frieght_total = parseInt(qty) * frieght_unit_price;
-			var cgst = Math.ceil(price * (parseFloat(state_gst) / 100));
-			var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
-			var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
-			var state = $('#state').val().replace(/ /g, '');
-			if (state == '') {
-				alert("Please select billing state");
-			}
-			if (state == "Assam") {
-				$(this).parent().parent().children().children('.cgst_cal').val(cgst);
-				$(this).parent().parent().children().children('.sgst_cal').val(sgst);
-				$(this).parent().parent().children().children('.igst_cal').val(0);
-				var exyard = price + cgst + sgst;
-			} else {
-				$(this).parent().parent().children().children('.igst_cal').val(igst);
-				$(this).parent().parent().children().children('.cgst_cal').val(0);
-				$(this).parent().parent().children().children('.sgst_cal').val(0);
-				var exyard = price + igst;
-			}
-			$(this).parent().parent().children().children('.exyard_cal').val(exyard);
-			$(this).parent().parent().children().children('.frieght_cal').val(frieght_total);
-			total_price = exyard + frieght_total;
-			total_price = isNaN(total_price) ? 0 : total_price;
-			$(this).parent().parent().children().children('.total_price_cal').val(total_price);
-		});
+            var qty = $(this).parent().parent().children().children('.quantity_cal').val();
+            var basic_price = $(this).parent().parent().children().children('.price_cal').val();
+            var frieght_unit_price = $(this).parent().children('.frieght_unit_cal').val();
+            var tax_rate = $(this).parent().parent().children().children('.tax_rate').val();
+            var state_gst = parseFloat(tax_rate) / 2;
+            var price = parseInt(qty) * basic_price;
+            var frieght_total = parseInt(qty) * frieght_unit_price;
+            var cgst = Math.ceil(price * (parseFloat(state_gst) / 100));
+            var sgst = Math.ceil(price * (parseFloat(state_gst) / 100));
+            var igst = Math.ceil(price * (parseInt(tax_rate) / 100));
+            var state = $('#state').val().replace(/ /g, '');
+            if (state == '') {
+                alert("Please select billing state");
+            }
+            if (state == "Assam") {
+                $(this).parent().parent().children().children('.cgst_cal').val(cgst);
+                $(this).parent().parent().children().children('.sgst_cal').val(sgst);
+                $(this).parent().parent().children().children('.igst_cal').val(0);
+                var exyard = price + cgst + sgst;
+            } else {
+                $(this).parent().parent().children().children('.igst_cal').val(igst);
+                $(this).parent().parent().children().children('.cgst_cal').val(0);
+                $(this).parent().parent().children().children('.sgst_cal').val(0);
+                var exyard = price + igst;
+            }
+            $(this).parent().parent().children().children('.exyard_cal').val(exyard);
+            $(this).parent().parent().children().children('.frieght_cal').val(frieght_total);
+            total_price = exyard + frieght_total;
+            total_price = isNaN(total_price) ? 0 : total_price;
+            $(this).parent().parent().children().children('.total_price_cal').val(total_price);
+        });
         $('#editordata').summernote({
             placeholder: 'Type your message here',
             //var a = $('#form-enquiry_id-9102').val();
@@ -339,12 +350,12 @@
             tabsize: 2,
             height: 350
         });
-    var slno = 1;
-    $(document).on("click", ".remove_tr", function () {
-        $(this).parent().parent().remove();
-    });
-    $(document).on("click", ".add_new_product", function () {
-        $('#objectTable1').append('<tr><td>' + slno + '</td>\
+        var slno = 1;
+        $(document).on("click", ".remove_tr", function() {
+            $(this).parent().parent().remove();
+        });
+        $(document).on("click", ".add_new_product", function() {
+            $('#objectTable1').append('<tr><td>' + slno + '</td>\
             <td><select class="form-control form-control-sm product_select_option" name="product_id[]">\
                             <option  >Please Select</option>\
 <?php
@@ -375,9 +386,9 @@ foreach ($product_id as $p) {
         <div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" readonly/> \
         <div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \
         </td>\
-        </td > <td> <a href = "#!" class = "btn btn-danger remove_tr"> <i class = "fa fa-times-circle" > </i> </a> </td> </tr> \
+        </td > <td class="text-center"> <a href = "#!" class = "btn btn-danger btn-sm btn-circle remove_tr"> <i class = "fa fa-times" > </i> </a> </td> </tr> \
 ');
-sl++;
-});
-});
+            sl++;
+        });
+    });
 </script>

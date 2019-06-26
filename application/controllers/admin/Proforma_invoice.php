@@ -4,6 +4,11 @@ if (!defined('BASEPATH')) {
 }
 class Proforma_invoice extends Aipl_admin
 {
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -18,6 +23,11 @@ class Proforma_invoice extends Aipl_admin
         $this->load->library('breadcrumbs');
         $this->load->model('settings_model');
     }
+	/**
+	 * index
+	 *
+	 * @return void
+	 */
 	public function index()
     {
         $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
@@ -26,11 +36,18 @@ class Proforma_invoice extends Aipl_admin
         $this->load->view('admin/proforma_invoice/proforma_invoice_list');
         $this->load->view('admin/requires/footer');
     }
+    /**
+     * send_pi_to_customer
+     *
+     * @param mixed $purchase_order_id
+     * @return void
+     */
     public function send_pi_to_customer($purchase_order_id) {
+        
+        $this->breadcrumbs->push('Dashboard', '/admin/dashboard');
+        $this->breadcrumbs->push('Proforma Invoice', '/admin/proforma_invoice');
+        $this->breadcrumbs->push('New Proforma Invoice', '/admin/proforma_invoice/send_pi_to_customer');
         $this->load->library('email');
-		$this->load->model("enquires_model");
-        $this->load->model("products_model");
-        $this->load->model("customers_model");
         $this->load->model("attribute_model");
         $this->load->model("purchase_order_model");
         $po=$this->purchase_order_model->get_by_id($purchase_order_id);
@@ -42,12 +59,19 @@ class Proforma_invoice extends Aipl_admin
             'lot_no' => set_value('lot_no'),
             'editordata' => set_value('editordata'),
             'editordata2' => set_value('editordata2'),
-            'purchase_order'=>$po_data
+            'purchase_order'=>$po_data,
+            'customer'=>$this->customers_model->get_by_id($po_data["customer_id"]),
+            'quotation_details'=>$this->quotation_model->get_by_id($po_data["quotation_id"])
         );
         $this->load->view('admin/requires/header', array('title' => 'proforma_invoice'));
         $this->load->view('admin/proforma_invoice/proforma_invoice_form', $data);
         $this->load->view('admin/requires/footer');
     }
+	/**
+	 * create_action
+	 *
+	 * @return void
+	 */
 	public function create_action()
     {
         $attr_count=$this->input->post("product_attr_count");
@@ -134,6 +158,12 @@ class Proforma_invoice extends Aipl_admin
             redirect(site_url('admin/proforma_invoice'));
         }//End of if else
     }
+    /**
+     * view
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function view($id)
     {
         $po=$this->proforma_invoice_model->get_by_id($id);
@@ -146,6 +176,11 @@ class Proforma_invoice extends Aipl_admin
         $this->load->view('admin/requires/footer');
     }
 
+   /**
+    * get_dtrecords
+    *
+    * @return void
+    */
     function get_dtrecords() {
         $columns = array(
             0 => "porforma_invoice_id",
