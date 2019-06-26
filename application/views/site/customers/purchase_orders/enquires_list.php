@@ -31,8 +31,8 @@
 											?>
 								<tr>
 									<td><?php echo $start++ ?></td>
-									<?php $enq_unique_id = $enquires->unique_id; ?>
-									<td><?php echo $enq_unique_id ?></td>
+									<?php $enq_enq_ref = $enquires->enq_ref; ?>
+									<td><?php echo $enq_enq_ref ?></td>
 									<td><?php echo date("d-m-Y", strtotime($enquires->enquiry_placed_date)); ?></td>
 									<td style="text-align:center">
 										<?php

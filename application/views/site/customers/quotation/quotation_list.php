@@ -38,7 +38,7 @@
 											"data": "quotation_date"
 										},
 										{
-											"data": "unique_id"
+											"data": "enq_ref"
 										},
 										{
 											"data": "id"

@@ -263,7 +263,7 @@ class Enquires_model extends CI_Model
     function search_rows($limit, $start, $keyword, $col, $dir){
         $this->db->select("*");
         $this->db->like("enquiry_id", $keyword);
-        $this->db->or_like('unique_id', $keyword);
+        $this->db->or_like('enq_ref', $keyword);
         $this->db->or_like('enquiry_placed_date', $keyword);
         $this->db->or_like('name', $keyword);
         $this->db->limit($limit, $start);
@@ -281,7 +281,7 @@ class Enquires_model extends CI_Model
     function tot_search_rows($keyword){
         $this->db->select("*");
         $this->db->like('enquiry_id', $keyword);
-        $this->db->or_like('unique_id', $keyword);
+        $this->db->or_like('enq_ref', $keyword);
         $this->db->or_like('enquiry_placed_date', $keyword);
         $this->db->or_like('name', $keyword);
         $this->db->from("enquires");
@@ -319,7 +319,7 @@ class Enquires_model extends CI_Model
         $this->db->select("*");
         $this->db->from("enquires");
         $this->db->where(array('enquires.customerid'=>$customer_id,'enquires.status'=>"1"));
-        $this->db->like('unique_id', $keyword);
+        $this->db->like('enq_ref', $keyword);
         //$this->db->or_like('enquiry_placed_date', $keyword);
         $this->db->limit($limit, $start);
         $this->db->order_by($col, $dir);
@@ -336,7 +336,7 @@ class Enquires_model extends CI_Model
         $this->db->select("*");
         $this->db->from("enquires");
         $this->db->where(array('enquires.customerid'=>$customer_id,'enquires.status'=>"1"));
-        $this->db->like('unique_id', $keyword);
+        $this->db->like('enq_ref', $keyword);
         //$this->db->or_like('enquiry_placed_date', $keyword);
         $query = $this->db->get();
         return $query->num_rows();

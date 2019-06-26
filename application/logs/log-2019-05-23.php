@@ -2561,10 +2561,10 @@ ERROR - 2019-05-23 14:07:52 --> Severity: Notice --> Undefined variable: keyword
 ERROR - 2019-05-23 14:07:52 --> Query error: Unknown column 'enquiry_detail_id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `enquiry_detail_id` LIKE '%f%' ESCAPE '!'
-OR  `unique_id` LIKE '%%' ESCAPE '!'
+OR  `enq_ref` LIKE '%%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%%' ESCAPE '!'
 OR  `name` LIKE '%%' ESCAPE '!'
-ORDER BY `unique_id` DESC
+ORDER BY `enq_ref` DESC
  LIMIT 20
 DEBUG - 2019-05-23 14:07:56 --> UTF-8 Support Enabled
 DEBUG - 2019-05-23 14:07:56 --> Global POST, GET and COOKIE data sanitized
@@ -2595,11 +2595,11 @@ DEBUG - 2019-05-23 14:09:38 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-23 14:09:38 --> Query error: Unknown column 'enquiry_detail_id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `enquiry_detail_id` LIKE '%d%' ESCAPE '!'
-OR  `unique_id` LIKE '%d%' ESCAPE '!'
+OR  `enq_ref` LIKE '%d%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%d%' ESCAPE '!'
 OR  `name` LIKE '%d%' ESCAPE '!'
 AND `status` = '1'
-ORDER BY `unique_id` DESC
+ORDER BY `enq_ref` DESC
  LIMIT 20
 DEBUG - 2019-05-23 14:09:40 --> UTF-8 Support Enabled
 DEBUG - 2019-05-23 14:09:40 --> Global POST, GET and COOKIE data sanitized
@@ -2609,11 +2609,11 @@ DEBUG - 2019-05-23 14:09:40 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-23 14:09:40 --> Query error: Unknown column 'enquiry_detail_id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `enquiry_detail_id` LIKE '%dd%' ESCAPE '!'
-OR  `unique_id` LIKE '%dd%' ESCAPE '!'
+OR  `enq_ref` LIKE '%dd%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%dd%' ESCAPE '!'
 OR  `name` LIKE '%dd%' ESCAPE '!'
 AND `status` = '1'
-ORDER BY `unique_id` DESC
+ORDER BY `enq_ref` DESC
  LIMIT 20
 DEBUG - 2019-05-23 14:09:47 --> UTF-8 Support Enabled
 DEBUG - 2019-05-23 14:09:47 --> Global POST, GET and COOKIE data sanitized
@@ -2677,11 +2677,11 @@ DEBUG - 2019-05-23 14:10:28 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-23 14:10:28 --> Query error: Unknown column 'id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `id` LIKE '%d%' ESCAPE '!'
-OR  `unique_id` LIKE '%d%' ESCAPE '!'
+OR  `enq_ref` LIKE '%d%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%d%' ESCAPE '!'
 OR  `name` LIKE '%d%' ESCAPE '!'
 AND `status` = '1'
-ORDER BY `unique_id` DESC
+ORDER BY `enq_ref` DESC
  LIMIT 20
 DEBUG - 2019-05-23 14:10:29 --> UTF-8 Support Enabled
 DEBUG - 2019-05-23 14:10:29 --> Global POST, GET and COOKIE data sanitized
@@ -2691,11 +2691,11 @@ DEBUG - 2019-05-23 14:10:29 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-23 14:10:29 --> Query error: Unknown column 'id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `id` LIKE '%ds%' ESCAPE '!'
-OR  `unique_id` LIKE '%ds%' ESCAPE '!'
+OR  `enq_ref` LIKE '%ds%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%ds%' ESCAPE '!'
 OR  `name` LIKE '%ds%' ESCAPE '!'
 AND `status` = '1'
-ORDER BY `unique_id` DESC
+ORDER BY `enq_ref` DESC
  LIMIT 20
 DEBUG - 2019-05-23 14:11:18 --> UTF-8 Support Enabled
 DEBUG - 2019-05-23 14:11:18 --> Global POST, GET and COOKIE data sanitized
@@ -2720,11 +2720,11 @@ DEBUG - 2019-05-23 14:11:21 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-23 14:11:21 --> Query error: Unknown column 'enquiry_detail_id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `enquiry_detail_id` LIKE '%d%' ESCAPE '!'
-OR  `unique_id` LIKE '%d%' ESCAPE '!'
+OR  `enq_ref` LIKE '%d%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%d%' ESCAPE '!'
 OR  `name` LIKE '%d%' ESCAPE '!'
 AND `status` = '1'
-ORDER BY `unique_id` DESC
+ORDER BY `enq_ref` DESC
  LIMIT 20
 DEBUG - 2019-05-23 14:13:28 --> UTF-8 Support Enabled
 DEBUG - 2019-05-23 14:13:28 --> Global POST, GET and COOKIE data sanitized
@@ -2749,7 +2749,7 @@ DEBUG - 2019-05-23 14:13:30 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-23 14:13:30 --> Query error: Unknown column 'enquiry_detail_id' in 'where clause' - Invalid query: SELECT *
 FROM `enquires`
 WHERE `enquiry_detail_id` LIKE '%d%' ESCAPE '!'
-OR  `unique_id` LIKE '%d%' ESCAPE '!'
+OR  `enq_ref` LIKE '%d%' ESCAPE '!'
 OR  `enquiry_placed_date` LIKE '%d%' ESCAPE '!'
 OR  `name` LIKE '%d%' ESCAPE '!'
 AND `status` = '1'

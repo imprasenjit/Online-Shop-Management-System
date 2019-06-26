@@ -27,7 +27,7 @@
 										$("#dtbl").DataTable({
 												"columns": [
 														{"data": "slno"},
-														{"data": "unique_id"},
+														{"data": "enq_ref"},
 														{"data": "enquiry_placed_date"},
 														{"data": "id"},
 												],

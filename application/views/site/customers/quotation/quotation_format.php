@@ -38,7 +38,7 @@
 						<?php
 						//print_r($cust_result);
 						$results_product = $this->enquires_model->get_product_details($rowq->enquiry_id);
-						$enq_unique_id = $cust_result->unique_id;
+						$enq_enq_ref = $cust_result->enq_ref;
 						$enquiry_placed_date = $cust_result->enquiry_placed_date;
 						$sl = 1;
 						if ($results_product) {
@@ -53,7 +53,7 @@
 												<p><?php echo $rowq->editordata; ?></p>
 											<?php } ?>
 											<!--<textarea id="editordata" name="editordata">
-													Ref : With reference to Enquiry No.<strong>  <?php echo $enq_unique_id; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($enquiry_placed_date)); ?> .<br />
+													Ref : With reference to Enquiry No.<strong>  <?php echo $enq_enq_ref; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($enquiry_placed_date)); ?> .<br />
 													Dear  <?php
 															if ($name) {
 																echo $name;

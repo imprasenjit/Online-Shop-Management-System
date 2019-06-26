@@ -4121,7 +4121,7 @@ DEBUG - 2019-06-01 15:22:42 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:22:42 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:22:42 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:22:42 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:22:42 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:22:42 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:22:42 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:22:42 --> Total execution time: 0.0122
 DEBUG - 2019-06-01 15:22:58 --> UTF-8 Support Enabled
@@ -4388,7 +4388,7 @@ DEBUG - 2019-06-01 15:26:05 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:26:05 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:26:05 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:26:05 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:26:05 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:26:05 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:26:05 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:26:05 --> Total execution time: 0.0145
 DEBUG - 2019-06-01 15:28:54 --> UTF-8 Support Enabled
@@ -4397,7 +4397,7 @@ DEBUG - 2019-06-01 15:28:54 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:28:54 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:28:54 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:28:54 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:28:54 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:28:54 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:28:54 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:29:25 --> UTF-8 Support Enabled
 DEBUG - 2019-06-01 15:29:25 --> Global POST, GET and COOKIE data sanitized
@@ -4405,7 +4405,7 @@ DEBUG - 2019-06-01 15:29:25 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:29:25 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:29:25 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:29:25 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:29:25 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:29:25 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:29:25 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:29:25 --> Total execution time: 0.0202
 DEBUG - 2019-06-01 15:29:27 --> UTF-8 Support Enabled
@@ -4861,7 +4861,7 @@ DEBUG - 2019-06-01 15:34:50 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:34:50 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:34:50 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:34:50 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:34:50 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:34:50 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:34:50 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:34:50 --> Total execution time: 0.0125
 DEBUG - 2019-06-01 15:34:55 --> UTF-8 Support Enabled
@@ -4880,7 +4880,7 @@ DEBUG - 2019-06-01 15:34:57 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:34:57 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:34:57 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:34:57 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:34:57 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:34:57 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:34:57 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:34:57 --> Total execution time: 0.0146
 DEBUG - 2019-06-01 15:35:03 --> UTF-8 Support Enabled
@@ -4899,7 +4899,7 @@ DEBUG - 2019-06-01 15:35:05 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:35:05 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:35:05 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:35:05 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:35:05 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:35:05 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:35:05 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:35:05 --> Total execution time: 0.0140
 DEBUG - 2019-06-01 15:35:07 --> UTF-8 Support Enabled
@@ -4986,7 +4986,7 @@ DEBUG - 2019-06-01 15:35:32 --> Session: "sess_save_path" is empty; using "sessi
 DEBUG - 2019-06-01 15:35:32 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2019-06-01 15:35:32 --> Config file loaded: /var/www/html/supplyorigin/application/config/breadcrumbs.php
 DEBUG - 2019-06-01 15:35:32 --> Breadcrumbs Class Initialized
-ERROR - 2019-06-01 15:35:32 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
+ERROR - 2019-06-01 15:35:32 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 13
 ERROR - 2019-06-01 15:35:32 --> Severity: Notice --> Trying to get property 'state' of non-object /var/www/html/supplyorigin/application/views/site/customers/enquires/enquires_view.php 16
 DEBUG - 2019-06-01 15:35:32 --> Total execution time: 0.0158
 DEBUG - 2019-06-01 15:35:43 --> UTF-8 Support Enabled

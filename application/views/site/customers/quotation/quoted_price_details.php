@@ -16,7 +16,7 @@
 						$enquery_customer_details = $this->enquires_model->get_enquery_detail_by_enquery_id($enquiry_id);
 						$customer_details = $this->customers_model->get_by_id($row->customer_id);//var_dump($customer_details);die;
 						$editordata = $row->editordata;
-						$enq_unique_id = !empty($enquery_customer_details)?$enquery_customer_details->unique_id:"";
+						$enq_enq_ref = !empty($enquery_customer_details)?$enquery_customer_details->enq_ref:"";
 						$i = 1;
 						?>
 						<br/>

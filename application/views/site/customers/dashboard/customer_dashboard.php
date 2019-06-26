@@ -35,7 +35,7 @@
 											"data": "enquiry_placed_date"
 										},
 										{
-											"data": "unique_id"
+											"data": "enq_ref"
 										},
 										{
 											"data": "id"

@@ -2,17 +2,15 @@
 defined('BASEPATH') or exit('No direct script access allowed.');
 
 if (!function_exists("genunqid")) {
-    function genunqid($slug, $id, $date)
+    function genunqid($slug, $id, $date=NULL)
     {
-        //  var_dump(date_f('')$date);die;
         $data = array(
             "0" => "ENQ",
             "1" => "QTO",
             "2" => "POR",
             "3" => "POI",
         );
-        $date = date_create($date);
-        $formated_date = date_format($date, "Y");
+        $formated_date = date("Y");
         $financial_year = get_financial_year($formated_date);
         return $data[$slug] . $financial_year . "-" . $id;
     }

@@ -9,32 +9,11 @@
     				<!-- Card Header - Dropdown -->
     				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     					<h6 class="m-0 font-weight-bold text-primary">Proforma Invoice</h6>
-    					<div class="dropdown no-arrow">
-    						<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    							<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-    						</a>
-    						<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-    							<!-- <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
-								-->
-    						</div>
-    					</div>
     				</div>
     				<!-- Card Body -->
     				<div class="card-body" id="print_html">
-              Ref : With reference to Purchase Order No. <?=$purchase_order_id?>
-    					<table class="table table-bordered" id="proforma_table">
-    						<tbody>
-    							<tr>
-    								<td colspan="11" class="text-left">
-    									<?= $editordata ?>
-    								</td>
-    							</tr>
-    							<tr>
-    								<td>
+              			Ref : With reference to Purchase Order No. <?=$purchase_order_id?>
+    					<?= $editordata ?>    								
     									<?php
 										$product_details=array(
 											"productid"=>$products,
@@ -53,23 +32,15 @@
 										);
 										$this->load->view("admin/products/product_table_format",array("product"=>(object)$product_details)); ?>
 
+										<?= $editordata2; ?>
+										
 
-    								</td>
-    							</tr>
-    							<tr>
-    								<td>
-    									<?= $editordata2; ?>
-    								</td>
-    							</tr>
-
-    						</tbody>
-    					</table>
-
-
-    					<a href="<?= base_url("admin/proforma_invoice"); ?>" class="btn btn-sm btn-primary float-right">Close</a>
-    					<a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
-    				</div>
-    				</form>
+					</div>
+					<div class="card-footer">
+					<a href="<?= base_url("admin/proforma_invoice"); ?>" class="btn btn-sm btn-primary float-right">Close</a>
+					<a href="<?= base_url("admin/purchase_orders/send_po_to_supplier/$purchase_order_id") ?>" class="btn btn-sm btn-info">Send PO to supplier</a>
+    				<a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
+					</div>
     			</div>
     		</div>
     	</div>

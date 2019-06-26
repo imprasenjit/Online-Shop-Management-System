@@ -56,7 +56,7 @@
 
 							<p><?php echo $rowq->editordata; ?></p>
 						<?php
-						$enq_unique_id = !empty($cust_result->unique_id)?$cust_result->unique_id:"";
+						$enq_enq_ref = !empty($cust_result->enq_ref)?$cust_result->enq_ref:"";
 						$enquiry_placed_date = !empty($cust_result->enquiry_placed_date)?$cust_result->enquiry_placed_date:"";
 						$sl = 1;
 						$quotation_id = $rowq->quotation_id;

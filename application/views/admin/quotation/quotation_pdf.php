@@ -39,7 +39,7 @@ $editordata= $this->quotation_model->get_by_id($qid)->editordata; //$qid passes 
 	<tbody>
 		<?php
 		$enquiry_id = $this->uri->segment(4);
-		$enq_unique_id = $this->enquires_model->get_enquiry_details_by_enquery_id($enquiry_id)->unique_id;
+		$enq_enq_ref = $this->enquires_model->get_enquiry_details_by_enquery_id($enquiry_id)->enq_ref;
 		$results = $this->quotation_model->get_by_price($qid); //$qid passes through controller
 		$s = 0;
 		if ($results) {
@@ -64,7 +64,7 @@ $editordata= $this->quotation_model->get_by_id($qid)->editordata; //$qid passes 
 		?>
 		<tr>
 			<td class="text-left"><?= $s+1; ?></td>
-			<td class="text-left"><?= $enq_unique_id; ?></td>
+			<td class="text-left"><?= $enq_enq_ref; ?></td>
 			<td class="text-left"><?php
 												$product_id_decoded=json_decode($product_id,true);
 												foreach ($product_id_decoded as $ked=>$product) {

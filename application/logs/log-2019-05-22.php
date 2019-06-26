@@ -5071,7 +5071,7 @@ DEBUG - 2019-05-22 17:11:19 --> Config file loaded: /var/www/html/supplyorigin/a
 DEBUG - 2019-05-22 17:11:19 --> Breadcrumbs Class Initialized
 ERROR - 2019-05-22 17:11:19 --> Severity: Notice --> Undefined variable: result /var/www/html/supplyorigin/application/views/admin/enquires/enquires.php 28
 ERROR - 2019-05-22 17:11:19 --> Severity: Notice --> Undefined variable: result /var/www/html/supplyorigin/application/views/admin/enquires/enquires.php 70
-ERROR - 2019-05-22 17:11:19 --> Severity: Notice --> Trying to get property 'unique_id' of non-object /var/www/html/supplyorigin/application/views/admin/enquires/enquires.php 70
+ERROR - 2019-05-22 17:11:19 --> Severity: Notice --> Trying to get property 'enq_ref' of non-object /var/www/html/supplyorigin/application/views/admin/enquires/enquires.php 70
 ERROR - 2019-05-22 17:11:19 --> Severity: Notice --> Undefined variable: result /var/www/html/supplyorigin/application/views/admin/enquires/enquires.php 75
 ERROR - 2019-05-22 17:11:19 --> Severity: Notice --> Trying to get property 'enquiry_id' of non-object /var/www/html/supplyorigin/application/views/admin/enquires/enquires.php 75
 DEBUG - 2019-05-22 17:11:19 --> Total execution time: 0.0145

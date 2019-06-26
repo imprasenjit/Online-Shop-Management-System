@@ -127,7 +127,7 @@ class Dashboard extends Aipl_admin
 		$customer_id=$this->session->userdata("id");
 
 			$columns = array(
-					0 => "unique_id",
+					0 => "enq_ref",
 					1 => "enquiry_placed_date	"
 			);
 			$limit = $this->input->post("length");
@@ -147,7 +147,7 @@ class Dashboard extends Aipl_admin
 			if (!empty($records)) {
 						$slno = 1;
 					foreach ($records as $rows) {
-							$id = $rows->unique_id;
+							$id = $rows->enq_ref;
 							$enquiry_placed_date = $rows->enquiry_placed_date;
 							if($rows->enquiry_id !=null){
 									$viewEnquiry=anchor(site_url('customers/dashboard/enquiry_details/'.urlencode(base64_encode($rows->enquiry_id)) ), 'View Enquiry', array('class' => 'btn btn-info btn-sm')) . "&nbsp;";
@@ -168,7 +168,7 @@ class Dashboard extends Aipl_admin
 
 							}
 							$nestedData["slno"] = $slno++;
-							$nestedData["unique_id"] = $id;
+							$nestedData["enq_ref"] = $id;
 							$nestedData["enquiry_placed_date"] = date_format(date_create($enquiry_placed_date),'d M, Y');
 							$nestedData["id"] = $viewEnquiry.$viewQoutation ;
 							$data[] = $nestedData;

@@ -344,7 +344,7 @@ class Customers extends Aipl_admin{
 
                 $reportBtn = anchor(site_url('admin/enquires/enquiry_details/' . $id), 'View', array('class' => 'btn btn-success btn-sm')) . "&nbsp;";
                 $nestedData["slno"] = $slno++;
-                $nestedData["enquiry_no"] = $rows->unique_id;
+                $nestedData["enquiry_no"] = $rows->enq_ref;
                 $nestedData["enquiry_date"] = date("d-m-Y",strtotime($rows->enquiry_placed_date));
                 $nestedData["action"] = $reportBtn;
                  $data[] = $nestedData;

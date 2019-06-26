@@ -40,7 +40,7 @@
 						if ($result) {
 							?>
 							<textarea id="editordata" name="editordata">
-																		Ref : With reference to Enquiry No.<strong>  <?php echo $result->unique_id; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($result->enquiry_placed_date)); ?> .<br />
+																		Ref : With reference to Enquiry No.<strong>  <?php echo $result->enq_ref; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($result->enquiry_placed_date)); ?> .<br />
 																		Dear <?= $result->name ?> <br />
 																		Thank-you for your enquiry. <br/><br/>
 																		We are pleased to quote our lowest rates for your requirement -

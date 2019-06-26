@@ -1722,7 +1722,7 @@ DEBUG - 2019-05-30 13:35:29 --> UTF-8 Support Enabled
 DEBUG - 2019-05-30 13:35:29 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-30 13:35:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2019-05-30 13:35:29 --> Session class already loaded. Second attempt ignored.
-ERROR - 2019-05-30 13:35:29 --> Severity: Notice --> Undefined property: stdClass::$unique_id /var/www/html/supplyorigin/application/controllers/customers/Quotations.php 69
+ERROR - 2019-05-30 13:35:29 --> Severity: Notice --> Undefined property: stdClass::$enq_ref /var/www/html/supplyorigin/application/controllers/customers/Quotations.php 69
 DEBUG - 2019-05-30 13:35:29 --> Total execution time: 0.0201
 DEBUG - 2019-05-30 13:35:33 --> UTF-8 Support Enabled
 DEBUG - 2019-05-30 13:35:33 --> Global POST, GET and COOKIE data sanitized
@@ -1733,7 +1733,7 @@ DEBUG - 2019-05-30 13:35:34 --> UTF-8 Support Enabled
 DEBUG - 2019-05-30 13:35:34 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-30 13:35:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2019-05-30 13:35:34 --> Session class already loaded. Second attempt ignored.
-ERROR - 2019-05-30 13:35:34 --> Severity: Notice --> Undefined property: stdClass::$unique_id /var/www/html/supplyorigin/application/controllers/customers/Quotations.php 69
+ERROR - 2019-05-30 13:35:34 --> Severity: Notice --> Undefined property: stdClass::$enq_ref /var/www/html/supplyorigin/application/controllers/customers/Quotations.php 69
 DEBUG - 2019-05-30 13:35:34 --> Total execution time: 0.0110
 DEBUG - 2019-05-30 13:37:05 --> UTF-8 Support Enabled
 DEBUG - 2019-05-30 13:37:05 --> Global POST, GET and COOKIE data sanitized
@@ -1744,7 +1744,7 @@ DEBUG - 2019-05-30 13:37:06 --> UTF-8 Support Enabled
 DEBUG - 2019-05-30 13:37:06 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-30 13:37:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2019-05-30 13:37:06 --> Session class already loaded. Second attempt ignored.
-ERROR - 2019-05-30 13:37:06 --> Severity: Notice --> Undefined property: stdClass::$unique_id /var/www/html/supplyorigin/application/controllers/customers/Quotations.php 69
+ERROR - 2019-05-30 13:37:06 --> Severity: Notice --> Undefined property: stdClass::$enq_ref /var/www/html/supplyorigin/application/controllers/customers/Quotations.php 69
 DEBUG - 2019-05-30 13:37:06 --> Total execution time: 0.0205
 DEBUG - 2019-05-30 13:39:18 --> UTF-8 Support Enabled
 DEBUG - 2019-05-30 13:39:18 --> Global POST, GET and COOKIE data sanitized

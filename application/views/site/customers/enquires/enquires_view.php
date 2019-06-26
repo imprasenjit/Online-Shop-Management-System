@@ -13,7 +13,7 @@
     				<h5><strong>Enquiry Information </strong></h5>
     			</div>
     			<div class="panel-body">
-            <h5>Enquiry No : <?php echo $enquiry_details->unique_id; ?></h5>
+            <h5>Enquiry No : <?php echo $enquiry_details->enq_ref; ?></h5>
             <br/>
             <h5>Enquiry Date : <?php echo date("d-m-Y h:i A",strtotime($enquiry_details->enquiry_placed_date)); ?></h5>
             <br/>

@@ -40,13 +40,13 @@
 						<?php
 						$enquiry_id = $this->uri->segment(4);
 						$results = $this->enquires_model->get_by_id($enquiry_id);
-						$enq_unique_id = $results->unique_id;
+						$enq_enq_ref = $results->enq_ref;
 						$enquiry_placed_date = $results->enquiry_placed_date;
 						$sl = 1;
 						if ($results) {
 							?>
 							<textarea id="editordata" name="editordata">
-														Ref : With reference to Enquiry No.<strong>  <?php echo $enq_unique_id; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($enquiry_placed_date)); ?> .<br />
+														Ref : With reference to Enquiry No.<strong>  <?php echo $enq_enq_ref; ?> </strong>placed on  <?php echo date("d-m-Y", strtotime($enquiry_placed_date)); ?> .<br />
 														Dear  <?php
 																if ($name) {
 																	echo $name;

@@ -9,7 +9,6 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Enquiries List</h6>
                     </div>
-                    <!-- Card Body -->
                     <div class="card-body">
                         <link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
                         <link href="<?= base_url('public/datatables/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
@@ -28,7 +27,7 @@
                                   }],
                                     "columns": [
                                         {"data": "sl_no"},
-                                        {"data": "unique_id"},
+                                        {"data": "enq_ref"},
                                         {"data": "enquiry_placed_date"},
                                         {"data": "name"},
                                         {"data": "email"},
@@ -53,7 +52,7 @@
                             <thead>
                                 <tr>
                                     <th>(#)</th>
-                                    <th>Enquiry ID</th>
+                                    <th>Enquiry Ref</th>
                                     <th>Enquiry Date</th>
                                     <th>Customer Name</th>
                                     <th>Customer Email</th>

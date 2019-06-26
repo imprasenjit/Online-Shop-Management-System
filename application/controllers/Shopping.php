@@ -3,6 +3,11 @@
 }
 class Shopping extends CI_Controller
 {
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -12,6 +17,11 @@ class Shopping extends CI_Controller
         $this->load->helper('string');
         $this->load->helper('form');
     }
+    /**
+     * add
+     *
+     * @return void
+     */
     public function add()
     {
         $pid = $this->input->post('id');
@@ -85,6 +95,12 @@ class Shopping extends CI_Controller
         <?php } ?>
     </table>
 <?php }
+/**
+ * remove
+ *
+ * @param mixed $rowid
+ * @return void
+ */
 public function remove($rowid)
 {
     if ($rowid === "all") {
@@ -98,6 +114,11 @@ public function remove($rowid)
     }
     redirect(base_url() . 'shopping/billing');
 }
+/**
+ * update_cart
+ *
+ * @return void
+ */
 public function update_cart()
 {
     $cart_info = $_POST['cart'];
@@ -117,6 +138,11 @@ public function update_cart()
     }
     redirect(base_url("shopping/billing"));
 }
+/**
+ * edit
+ *
+ * @return void
+ */
 public function edit()
 {
     $data = $this->cart->update(array(
@@ -126,17 +152,26 @@ public function edit()
     $this->cart->update($data);
     echo json_encode(true);
 }
+/**
+ * billing
+ *
+ * @return void
+ */
 public function billing()
 {
     $this->load->view('site/requires/header', array('page' => 'Enquiry'));
     $this->load->view('site/shopping/billing_view');
     $this->load->view('site/requires/footer');
 }
+/**
+ * save_order
+ *
+ * @return void
+ */
 public function save_order()
 {
     $this->load->model("customers_model");
     if ($cart = $this->cart->contents()) {
-        $unique_id = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
         if ($this->session->userdata("id")) {
             $customer_details = $this->customers_model->get_by_id($this->session->userdata("id"));
             $customer = array(
@@ -147,39 +182,27 @@ public function save_order()
                 'address' => $customer_details->address,
                 'state' => $this->input->post("state", TRUE),
                 'contact' => $customer_details->contact,
-                'unique_id' => $unique_id,
-            );
-        } else {
-            $customer = array(
-                'enquiry_placed_date' => date('Y-m-d H:i:s'),
-                'name' => $this->input->post('name', TRUE),
-                'email' => $this->input->post('email', TRUE),
-                'address' => $this->input->post('address', TRUE),
-                'state' => $this->input->post("state", TRUE),
-                'contact' => $this->input->post('contact', TRUE),
-                'unique_id' => $unique_id,
             );
         }
         $ord_id = $this->billing_model->insert_enquiry($customer);
-        $cart = $this->cart->contents();
-        if ($cart = $this->cart->contents()) {
-            foreach ($cart as $item) {
-                $attributes_array = [];
-                for ($i = 1; $i < (count($item["attributes"]) + 1); $i++) {
-                    $attributes_array["attr" . $i][] = $item["attributes"][$i - 1];
-                    $attributes_array["attr" . $i][] = $item["attr_names"][$i - 1];
-                }
-                $attributes_array = json_encode(array("attributes" => $attributes_array));
-                $order_detail = array(
-                    'enquiry_id' => $ord_id,
-                    'productid' => $item['product_id'],
-                    'quantity' => $item['qty'],
-                    'product_unit' => $item['product_unit'],
-                    'others' => $item['others'],
-                    'attributes' => $attributes_array,
-                );
-                $cust_id = $this->billing_model->insert_order_detail($order_detail);
+        $enq_ref = genunqid(0, $ord_id);
+        $this->billing_model->update($ord_id, array("enq_ref" => $enq_ref));
+        foreach ($cart as $item) {
+            $attributes_array = [];
+            for ($i = 1; $i < (count($item["attributes"]) + 1); $i++) {
+                $attributes_array["attr" . $i][] = $item["attributes"][$i - 1];
+                $attributes_array["attr" . $i][] = $item["attr_names"][$i - 1];
             }
+            $attributes_array = json_encode(array("attributes" => $attributes_array));
+            $order_detail = array(
+                'enquiry_id' => $ord_id,
+                'productid' => $item['product_id'],
+                'quantity' => $item['qty'],
+                'product_unit' => $item['product_unit'],
+                'others' => $item['others'],
+                'attributes' => $attributes_array,
+            );
+            $cust_id = $this->billing_model->insert_order_detail($order_detail);
         }
         $this->cart->destroy();
         redirect(base_url("shopping/billing_success"));
@@ -188,9 +211,13 @@ public function save_order()
         redirect(base_url("shopping/billing"));
     }
 }
+/**
+ * billing_success
+ *
+ * @return void
+ */
 public function billing_success()
 {
-
     $this->load->view('site/requires/header', array('page' => 'Success'));
     $this->load->view('site/shopping/billing_success');
     $this->load->view('site/requires/footer');

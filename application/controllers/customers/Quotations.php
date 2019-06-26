@@ -27,7 +27,7 @@ class Quotations extends Aipl_admin
       $customer_id=$this->session->userdata("id");
 
         $columns = array(
-            0 => "unique_id",
+            0 => "enq_ref",
             1 => "quotation_date",
             2 => "quotation_id",
         );
@@ -48,7 +48,7 @@ class Quotations extends Aipl_admin
         if (!empty($records)) {
               $slno = 1;
             foreach ($records as $rows) {
-                $unique_id = $rows->unique_id;
+                $enq_ref = $rows->enq_ref;
                 $quotation_id = $rows->quotation_id;
                 $quotation_date = $rows->quotation_date;
 
@@ -63,7 +63,7 @@ class Quotations extends Aipl_admin
 
 
                 $nestedData["slno"] = $slno++;
-                $nestedData["unique_id"] = $unique_id;
+                $nestedData["enq_ref"] = $enq_ref;
                 $nestedData["quotation_id"] = $quotation_id;
                 $nestedData["quotation_date"] = date_format(date_create($quotation_date),'d M, Y');
                 $nestedData["id"] = $viewBtn.$sendPoBtn;

@@ -12,8 +12,8 @@
 							<table class="table">
 								<tr><td>Customer Name</td><td><?php echo $order_detail->name; ?></td></tr>
 								<tr><td>To</td><td><?php echo $quotation_details->send_to; ?></td></tr>
-								<?php $enq_unique_id = $this->orders_model->get_enquiry_details2($enquiry_id)->unique_id; ?>
-								<tr><td>Enquiry No.</td><td><?php echo $enq_unique_id; ?></td></tr>
+								<?php $enq_enq_ref = $this->orders_model->get_enquiry_details2($enquiry_id)->enq_ref; ?>
+								<tr><td>Enquiry No.</td><td><?php echo $enq_enq_ref; ?></td></tr>
 							</table>
 							<div class="table-responsive">
 								<table class="table table-hover" id="quotation" style="width:100%">

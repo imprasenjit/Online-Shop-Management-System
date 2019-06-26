@@ -16,26 +16,8 @@ class Proforma_invoice extends Aipl_admin
     }
     public function index()
     {
-        $keyword = "";
-        $customer_id=$this->session->userdata("id");
-        $this->load->library('pagination');
-        $config['base_url'] = base_url() . 'customers/performa_invoice/';
-        $config['total_rows'] = $this->proforma_invoice_model->total_rows_proforma_invoice_by_customer($customer_id);
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 4;
-        $config['first_url'] = base_url() . 'customers/performa_invoice';
-        $this->pagination->initialize($config);
-        $start = $this->uri->segment(4, 0);
-        $po = $this->proforma_invoice_model->index_limit_proforma_invoice_by_customer($customer_id,$config['per_page'], $start);
-        $data = array(
-            'proforma_invoice_data' => $po,
-            'keyword' => $keyword,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-        );
         $this->load->view('site/requires/header', array('page' => 'Proforma Orders'));
-        $this->load->view('site/customers/proforma_invoice/pi_list', $data);
+        $this->load->view('site/customers/proforma_invoice/pi_list');
         $this->load->view('site/requires/footer');
 
     }

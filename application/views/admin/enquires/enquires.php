@@ -7,10 +7,11 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Enquiriy No : <?php echo $result->unique_id ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Enquiriy View</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body" id="print_html">
+                    <h5>Enquiry Ref: <?php echo $result->enq_ref ?></h5>
                     <?php
                     $sl = 1;
                     if ($result) {

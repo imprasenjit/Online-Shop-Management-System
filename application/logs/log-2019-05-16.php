@@ -2034,9 +2034,9 @@ ERROR - 2019-05-16 13:42:43 --> 404 Page Not Found: Assets/admin
 DEBUG - 2019-05-16 13:42:43 --> UTF-8 Support Enabled
 DEBUG - 2019-05-16 13:42:43 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-16 13:42:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
-ERROR - 2019-05-16 13:42:43 --> Query error: Unknown column 'unique_id' in 'order clause' - Invalid query: SELECT *
+ERROR - 2019-05-16 13:42:43 --> Query error: Unknown column 'enq_ref' in 'order clause' - Invalid query: SELECT *
 FROM `enquiry_detail`
-ORDER BY `unique_id` ASC
+ORDER BY `enq_ref` ASC
  LIMIT 20
 ERROR - 2019-05-16 13:42:43 --> Severity: error --> Exception: Call to a member function num_rows() on boolean /var/www/html/supplyorigin/application/models/Enquires_model.php 240
 DEBUG - 2019-05-16 13:42:56 --> UTF-8 Support Enabled
@@ -2058,9 +2058,9 @@ ERROR - 2019-05-16 13:42:58 --> 404 Page Not Found: Assets/admin
 DEBUG - 2019-05-16 13:42:58 --> UTF-8 Support Enabled
 DEBUG - 2019-05-16 13:42:58 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-16 13:42:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
-ERROR - 2019-05-16 13:42:58 --> Query error: Unknown column 'unique_id' in 'order clause' - Invalid query: SELECT *
+ERROR - 2019-05-16 13:42:58 --> Query error: Unknown column 'enq_ref' in 'order clause' - Invalid query: SELECT *
 FROM `enquiry_detail`
-ORDER BY `unique_id` ASC
+ORDER BY `enq_ref` ASC
  LIMIT 20
 ERROR - 2019-05-16 13:42:58 --> Severity: error --> Exception: Call to a member function num_rows() on boolean /var/www/html/supplyorigin/application/models/Enquires_model.php 240
 DEBUG - 2019-05-16 13:46:00 --> UTF-8 Support Enabled
@@ -2082,9 +2082,9 @@ ERROR - 2019-05-16 13:46:02 --> 404 Page Not Found: Assets/admin
 DEBUG - 2019-05-16 13:46:02 --> UTF-8 Support Enabled
 DEBUG - 2019-05-16 13:46:02 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-16 13:46:02 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
-ERROR - 2019-05-16 13:46:02 --> Query error: Unknown column 'unique_id' in 'order clause' - Invalid query: SELECT *
+ERROR - 2019-05-16 13:46:02 --> Query error: Unknown column 'enq_ref' in 'order clause' - Invalid query: SELECT *
 FROM `enquiry_detail`
-ORDER BY `unique_id` ASC
+ORDER BY `enq_ref` ASC
  LIMIT 20
 ERROR - 2019-05-16 13:46:02 --> Severity: error --> Exception: Call to a member function num_rows() on boolean /var/www/html/supplyorigin/application/models/Enquires_model.php 240
 DEBUG - 2019-05-16 13:47:31 --> UTF-8 Support Enabled
@@ -2106,9 +2106,9 @@ ERROR - 2019-05-16 13:47:32 --> 404 Page Not Found: Assets/admin
 DEBUG - 2019-05-16 13:47:32 --> UTF-8 Support Enabled
 DEBUG - 2019-05-16 13:47:32 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-16 13:47:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
-ERROR - 2019-05-16 13:47:32 --> Query error: Unknown column 'unique_id' in 'order clause' - Invalid query: SELECT *
+ERROR - 2019-05-16 13:47:32 --> Query error: Unknown column 'enq_ref' in 'order clause' - Invalid query: SELECT *
 FROM `enquiry_detail`
-ORDER BY `unique_id` ASC
+ORDER BY `enq_ref` ASC
  LIMIT 20
 ERROR - 2019-05-16 13:47:32 --> Severity: error --> Exception: Call to a member function num_rows() on boolean /var/www/html/supplyorigin/application/models/Enquires_model.php 240
 DEBUG - 2019-05-16 13:50:52 --> UTF-8 Support Enabled
@@ -2130,9 +2130,9 @@ ERROR - 2019-05-16 13:50:53 --> 404 Page Not Found: Assets/admin
 DEBUG - 2019-05-16 13:50:53 --> UTF-8 Support Enabled
 DEBUG - 2019-05-16 13:50:53 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2019-05-16 13:50:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
-ERROR - 2019-05-16 13:50:53 --> Query error: Unknown column 'unique_id' in 'order clause' - Invalid query: SELECT *
+ERROR - 2019-05-16 13:50:53 --> Query error: Unknown column 'enq_ref' in 'order clause' - Invalid query: SELECT *
 FROM `enquiry_detail`
-ORDER BY `unique_id` ASC
+ORDER BY `enq_ref` ASC
  LIMIT 20
 ERROR - 2019-05-16 13:50:53 --> Severity: error --> Exception: Call to a member function num_rows() on boolean /var/www/html/supplyorigin/application/models/Enquires_model.php 240
 DEBUG - 2019-05-16 13:51:22 --> UTF-8 Support Enabled
