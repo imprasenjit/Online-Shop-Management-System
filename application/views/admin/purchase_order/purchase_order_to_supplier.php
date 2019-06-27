@@ -1,18 +1,46 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xl-12 col-lg-12">
+		<div class="card shadow mb-4">
+                <a href="#quotaton_card_body" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary">Quotation Details <small>(<?= $quotation_details->quotation_ref;?>) | <?=date("d-m-Y",strtotime($quotation_details->quotation_date))?></small></h6>
+                </a>
+                <div class="collapse hide" id="quotaton_card_body" >
+                <div class="card-body">
+                    <?php
+                     $product = array(
+                        "productid" => $quotation_details->productid,
+                        "others" => $quotation_details->others,
+                        "quantity" => $quotation_details->quantity,
+                        "product_unit" => $quotation_details->product_unit,
+                        "tax_rate" => $quotation_details->tax_rate,
+                        "attributes" => $quotation_details->attributes,
+                        "product_price" => $quotation_details->product_price,
+                        "cgst" => $quotation_details->cgst,
+                        "sgst" => $quotation_details->sgst,
+                        "igst" => $quotation_details->igst,
+                        "exyard" => $quotation_details->exyard,
+                        "frieght" => $quotation_details->frieght,
+                        "total" => $quotation_details->total,
+                    );
+                    $this->load->view("admin/products/product_table_format", array("product" => (object)$product));                    
+                    echo 'From:<br />';
+                    echo $customer->name . "<br/>";
+                    echo $customer->contact . "<br/>";
+                    echo $customer->email . "<br/>";
+                    echo $customer->address . "<br/>";
+                    ?>
+                </div>
+                </div>
+            </div>
 			<div class="card shadow mb-4">
-				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">Purchse Order Details from customer</h6>
-				</div>
+            <a href="#purchase_order_card_body" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order <small> (<?=$purchase_order["potoadmin_ref"];?>) | <?=date("d-m-Y",strtotime($purchase_order["created_at"]));?></small></h6>
+					</a>
+					<div class="collapse hide" id="purchase_order_card_body" >
 				<div class="card-body">
-					From:<br />
-					<?php
-					$customer = $this->customers_model->get_by_id($purchase_order["customer_id"]);
-					echo $customer->name . "<br/>";
-					echo $customer->contact . "<br/>";
-					echo $customer->email . "<br/>";
-					echo $customer->address . "<br/>";
+					
+					<?php					
 					$product = array(
 						"productid" => $purchase_order["product"],
 						"others" => $purchase_order["others"],
@@ -29,28 +57,22 @@
 						"total" => $purchase_order["total"],
 					);
 					$this->load->view("admin/products/product_table_format", array("product" => (object)$product));
-					$product_id_s = json_decode($purchase_order["product"], true);
-					$quantity_decoded = json_decode($purchase_order["quantity"], true);
-					$product_unit_decoded = json_decode($purchase_order["unit"], true);
-					$attributes_decoded = json_decode($purchase_order["attributes"], true);
-					$others_decoded = json_decode($purchase_order["others"], true);
-					$product_price_decoded = json_decode($purchase_order["price"], true);
-					$tax_rate_decoded = json_decode($purchase_order["tax_rate"], true);
-					$cgst_decoded = json_decode($purchase_order["cgst"], true);
-					$sgst_decoded = json_decode($purchase_order["sgst"], true);
-					$igst_decoded = json_decode($purchase_order["igst"], true);
-					$exyard_decoded = json_decode($purchase_order["exyard"], true);
-					$frieght_decoded = json_decode($purchase_order["frieght"], true);
-					$total_decoded = json_decode($purchase_order["total"], true);
+					echo 'From:<br />';
+					echo $customer->name . "<br/>";
+					echo $customer->contact . "<br/>";
+					echo $customer->email . "<br/>";
+					echo $customer->address . "<br/>";
 					?>
+				</div>
 				</div>
 			</div>
 			<div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">Purchse Order to supplier details</h6>
 				</div>
+				<form class="form-horizontal" action="<?= base_url("admin/purchase_orders/purchase_order_to_supplier_action/"); ?>" method="post" id="myform">
 				<div class="card-body">
-					<form class="form-horizontal" action="<?= base_url("admin/purchase_orders/purchase_order_to_supplier_action/"); ?>" method="post" id="myform">
+						<input name="purchase_order_ref" value="<?= $purchase_order["potoadmin_ref"] ?>" type="hidden" />
 						<div class="row">
 							<div class="col-md-12 text-right">
 								<label for="varchar">Date. <?php echo date("d-m-Y"); ?> </label><br />
@@ -81,6 +103,19 @@
 							</thead>
 							<tbody>
 								<?php
+								$product_id_s = json_decode($purchase_order["product"], true);
+								$quantity_decoded = json_decode($purchase_order["quantity"], true);
+								$product_unit_decoded = json_decode($purchase_order["unit"], true);
+								$attributes_decoded = json_decode($purchase_order["attributes"], true);
+								$others_decoded = json_decode($purchase_order["others"], true);
+								$product_price_decoded = json_decode($purchase_order["price"], true);
+								$tax_rate_decoded = json_decode($purchase_order["tax_rate"], true);
+								$cgst_decoded = json_decode($purchase_order["cgst"], true);
+								$sgst_decoded = json_decode($purchase_order["sgst"], true);
+								$igst_decoded = json_decode($purchase_order["igst"], true);
+								$exyard_decoded = json_decode($purchase_order["exyard"], true);
+								$frieght_decoded = json_decode($purchase_order["frieght"], true);
+								$total_decoded = json_decode($purchase_order["total"], true);
 								$slnew = 1;
 								foreach ($product_id_s as $key => $product) {
 									$id = $product;
@@ -162,7 +197,7 @@
 											<div class="clearfix"></div>
 											Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" value="<?= $total_decoded[$key] ?>" readonly />
 										</td>
-										<td class="text-left"><a href="#!" class="btn btn-sm btn-danger remove_tr"><i class="fa fa-times-circle"></i></a>
+										<td class="text-center"><a href="#!" class="btn btn-sm btn-circle btn-danger remove_tr"><i class="fa fa-times"></i></a>
 										</td>
 									</tr>
 									<?php $slnew++;
@@ -171,7 +206,7 @@
 							</tbody>
 						</table>
 						<div align="right">
-							<a class="btn btn-sm btn-warning add_new_product" href="#!"><i class="fa fa-plus" aria-hidden="true"></i></a>
+							<a class="btn btn-sm btn-circle btn-warning add_new_product" href="#!"><i class="fa fa-plus" aria-hidden="true"></i></a>
 						</div>
 						<div class="row">
 							<div class="col-md-5">
@@ -182,10 +217,12 @@
 						<input type="hidden" name="id" value="<?php echo $id; ?>" />
 						<input type="hidden" name="potoadmin_id" value="<?php echo $purchase_order["potoadmin_id"]; ?>" />
 						<input type="hidden" name="customer_id" value="<?php echo $purchase_order["customer_id"]; ?>" />
-						<div align="center">
+						</div>
+						<div class="card-footer">
 							<a href="<?php echo site_url('admin/proforma_invoice'); ?>" class="btn btn-sm btn-default">Cancel</a>
 							<button type="submit" class="btn btn-sm btn-primary">Submit</button>
 						</div>
+
 					</form>
 				</div>
 			</div>
@@ -293,8 +330,8 @@
 				<?php foreach ($product_id as $p) {
 					echo '<option value="' . $p->id . '">' . $p->product_name . '</option>';
 				} ?></td><td class = "text-left">\
-				<input type="text" class="quantity_cal col-md-6 padding-zero" name="quantity[]"> \
-				<select class="padding-zero" name="product_unit[]" id="product_unit[]"> \
+				<input type="text" class="form-control form-control-sm quantity_cal" style="float:left;width:40% !important;" name="quantity[]"> \
+				<select style="width:50% !important;" class="form-control form-control-sm" name="product_unit[]" id="product_unit[]"> \
 				<option value="MT"> MT </option>\
 				   <option value="KG"> KG </option>\
 				<option value="Pcs"> Pcs  </option>\
@@ -316,7 +353,7 @@
 					<div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" readonly /> \
 					<div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \
 					</td>\
-					</td > <td> <a href = "#!" class = "btn btn-sm btn-danger remove_tr"> <i class = "fa fa-times-circle" > </i> </a> </td> </tr> \
+					</td > <td class="text-center"> <a href = "#!" class = "btn btn-sm btn-circle btn-danger remove_tr"> <i class = "fa fa-times" > </i> </a> </td> </tr> \
 				');
 		sl++;
 	});

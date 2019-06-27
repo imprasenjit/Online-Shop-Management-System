@@ -82,7 +82,9 @@ class Purchase_orders extends Aipl_admin
         $po = $this->purchase_order_model->get_by_id($purchase_order_id);
         $po_data = (array)$po;
         $data = array(
-            'purchase_order' => $po_data
+            'purchase_order' => $po_data,
+            'customer'=>$this->customers_model->get_by_id($po_data["customer_id"]),
+            'quotation_details'=>$this->quotation_model->get_by_id($po_data["quotation_id"])
         );
         $this->load->view('admin/requires/header', array("title" => "Purchase Order to Supplier"));
         $this->load->view('admin/purchase_order/purchase_order_to_supplier', $data);
@@ -135,6 +137,7 @@ class Purchase_orders extends Aipl_admin
             $total = json_encode($this->input->post('total_price', TRUE));
             $data = array(
                 'purchase_order_from_customer_id' => $this->input->post("potoadmin_id", TRUE),
+                'customer_purchase_order_ref' => $this->input->post("purchase_order_ref", TRUE),
                 'customer_id' => $this->input->post("customer_id", TRUE),
                 'supplier_id' => $this->input->post("supplier_id", TRUE),
                 'products' => $products,
@@ -157,7 +160,7 @@ class Purchase_orders extends Aipl_admin
             $this->purchase_order_model->insert_purchase_order_to_supplier($data);
             $this->session->set_flashdata('message', 'Purchase Order successfully sent to suppluer.');
             $this->session->set_flashdata('type', 'success');
-            redirect(base_url("admin/purchase_orders"));
+            redirect(base_url("admin/purchase_orders/purchase_order_to_supplier_list"));
         }
     }
     /**
@@ -313,7 +316,7 @@ class Purchase_orders extends Aipl_admin
                 $viewBtn = anchor(site_url('admin/purchase_orders/purchase_order_to_supplier_view/' . $purchase_order_supplier_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["customer_id"] = $rows->customer_name;
-                $nestedData["purchase_order_from_customer_id"] = $purchase_order_supplier_id;
+                $nestedData["purchase_order_from_customer_id"] = $rows->customer_purchase_order_ref;
                 $nestedData["supplier_id"] = $supplier_name;
                 $nestedData["invoice_status"] = ($invoice_status != NULL) ? '<span class="text-success"><i class="glyphicon glyphicon-ok"></i>&nbsp;Invoice Sent</span>' : '<span class="text-danger">Pending</span>';
                 $nestedData["purchase_order_supplier_id"] = $viewBtn . $poBtn;

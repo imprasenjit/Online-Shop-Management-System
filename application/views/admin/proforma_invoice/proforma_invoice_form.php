@@ -6,13 +6,12 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <a href="#quotaton_card_body" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary">Quotation Details (<?= genunqid(1,$quotation_details->quotation_id,$quotation_details->quotation_date);?>) | <?=date("d-m-Y",strtotime($quotation_details->quotation_date))?></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Quotation Details <small>(<?= $quotation_details->quotation_ref;?>) | <?=date("d-m-Y",strtotime($quotation_details->quotation_date))?></small></h6>
                 </a>
                 <div class="collapse hide" id="quotaton_card_body" >
                 <div class="card-body">
                     <?php
-                    //$this->pr(array());
-                    $product = array(
+                     $product = array(
                         "productid" => $quotation_details->productid,
                         "others" => $quotation_details->others,
                         "quantity" => $quotation_details->quantity,
@@ -39,7 +38,7 @@
             </div>
             <div class="card shadow mb-4">
             <a href="#purchase_order_card_body" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order (<?=genunqid(2,$purchase_order["potoadmin_id"],$purchase_order["created_at"])?>) | <?=date("d-m-Y",strtotime($purchase_order["created_at"]));?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order <small> (<?=$purchase_order["potoadmin_ref"];?>) | <?=date("d-m-Y",strtotime($purchase_order["created_at"]));?></small></h6>
                     </a>
                 <div class="collapse hide" id="purchase_order_card_body" >
                 <div class="card-body">
@@ -94,7 +93,10 @@
                 </div>
                 <form class="form-horizontal" action="<?= base_url("admin/proforma_invoice/create_action/"); ?>" method="post" id="myform">
                 <div class="card-body">
-                    
+                        <input name="quotation_id" value="<?= $quotation_details->quotation_id ?>" type="hidden" />
+                        <input name="quotation_ref" value="<?= $quotation_details->quotation_ref ?>" type="hidden" />
+                        <input name="potoadmin_id" value="<?= $purchase_order["potoadmin_id"]; ?>" type="hidden" />
+                        <input name="purchase_order_ref" value="<?= $purchase_order["potoadmin_ref"] ?>" type="hidden" />
                         <input name="send_to" value="<?= $customer->email ?>" type="hidden" />
                         <input type="hidden" id="state" value="<?= $purchase_order["billing_state"]; ?>">
                         <table class="table table-bordered">
@@ -265,7 +267,6 @@
                             <input type="hidden" name="id" value="<?php echo $id; ?>" />
                             <input type="hidden" name="potoadmin_id" value="<?php echo $purchase_order["potoadmin_id"]; ?>" />
                             <input type="hidden" name="customer_id" value="<?php echo $purchase_order["customer_id"]; ?>" />
-                 
                 </div>
                 <div class="card-footer">
                 <a href="<?php echo site_url('admin/proforma_invoice'); ?>" class="btn btn-sm btn-default">Cancel</a>

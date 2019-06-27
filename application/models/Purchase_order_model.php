@@ -204,6 +204,15 @@ class Purchase_order_model extends CI_Model
         return $query->num_rows();
     }//End of tot_suprows()
 
+   /**
+    * all_suprows
+    *
+    * @param mixed $limit
+    * @param mixed $start
+    * @param mixed $col
+    * @param mixed $dir
+    * @return void
+    */
     function all_suprows($limit, $start, $col, $dir){
         $this->db->select("pots.*,s.name as supplier_name,c.name as customer_name");
         $this->db->limit($limit, $start);
@@ -221,6 +230,16 @@ class Purchase_order_model extends CI_Model
         }
     }//End of all_suprows()
 
+   /**
+    * search_suprows
+    *
+    * @param mixed $limit
+    * @param mixed $start
+    * @param mixed $keyword
+    * @param mixed $col
+    * @param mixed $dir
+    * @return void
+    */
     function search_suprows($limit, $start, $keyword, $col, $dir){
         $this->db->select("pots.*,s.name as supplier_name,c.name as customer_name");
         $this->db->like("c.name", $keyword);

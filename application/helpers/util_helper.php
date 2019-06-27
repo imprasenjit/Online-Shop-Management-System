@@ -8,7 +8,7 @@ if (!function_exists("genunqid")) {
             "0" => "ENQ",
             "1" => "QTN",
             "2" => "POR",
-            "3" => "POI",
+            "3" => "PIN",
         );
         $formated_date = date("Y");
         $financial_year = get_financial_year($formated_date);

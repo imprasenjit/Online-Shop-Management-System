@@ -69,7 +69,7 @@
                             <tr>
                                 <th>(#)</th>
                                 <th>Customer</th>
-                                <th>Customer Purchase order id</th>
+                                <th>Customer PO Ref</th>
                                 <th>Supplier</th>
                                 <th>Status</th>
                                 <th>Action</th>
