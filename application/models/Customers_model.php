@@ -114,7 +114,6 @@ class Customers_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
-
     function get_enquiry_details_by_customer_id_all_rows($cust_id,$limit, $start,$order,$dir)
     {
         $this->db->where("customerid", $cust_id);
@@ -149,13 +148,6 @@ class Customers_model extends CI_Model
             return NULL;
         }
     }
-    function save_purchase_order($data)
-    {
-        $this->db->insert("purchase_order_to_admin", $data);
-        return $this->db->insert_id();;
-    }
-
-
     //For datatable
     function tot_rows(){
         $this->db->select("*");
@@ -164,7 +156,6 @@ class Customers_model extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }//End of tot_rows()
-
     function all_rows($limit, $start, $col, $dir){
         $this->db->select("*");
         $this->db->where('status',"1");
@@ -178,7 +169,6 @@ class Customers_model extends CI_Model
             return $query->result();
         }
     }//End of all_rows()
-
     function search_rows($limit, $start, $keyword, $col, $dir){
         $this->db->select("*");
         $this->db->or_like('name', $keyword);
@@ -196,7 +186,6 @@ class Customers_model extends CI_Model
             return $query->result();
         }
     }//End of search_rows()
-
     function tot_search_rows($keyword){
         $this->db->select("*");
         $this->db->where('status',"1");
@@ -208,7 +197,6 @@ class Customers_model extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }//End of tot_search_rows()
-
     //** Adress Related functions */
     function add_address($address_data){
       $this->db->insert("customer_address",$address_data);
@@ -232,5 +220,4 @@ class Customers_model extends CI_Model
       return $this->db->get()->row();
     }
      //** Adress Related functions */
-
 }

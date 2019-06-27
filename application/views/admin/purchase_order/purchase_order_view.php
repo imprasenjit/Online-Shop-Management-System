@@ -6,12 +6,7 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order View</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                    </div>
+                    <h6 class="m-0 font-weight-bold text-primary">Purchase Order View</h6>Purchase Order Ref : <?=$potoadmin_ref?> 
                 </div>
                 <!-- Card Body -->
                 <div class="card-body" id="print_html">
@@ -22,7 +17,7 @@
                     Subject: Purchase Order<br />
                     Terms &amp; Conditions valid as per quotation received.<br /><br />
 
-                    Ref : With reference to Quotation No. <?= $quotation_id ?>
+                    Ref : With reference to Quotation No. <?= $quotation_ref ?>
                     <br /><br />
                     <?php
                     $product = array(

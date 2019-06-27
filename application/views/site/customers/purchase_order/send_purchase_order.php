@@ -118,7 +118,7 @@
 													<hr />
 													Total<input type="text" class="my-form  total_price_cal" name="total_price[]" placeholder="Total Price (in Rs.)" value="<?= $total[$key] ?>" readonly />
 												</td>
-												<td class="text-left"><a href="#!" class="btn btn-danger remove_tr"><i class="fa fa-times-circle"></i></a>
+												<td class="text-left"><a href="#!" class="btn btn-danger remove_tr btn-circle"><i class="fa fa-times"></i></a>
 												</td>
 											</tr>
 											<?php

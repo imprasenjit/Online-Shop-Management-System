@@ -204,9 +204,10 @@ class Purchase_orders extends Aipl_admin
     {
         $columns = array(
             0 => "potoadmin_id",
-            1 => "customer_id",
-            2 => "created_at",
-            3 => "status"
+            1 => "potoadmin_ref",
+            2 => "customer_id",
+            3 => "created_at",
+            4 => "status"
         );
         $limit = $this->input->post("length");
         $start = $this->input->post("start");
@@ -226,7 +227,7 @@ class Purchase_orders extends Aipl_admin
         if (!empty($records)) {
             foreach ($records as $rows) {
                 $potoadmin_id = $rows->potoadmin_id;
-                $customerInfos = $rows->name . "<br/>" . $rows->contact . "<br/>" . $rows->email . "<br/>" . $rows->address . "<br/>";
+                $customerInfos = $rows->name . "  ( " . $rows->contact . " | " . $rows->email . " )  <br/>" . $rows->address . "<br/>";
                 $created_at = $rows->created_at;
                 $viewBtn = anchor(site_url('admin/purchase_orders/view/' . $potoadmin_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 if($rows->purchase_order_supplier_id){
@@ -248,9 +249,10 @@ class Purchase_orders extends Aipl_admin
                 } //End of if else
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["potoadmin_id"] = $potoadmin_id;
+                $nestedData["potoadmin_ref"] = $rows->potoadmin_ref;
                 $nestedData["name"] = $customerInfos;
                 $nestedData["created_at"] = date("d-m-Y", strtotime($created_at));
-                $nestedData["status"] = $viewBtn .$cancelBtn.$piBtn . $poBtn  ;
+                $nestedData["status"] = $viewBtn .$cancelBtn;
                 $data[] = $nestedData;
             } //End of for
         } //End of if
@@ -366,6 +368,11 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/purchase_order/purchase_order_to_warehouse_list');
         $this->load->view('admin/requires/footer');
     }
+   /**
+    * get_dtrecords_purchase_order_to_warehouse
+    *
+    * @return void
+    */
     function get_dtrecords_purchase_order_to_warehouse()
     {
         $columns = array(

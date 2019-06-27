@@ -3,6 +3,11 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 class Purchase_order extends Aipl_admin
 {
+   /**
+    * __construct
+    *
+    * @return void
+    */
     function __construct()
     {
         parent::__construct();
@@ -13,8 +18,13 @@ class Purchase_order extends Aipl_admin
         $this->load->model('products_model');
         $this->load->model('purchase_order_model');
         $this->load->library('form_validation');
-        // $this->load->library('encryption');
+  
     }
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
         $this->load->view('site/requires/header', array('page' => 'Purchase Orders'));
@@ -22,6 +32,12 @@ class Purchase_order extends Aipl_admin
         $this->load->view('site/requires/footer');
     }
 
+    /**
+     * view
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function view($id)
     {
       $id=$this->uri->segment(4);
@@ -39,6 +55,11 @@ class Purchase_order extends Aipl_admin
 		$this->load->view('site/requires/footer');
     }
 
+    /**
+     * getPurchaseOrders
+     *
+     * @return void
+     */
     public function getPurchaseOrders(){
       $customer_id=$this->session->userdata("id");
 
@@ -66,6 +87,8 @@ class Purchase_order extends Aipl_admin
             foreach ($records as $rows) {
                 $viewBtn = anchor(site_url('customers/purchase_order/view/' . urlencode(base64_encode($rows->potoadmin_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
                 $nestedData["slno"] = $slno++;
+                $nestedData["quotation_ref"] = $rows->quotation_ref;
+                $nestedData["potoadmin_ref"] = $rows->potoadmin_ref;
                 $nestedData["quotation_date"] = date_format(date_create($rows->quotation_date),'d M, Y');
                 $nestedData["created_at"] = date_format(date_create($rows->created_at),'d M, Y');
                 $nestedData["id"] = $viewBtn;

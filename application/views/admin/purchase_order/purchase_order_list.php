@@ -30,10 +30,10 @@
                                   }],
                                     "columns": [
                                         {"data": "sl_no",width:10},
-                                        {"data": "potoadmin_id",width: 50},
+                                        {"data": "potoadmin_ref",width: 50},
                                         {"data": "name",width: 350},
                                         {"data": "created_at",width: 50},
-                                        {"data": "status", width: 300}
+                                        {"data": "status", width: 150}
                                     ],
                                     "processing": true,
                                     "serverSide": true,
@@ -54,7 +54,7 @@
                             <thead>
                                 <tr>
                                     <th>(#)</th>
-                                    <th>PO ID</th>
+                                    <th>Purchase Order Ref </th>
                                     <th>Customer</th>
                                     <th>Date</th>
                                     <th>Action</th>

@@ -15,8 +15,6 @@
 								<strong>Success!</strong> <?= $this->session->flashdata("message") ?>
 							</div>
 						<?php } ?>
-
-						<link href="<?= base_url('public/datatables/css/loading.css') ?>" rel="stylesheet" />
 						<link href="<?= base_url('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" />
 						<script src="<?= base_url('public/datatables/js/jquery.dataTables.min.js') ?>"></script>
 						<script src="<?= base_url('public/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
@@ -29,13 +27,19 @@
 									"columnDefs": [{
 										className: 'text-right',
 										orderable: false,
-										targets: 3
+										targets: 5
 									}],
 									"columns": [{
 											"data": "slno"
 										},
 										{
+											"data": "quotation_ref"
+										},
+										{
 											"data": "quotation_date"
+										},
+										{
+											"data": "potoadmin_ref"
 										},
 										{
 											"data": "created_at"
@@ -69,7 +73,9 @@
 							<thead>
 								<tr>
 									<th>(#)</th>
+									<th>Quotation Ref</th>
 									<th>Quotation Date</th>
+									<th>Purchase Order Ref</th>
 									<th>Purchase Order Date</th>
 									<th>Action</th>
 								</tr>

@@ -5,6 +5,30 @@ if (!defined('BASEPATH'))
 
 class Purchase_order_model extends CI_Model
 {
+   /**
+    * insert_purchase_order_to_admin
+    *
+    * @param mixed $data
+    * @return boolean
+    */
+    function insert_purchase_order_to_admin($data)
+    {
+        $this->db->insert("purchase_order_to_admin", $data);
+        return $this->db->insert_id();
+    }
+   /**
+    * update_purchase_order_to_admin
+    *
+    * @param mixed $id primary key of table
+    * @param mixed $data array of items
+    * @return boolean
+    */
+    function update_purchase_order_to_admin($id,$data)
+    {
+        $this->db->where("potoadmin_id",$id);
+        $this->db->update("purchase_order_to_admin", $data);
+        return true;
+    }
     function get_by_id($id){
         $this->db->select("purchase_order_to_admin.*,customers.*,proforma_invoice.porforma_invoice_id,purchase_order_to_supplier.purchase_order_supplier_id");
         $this->db->from("purchase_order_to_admin");

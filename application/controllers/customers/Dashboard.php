@@ -142,7 +142,10 @@ class Dashboard extends Aipl_admin
 				"created_at" => date("Y-m-d H:i:s"),
 				"created_by" => $this->session->userdata("id")
 			);
-			$this->customers_model->save_purchase_order($data);
+			$purchase_order_to_admin_id=$this->purchase_order_model->insert_purchase_order_to_admin($data);
+			$potoadmin_ref = genunqid(2, $purchase_order_to_admin_id);
+            $this->purchase_order_model->update_purchase_order_to_admin($purchase_order_to_admin_id, array("potoadmin_ref" => $potoadmin_ref));
+			
 			$this->session->set_flashdata('message', 'Purchase order sent successfully!');
 			redirect(site_url('customers/dashboard/'));
 		}

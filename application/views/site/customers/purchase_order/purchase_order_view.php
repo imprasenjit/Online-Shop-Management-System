@@ -8,13 +8,10 @@
 				<div class="panel panel-default">
 				<div class="panel-heading">
 						Purchase Order
+						<span class="pull-right">Purchase Order Ref: <?=$potoadmin_ref?></span>
 				</div>
 					<div class="panel-body" id="print_html">
 						<table class="table table-bordered">
-							<tbody>
-									<tr>
-										<td colspan="11" class="text-left">
-											<input type="hidden" name="quotation_id" value="<?=$quotation_id?>">
 											<br />
 											To,<br />
 											Hitech Industries<br />
@@ -22,27 +19,9 @@
 											Subject: Purchase Order<br />
 											Format for product selection &amp; tax calculation as per Quotation and PI given previously.<br />
 											Terms &amp; Conditions valid as per quotation received.<br /><br/>
-											Ref : With reference to Quotation No. <?=$quotation_id?> 
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table name="objectTable1" id="objectTable1" class="table table-bordered">
-												<thead>
-													<tr>
-														<th width="2%">Sl No.</th>
-														<th width="10%">Product Name</th>
-														<th width="10%">Quantity</th>
-														<th width="20%">Attributes</th>
-														<th width="10%">Basic Price(in Rs.)</th>
-														<th width="20%">Required Details</th>
-													</tr>
-												</thead>
-												<tbody>
+											Ref : With reference to Quotation No. <?=$quotation_ref?> 
+										
                                                     <?php
-                                                    $sl = 1;
-                                                    $attributes=$this->quotation_model->get_by_id($quotation_id)->attributes;
-
 													$product_id_s = json_decode($product, true);
 													$quantity_decoded = json_decode($quantity, true);
 													$product_unit_decoded = json_decode($unit, true);
@@ -54,52 +33,28 @@
 													$exyard_decoded = json_decode($exyard, true);
 													$frieght_decoded = json_decode($frieght, true);
 													$total_decoded = json_decode($total, true);
-													foreach ($product_id_s as $key => $product) {
-														$productname = $this->products_model->get_by_id($product)->product_name;
-														?>
-														<tr>
-															<td class="text-left"><?= $sl; ?></td>
-															<td class="text-left">
-																<?= $productname; ?>
-															</td>
-															<td class="text-left">
-																<?=$quantity_decoded[$key]; ?>
-																<?= $product_unit_decoded[$key]; ?>
-															</td>
-															<td class="text-left attribute_place">
-																<?php
-																foreach ($attributes_decoded[$key] as $product_key => $attr) {
-																	$attributes_from_product = $this->products_model->get_by_id($product_key)->attributes;
-																	$attributes_from_product_decoded = json_decode($attributes_from_product, true);
-																	foreach ($attributes_from_product_decoded["data"] as $keyattr => $values) {
-																		echo $values . ' : ' . $attr[$keyattr] . '<br/>';
-																	}
-																}
-																?>
-															</td>
-															<td class="text-left">
-																<?= $product_price_decoded[$key] ?>
-															<td class="text-left">
-																CGST : <?php echo $cgst_decoded[$key]; ?><br/>
-																SGST : <?php echo $sgst_decoded[$key]; ?><br/>
-																IGST : <?php echo $igst_decoded[$key]; ?><br/>
-				purchase_order_view	Ex-yard : <?= $exyard_decoded[$key] ?><br/>
-				purchase_order_view	Frieght : <?= $frieght_decoded[$key] ?><br/>
-				purchase_order_view	<?php $total = (int)$cgst_decoded[$key] + (int)$sgst_decoded[$key] + (int)$igst_decoded[$key] + (int)$exyard_decoded[$key] + (int)$frieght_decoded[$key]; ?>
-				purchase_order_view	Total : <?= $total ?>
-				purchase_order_view/td>
-				purchase_order_view
-														<?php
-														$sl++;
-													}
+													$product_details = array(
+														"productid" => $product,
+														"others" => $others,
+														"quantity" => $quantity,
+														"product_unit" => $unit,
+														"tax_rate" => $tax_rate,
+														"attributes" => $attributes,
+														"product_price" => $price,
+														"cgst" => $cgst,
+														"sgst" => $sgst,
+														"igst" => $igst,
+														"exyard" => $exyard,
+														"frieght" => $frieght,
+														"total" => $total,
+													);
+													$this->load->view("admin/products/product_table_format", array("product" => (object)$product_details));
 													?>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-							</tbody>
-						</table>
-						<a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
+
+					</div>
+					<div class="panel-footer">
+					<a href="#!" id="print_content" class="btn btn-sm btn-warning">Print</a>
+						<a href="<?= base_url("customers/purchase_order/");?>" class="btn btn-sm btn-primary">Close</a>
 					</div>
 				</form>
 			</div>
