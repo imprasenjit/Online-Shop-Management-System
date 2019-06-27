@@ -275,7 +275,7 @@ class Purchase_order_model extends CI_Model
     }//End of tot_search_suprows()
 
     function search_suprows_supplier_dashboard($limit, $start, $keyword, $col, $dir,$supplier_id){
-        $this->db->select("*");
+        $this->db->select("*,purchase_order_to_supplier.created_at as date_format");
         $this->db->like("purchase_order_supplier_id", $keyword);
         $this->db->or_like('purchase_order_from_customer_id', $keyword);
         $this->db->where('supplier_id', $supplier_id);
@@ -371,6 +371,7 @@ class Purchase_order_model extends CI_Model
         $this->db->select('*');
         $this->db->where("purchase_order_to_warehouse.status",1);
         $this->db->from("purchase_order_to_warehouse");
+        $this->db->order_by("purchase_order_to_warehouse.purchase_order_to_warehouse_id","DESC");
         $this->db->join('customers','purchase_order_to_warehouse.customer_id=customers.id','left');
         return $this->db->get()->result();
     }

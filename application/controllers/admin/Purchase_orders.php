@@ -402,14 +402,13 @@ class Purchase_orders extends Aipl_admin
         if (!empty($records)) {
             foreach ($records as $rows) {
                 $purchase_order_to_warehouse_id = $rows->purchase_order_to_warehouse_id;
-                $customerInfos = $rows->name . "<br/>" . $rows->contact . "<br/>" . $rows->email . "<br/>" . $rows->address . "<br/>";
+                $customerInfos = $rows->name . " ( " . $rows->contact . " | " . $rows->email . " ) <br/>" . $rows->address . "<br/>";
                 $created_at = $rows->created_at;
                 $viewBtn = anchor(site_url('admin/purchase_orders/purchase_order_to_warehouse_view/' . $purchase_order_to_warehouse_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $cancelBtn = '<a class="btn btn-danger btn-sm cancel_po" data-po-id="' . $purchase_order_to_warehouse_id . '"  href="#!">Cancel PO</a>';
                 $nestedData["sl_no"] = $sl_no++;
-                $nestedData["potoadmin_id"] = $purchase_order_to_warehouse_id;
                 $nestedData["name"] = $customerInfos;
-                $nestedData["created_at"] = date("d-m-Y", strtotime($created_at));
+                $nestedData["created_at"] = date("d-m-Y h:i A", strtotime($created_at));
                 $nestedData["status"] = $viewBtn;
                 $data[] = $nestedData;
             } //End of for

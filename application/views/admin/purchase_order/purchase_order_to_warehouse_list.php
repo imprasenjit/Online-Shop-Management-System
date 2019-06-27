@@ -26,11 +26,10 @@
                                   "columnDefs": [{
                                       className: 'text-right',
                                       orderable: false,
-                                      targets: 4
+                                      targets: 3
                                   }],
                                     "columns": [
                                         {"data": "sl_no",width:10},
-                                        {"data": "potoadmin_id",width: 50},
                                         {"data": "name",width: 350},
                                         {"data": "created_at",width: 50},
                                         {"data": "status", width: 300}
@@ -54,7 +53,6 @@
                             <thead>
                                 <tr>
                                     <th>(#)</th>
-                                    <th>PO ID</th>
                                     <th>Customer</th>
                                     <th>Date</th>
                                     <th>Action</th>

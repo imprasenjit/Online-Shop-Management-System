@@ -54,7 +54,7 @@
 							   </tbody>
 							</table>
 							<div class="col-md-12">
-								<a class="btn btn-sm btn-warning add_new_product float-right" href="#!"><i class="fa fa-plus" aria-hidden="true"></i></a>
+								<a class="btn btn-sm btn-warning add_new_product btn-circle float-right" href="#!"><i class="fa fa-plus" aria-hidden="true"></i></a>
 								<input type="hidden" id="hiddenval" name="hiddenval" value="" />
 							</div>
 							<div class="clearfix"></div>
@@ -211,7 +211,7 @@ $(document).on("click", ".add_new_product", function() {
 			<div class="clearfix"></div>Frieght<input type="text" class="form-control form-control-sm frieght_cal" name="frieght[]" id="frieght[]" readonly /> \
 			<div class="clearfix"></div>Total<input type="text" class="form-control form-control-sm total_price_cal" name="total_price[]" id="total_price[]" readonly/> \
 			</td>\
-                </td> <td> <a href = "#!" class = "btn btn-sm btn-danger remove_tr"> <i class = "fa fa-times-circle"> </i> </a> </td> </tr> \
+                </td> <td class="text-center"> <a href = "#!" class = "btn btn-sm btn-danger btn-circle remove_tr"> <i class = "fa fa-times"> </i> </a> </td> </tr> \
 			');
 			sl++;
 		});

@@ -69,6 +69,7 @@ class Suppliers extends Aipl_admin
         $dir = $this->input->post("order")[0]["dir"];
         $search = $this->input->post("search")["value"];
         $records = $this->purchase_order_model->search_suprows_supplier_dashboard($limit, $start, $search, $order, $dir, $supplier_id);
+        //print_r($records);die;
         $data = array();
         if (!empty($records)) {
             $sl_no = 1;
@@ -84,7 +85,7 @@ class Suppliers extends Aipl_admin
                 $editBtn = anchor(site_url('admin/suppliers/upload_invoice_details/' . $rows->purchase_order_supplier_id), 'Upload Invoice', array('class' => 'btn btn-sm btn-warning')) . "&nbsp;";
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["purchase_order_id"] = $rows->purchase_order_supplier_id;
-                $nestedData["date"] = $rows->purchase_order_supplier_id;
+                $nestedData["date"] = date("d-m-Y h:i A",strtotime($rows->date_format));
                 $nestedData["status"] =$str;
 
                 $nestedData["action"] = $viewBtn.$editBtn;
