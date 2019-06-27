@@ -2,6 +2,11 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Dashboard extends Aipl_admin
 {
+	/**
+	 * __construct
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -16,6 +21,11 @@ class Dashboard extends Aipl_admin
 		$this->load->model('customers_model');
 		$this->load->helper('form');
 	}
+	/**
+	 * index
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
 
@@ -24,6 +34,11 @@ class Dashboard extends Aipl_admin
 		$this->load->view('site/customers/dashboard/customer_dashboard');
 		$this->load->view('site/requires/footer');
 	}
+	/**
+	 * customer_dashboard
+	 *
+	 * @return void
+	 */
 	public function customer_dashboard()
 	{
 		$data = array("page" => "Dashboard");
@@ -31,6 +46,11 @@ class Dashboard extends Aipl_admin
 		$this->load->view('site/customers/customer_dashboard');
 		$this->load->view('site/requires/footer');
 	}
+	/**
+	 * enquiry_details
+	 *
+	 * @return void
+	 */
 	public function enquiry_details()
 	{
 
@@ -40,6 +60,12 @@ class Dashboard extends Aipl_admin
 		$this->load->view('site/customers/enquires/enquires_view');
 		$this->load->view('site/requires/footer');
 	}
+	/**
+	 * quoted_price_details
+	 *
+	 * @param mixed $qid
+	 * @return void
+	 */
 	public function quoted_price_details($qid)
 	{
 		$quotation_id = base64_decode(urldecode($qid));
@@ -51,6 +77,12 @@ class Dashboard extends Aipl_admin
 		$this->load->view('site/customers/quotation/quoted_price_details',$data);
 		$this->load->view('site/requires/footer');
 	}
+	/**
+	 * send_purchase_order
+	 *
+	 * @param mixed $quotation_id
+	 * @return void
+	 */
 	public function send_purchase_order($quotation_id)
 	{
 		$logged_id=$this->session->id;
@@ -58,14 +90,18 @@ class Dashboard extends Aipl_admin
 		$data['customer_contact']=$this->session->contact;
 		$data['customer_address']=$this->customers_model->get_address_by_id($logged_id);//var_dump($data['customer_address']);die;
 		$quotation_id=base64_decode(urldecode($quotation_id));
-		$data["quotation_id"] = $quotation_id;
 		$data["quotation_details"] = $this->quotation_model->get_by_id($quotation_id);
-		$data["enquiry_details"] = $this->enquires_model->get_by_id($data["quotation_details"]->enquiry_id);
+		//$data["enquiry_details"] = $this->enquires_model->get_by_id($data["quotation_details"]->enquiry_id);
 		$this->load->model('attribute_model');
 		$this->load->view('site/requires/header', array("page" => "Purchase order"));
 		$this->load->view('site/customers/purchase_order/send_purchase_order', $data);
 		$this->load->view('site/requires/footer');
 	}
+	/**
+	 * send_po
+	 *
+	 * @return void
+	 */
 	public function send_po()
 	{
 		//echo '<pre>';print_r($this->input->post());die;
@@ -86,6 +122,7 @@ class Dashboard extends Aipl_admin
 				"quotation_id" => $this->input->post("quotation_id", TRUE),
 				"billing_address" => $this->input->post("billing_address", TRUE),
 				"billing_state" => $this->input->post("billing_state", TRUE),
+				"quotation_ref" => $this->input->post("quotation_ref", TRUE),
 				"delivery_address" => $this->input->post("delivery_address", TRUE),
 				"contact_person_name" => $this->input->post("contact_person_name", TRUE),
 				"contact_person_mobile" => $this->input->post("contact_person_mobile", TRUE),
@@ -110,6 +147,11 @@ class Dashboard extends Aipl_admin
 			redirect(site_url('customers/dashboard/'));
 		}
 	}
+	/**
+	 * _rules
+	 *
+	 * @return void
+	 */
 	public function _rules()
 	{
 		$this->load->library("form_validation");
@@ -130,6 +172,11 @@ class Dashboard extends Aipl_admin
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span><br/>');
 	}
 
+	/**
+	 * getCustomerDashboard
+	 *
+	 * @return void
+	 */
 	public function getCustomerDashboard(){
 		$customer_id=$this->session->userdata("id");
 

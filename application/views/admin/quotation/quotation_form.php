@@ -27,7 +27,7 @@
 							<?= $result->address ?><br>
 							<span>Billing State : <?= ucfirst($result->state); ?></span>
 							<div class="col-md-4">
-								<input type="hidden" id="state" value="<?=$result->state;?>">
+								<input type="hidden" id="state" name="state" value="<?=$result->state;?>">
 								<input type="hidden" class="form-control" name="enquiry_id" id="enquiry_id" value="<?= $enquiry_id; ?>" />
 								<input type="hidden" class="form-control" name="send_to" id="send_to" value="<?php echo $result->customerid; ?>" /></div>
 							<br />

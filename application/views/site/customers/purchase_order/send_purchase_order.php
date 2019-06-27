@@ -7,24 +7,25 @@
 			<div class="panel-group" style="margin-top:50px;">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Send Purchase order <span class="pull-right"> Quotation ID : <?= $quotation_id ?></span>
+						Send Purchase order <span class="pull-right"> Quotation No : <?= $quotation_details->quotation_ref; ?></span>
 					</div>
 					<div class="panel-body">
 						<form method="post" id="send_purchase_order_form" action="<?= base_url("customers/dashboard/send_po") ?>">
 							<?= validation_errors(); ?>
 							<?php
-							if ($row) {
+							if ($quotation_details) {
 								$i = 1;
 								?>
-								<input type="hidden" name="quotation_id" value="<?= $quotation_id ?>">
+								<input type="hidden" name="quotation_id" value="<?= $quotation_details->quotation_id ?>">
 								<br />
 								To,<br />
 								Hitech Industries<br />
 								Guwahati<br />
 								Subject: Purchase Order<br />
 								Terms &amp; Conditions valid as per quotation received.<br />
-								Billing State : <?= $result->state; ?><br />
-								<input type="hidden" name="billing_state" value="<?= $result->state;?>">
+								Billing State : <?= $quotation_details->billing_state; ?><br />
+								<input type="hidden" name="billing_state" value="<?= $quotation_details->billing_state;?>">
+								<input type="hidden" name="quotation_ref" value="<?= $quotation_details->quotation_ref; ?>">
 								<br />
 								<table name="objectTable1" id="objectTable1" class="table table-bordered">
 									<thead>
@@ -41,23 +42,23 @@
 									<tbody>
 										<?php
 										$sl = 1;
-										$quotation_id = $row->quotation_id;
-										$enquiry_id = $row->enquiry_id;
-										$productid = $row->productid;
-										$quantity = $row->quantity;
-										$attributes = $row->attributes;
-										$product_price = $row->product_price;
-										$cgst = $row->cgst;
-										$sgst = $row->sgst;
-										$igst = $row->igst;
-										$exyard = $row->exyard;
-										$frieght = $row->frieght;
-										$email = $row->email;
-										$editordata = $row->editordata;
-										$editordata2 = $row->editordata2;
+										$quotation_id = $quotation_details->quotation_id;
+										$enquiry_id = $quotation_details->enquiry_id;
+										$productid = $quotation_details->productid;
+										$quantity = $quotation_details->quantity;
+										$attributes = $quotation_details->attributes;
+										$product_price = $quotation_details->product_price;
+										$cgst = $quotation_details->cgst;
+										$sgst = $quotation_details->sgst;
+										$igst = $quotation_details->igst;
+										$exyard = $quotation_details->exyard;
+										$frieght = $quotation_details->frieght;
+										$email = $quotation_details->email;
+										$editordata = $quotation_details->editordata;
+										$editordata2 = $quotation_details->editordata2;
 										$product_id_decoded = json_decode($productid, true);
 										$quantity_decoded = json_decode($quantity, true);
-										$product_unit_decoded = json_decode($row->product_unit, true);
+										$product_unit_decoded = json_decode($quotation_details->product_unit, true);
 										$attributes_decoded = json_decode($attributes, true);
 										$product_price_decoded = json_decode($product_price, true);
 										$cgst_decoded = json_decode($cgst, true);
@@ -65,9 +66,9 @@
 										$igst_decoded = json_decode($igst, true);
 										$exyard_decoded = json_decode($exyard, true);
 										$frieght_decoded = json_decode($frieght, true);
-										$others = json_decode($row->others, true);
-										$tax_rate = json_decode($row->tax_rate, true);
-										$total = json_decode($row->total, true);
+										$others = json_decode($quotation_details->others, true);
+										$tax_rate = json_decode($quotation_details->tax_rate, true);
+										$total = json_decode($quotation_details->total, true);
 										foreach ($product_id_decoded as $key => $product) {
 											$productname = $this->products_model->get_by_id($product)->product_name;
 											?>
@@ -108,7 +109,7 @@
 													<hr />
 													SGST<input type="text" class="my-form sgst_cal" name="sgst[]" placeholder="SGST @9%" value="<?php echo $sgst_decoded[$key]; ?>" readonly />
 													<hr />
-													<input type="hidden" name="state" class="state_val" value="<?= $result->state ?>">
+													<input type="hidden" name="state" class="state_val" value="<?= $quotation_details->billing_state ?>">
 													IGST<input type="text" class="my-form igst_cal" name="igst[]" placeholder="IGST @18%" value="<?php echo $igst_decoded[$key]; ?>" readonly />
 													<hr />
 													Ex-yard<input type="text" class="my-form  exyard_cal" name="exyard[]" placeholder="Ex-Yard (in Rs./MT)" value="<?= $exyard_decoded[$key] ?>" readonly />
