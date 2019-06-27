@@ -79,12 +79,22 @@
                                 <label>Description</label>
                                 <textarea type="text" class="form-control form-control-sm" name="description" id="description" placeholder="Product Description"><?php echo $description; ?></textarea>
                             </div>
+                            <div class="col-md-12">
+                              <div class="checkbox">
+                                <label><input type="checkbox" value="1" <?=$show_description?"checked":""?> name="show_description">Show Description in Frontend</label>
+                              </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label>Weight Chart</label>
                                 <textarea type="text" name="weight_chart" id="weight_chart"><?php echo htmlspecialchars_decode($weight_chart); ?></textarea>
                             </div>
+                            <div class="col-md-12">
+                            <div class="checkbox">
+                              <label><input type="checkbox" value="1"  <?=$show_weight_chart?"checked":""?> name="show_weight_chart">Show Weight Chart in Frontend</label>
+                            </div>
+                          </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
