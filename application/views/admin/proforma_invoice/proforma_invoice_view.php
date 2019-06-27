@@ -12,7 +12,8 @@
     				</div>
     				<!-- Card Body -->
     				<div class="card-body" id="print_html">
-              			Ref : With reference to Purchase Order No. <?=$purchase_order_ref?>
+              			Proforma Invoice Ref. <?=$proforma_invoice_ref?><br/><br/>
+              			With reference to Purchase Order No. <?=$purchase_order_ref?>
     					<?= $editordata ?>    								
     									<?php
 										$product_details=array(
