@@ -96,7 +96,7 @@
                                 <?php if($product->specification!=""){?>
                                 <img src="<?php echo base_url($product->specification); ?>" style="width:500px !important;">
                                 <?php } ?>
-                                <?php echo htmlspecialchars_decode($product->weight_chart); ?>
+                                <?php if($product->show_weight_chart=="1"){echo htmlspecialchars_decode($product->weight_chart);} ?>
                                     <!--<table class="table table-bordered">
                                         <tr class="table-tr">
                                             <?php foreach ($jsonDecode['data'] as $jsn) { ?>
@@ -118,8 +118,8 @@
                             </div>
                             <div class="tab-pane fade in" id="service-two">
                                 <section class="product-info">
-                                    
-                                    <p class="text-justify"><?php echo $product->description; ?><p>
+
+                                    <p class="text-justify"><?php if($product->show_description=="1"){echo $product->description;} ?><p>
                                 </section>
                             </div>
                         </div>
