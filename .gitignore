@@ -1,4 +1,5 @@
 application/config/database.php
+application/logs/*
 nbproject/
 storage/DOCUMENTS/2019/06/20/bbb16d1adf7ab91a452628b801c08b4c.jpeg
 storage/DOCUMENTS/2019/06/20/index.html
