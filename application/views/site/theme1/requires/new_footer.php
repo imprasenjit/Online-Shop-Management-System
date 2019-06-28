@@ -52,7 +52,7 @@
                                  <ul>
                                    <?php foreach ($recent_blogs as $key => $recent): ?>
                                      <li>
-                                         <a href="<?=base_url()?>blogs/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>"><?=$recent->blog_title?></a>
+                                         <a href="<?=base_url()?>blogs1/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>"><?=$recent->blog_title?></a>
                                          <span class="post-date"><?php $blogdate=date_create($recent->created_at); echo date_format($blogdate,"M d,Y H:i");?></span>
                                      </li>
                                    <?php endforeach; ?>

@@ -712,8 +712,8 @@ ul.kas-icon-aero li a:before {
 
 .main-contact-body {
     background: #FFF;
-    margin-top: 100px;
-    padding: 40px;
+    /* margin-top: 100px; */
+    /* padding: 40px; */
     opacity: 0.85;
 }
 
@@ -781,9 +781,9 @@ label.error {
     transition: 0.2s opacity;
 }
 .post.post-thumb .post-body {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0px;
-    padding: 20px 15px;
+    /* padding: 20px 15px; */
 }
 .post.post-thumb .post-title {
     font-size: 22px;
@@ -801,7 +801,7 @@ margin-bottom: 20px;
       font-size: 18px;
 }
 .socials {
-  padding: 10px 0px 100px 173px;
+  padding: 0px 0px 100px 0px;
 }
 .socials-connected li{
 display: inline;

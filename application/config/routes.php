@@ -60,6 +60,9 @@ $route['view-all-products-by-category/(:any)'] = 'products/category/$1';
 $route['blogs/(:any)'] = 'blogs/index/$1';
 $route['blogs/(:any)/(:any)'] = 'blogs/blog_details/$1/$2';
 $route['search'] = 'blogs/search';
+$route['blogs1/(:any)'] = 'blogs1/index/$1';
+$route['blogs1/(:any)/(:any)'] = 'blogs1/blog_details/$1/$2';
+$route['search1'] = 'blogs1/search';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

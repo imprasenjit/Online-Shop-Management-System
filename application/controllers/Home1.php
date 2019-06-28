@@ -24,9 +24,9 @@ class Home1 extends CI_Controller {
 	}
 	public function contact() {
 		$data = array("page" => "Contact");
-		$this->load->view('site/requires/header',$data);
-		$this->load->view('site/contact');
-		$this->load->view('site/requires/contact_page_footer');
+			$this->load->view('site/theme1/requires/new_header', $data);
+		$this->load->view('site/theme1/contact');
+			$this->load->view('site/theme1/requires/new_footer');
 	}
 	public function about() {
 		$data = array("page" => "About");

@@ -13,6 +13,12 @@
     <div class="container pull-bottom-big pull-top">
       <div class="container">
           <div class="w3ls-heading">
+            <?php if ($this->session->flashdata("message")) { ?>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> <?= $this->session->flashdata("message") ?>
+              </div>
+            <?php } ?>
               <h2 class="text-center" style="margin-bottom:20px;">CHOOSE US BUT WHY?</h2>
               <h3></h3>
 
@@ -50,7 +56,7 @@
                               <?=form_error("sme_mobile")?>
                           </div>
                           <div class="col-md-6 form-group" style="display:block">
-                              <label>Email</label>
+                              <label>Email<span class="text-danger">*</span></label>
                               <input name="sme_email" value="" class="form-control" type="email" autocomplete="off" />
                               <?=form_error("sme_email")?>
                           </div>
@@ -69,7 +75,7 @@
                               <?=form_error("sme_state")?>
                           </div>
                           <div class="col-md-6 form-group" style="display:block">
-                              <label>District</label>
+                              <label>District<span class="text-danger">*</span></label>
                               <input name="sme_district" value="" class="form-control" type="text" />
                               <?=form_error("sme_district")?>
                           </div>
@@ -130,7 +136,7 @@
                               <?=form_error("contact_person")?>
                           </div>
                           <div class="col-md-6 form-group" style="display:block">
-                              <label>Designation</label>
+                              <label>Designation <span class="text-danger">*</span></label>
                               <input name="designation" value="" class="form-control" type="text" autocomplete="off" />
                               <?=form_error("designation")?>
                           </div>
@@ -143,7 +149,7 @@
                               <?=form_error("conatct_no")?>
                           </div>
                           <div class="col-md-6 form-group" style="display:block">
-                              <label>Email</label>
+                              <label>Email <span class="text-danger">*</span></label>
                               <input name="contact_email" value="" class="form-control" type="email" autocomplete="off" />
                               <?=form_error("contact_email")?>
                           </div>
@@ -151,7 +157,7 @@
 
                       <div class="row">
                           <div class=" col-md-12 form-group">
-                              <label>Products Manufactured<span class="text-danger">*</span></label>
+                              <label>Products Manufactured <span class="text-danger">*</span></label>
                               <textarea name="product_manufactured" class="form-control"></textarea>
                               <?=form_error("product_manufactured")?>
                           </div>
@@ -159,7 +165,7 @@
 
                       <div class="row">
                           <div class="col-md-12 form-group" style="display:block">
-                              <label>Registered Office Address</label>
+                              <label>Registered Office Address <span class="text-danger">*</span></label>
                               <textarea name="office_address" class="form-control"></textarea>
                               <?=form_error("office_address")?>
                           </div>

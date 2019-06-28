@@ -28,7 +28,12 @@ class Partnerprograms1 extends CI_Controller {
     function smesave() {
         $this->load->library("form_validation");
         $this->form_validation->set_rules("sme_name", "Name", "required");
-        $this->form_validation->set_error_delimiters("<font class='error animated fadeIn'>", "</font>");
+        $this->form_validation->set_rules("sme_mobile", "Mobile", "required");
+        $this->form_validation->set_rules("sme_email", "Email", "required");
+        $this->form_validation->set_rules("sme_state", "State", "required");
+        $this->form_validation->set_rules("sme_district", "District", "required");
+        $this->form_validation->set_rules("sme_msg", "Message", "required");
+        $this->form_validation->set_error_delimiters("<font class='error animated fadeIn text-danger'>", "</font>");
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata("flashMsg", "Invalid inputs");
             $this->index();
@@ -50,7 +55,7 @@ class Partnerprograms1 extends CI_Controller {
                 "sme_msg" => $sme_msg
             );
             $this->partnerprograms_model->insert($data);
-            $this->session->set_flashdata("flashMsg", "Data has been successfully submitted!");
+            $this->session->set_flashdata("message", "Data has been successfully submitted!");
             redirect(site_url('partnerprograms1'));
         }
     }//End of smesave()
@@ -58,7 +63,14 @@ class Partnerprograms1 extends CI_Controller {
     function companysave() {
         $this->load->library("form_validation");
         $this->form_validation->set_rules("company_name", "Company name", "required");
-        $this->form_validation->set_error_delimiters("<font class='error animated fadeIn'>", "</font>");
+        $this->form_validation->set_rules("contact_person", "Contact Person", "required");
+        $this->form_validation->set_rules("designation", "Designation", "required");
+        $this->form_validation->set_rules("conatct_no", "Conatct No", "required");
+        $this->form_validation->set_rules("contact_email", "Contact Email", "required");
+        $this->form_validation->set_rules("product_manufactured", "Product Manufactured", "required");
+        $this->form_validation->set_rules("office_address", "Office Address", "required");
+        $this->form_validation->set_rules("factory_address", "Factory Address", "required");
+        $this->form_validation->set_error_delimiters("<font class='error animated fadeIn text-danger'>", "</font>");
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata("flashMsg", "Invalid inputs");
             $this->index();
@@ -84,7 +96,7 @@ class Partnerprograms1 extends CI_Controller {
                 "factory_address" => $factory_address
             );
             $this->companies_model->insert($data);
-            $this->session->set_flashdata("flashMsg", "Data has been successfully submitted!");
+            $this->session->set_flashdata("message", "Data has been successfully submitted!");
             redirect(site_url('partnerprograms1'));
         }
     }//End of companysave()

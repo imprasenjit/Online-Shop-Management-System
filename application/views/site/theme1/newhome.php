@@ -2,7 +2,35 @@
   <?php $imgRows = $this->home_page_slider_model->get_results();
 
   ?>
-    <div class="slider-container rev_slider_wrapper slider-container-full-height">
+  <script>
+      $(document).ready(function() {
+          $('#home').addClass('active');
+      });
+  </script>
+  <a href="https://api.whatsapp.com/send?phone=+919707333490&text=We Have some requirement for Steel" class="float" target="_blank">
+      <i class="fa fa-whatsapp my-float"></i>
+  </a>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $(document).on("click", ".openmodal2", function() {
+              $('#cart_modal').modal('show');
+          });
+          $(document).on("click", ".exampleModalCenter", function() {
+              $('#exampleModalCenter').modal('show');
+          });
+      });
+
+      function clear_cart() {
+          var result = confirm('Are you sure want to clear cart?');
+          if (result) {
+              window.location = "<?php echo base_url("shopping/remove/all"); ?>";
+          } else {
+              return false; // cancel button
+          }
+      }
+  </script>
+  <a href="<?php echo base_url("view-all-sub-category"); ?>" id="myBtn" title="Go to Quotes">Get Quotes</a>
+    <!-- <div class="slider-container rev_slider_wrapper slider-container-full-height">
         <div id="revolutionSlider" class="slider rev_slider" data-version="5.4.7" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'sliderLayout': 'fullscreen', 'gridwidth': [1140,960,720,540], 'gridheight': [900,900,900,900], 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,576], 'navigation' : {'arrows': { 'enable': true, 'hide_under': 767, 'style': 'slider-arrows-style-2' }, 'bullets': {'enable': true, 'style': 'bullets-style-1', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 35, 'h_offset': 0}}}">
             <ul>
               <?php
@@ -71,7 +99,57 @@
 
             </ul>
         </div>
+    </div> -->
+
+    <div class="slider">
+        <div class="owl-carousel owl-theme" id="banner-carousel">
+            <?php $imgRows = $this->home_page_slider_model->get_results();
+            if ($imgRows) {
+                foreach ($imgRows as $irows) {
+                    echo '<div class="item"><img class="" src="' . base_url($irows->file_path) . '" /></div>';
+                }
+            }
+            ?>
+        </div>
+        <div class="owl-theme">
+            <div class="owl-controls">
+                <div class="custom-nav owl-nav"></div>
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#banner-carousel').owlCarousel({
+                autoplay: true,
+                margin: 1,
+                autoplayTimeout: 4000,
+                autoplayHoverPause: true,
+                smartSpeed: 500,
+                loop: true,
+                navText: [
+                    '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+                    '<i class="fa fa-angle-right" aria-hidden="true"></i>'
+                ],
+                responsiveClass: true,
+                dots: false,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    480: {
+                        items: 1
+                    },
+                    768: {
+                        items: 1
+                    },
+                    992: {
+                        items: 1
+                    }
+                }
+            });
+        });
+    </script>
 
     <div class="v-page-wrap no-bottom-spacing no-top-spacing">
 
