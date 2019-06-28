@@ -79,6 +79,8 @@ class Products extends Aipl_admin {
             'product_category' => set_value('product_category'),
             'product_sub_category' => set_value('product_sub_category'),
             'description' => set_value('description'),
+            'show_description' => set_value('show_description'),
+            'show_weight_chart' => set_value('show_weight_chart'),
             'weight_chart' => set_value('weight_chart'),
             'specification' => set_value('specification'),
             'attributes' => set_value('attributes', NULL),
