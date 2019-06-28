@@ -29,10 +29,14 @@
 									"columnDefs": [{
 										className: 'text-right',
 										orderable: false,
-										targets: 3
+										targets:4 
 									}],
-									"columns": [{
-											"data": "quotation_id"
+									"columns": [
+										{
+											"data": "sl_no"
+										},
+										{
+											"data": "quotation_ref"
 										},
 										{
 											"data": "quotation_date"
@@ -67,7 +71,8 @@
 						<table class="table table-bordered" id="dtbl">
 							<thead>
 								<tr>
-									<th>(#)Quotation ID</th>
+									<th>(#)</th>
+									<th>Quotation Ref</th>
 									<th>Quotation Date</th>
 									<th>Enquery ID</th>
 									<th>Action</th>

@@ -49,11 +49,10 @@ class Quotations extends Aipl_admin
               $slno = 1;
             foreach ($records as $rows) {
                 $enq_ref = $rows->enq_ref;
-                $quotation_id = $rows->quotation_id;
                 $quotation_date = $rows->quotation_date;
 
-                $results_purchase_order = $this->purchase_order_model->check_purchase_order($quotation_id);
-                $viewBtn = anchor(site_url('customers/dashboard/quoted_price_details/'.urlencode(base64_encode($quotation_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
+                $results_purchase_order = $this->purchase_order_model->check_purchase_order($rows->quotation_id);
+                $viewBtn = anchor(site_url('customers/dashboard/quoted_price_details/'.urlencode(base64_encode($rows->quotation_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
                 if(!$results_purchase_order){
                 // $sendPoBtn = anchor(site_url("customers/dashboard/send_purchase_order/".urlencode(base64_encode($quotation_id)) ), 'Sent PO', array('class' => 'btn btn-warning btn-sm')) . "&nbsp;";
                 $sendPoBtn = "";
@@ -62,9 +61,9 @@ class Quotations extends Aipl_admin
                 }
 
 
-                $nestedData["slno"] = $slno++;
+                $nestedData["sl_no"] = $slno++;
                 $nestedData["enq_ref"] = $enq_ref;
-                $nestedData["quotation_id"] = $quotation_id;
+                $nestedData["quotation_ref"] = $rows->quotation_ref;
                 $nestedData["quotation_date"] = date_format(date_create($quotation_date),'d M, Y');
                 $nestedData["id"] = $viewBtn.$sendPoBtn;
                 $data[] = $nestedData;

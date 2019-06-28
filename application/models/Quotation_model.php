@@ -180,7 +180,7 @@ class Quotation_model extends CI_Model
 
         // for front ent data table
         function front_tot_rows($customer_id){
-            $this->db->select("q.quotation_id,q.quotation_date,q.enquiry_id,e.enq_ref");
+            $this->db->select("q.quotation_id,q.quotation_ref,q.quotation_date,q.enquiry_id,e.enq_ref");
             $this->db->from("quotation as q");
             $this->db->join('enquires as e','e.enquiry_id=q.enquiry_id');
             $this->db->where(array('e.customerid'=>$customer_id,'e.status'=>"1"));
@@ -190,7 +190,7 @@ class Quotation_model extends CI_Model
         }//End of tot_rows()
 
         function front_all_rows($limit, $start, $col, $dir,$customer_id){
-          $this->db->select("q.quotation_id,q.quotation_date,q.enquiry_id,e.enq_ref");
+          $this->db->select("q.quotation_id,q.quotation_ref,q.quotation_date,q.enquiry_id,e.enq_ref");
           $this->db->from("quotation as q");
           $this->db->join('enquires as e','e.enquiry_id=q.enquiry_id','left');
           $this->db->where(array('q.customer_id'=>$customer_id,'q.status'=>"1"));
@@ -205,7 +205,7 @@ class Quotation_model extends CI_Model
         }//End of all_rows()
 
         function front_search_rows($limit, $start, $keyword, $col, $dir,$customer_id){
-          $this->db->select("q.quotation_id,q.quotation_date,q.enquiry_id,e.enq_ref");
+          $this->db->select("q.quotation_id,q.quotation_ref,q.quotation_date,q.enquiry_id,e.enq_ref");
           $this->db->from("quotation as q");
           $this->db->join('enquires as e','e.enquiry_id=q.enquiry_id');
           $this->db->where(array('e.customerid'=>$customer_id,'e.status'=>"1"));
@@ -222,7 +222,7 @@ class Quotation_model extends CI_Model
         }//End of search_rows()
 
         function front_tot_search_rows($keyword,$customer_id){
-             $this->db->select("q.quotation_id,q.quotation_date,q.enquiry_id,e.enq_ref");
+             $this->db->select("q.quotation_id,q.quotation_ref,q.quotation_date,q.enquiry_id,e.enq_ref");
               $this->db->from("quotation as q");
               $this->db->join('enquires as e','e.enquiry_id=q.enquiry_id');
               $this->db->where(array('e.customerid'=>$customer_id,'e.status'=>"1"));
