@@ -14,20 +14,26 @@ class Partnerprograms extends MY_Controller {
         $this->load->model('quotes_model');
         $this->load->model('services_model');
         $this->load->model('suppliers_model');
+        $this->load->model('blogs_model');
         $this->load->helper('form');
     }
 
     function index() {
         $data = array("page" => "Partner Programs");
-        $this->load->view('requires/header', $data);
+        $this->view('requires/header', $data);
         $this->view('partnerprograms');
-        $this->load->view('requires/footer');
+        $this->view('requires/footer');
     }
-    
+
     function smesave() {
-        $this->load->library("form_validation");
-        $this->form_validation->set_rules("sme_name", "Name", "required");
-        $this->form_validation->set_error_delimiters("<font class='error animated fadeIn'>", "</font>");
+      $this->load->library("form_validation");
+       $this->form_validation->set_rules("sme_name", "Name", "required");
+       $this->form_validation->set_rules("sme_mobile", "Mobile", "required");
+       $this->form_validation->set_rules("sme_email", "Email", "required");
+       $this->form_validation->set_rules("sme_state", "State", "required");
+       $this->form_validation->set_rules("sme_district", "District", "required");
+       $this->form_validation->set_rules("sme_msg", "Message", "required");
+       $this->form_validation->set_error_delimiters("<font class='error animated fadeIn text-danger'>", "</font>");
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata("flashMsg", "Invalid inputs");
             $this->index();
@@ -49,15 +55,22 @@ class Partnerprograms extends MY_Controller {
                 "sme_msg" => $sme_msg
             );
             $this->partnerprograms_model->insert($data);
-            $this->session->set_flashdata("flashMsg", "Data has been successfully submitted!");
+            $this->session->set_flashdata("message", "Data has been successfully submitted!");
             redirect(site_url('partnerprograms'));
         }
     }//End of smesave()
-    
+
     function companysave() {
-        $this->load->library("form_validation");
-        $this->form_validation->set_rules("company_name", "Company name", "required");
-        $this->form_validation->set_error_delimiters("<font class='error animated fadeIn'>", "</font>");
+      $this->load->library("form_validation");
+     $this->form_validation->set_rules("company_name", "Company name", "required");
+     $this->form_validation->set_rules("contact_person", "Contact Person", "required");
+     $this->form_validation->set_rules("designation", "Designation", "required");
+     $this->form_validation->set_rules("conatct_no", "Conatct No", "required");
+     $this->form_validation->set_rules("contact_email", "Contact Email", "required");
+     $this->form_validation->set_rules("product_manufactured", "Product Manufactured", "required");
+     $this->form_validation->set_rules("office_address", "Office Address", "required");
+     $this->form_validation->set_rules("factory_address", "Factory Address", "required");
+     $this->form_validation->set_error_delimiters("<font class='error animated fadeIn text-danger'>", "</font>");
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata("flashMsg", "Invalid inputs");
             $this->index();
@@ -83,7 +96,7 @@ class Partnerprograms extends MY_Controller {
                 "factory_address" => $factory_address
             );
             $this->companies_model->insert($data);
-            $this->session->set_flashdata("flashMsg", "Data has been successfully submitted!");
+            $this->session->set_flashdata("message", "Data has been successfully submitted!");
             redirect(site_url('partnerprograms'));
         }
     }//End of companysave()

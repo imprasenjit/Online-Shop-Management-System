@@ -39,7 +39,7 @@
           <br/>
           <div class="row">
           <div class="col-md-6 pull-right">
-              <form action="<?=base_url('partnerprograms1/smesave')?>" method="post">
+              <form action="<?=base_url('partnerprograms/smesave')?>" method="post">
                   <div class="card-body">
                       <div class="row">
                           <div class=" col-md-12 form-group">
@@ -119,7 +119,7 @@
           <div>
           <div class="row">
           <div class="col-md-6">
-              <form action="<?=base_url('partnerprograms1/companysave')?>" method="post">
+              <form action="<?=base_url('partnerprograms/companysave')?>" method="post">
                   <div class="card-body">
                       <div class="row">
                           <div class=" col-md-12 form-group">

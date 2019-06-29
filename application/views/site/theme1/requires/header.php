@@ -112,32 +112,32 @@
                                                         Home
                                                     </a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
+                                                <li class="dropdown dropdown-mega" id="about">
                                                     <a id="about" class="" href="<?= base_url(); ?>home/about">
                                                         About
                                                     </a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
+                                                <li class="dropdown dropdown-mega" id="downloads">
                                                     <a class="" href="<?= base_url('home/downloads') ?>">
                                                         Downloads
                                                     </a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
+                                                <li class="dropdown dropdown-mega" id="partnerprograms">
                                                     <a class="" href="<?= base_url('home/partnerprograms') ?>">
                                                         Partner Programs
                                                     </a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
+                                                <li class="dropdown dropdown-mega" id="products">
                                                     <a class="" href="<?= base_url("view-all-sub-category"); ?>">
                                                         Products
                                                     </a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
-                                                    <a class="" href="<?= base_url("blogs1"); ?>">
+                                                <li class="dropdown dropdown-mega" id="blogs">
+                                                    <a class="" href="<?= base_url("blogs"); ?>">
                                                         Blogs
                                                     </a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
+                                                <li class="dropdown dropdown-mega" id="contact">
                                                     <a class="" href="<?= base_url(); ?>home/contact">
                                                         Contact
                                                     </a>

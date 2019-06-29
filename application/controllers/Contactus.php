@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Contactus extends CI_Controller {
+class Contactus extends MY_Controller {
 //This is dev
     function __construct() {
         parent::__construct();
@@ -12,6 +12,7 @@ class Contactus extends CI_Controller {
         $this->load->model('feedback_model');
         $this->load->model('services_model');
         $this->load->model('home_page_slider_model');
+        $this->load->model('blogs_model');
         $this->load->helper('form');
         $this->load->helper('sendmail');
     }//End of __construct()
@@ -20,9 +21,9 @@ class Contactus extends CI_Controller {
         $data = array("page" => "Contact us");
         $this->view('requires/header', $data);
         $this->view('contactus_view');
-        $this->view('requires/contact_page_footer');
+        $this->view('requires/footer');
     }//End of index()
-    
+
     function save() {
         $this->load->library("form_validation");
         $this->form_validation->set_rules("fullname", "Name", "required");

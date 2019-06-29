@@ -22,7 +22,7 @@
       <p class="post_date">  <?php echo date_format($date,"M d,Y H:i"); ?></p>
       <div class="blog_text_post"><?=$blog_details->blog?></div>
       <div class="socials">
-        <?php $share_url=urlencode(base_url()."blogs1/".url_title(trim($blog_details->blog_title), '-', TRUE)."/".$blog_details->blogs_id); ?>
+        <?php $share_url=urlencode(base_url()."blogs/".url_title(trim($blog_details->blog_title), '-', TRUE)."/".$blog_details->blogs_id); ?>
         <div class="wt-blog__post__cta__content">
             <h3>Don't forget to share this post!</h3>
             <a href="http://www.facebook.com/sharer.php?u=<?php echo $share_url;?>" target="_blank" class="social-icon si-borderless si-facebook si-small mb-0" title="Facebook">
@@ -65,7 +65,7 @@
 			</div>
       <?php foreach ($recent_blogs as $key => $recent): ?>
         <div class="post post-thumb">
-                  <a class="post-img" href="<?=base_url()?>blogs1/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>">
+                  <a class="post-img" href="<?=base_url()?>blogs/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>">
                     <?php if($recent->image){ ?>
                       <img src="<?=base_url($recent->image)?>" alt="">
                     <?php }else { ?>
@@ -74,7 +74,7 @@
 
                   </a>
                   <div class="post-body">
-                    <h3 class="post-title"><a href="<?=base_url()?>blogs1/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>"><?=$recent->blog_title;?></a></h3>
+                    <h3 class="post-title"><a href="<?=base_url()?>blogs/<?=url_title(trim($recent->blog_title), '-', TRUE)?>/<?=$recent->blogs_id;?>"><?=$recent->blog_title;?></a></h3>
                     <div class="post-meta">
                       <span class="post-date"><?php $blogdate=date_create($recent->created_at); echo "Posted on ".date_format($blogdate,"M d,Y H:i");?></span>
                     </div>
@@ -85,7 +85,7 @@
 				<ul>
           <?php if($tags){
             foreach ($tags as $key => $value) {?>
-              	<li><a href="<?=base_url()?>blogs1/<?=$value?>"><?=$value?></a></li>
+              	<li><a href="<?=base_url()?>blogs/<?=$value?>"><?=$value?></a></li>
             <?php }
           }?>
 				</ul>
