@@ -93,18 +93,11 @@
                                            <i class="si-icon-facebook"></i>
                                            <i class="si-icon-facebook"></i>
                                        </a>
-                                       <a href="#" class="social-icon si-dark si-twitter" title="Twitter">
-                                           <i class="si-icon-twitter"></i>
-                                           <i class="si-icon-twitter"></i>
+                                       <a href="#" class="social-icon si-dark si-linkedin" title="linkedin">
+                                       <i class="si-icon-linkedin"></i>
+                                              <i class="si-icon-linkedin"></i>
                                        </a>
-                                       <a href="#" class="social-icon si-dark si-instagram" title="Instagram">
-                                           <i class="si-icon-instagram"></i>
-                                           <i class="si-icon-instagram"></i>
-                                       </a>
-                                       <a href="#" class="social-icon si-dark si-vk" title="Vk">
-                                           <i class="si-icon-vk"></i>
-                                           <i class="si-icon-vk"></i>
-                                       </a>
+ 
                                    </div>
                                </div>
                            </section>

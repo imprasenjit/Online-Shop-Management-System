@@ -316,7 +316,7 @@
                                   <blockquote>
                                       <p><?=$feedback->message?></p>
                                   </blockquote>
-                                  <div class="carousel-info">
+                                  <div class="carousel-info mt-5">
                                       <div class="pull-left">
                                           <span class="testimonials-name"><?=$feedback->name?></span>
                                           <span class="testimonials-post"><?=$feedback->email?></span>
