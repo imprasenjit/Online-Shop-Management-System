@@ -1,6 +1,6 @@
 <?php
 if (!defined('BASEPATH'))exit('No direct script access allowed');
-class Downloads extends Aipl_admin {
+class Downloads extends MY_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('cart');

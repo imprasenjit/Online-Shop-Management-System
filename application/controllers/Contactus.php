@@ -18,9 +18,9 @@ class Contactus extends CI_Controller {
 
     function index() {
         $data = array("page" => "Contact us");
-        $this->load->view('site/requires/header', $data);
-        $this->load->view('site/contactus_view');
-        $this->load->view('site/requires/contact_page_footer');
+        $this->view('requires/header', $data);
+        $this->view('contactus_view');
+        $this->view('requires/contact_page_footer');
     }//End of index()
     
     function save() {
@@ -49,9 +49,9 @@ class Contactus extends CI_Controller {
 
     function thankyou() {
         $data = array("page" => "Thank you for contacting us");
-        $this->load->view('site/requires/header', $data);
-        $this->load->view('site/thankyou_view');
-        $this->load->view('site/requires/contact_page_footer');
+        $this->view('requires/header', $data);
+        $this->view('thankyou_view');
+        $this->view('requires/contact_page_footer');
     }//End of thankyou()
 
 }//End of Contactus

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Partnerprograms extends CI_Controller {
+class Partnerprograms extends MY_Controller {
 
     function __construct() {
         parent::__construct();
@@ -20,7 +20,7 @@ class Partnerprograms extends CI_Controller {
     function index() {
         $data = array("page" => "Partner Programs");
         $this->load->view('requires/header', $data);
-        $this->load->view('site/partnerprograms');
+        $this->view('partnerprograms');
         $this->load->view('requires/footer');
     }
     

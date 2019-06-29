@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-class Products extends CI_Controller
+class Products extends MY_Controller
 {
     function __construct()
     {
@@ -12,27 +12,28 @@ class Products extends CI_Controller
         $this->load->model('sub_category_model');
         $this->load->model('category_model');
         $this->load->model('attribute_model');
+        $this->load->model('blogs_model');
         $this->load->library('form_validation');
 		$this->load->helper('form');
     }
     public function index()
-    {
+    {        
         $products = $this->byproducts_model->index_limit(10);
         $data = array(
             'products_data' => $products,
         );
-        $this->load->view('site/requires/header',array('page'=>'Products'));
-        $this->load->view('site/products/products_list', $data);
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header',array('page'=>'Products'));
+        $this->view('products/products_list', $data);
+        $this->view('requires/footer');
 	}
 	
 	public function product_view($id){
 	        $data=array(
 			'product'=>$this->byproducts_model->get_by_id($id)
 			);
-			$this->load->view('site/requires/header',array('page'=>'product'));
-			$this->load->view('site/product_view', $data);
-			$this->load->view('site/requires/footer');
+			$this->view('requires/header',array('page'=>'product'));
+			$this->view('product_view', $data);
+			$this->view('requires/footer');
 		}
 	
 
@@ -43,9 +44,9 @@ class Products extends CI_Controller
             'products_data' => $products,
             'category'=>'Steel'
         );
-        $this->load->view('site/requires/header',array('title'=>'product'));
-		$this->load->view('site/products/products_list', $data);
-		$this->load->view('site/requires/footer');
+        $this->view('requires/header',array('title'=>'product'));
+		$this->view('products/products_list', $data);
+		$this->view('requires/footer');
     }
 	
 	public function category($category) 
@@ -54,21 +55,20 @@ class Products extends CI_Controller
         $data = array(
             'products_data' => $products,
         );
-        $this->load->view('site/requires/header',array('page'=>'Products'));
-        $this->load->view('site/products/products_list', $data);
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header',array('page'=>'Products'));
+        $this->view('products/products_list', $data);
+        $this->view('requires/footer');
     }
 
     public function subcategory()
     {
-
         $sub_categories = $this->sub_category_model->get_all();
         $data = array(
             'subcategory_list' => $sub_categories,
         );
-        $this->load->view('site/requires/header',array('page'=>'Products'));
-        $this->load->view('site/products/category_list', $data);
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header',array('page'=>'Products'));
+        $this->view('products/category_list', $data);
+        $this->view('requires/footer');
     }
 	
     public function create() 
@@ -86,9 +86,9 @@ class Products extends CI_Controller
 			'picture' => set_value('picture'),
 			'status' => set_value('status'),
 		);
-        $this->load->view('site/requires/header',array('title'=>'products'));
-        $this->load->view('site/products/products_form', $data);
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header',array('title'=>'products'));
+        $this->view('products/products_form', $data);
+        $this->view('requires/footer');
     }
     public function create_action() 
     {
@@ -128,7 +128,7 @@ class Products extends CI_Controller
 		'picture' => set_value('picture', $row->picture),
 		'status' => set_value('status', $row->status),
 	    );
-            $this->load->view('site/products/products_form', $data);
+            $this->view('products/products_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('products'));

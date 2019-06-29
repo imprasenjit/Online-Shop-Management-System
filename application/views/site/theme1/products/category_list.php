@@ -20,11 +20,10 @@
 		</div>
 	</div>
 	<div id="products" class="row">
-		<div class="col-md-3 categories">
+		<div class="col-md-3 pl-4 categories">
 			<div class="well no-padding" style="background-color: #fff;border: 1px solid #fff;">
 				<ul class="nav nav-list nav-menu-list-style">
 					<?php
-					die;
 					$categories = $this->category_model->get_all();
 					foreach ($categories as $category) { ?>
 						<li><label class="tree-toggle nav-header glyphicon-icon-rpad">
@@ -45,6 +44,7 @@
 										<ul class="nav nav-list tree bullets">
 											<?php
 											$i = 0;
+
 											$products = $this->byproducts_model->get_all_by_subcategory($sub_category->id);
 											foreach ($products as $product) { ?>
 												<li><a href="<?= base_url(); ?>products/product_view/<?= $product->id ?>"><?= $product->product_name; ?></a></li>
@@ -55,6 +55,7 @@
 							</ul>
 						</li>
 					<?php } ?>
+
 				</ul>
 			</div>
 		</div>
@@ -64,18 +65,19 @@
 			if ($this->session->flashdata('flashMsg') != null) {
 				echo $this->session->flashdata('flashMsg');
 			}
+
 			?>
 			<?php
 			$this->load->helper('text');
-			foreach ($products_data as $byproducts) {
+			foreach ($subcategory_list as $row) {
 				?>
 				<div class="col-4">
-				<a class="product-link" href="<?= base_url("products/product_view/" . $byproducts->id) ?>">
+				<a class="product-link" href="<?= base_url("view-all-products-by-category/" . $row->id) ?>">
 					<div class="item grid-group-item">
 						<div class="thumbnail">
-							<img class="group list-group-image" src="<?php echo base_url($byproducts->picture); ?>" alt="" />
+							<img class="group list-group-image" src="<?php echo base_url($row->picture); ?>" />
 							<h4 class="text-center product-title">
-								<?php echo $byproducts->product_name; ?>
+								<?php echo $row->sub_category; ?>
 							</h4>
 						</div>
 					</div>
@@ -83,7 +85,7 @@
 			</div>
 			<?php } ?>
 		</div>
-		</div>
+	</div>
 	</div>
 </div>
 </div>

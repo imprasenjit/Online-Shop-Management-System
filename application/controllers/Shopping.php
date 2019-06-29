@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Shopping extends CI_Controller
+class Shopping extends MY_Controller
 {
     /**
      * __construct
@@ -159,9 +159,9 @@ public function edit()
  */
 public function billing()
 {
-    $this->load->view('site/requires/header', array('page' => 'Enquiry'));
-    $this->load->view('site/shopping/billing_view');
-    $this->load->view('site/requires/footer');
+    $this->view('requires/header', array('page' => 'Enquiry'));
+    $this->view('shopping/billing_view');
+    $this->view('requires/footer');
 }
 /**
  * save_order
@@ -218,9 +218,9 @@ public function save_order()
  */
 public function billing_success()
 {
-    $this->load->view('site/requires/header', array('page' => 'Success'));
-    $this->load->view('site/shopping/billing_success');
-    $this->load->view('site/requires/footer');
+    $this->view('requires/header', array('page' => 'Success'));
+    $this->view('shopping/billing_success');
+    $this->view('requires/footer');
 }
 }
 ?>

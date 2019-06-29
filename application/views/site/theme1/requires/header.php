@@ -107,23 +107,23 @@
                                       <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
                                           <nav class="collapse">
                                             <ul class="nav flex-column flex-lg-row" id="mainNav">
-                                                <li class="dropdown dropdown-mega">
-                                                    <a class="" href="<?= base_url(); ?>home1">
+                                                <li class="dropdown dropdown-mega" id="home">
+                                                    <a class="" href="<?= base_url(); ?>home" >
                                                         Home
                                                     </a>
                                                 </li>
                                                 <li class="dropdown dropdown-mega">
-                                                    <a id="about" class="" href="<?= base_url(); ?>home1/about">
+                                                    <a id="about" class="" href="<?= base_url(); ?>home/about">
                                                         About
                                                     </a>
                                                 </li>
                                                 <li class="dropdown dropdown-mega">
-                                                    <a class="" href="<?= base_url('home1/downloads') ?>">
+                                                    <a class="" href="<?= base_url('home/downloads') ?>">
                                                         Downloads
                                                     </a>
                                                 </li>
                                                 <li class="dropdown dropdown-mega">
-                                                    <a class="" href="<?= base_url('home1/partnerprograms') ?>">
+                                                    <a class="" href="<?= base_url('home/partnerprograms') ?>">
                                                         Partner Programs
                                                     </a>
                                                 </li>
@@ -138,7 +138,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="dropdown dropdown-mega">
-                                                    <a class="" href="<?= base_url(); ?>home1/contact">
+                                                    <a class="" href="<?= base_url(); ?>home/contact">
                                                         Contact
                                                     </a>
                                                 </li>
