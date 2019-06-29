@@ -24,7 +24,6 @@
 			<div class="well no-padding" style="background-color: #fff;border: 1px solid #fff;">
 				<ul class="nav nav-list nav-menu-list-style">
 					<?php
-					die;
 					$categories = $this->category_model->get_all();
 					foreach ($categories as $category) { ?>
 						<li><label class="tree-toggle nav-header glyphicon-icon-rpad">

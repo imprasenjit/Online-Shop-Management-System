@@ -32,7 +32,7 @@ class Products extends MY_Controller
 			'product'=>$this->byproducts_model->get_by_id($id)
 			);
 			$this->view('requires/header',array('page'=>'product'));
-			$this->view('product_view', $data);
+			$this->view('products/product_view', $data);
 			$this->view('requires/footer');
 		}
 	
