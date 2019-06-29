@@ -1,4 +1,9 @@
 ﻿
+$(document).ready(function(){
+    $(document).on('click','#sign_in_button',function(){
+        $('#signinmenudropdown').toggle();
+    });
+});
 (function () {
     "use strict";
 

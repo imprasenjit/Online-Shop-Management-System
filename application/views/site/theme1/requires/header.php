@@ -52,6 +52,7 @@
                                   </div>
                                   <div class="header-column justify-content-end">                                     
                                       <div class="d-none d-md-block mb-0">
+                                          <a class="cart_modal"><i class="fa fa-shopping-cart"></i></a>
                                           <a href="#" class="social-icon si-borderless si-facebook si-small mb-0" title="Facebook">
                                               <i class="si-icon-facebook"></i>
                                               <i class="si-icon-facebook"></i>
@@ -124,8 +125,8 @@
                                                 </li>
                                                   <?php } else { ?>
                                                 <li class="dropdown dropdown-mega dropdown-mega-signin signin ml-lg-3" id="headerAccount">
-                                                    <a class="dropdown-item pl-lg-4" href="#!">Sign In</a>
-                                                    <ul class="dropdown-menu">
+                                                    <a class="dropdown-item pl-lg-4" id="sign_in_button" href="#!">Sign In</a>
+                                                    <ul class="dropdown-menu" id="signinmenudropdown">
                                                         <li>
                                                             <div class="dropdown-mega-content">
                                                                 <div class="row">
@@ -139,7 +140,7 @@
                                                                               <div id="login_with_email_div">
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col mb-2">
-                                                                                        <input type="email"  maxlength="100" class="form-control" name="email" id="l_email" placeholder="Username" required><small id="emailHelp" class="form-text text-muted">We'll never share your Email with
+                                                                                        <input type="email" autocomplete="off" maxlength="100" class="form-control" name="email" id="l_email" placeholder="Username" required><small id="emailHelp" class="form-text text-muted">We'll never share your Email with
                                                                                             anyone else.</small>
                                                                                     </div>
                                                                                 </div>
@@ -148,15 +149,7 @@
                                                                                         <input type="password"  class="form-control" name="password" id="password" placeholder="Password" required>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="form-row">
-                                                                                    <!-- <div class="form-group col">
-                                                                                        <div class="form-check checkbox-custom checkbox-default">
-                                                                                            <input class="form-check-input" type="checkbox" id="signInRemember">
-                                                                                            <label class="form-check-label" for="signInRemember">
-                                                                                                Remember me
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div> -->
+                                                                                <div class="form-row">                 
                                                                                     <div class="form-group col text-right">
                                                                                         <a href="#" id="headerRecover" class="forgot-pw text-color-dark d-block">Forgot password?</a>
                                                                                     </div>
@@ -189,9 +182,11 @@
                                                                                 </div>
                                                                               </div>
                                                                             </form>
-                                                                            <hr/>
-                                                                            <div class="form-group text-center" id="btn_login_with_otp" style="font-size: medium"><a href="#!" >OTP LOGIN</a></div>
-                                                                            <div class="form-group text-center" id="btn_login_with_email" style="font-size: medium; display:none;"><a href="#!" >EMAIL LOGIN</a></div>
+                                                                            
+                                                                            <div class="form-group text-center" id="btn_login_with_otp" style="font-size: medium"><a href="#!" class="text-color-primary pl-0" >OTP LOGIN</a></div>
+                                                                            <div class="form-group text-center" id="btn_login_with_email" style="font-size: medium; display:none;">
+                                                                            <a href="#!" class="text-color-primary pl-0" >EMAIL LOGIN</a>
+                                                                        </div>
                                                                         </div>
                                                                         <div class="signup-form" style="overflow-y: auto;overflow-x: hidden; max-height: 400px;">
                                                                             <!-- <span class="top-sub-title text-color-light-3">MEMBERSHIP</span> -->

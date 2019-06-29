@@ -17,7 +17,7 @@
   width: 30px;
   height: 30px;
   text-align: center;
-  padding: 3px 0;
+  padding: 3px 7px;
   font-size: 16px;
   line-height: 1.42;
   border-radius: 15px;
@@ -1090,4 +1090,14 @@ ul.bullets {
 }
 .v-portfolio-items > li figure img{
     height: 250px !important;
+}
+.cart_modal{
+    width: 30px;
+height: 40px;
+font-size: 14px;
+line-height: 35px !important;
+cursor: pointer;
+}
+#cart_modal .modal-body{
+padding: 0 !important;
 }

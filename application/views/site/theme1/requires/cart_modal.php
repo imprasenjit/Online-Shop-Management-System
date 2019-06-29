@@ -1,12 +1,12 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="cart_modal">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" tabindex="-1" role="dialog" id="cart_modal" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title">Enquiry Cart</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Enquiry Cart</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" >
                 <div id="cartdetails">
                 <?php                           
 						if(count($this->cart->contents())==0){
@@ -62,6 +62,7 @@
                         <?php } ?>
                         <?php } ?>
                     </table>
+                </div>
                 </div>
                 <div class="modal-footer">
                     <a href="<?=base_url("view-all-sub-category");?>" class="btn btn-primary">Add Products</a>

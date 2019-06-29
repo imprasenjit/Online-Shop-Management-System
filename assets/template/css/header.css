@@ -1129,7 +1129,6 @@ html:not(.sticky-header-active) #header.header-transparent-sticky-deactive .head
     #header .header-nav-main nav > ul > li.dropdown .dropdown-menu li a:not(.btn) {
         font-size: 13px;
         font-weight: 500;
-        padding: 8px 30px;
         position: relative;
         text-transform: none;
         -webkit-transition: ease transform 300ms, ease color 300ms;
@@ -1206,15 +1205,13 @@ html:not(.sticky-header-active) #header.header-transparent-sticky-deactive .head
         border-bottom: 0;
     }
 
-    #header .header-nav-main nav > ul > li.dropdown.open > .dropdown-menu, #header .header-nav-main nav > ul > li.dropdown:hover > .dropdown-menu {
+    #header .header-nav-main nav > ul > li.dropdown.open > .dropdown-menu, #header .header-nav-main nav > ul > li.dropdown > .dropdown-menu {
         top: 100%;
         left: 0;
+        display: none;
         opacity: 1;
         margin-top: 0;
-        display: block;
-        z-index: inherit;
     }
-
 
     /*#header .header-nav .header-nav-main nav > ul > li.dropdown .dropdown-menu:before {
         left: 30px;
@@ -1279,7 +1276,7 @@ html:not(.sticky-header-active) #header.header-transparent-sticky-deactive .head
     }
 
     #header .header-nav-main nav > ul > li.dropdown-mega .dropdown-mega-content {
-        padding: 40px 20px;
+        padding: 20px 20px;
     }
 
     #header .header-nav-main nav > ul > li.dropdown-mega .dropdown-mega-content > .row > div {
@@ -3004,7 +3001,6 @@ html.sticky-wrapper-active .side-header-btn-toggle {
     top: 100%;
     right: 0 !important;
     left: auto;
-    pointer-events: none;
     background: #FFF;
 }
 
