@@ -630,6 +630,7 @@ ul.nav-menu-list-style>li {
     position: relative;
     font-size: 16px;
     font-weight: 500;
+    width: 100%;
 }
 
 ul.nav-menu-list-style>li a {

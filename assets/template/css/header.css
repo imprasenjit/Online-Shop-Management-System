@@ -1209,10 +1209,12 @@ html:not(.sticky-header-active) #header.header-transparent-sticky-deactive .head
     #header .header-nav-main nav > ul > li.dropdown.open > .dropdown-menu, #header .header-nav-main nav > ul > li.dropdown:hover > .dropdown-menu {
         top: 100%;
         left: 0;
-        display: block;
         opacity: 1;
         margin-top: 0;
+        display: block;
+        z-index: inherit;
     }
+
 
     /*#header .header-nav .header-nav-main nav > ul > li.dropdown .dropdown-menu:before {
         left: 30px;

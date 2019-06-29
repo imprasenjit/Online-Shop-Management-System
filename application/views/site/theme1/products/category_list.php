@@ -10,25 +10,20 @@
 </div>
 <div class="container">
 	<div class="row design-btns">
-		<div class="col-md-3">
-			<h2></h2>
-		</div>
-		<div class="col-md-9">
-			<div class="col-md-4">
-				<h3>Products</h3>
-			</div>
+		<div class="col-md-9 offset-md-3">
+				<h2>Products</h2>
 		</div>
 	</div>
 	<div id="products" class="row">
-		<div class="col-md-3 pl-4 categories">
+		<div class="col-md-4 categories">
 			<div class="well no-padding" style="background-color: #fff;border: 1px solid #fff;">
 				<ul class="nav nav-list nav-menu-list-style">
 					<?php
 					$categories = $this->category_model->get_all();
 					foreach ($categories as $category) { ?>
 						<li><label class="tree-toggle nav-header glyphicon-icon-rpad">
-								<span class="glyphicon glyphicon-link m5"></span><?= $category->category_name; ?>
-								<span class="menu-collapsible-icon glyphicon glyphicon-minus"></span>
+								<?= $category->category_name; ?>
+								<i class="menu-collapsible-icon fa fa-angle-down" aria-hidden="true"></i>
 							</label>
 							<ul class="nav nav-list tree bullets showproducts">
 								<?php
@@ -59,7 +54,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<div class="row">
 			<?php
 			if ($this->session->flashdata('flashMsg') != null) {
@@ -109,10 +104,10 @@
 	var i = true;
 	$('.tree-toggle').click(function() {
 		$(this).parent().children('ul.tree').toggle(500, "easeOutQuint", function() {
-			if ($(this).parent().children('label').children(".glyphicon").is(".glyphicon-plus")) {
-				$(this).parent().children('label').children(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+			if ($(this).parent().children('label').children(".fa").is(".fa-angle-down")) {
+				$(this).parent().children('label').children(".fa").removeClass("fa-angle-down").addClass("fa-angle-right");
 			} else {
-				$(this).parent().children('label').children(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+				$(this).parent().children('label').children(".fa").removeClass("fa-angle-right").addClass("fa-angle-down");
 			}
 		});
 	});

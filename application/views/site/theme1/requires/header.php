@@ -50,27 +50,7 @@
                                           <a href="mailto:sales@supplyorigin.com">sales@supplyorigin.com</a>
                                       </span>
                                   </div>
-                                  <div class="header-column justify-content-end">
-                                      <!-- <ul class="nav">
-                                          <li class="nav-item">
-                                              <a class="nav-link" href="contact-us-1.html">Contact Us</a>
-                                          </li>
-                                          <li class="nav-item">
-                                              <a class="nav-link" href="page-help.html">Help</a>
-                                          </li>
-                                          <li class="nav-item">
-                                              <a href="#" class="nav-link dropdown-menu-toggle" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                  English	<i class="fa fa-angle-down fa-sm"></i>
-                                              </a>
-                                              <ul class="dropdown-menu dropdown-menu-right dropdown-language" aria-labelledby="dropdownLanguage">
-                                                  <li class="menu-header">Select your language</li>
-                                                  <li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-us" alt="English" /> USA</a></li>
-                                                  <li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-fr" alt="France" /> France</a></li>
-                                                  <li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-es" alt="Spain" /> Spain</a></li>
-                                                  <li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-de" alt="Germany" /> Germany</a></li>
-                                              </ul>
-                                          </li>
-                                      </ul> -->
+                                  <div class="header-column justify-content-end">                                     
                                       <div class="d-none d-md-block mb-0">
                                           <a href="#" class="social-icon si-borderless si-facebook si-small mb-0" title="Facebook">
                                               <i class="si-icon-facebook"></i>
@@ -79,15 +59,7 @@
                                           <a href="#" class="social-icon si-borderless si-linkedin si-small mb-0" title="LinkeIn">
                                               <i class="si-icon-linkedin"></i>
                                               <i class="si-icon-linkedin"></i>
-                                          </a>
-                                          <!-- <a href="#" class="social-icon si-borderless si-twitter si-small mb-0" title="Twitter">
-                                              <i class="si-icon-twitter"></i>
-                                              <i class="si-icon-twitter"></i>
-                                          </a>
-                                          <a href="#" class="social-icon si-borderless si-instagram si-small mb-0" title="Instagram">
-                                              <i class="si-icon-instagram"></i>
-                                              <i class="si-icon-instagram"></i>
-                                          </a> -->
+                                          </a>                                        
                                       </div>
                                   </div>
                               </div>
