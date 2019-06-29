@@ -5,6 +5,17 @@ class MY_Controller extends CI_Controller
   {
     parent::__construct();
   } //End of __construct()
+
+  public function view($viewname,$data=NULL)
+  {
+    $default_theme=1;
+    $theme_folder=array(
+      0=>"site/",
+      1=>"site/theme1/"
+    );
+    $this->load->view($theme_folder[$default_theme].$viewname,$data);
+  }
+
 } //End of MY_Controller
 class Aipl_admin extends MY_Controller
 {

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Home extends CI_Controller {
+class Home extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('cart');		
@@ -10,51 +10,52 @@ class Home extends CI_Controller {
 		$this->load->model('associated_brands_model');
 		$this->load->model('feedback_model');
 		$this->load->model('services_model');
+		$this->load->model('blogs_model');
 		$this->load->model('home_page_slider_model');
 		$this->load->helper('form');
 	}
-	public function index() {
+	public function index() {	
 		$data = array("page" => "Home");
-		$this->load->view('site/requires/header', $data);
-		$this->load->view('site/home');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header',$data);
+		$this->view('home');
+		$this->view('requires/footer');
 	}
 	public function contact() {
 		$data = array("page" => "Contact");
-		$this->load->view('site/requires/header',$data);
-		$this->load->view('site/contact');
-		$this->load->view('site/requires/contact_page_footer');
+		$this->view('requires/header',$data);
+		$this->view('contact');
+		$this->view('requires/contact_page_footer');
 	}
 	public function about() {
 		$data = array("page" => "About");
-		$this->load->view('site/requires/header',$data);
-		$this->load->view('site/about');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header',$data);
+		$this->view('about');
+		$this->view('requires/footer');
 	}
 	public function services() {
-		$this->load->view('site/requires/header');
-		$this->load->view('site/services');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header');
+		$this->view('services');
+		$this->view('requires/footer');
 	}
     function downloads() {
         $data = array("page" => "Downloads");
-        $this->load->view('site/requires/header', $data);
-        $this->load->view('site/downloads_view');
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header', $data);
+        $this->view('downloads_view');
+        $this->view('requires/footer');
     }
     function partnerprograms() {
 		$this->load->model("suppliers_model");
         $data = array("page" => "Partner Programs");
-        $this->load->view('site/requires/header', $data);
-        $this->load->view('site/partnerprograms');
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header', $data);
+        $this->view('partnerprograms');
+        $this->view('requires/footer');
     }
 	public function feedback()
 	{
 		$data = array("page" => "Feedback");
-		$this->load->view('site/requires/header',$data);
-		$this->load->view('site/get_feedback');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header',$data);
+		$this->view('get_feedback');
+		$this->view('requires/footer');
 	}
 	
 	public function save_feedback_form()
@@ -72,9 +73,9 @@ class Home extends CI_Controller {
 	}
 	public function get_services()
 	{
-		$this->load->view('site/requires/header');
-		$this->load->view('site/services');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header');
+		$this->view('services');
+		$this->view('requires/footer');
 	}
 	
 	public function save_services_form()
