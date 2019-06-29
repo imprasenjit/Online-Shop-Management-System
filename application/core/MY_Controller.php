@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller
     $theme_folder=array(
       0=>"site/theme0/",
       1=>"site/theme1/"
-    );
+    );    
     $this->load->view($theme_folder[$default_theme].$viewname,$data);
   }
 

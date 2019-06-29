@@ -157,9 +157,9 @@
 <!-- Mirrored from bootstraptemplates.net/vertex/index-11.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Jun 2019 10:30:54 GMT -->
 </html>
 
-<?php $this->load->view("site/requires/cart_modal.php"); ?>
-<?php $this->load->view("site/requires/login_modal.php"); ?>
-<?php $this->load->view("site/requires/register_modal.php"); ?>
+<?php $this->view("site/theme1/requires/cart_modal"); ?>
+<?php $this->view("site/theme1/requires/login_modal"); ?>
+<?php $this->view("site/theme1/requires/register_modal"); ?>
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/move-top.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/easing.js"></script>

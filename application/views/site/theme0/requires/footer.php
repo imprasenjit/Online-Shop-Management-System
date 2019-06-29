@@ -84,9 +84,9 @@
         </div>
     </div>
 </div>
-<?php $this->load->view("site/requires/cart_modal.php"); ?>
-<?php $this->load->view("site/requires/login_modal.php"); ?>
-<?php $this->load->view("site/requires/register_modal.php"); ?>
+<?php $this->view("requires/cart_modal"); ?>
+<?php $this->view("requires/login_modal"); ?>
+<?php $this->view("requires/register_modal"); ?>
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/move-top.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/easing.js"></script>
