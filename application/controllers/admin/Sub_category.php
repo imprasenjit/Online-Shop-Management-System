@@ -63,7 +63,7 @@ class Sub_category extends Aipl_admin {
         } else {
             $this->load->helper("fileupload");
             if ($this->input->post("upload_picture")) {
-                $picture = moveFile(0, $this->input->post("upload_picture"), "picture");
+                $picture = moveFile(3, $this->input->post("upload_picture"), "picture");
             }
             $data = array(
                 'category' => $this->input->post('category', TRUE),
@@ -111,7 +111,7 @@ class Sub_category extends Aipl_admin {
         } else {
             $this->load->helper("fileupload");
             if ($this->input->post("upload_picture")) {
-                $picture = moveFile(0, $this->input->post("upload_picture"), "picture");
+                $picture = moveFile(3, $this->input->post("upload_picture"), "picture");
                 $data = array('picture' => $picture[0]);
                 $this->sub_category_model->update($this->input->post('id', TRUE), $data);
             }
