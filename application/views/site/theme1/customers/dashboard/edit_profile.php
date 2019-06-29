@@ -5,8 +5,8 @@
 		<div class="col-md-10">
 			<div class="profile-content" style="margin-top:10px;">
 				<div class="col-md-12">
-						<div class="panel panel-default">
-							<div class="panel-heading" style="font-weight:800;">
+						<div class="card">
+							<div class="card-header " style="font-weight:800;">
                 <div class="row">
                   <div class="col-md-2">
                     <a href="<?php echo site_url('customers/dashboard') ?>" class="" ><i class="fa fa-arrow-left" aria-hidden="true"></i></a>

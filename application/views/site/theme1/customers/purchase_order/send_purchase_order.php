@@ -5,11 +5,11 @@
 		</div>
 		<div class="col-md-10">
 			<div class="panel-group" style="margin-top:50px;">
-				<div class="panel panel-default">
-					<div class="panel-heading">
+				<div class="card">
+					<div class="card-header">
 						Send Purchase order <span class="pull-right"> Quotation No : <?= $quotation_details->quotation_ref; ?></span>
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<form method="post" id="send_purchase_order_form" action="<?= base_url("customers/dashboard/send_po") ?>">
 							<?= validation_errors(); ?>
 							<?php

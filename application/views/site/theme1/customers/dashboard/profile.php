@@ -1,5 +1,5 @@
 <div class="profile-sidebar">
-	<div class="profile-userpic">
+	<div class="profile-userpic" style="text-align:center;">
 		<img src="<?= base_url(); ?>assets/images/111.png" alt="" style="border-radius: 50% !important;border:1px solid #d8d5d5;padding:7px" class="img-responsive">
 	</div>
 	<div class="profile-usertitle" align="center">
@@ -40,13 +40,13 @@
 
 			<li>
 				<a href="<?= base_url("customers/customer/manage_address"); ?>">
-					<i class="glyphicon glyphicon-folder-open"></i>
+					<i class="fa fa-shopping-bag"></i>
 
 					Manage Address</a>
 			</li>
 			<li>
 				<a href="<?= base_url("customers/customer/edit_profile/"); ?>">
-					<i class="glyphicon glyphicon-user"></i>
+					<i class="fa fa-user"></i>
 					Account Settings </a>
 			</li>
 
