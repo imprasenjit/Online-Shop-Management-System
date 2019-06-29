@@ -45,7 +45,7 @@ class Shopping extends MY_Controller
             'others' => $others,
         );
         $this->cart->insert($insert_data);
-        $this->view("requires/cart_table",$this->cart->contents());
+        $this->view("requires/cart_table",array("cart"=>$this->cart->contents()));
  }
 /**
  * remove
