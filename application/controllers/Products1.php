@@ -23,7 +23,7 @@ class Products1 extends CI_Controller
             'products_data' => $products,
         );
         $this->load->view('site/theme1/requires/new_header',array('page'=>'Products'));
-        $this->load->view('site/products/products_list', $data);
+        $this->load->view('site/theme1/products/products_list', $data);
         $this->load->view('site/theme1/requires/new_footer');
 	}
 

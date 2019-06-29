@@ -30,7 +30,6 @@
                 <link href="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.theme.default.css" rel="stylesheet" />
                 <link href="<?= base_url(); ?>assets/template/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
                 <link href="<?= base_url(); ?>assets/template/css/skin/default.css" rel="stylesheet">
-                <link href="<?= base_url(); ?>assets/template/css/custom.css" rel="stylesheet">
                 <link href="<?= base_url(); ?>assets/template/custom.css" rel="stylesheet" type="text/css" media="all" />
                 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script defer src="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
