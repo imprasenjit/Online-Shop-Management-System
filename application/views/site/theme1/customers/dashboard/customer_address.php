@@ -5,7 +5,7 @@
 </style>
 <div class="row profile scrollingContainer">
   <div class="col-md-2">
-    <?php $this->load->view("site/customers/dashboard/profile"); ?>
+    <?php $this->load->view("site/theme1/customers/dashboard/profile"); ?>
   </div>
   <div class="col-md-10">
 

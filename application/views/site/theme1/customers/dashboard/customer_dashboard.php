@@ -1,6 +1,6 @@
 	<div class="row profile">
 		<div class="col-md-2">
-			<?php $this->load->view("site/customers/dashboard/profile"); ?>
+			<?php $this->view("site/theme1/customers/dashboard/profile"); ?>
 		</div>
 		<div class="col-md-10">
 			<?php echo $this->breadcrumbs->show(); ?>
@@ -70,7 +70,7 @@
 								</tr>
 							</thead>
 						</table>
-						
+
 					</div>
 				</div>
 			</div>

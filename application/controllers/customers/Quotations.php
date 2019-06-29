@@ -14,13 +14,14 @@ class Quotations extends Aipl_admin
         $this->load->model('products_model');
         $this->load->model('quotation_model');
         $this->load->model('customers_model');
+        $this->load->model('blogs_model');
         $this->load->library('form_validation');
     }
     public function index()
     {
-        $this->load->view('site/requires/header', array('page' => 'Quotation'));
-        $this->load->view('site/customers/quotation/quotation_list');
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header', array('page' => 'Quotation'));
+        $this->view('customers/quotation/quotation_list');
+        $this->view('requires/footer');
     }
 
     public function getQuatations(){

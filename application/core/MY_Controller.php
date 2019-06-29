@@ -8,11 +8,13 @@ class MY_Controller extends CI_Controller
 
   public function view($viewname,$data=NULL)
   {
+  //  var_dump($viewname);
     $default_theme=1;
     $theme_folder=array(
       0=>"site/theme0/",
       1=>"site/theme1/"
-    );    
+    );
+    //var_dump($theme_folder[$default_theme].$viewname);
     $this->load->view($theme_folder[$default_theme].$viewname,$data);
   }
 

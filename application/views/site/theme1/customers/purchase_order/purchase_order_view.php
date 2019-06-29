@@ -1,6 +1,6 @@
 	<div class="row profile">
 		<div class="col-md-2">
-			<?php $this->load->view("site/customers/dashboard/profile"); ?>
+			<?php $this->load->view("site/theme1/customers/dashboard/profile"); ?>
 		</div>
 		<div class="col-md-10">
 		<?php echo $this->breadcrumbs->show(); ?>
@@ -19,8 +19,8 @@
 											Subject: Purchase Order<br />
 											Format for product selection &amp; tax calculation as per Quotation and PI given previously.<br />
 											Terms &amp; Conditions valid as per quotation received.<br /><br/>
-											Ref : With reference to Quotation No. <?=$quotation_ref?> 
-										
+											Ref : With reference to Quotation No. <?=$quotation_ref?>
+
                                                     <?php
 													$product_id_s = json_decode($product, true);
 													$quantity_decoded = json_decode($quantity, true);
