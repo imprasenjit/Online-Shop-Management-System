@@ -119,6 +119,9 @@ class Sub_category extends Aipl_admin {
                 'category' => $this->input->post('category', TRUE),
                 'sub_category' => $this->input->post('sub_category', TRUE),
                 'description' => $this->input->post('description', TRUE),
+                //'picture' => $this->input->post('picture',TRUE),
+                //'picture' => $picture[0],
+                'status' => $this->input->post('status', TRUE),
             );
             $this->sub_category_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');

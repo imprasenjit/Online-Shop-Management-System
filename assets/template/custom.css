@@ -172,6 +172,7 @@ p.w3layouts_dummy_para {
 #brands-carousel .item img {
     width: 100px;
     height: 70px;
+    margin: auto;
 }
 
 .mybtn-footer-form, .add_to_cart, .blue_button {
@@ -837,8 +838,8 @@ font-size: x-large;
 .testimonials blockquote::before {
     width: 0;
     height: 0;
-	right: 0;
-	bottom: 0;
+	right: 20px;
+	bottom: -20px;
 	content: " ";
 	display: block;
 	position: absolute;
@@ -852,13 +853,13 @@ font-size: x-large;
     width: 0;
     height: 0;
     right: 0;
-    bottom: 0;
+    bottom: -10;
     content: " ";
     display: block;
     position: absolute;
     border-style: solid;
     border-width: 20px 20px 0 0;
-    border-color: #e63f0c transparent transparent transparent;
+    border-color: #2484da transparent transparent transparent;
 }
 .testimonials .carousel-info img {
     border: 1px solid #f5f5f5;
@@ -878,7 +879,7 @@ font-size: x-large;
     display: block;
 }
 .testimonials span.testimonials-name {
-    color: #e6400c;
+    color: #2484da;
     font-size: 1.3rem;
     font-weight: 300;
     margin: 0px 0 0px;
