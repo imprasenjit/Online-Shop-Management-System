@@ -10,6 +10,7 @@ class Customer extends CI_Controller
         $this->load->model('billing_model');
         $this->load->model('quotation_model');
         $this->load->model('products_model');
+        $this->load->model('blogs_model');
         $this->load->model('enquires_model');
         $this->load->model('customers_model');
         $this->load->library('form_validation');
@@ -67,9 +68,9 @@ class Customer extends CI_Controller
                 'password' => set_value('password', "1234567345qwertyuiopasdfghjklzsercgyhawikdgbdjdkdb"),
                 'cpassword' => set_value('cpassword', "1234567345qwertyuiopasdfghjklzsercgyhawikdgbdjdkdb"),
             );
-            $this->load->view('site/requires/header', array('page' => 'Customer Profile'));
-            $this->load->view('site/customers/dashboard/edit_profile', $data);
-            $this->load->view('site/requires/footer');
+            $this->view('requires/header', array('page' => 'Customer Profile'));
+            $this->view('customers/dashboard/edit_profile', $data);
+            $this->view('requires/footer');
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('customers/dashboard'));
@@ -102,8 +103,8 @@ class Customer extends CI_Controller
     public function manage_address(){
       $logged_id=$this->session->id;
   		$data['customer_address']=$this->customers_model->get_address_by_id($logged_id);//var_dump($data['customer_address']);die;
-      $this->load->view('site/requires/header', array('page' => 'Customer Address'));
-      $this->load->view('site/customers/dashboard/customer_address', $data);
+      $this->view('requires/header', array('page' => 'Customer Address'));
+      $this->view('customers/dashboard/customer_address', $data);
     }
     public function manage_address_action(){
       $logged_id=$this->session->id;

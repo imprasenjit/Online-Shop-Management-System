@@ -15,6 +15,7 @@ class Purchase_order extends Aipl_admin
         $this->load->library('cart');
         $this->load->library('breadcrumbs');
         $this->load->model('quotation_model');
+        $this->load->model('blogs_model');
         $this->load->model('products_model');
         $this->load->model('purchase_order_model');
         $this->load->library('form_validation');
@@ -27,9 +28,9 @@ class Purchase_order extends Aipl_admin
      */
     public function index()
     {
-        $this->load->view('site/requires/header', array('page' => 'Purchase Orders'));
-        $this->load->view('site/customers/purchase_order/po_list');
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header', array('page' => 'Purchase Orders'));
+        $this->view('customers/purchase_order/po_list');
+        $this->view('requires/footer');
     }
 
     /**
@@ -50,9 +51,9 @@ class Purchase_order extends Aipl_admin
         }
         $data=(array)$po;
         //echo '<pre>';print_r($data);die;
-		$this->load->view('site/requires/header',array("page"=>"Purchase Orders"));
-		$this->load->view('site/customers/purchase_order/purchase_order_view',$data);
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header',array("page"=>"Purchase Orders"));
+		$this->view('customers/purchase_order/purchase_order_view',$data);
+		$this->view('requires/footer');
     }
 
     /**

@@ -10,15 +10,16 @@ class Proforma_invoice extends Aipl_admin
         $this->load->library('cart');
         $this->load->model('quotation_model');
         $this->load->model('products_model');
+        $this->load->model('blogs_model');
         $this->load->model('proforma_invoice_model');
         $this->load->model('purchase_order_model');
         $this->load->library('form_validation');
     }
     public function index()
     {
-        $this->load->view('site/requires/header', array('page' => 'Proforma Orders'));
-        $this->load->view('site/customers/proforma_invoice/pi_list');
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header', array('page' => 'Proforma Orders'));
+        $this->view('customers/proforma_invoice/pi_list');
+        $this->view('requires/footer');
 
     }
 
@@ -33,9 +34,9 @@ class Proforma_invoice extends Aipl_admin
         $data=(array)$po;
         $data['purchase_order_id']=$po->purchase_order_id;
         //echo '<pre>';print_r($po);die;
-		$this->load->view('site/requires/header',array("page"=>"Proforma Invoice"));
-		$this->load->view('site/customers/proforma_invoice/proforma_invoice_view',$data);
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header',array("page"=>"Proforma Invoice"));
+		$this->view('customers/proforma_invoice/proforma_invoice_view',$data);
+		$this->view('requires/footer');
     }
 
     public function getProformaInvoice(){

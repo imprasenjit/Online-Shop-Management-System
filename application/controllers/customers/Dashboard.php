@@ -14,6 +14,7 @@ class Dashboard extends Aipl_admin
 		$this->load->library('cart');
 		$this->load->library('breadcrumbs');
 		$this->load->model('billing_model');
+		$this->load->model('blogs_model');
 		$this->load->model('quotation_model');
 		$this->load->model('purchase_order_model');
 		$this->load->model('products_model');
@@ -30,9 +31,9 @@ class Dashboard extends Aipl_admin
 	{
 
 		$data = array("page" => "Dashboard");
-		$this->load->view('site/requires/header', $data);
-		$this->load->view('site/customers/dashboard/customer_dashboard');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header', $data);
+		$this->view('customers/dashboard/customer_dashboard');
+		$this->view('requires/footer');
 	}
 	/**
 	 * customer_dashboard
@@ -42,9 +43,9 @@ class Dashboard extends Aipl_admin
 	public function customer_dashboard()
 	{
 		$data = array("page" => "Dashboard");
-		$this->load->view('site/requires/header', $data);
-		$this->load->view('site/customers/customer_dashboard');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header', $data);
+		$this->view('customers/customer_dashboard');
+		$this->view('requires/footer');
 	}
 	/**
 	 * enquiry_details
@@ -56,9 +57,9 @@ class Dashboard extends Aipl_admin
 
 		$this->breadcrumbs->push('Dashboard', '/customers/dashboard');
 		$this->breadcrumbs->push('Enquires View', '/enquires');
-		$this->load->view('site/requires/header', array("page" => "Enquiry"));
-		$this->load->view('site/customers/enquires/enquires_view');
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header', array("page" => "Enquiry"));
+		$this->view('customers/enquires/enquires_view');
+		$this->view('requires/footer');
 	}
 	/**
 	 * quoted_price_details
@@ -73,9 +74,9 @@ class Dashboard extends Aipl_admin
 		$data=array(
 			"quotation_details"=>$row
 		);
-		$this->load->view('site/requires/header', array("page" => "View Quotation"));
-		$this->load->view('site/customers/quotation/quoted_price_details',$data);
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header', array("page" => "View Quotation"));
+		$this->view('customers/quotation/quoted_price_details',$data);
+		$this->view('requires/footer');
 	}
 	/**
 	 * send_purchase_order
@@ -93,9 +94,9 @@ class Dashboard extends Aipl_admin
 		$data["quotation_details"] = $this->quotation_model->get_by_id($quotation_id);
 		//$data["enquiry_details"] = $this->enquires_model->get_by_id($data["quotation_details"]->enquiry_id);
 		$this->load->model('attribute_model');
-		$this->load->view('site/requires/header', array("page" => "Purchase order"));
-		$this->load->view('site/customers/purchase_order/send_purchase_order', $data);
-		$this->load->view('site/requires/footer');
+		$this->view('requires/header', array("page" => "Purchase order"));
+		$this->view('customers/purchase_order/send_purchase_order', $data);
+		$this->view('requires/footer');
 	}
 	/**
 	 * send_po

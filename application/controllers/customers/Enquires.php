@@ -11,15 +11,16 @@ class Enquires extends Aipl_admin
         $this->load->model('billing_model');
         $this->load->model('quotation_model');
         $this->load->model('products_model');
+        $this->load->model('blogs_model');
         $this->load->model('enquires_model');
         $this->load->model('customers_model');
         $this->load->library('form_validation');
     }
     public function index()
     {
-        $this->load->view('site/requires/header', array('page' => 'Enquires'));
-        $this->load->view('site/customers/enquires/enquires_list');
-        $this->load->view('site/requires/footer');
+        $this->view('requires/header', array('page' => 'Enquires'));
+        $this->view('customers/enquires/enquires_list');
+        $this->view('requires/footer');
     }
 
     public function getEnquiries(){
