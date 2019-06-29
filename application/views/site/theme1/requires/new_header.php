@@ -77,14 +77,18 @@
                                               <i class="si-icon-facebook"></i>
                                               <i class="si-icon-facebook"></i>
                                           </a>
-                                          <a href="#" class="social-icon si-borderless si-twitter si-small mb-0" title="Twitter">
+                                          <a href="#" class="social-icon si-borderless si-linkedin si-small mb-0" title="LinkeIn">
+                                              <i class="si-icon-linkedin"></i>
+                                              <i class="si-icon-linkedin"></i>
+                                          </a>
+                                          <!-- <a href="#" class="social-icon si-borderless si-twitter si-small mb-0" title="Twitter">
                                               <i class="si-icon-twitter"></i>
                                               <i class="si-icon-twitter"></i>
                                           </a>
                                           <a href="#" class="social-icon si-borderless si-instagram si-small mb-0" title="Instagram">
                                               <i class="si-icon-instagram"></i>
                                               <i class="si-icon-instagram"></i>
-                                          </a>
+                                          </a> -->
                                       </div>
                                   </div>
                               </div>
@@ -218,23 +222,38 @@
                                                                             <div class="form-group text-center" id="btn_login_with_otp" style="font-size: medium"><a href="#!" >OTP LOGIN</a></div>
                                                                             <div class="form-group text-center" id="btn_login_with_email" style="font-size: medium; display:none;"><a href="#!" >EMAIL LOGIN</a></div>
                                                                         </div>
-                                                                        <div class="signup-form">
-                                                                            <span class="top-sub-title text-color-light-3">MEMBERSHIP</span>
+                                                                        <div class="signup-form" style="overflow-y: auto;overflow-x: hidden; max-height: 400px;">
+                                                                            <!-- <span class="top-sub-title text-color-light-3">MEMBERSHIP</span> -->
                                                                             <h2 class="text-4 mb-4 mt-1">Sign Up</h2>
-                                                                            <form action="#" id="frmSignUp" method="post">
+                                                                              <form id="registration_form" autocomplete="off" action="<?= base_url(); ?>customers/customer/customer_save_modal" method="post">
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col mb-2">
-                                                                                        <input type="text" value="" class="form-control" name="name" id="signUpName" placeholder="Full Name" required>
+                                                                                        <input type="text" class="form-control" id="r_name" name="name" placeholder="Name" required>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col mb-2">
-                                                                                        <input type="email" value="" maxlength="100" class="form-control" name="email" id="signUpEmail" placeholder="E-mail" required>
+                                                                                        <input type="text" class="form-control"  id="r_contact" name="contact" maxlength="10" placeholder="Contact No.">
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="form-row mb-3">
-                                                                                    <div class="form-group col">
-                                                                                        <input type="password" value="" class="form-control" name="password" id="signUpPassword" placeholder="Password" required>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col mb-2">
+                                                                                          <input type="email" class="form-control"  id="r_email" name="email" placeholder="Email">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row ">
+                                                                                    <div class="form-group col mb-2">
+                                                                                          <input type="text" class="form-control" autocomplete="off" value="" id="address" name="address" placeholder="Address">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row ">
+                                                                                    <div class="form-group col mb-2">
+                                                                                          <input type="password" class="form-control" id="mypassword" name="password" placeholder="Password">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col col mb-2">
+                                                                                            <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row align-items-center">
@@ -248,12 +267,22 @@
                                                                             </form>
                                                                         </div>
                                                                         <div class="recover-form">
-                                                                            <span class="top-sub-title text-color-light-3">MEMBERSHIP</span>
+                                                                            <!-- <span class="top-sub-title text-color-light-3">MEMBERSHIP</span> -->
                                                                             <h2 class="text-4 mb-4 mt-1">Reset my Password</h2>
-                                                                            <form action="#" id="frmResetPassword" method="post">
+                                                                            <form action="#!" id="frmResetPassword" method="post">
                                                                                 <div class="form-row mb-4">
                                                                                     <div class="form-group col mb-2">
-                                                                                        <input type="email" value="" maxlength="100" class="form-control" name="email" id="resetPasswordEmail" placeholder="E-mail" required>
+                                                                                        <input id="reg_email" class="form-control" placeholder="Your registered email id" type="email" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row mb-4">
+                                                                                    <label class="form-group col mb-2 text-center">
+                                                                                        OR
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="form-row mb-4">
+                                                                                    <div class="form-group col mb-2">
+                                                                                        <input id="reg_mobile" class="form-control" placeholder="Your 10-digit registered mobile no." type="text" maxlength="10"  />
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row align-items-center">
@@ -261,9 +290,15 @@
                                                                                         <a href="#" id="headerRecoverCancel" class="text-color-primary pl-0">Have an account?</a>
                                                                                     </div>
                                                                                     <div class="col text-right">
-                                                                                        <button type="submit" class="btn btn-primary btn-sm pull-right mb-0 mr-0">SUBMIT</button>
+                                                                                        <button type="button" id="sendotprequest" class="btn btn-primary btn-sm pull-right mb-0 mr-0">Send OTP</button>
                                                                                     </div>
                                                                                 </div>
+
+                                                                                <input id="reg_otp" class="form-control text-center" placeholder="Enter OTP" type="text" style="margin-top: 30px; display: none" />
+                                                                                <input id="reg_newpass" class="form-control text-center" placeholder="Enter new passwrd" type="password" style="margin: 10px auto; display: none" />
+                                                                                <input id="reg_confpass" class="form-control text-center" placeholder="Confirm password" type="password" style="margin: 10px auto; display: none" />
+                                                                                <button id="reg_btn" class="btn btn-success btn-block" type="button" style="margin: 10px auto; display: none">Verify OTP</button>
+
                                                                             </form>
                                                                         </div>
                                                                     </div>
