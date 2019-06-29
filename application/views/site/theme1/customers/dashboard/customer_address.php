@@ -10,11 +10,11 @@
   <div class="col-md-10">
 
     <div class="panel-group">
-      <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="card">
+      <div class="card-header">
           Address
       </div>
-        <div class="panel-body">
+        <div class="card-body">
           <?php if ($this->session->flashdata("message")) { ?>
             <div class="alert alert-success alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -25,8 +25,8 @@
           <?php if($customer_address){
                   foreach ($customer_address as $key => $address) { ?>
                     <div class="col-sm-4">
-                      <div class="panel panel-default">
-                      <div class="panel-body">
+                      <div class="card">
+                      <div class="card-body">
                         <div class="row">
                           <div class="col-sm-10">
                             <h5><?php if($address->address_type == "billing_address") echo "Billing Address"; else echo "Delivery Address";?></h5>

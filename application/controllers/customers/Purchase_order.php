@@ -19,7 +19,7 @@ class Purchase_order extends Aipl_admin
         $this->load->model('products_model');
         $this->load->model('purchase_order_model');
         $this->load->library('form_validation');
-  
+
     }
     /**
      * index
@@ -39,7 +39,7 @@ class Purchase_order extends Aipl_admin
      * @param mixed $id
      * @return void
      */
-    public function view($id)
+    public function po_view($id)
     {
       $id=$this->uri->segment(4);
       $id=base64_decode(urldecode($id));
@@ -86,7 +86,7 @@ class Purchase_order extends Aipl_admin
         if (!empty($records)) {
               $slno = 1;
             foreach ($records as $rows) {
-                $viewBtn = anchor(site_url('customers/purchase_order/view/' . urlencode(base64_encode($rows->potoadmin_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
+                $viewBtn = anchor(site_url('customers/purchase_order/po_view/' . urlencode(base64_encode($rows->potoadmin_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
                 $nestedData["slno"] = $slno++;
                 $nestedData["quotation_ref"] = $rows->quotation_ref;
                 $nestedData["potoadmin_ref"] = $rows->potoadmin_ref;

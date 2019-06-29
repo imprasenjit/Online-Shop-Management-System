@@ -4,15 +4,15 @@
     	</div>
     	<div class="col-md-10" style="margin-top:10px;">
     		<?php echo $this->breadcrumbs->show(); ?>
-    		<div class="panel panel-default" style="margin-top:10px;">
-    			<div class="panel-heading">
+    		<div class="card" style="margin-top:10px;">
+    			<div class="card-header">
     				<?php
 					$enquiry_id = base64_decode(urldecode($this->uri->segment(4)));
 					$enquiry_details = $this->enquires_model->get_by_id($enquiry_id);
 					?>
     				<h5><strong>Enquiry Information </strong></h5>
     			</div>
-    			<div class="panel-body">
+    			<div class="card-body">
             <h5>Enquiry No : <?php echo $enquiry_details->enq_ref; ?></h5>
             <br/>
             <h5>Enquiry Date : <?php echo date("d-m-Y h:i A",strtotime($enquiry_details->enquiry_placed_date)); ?></h5>

@@ -23,7 +23,7 @@ class Proforma_invoice extends Aipl_admin
 
     }
 
-    public function view($id)
+    public function pi_view($id)
     {
         $data = array("page" => "Proforma Order");
         $po=$this->proforma_invoice_model->get_by_id(base64_decode(urldecode($id)));
@@ -65,7 +65,7 @@ class Proforma_invoice extends Aipl_admin
         if (!empty($records)) {
               $slno = 1;
             foreach ($records as $rows) {
-                $viewBtn = anchor(site_url('customers/proforma_invoice/view/'.urlencode(base64_encode($rows->porforma_invoice_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
+                $viewBtn = anchor(site_url('customers/proforma_invoice/pi_view/'.urlencode(base64_encode($rows->porforma_invoice_id))), 'View', array('class' => 'btn btn-primary btn-sm')) . "&nbsp;";
 
                 $nestedData["slno"] = $slno++;
                 $nestedData["purchase_order_date"] = date_format(date_create($rows->purchase_order_date),'d M, Y');

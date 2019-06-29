@@ -5,12 +5,12 @@
 		<div class="col-md-10">
 		<?php echo $this->breadcrumbs->show(); ?>
 			<div class="panel-group">
-				<div class="panel panel-default">
-				<div class="panel-heading">
+				<div class="card">
+				<div class="card-header">
 						Purchase Order
 						<span class="pull-right">Purchase Order Ref: <?=$potoadmin_ref?></span>
 				</div>
-					<div class="panel-body" id="print_html">
+					<div class="card-body" id="print_html">
 						<table class="table table-bordered">
 											<br />
 											To,<br />

@@ -4,11 +4,11 @@
 		</div>
 		<div class="col-md-10">
 			<div class="panel-group" style="margin-top:50px;">
-				<div class="panel panel-default">
-					<div class="panel-heading">
+				<div class="card">
+					<div class="card-header">
 						Quotations
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<?php if ($this->session->flashdata("message")) { ?>
 							<div class="alert alert-success alert-dismissible" role="alert">
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
