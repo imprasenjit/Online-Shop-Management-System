@@ -28,14 +28,14 @@ $('#blogs').addClass('active');
             <?php } ?>
         </div>
         <h5 class="feat_title text-left pt-20">
-          <a href="<?=base_url()?>blogs1/<?=url_title(trim($blog->blog_title), '-', TRUE)?>/<?=$blog->blogs_id;?>" class="RM">
+          <a href="<?=base_url()?>blogs/<?=url_title(trim($blog->blog_title), '-', TRUE)?>/<?=$blog->blogs_id;?>" class="RM">
             <?=$blog->blog_title;?>
           </a>
         </h5>
         <div class="feat_desc text-left">
           <p ><?=word_limiter($blog->short_description,100)?></p>
         </div>
-        <h5 class="feat_rm text-left pb-20"><a href="<?=base_url()?>blogs1/<?=url_title(trim($blog->blog_title), '-', TRUE)?>/<?=$blog->blogs_id;?>" class="RM">READ MORE &gt;&gt;</a></h5>
+        <h5 class="feat_rm text-left pb-20"><a href="<?=base_url()?>blogs/<?=url_title(trim($blog->blog_title), '-', TRUE)?>/<?=$blog->blogs_id;?>" class="RM">READ MORE &gt;&gt;</a></h5>
         <hr class="blog_hr pt-10  pb-10">
       </div>
 
@@ -70,7 +70,7 @@ $('#blogs').addClass('active');
       <ul>
         <?php if($tags){
           foreach ($tags as $key => $value) {?>
-              <li><a href="<?=base_url()?>blogs1/<?=$value?>"><?=$value?></a></li>
+              <li><a href="<?=base_url()?>blogs/<?=$value?>"><?=$value?></a></li>
           <?php }
         }?>
       </ul>
