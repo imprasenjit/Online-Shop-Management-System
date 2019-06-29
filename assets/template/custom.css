@@ -1083,3 +1083,9 @@ border: 1px solid #007bff;
 ul.bullets {
     list-style: none;
 }
+.v-portfolio-items > li figure {
+    height: 250px !important;
+}
+.v-portfolio-items > li figure img{
+    height: 250px !important;
+}

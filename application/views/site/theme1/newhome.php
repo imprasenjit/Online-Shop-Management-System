@@ -30,78 +30,7 @@
       }
   </script>
   <a href="<?php echo base_url("view-all-sub-category"); ?>" id="myBtn" title="Go to Quotes">Get Quotes</a>
-    <!-- <div class="slider-container rev_slider_wrapper slider-container-full-height">
-        <div id="revolutionSlider" class="slider rev_slider" data-version="5.4.7" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'sliderLayout': 'fullscreen', 'gridwidth': [1140,960,720,540], 'gridheight': [900,900,900,900], 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,576], 'navigation' : {'arrows': { 'enable': true, 'hide_under': 767, 'style': 'slider-arrows-style-2' }, 'bullets': {'enable': true, 'style': 'bullets-style-1', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 35, 'h_offset': 0}}}">
-            <ul>
-              <?php
-              if ($imgRows) {
-                  foreach ($imgRows as $irows) { ?>
-                    <li class="slide-overlay slide-overlay-level-4" data-transition="fade">
-                        <img src="<?=base_url($irows->file_path) ?>"
-                             alt=""
-                             data-bgposition="center center"
-                             data-bgfit="cover"
-                             data-bgrepeat="no-repeat"
-                             class="rev-slidebg">
-                        <div class="tp-caption text-color-light font-primary font-weight-light"
-                             data-x="center"
-                             data-y="center" data-voffset="['-145','-145','-130','-115']"
-                             data-start="1600"
-                             data-fontsize="['15','15','15','15']"
-                             data-transform_in="opacity:0;s:300;"
-                             data-transform_out="opacity:0;s:300;">WHAT WE DO?</div>
-                        <div class="tp-caption text-color-light font-primary font-weight-bold"
-                             data-x="center"
-                             data-y="center" data-voffset="['-75','-75','-65','-55']"
-                             data-start="1300"
-                             data-fontsize="['67','67','50','35']"
-                             data-lineheight="['75','75','65','45']"
-                             data-transform_in="y:[100%];s:500;"
-                             data-transform_out="y:[100%];s:500;"
-                             data-mask_in="x:0px;y:0px;">Customized solutions for</div>
-                        <div class="tp-caption text-color-light font-primary font-weight-bold"
-                             data-x="center"
-                             data-y="center"
-                             data-start="1000"
-                             data-fontsize="['67','67','50','35']"
-                             data-lineheight="['75','75','65','45']"
-                             data-transform_in="y:[100%];s:500;"
-                             data-transform_out="y:[100%];s:500;"
-                             data-mask_in="x:0px;y:0px;">digital marketing</div>
-                        <div class="tp-caption text-color-light font-primary font-weight-light"
-                             data-x="center"
-                             data-y="center" data-voffset="['120','120','90','75']"
-                             data-start="1900"
-                             data-fontsize="['38','38','30','21']"
-                             data-transform_in="y:[100%];opacity:0;s:500;">Easier than you think</div>
-                        <a class="tp-caption btn btn-rounded btn-dark font-weight-semibold"
-                           href="#ourwork"
-                           data-hash
-                           data-hash-offset="90"
-                           data-x="center"
-                           data-y="center" data-voffset="['215','215','180','165']"
-                           data-start="2200"
-                           data-whitespace="nowrap"
-                           data-fontsize="['13','13','13','13']"
-                           data-paddingtop="['13','13','13','13']"
-                           data-paddingbottom="['13','13','13','13']"
-                           data-paddingleft="['65','65','65','45']"
-                           data-paddingright="['65','65','65','45']"
-                           data-transform_in="y:[100%];s:500;"
-                           data-transform_out="opacity:0;s:500;"
-                           data-mask_in="x:0px;y:0px;">VIEW OUR WORK</a>
-                    </li>
-
-                  <?php }
-              }
-              ?>
-
-
-            </ul>
-        </div>
-    </div> -->
-
-    <div class="slider">
+<div class="slider">
         <div class="owl-carousel owl-theme" id="banner-carousel">
             <?php $imgRows = $this->home_page_slider_model->get_results();
             if ($imgRows) {
@@ -419,7 +348,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="v-clients-wrap-v2 carousel-wrap">
-                            <div class="owl-carousel" data-plugin-options='{"items": 6, "singleItem": false, "autoPlay": true}'>
+                            <div class="owl-carousel owl-theme" id="brands-carousel">
                               <?php
                               $results = $this->associated_brands_model->get_all();
                               $i = 1;

@@ -1,6 +1,4 @@
-
             <!DOCTYPE html>
-
             <html>
             <head>
                 <meta charset="utf-8">
@@ -9,13 +7,10 @@
                 <meta name="description" content="Supply Origin">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
                 <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
                 <!-- Web Fonts  -->
                 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-
                 <!-- Libs CSS -->
                 <link href="<?= base_url(); ?>assets/template/css/bootstrap.min.css" rel="stylesheet" />
                 <link href="<?= base_url(); ?>assets/template/css/style.css" rel="stylesheet" />
@@ -31,22 +26,15 @@
                 <link href="<?= base_url(); ?>assets/template/css/utilities.css" rel="stylesheet" />
                 <link href="<?= base_url(); ?>assets/template/css/theme-responsive.css" rel="stylesheet" />
                 <link href="<?= base_url(); ?>assets/template/plugins/aos/aos.css" rel="stylesheet" />
-                <link href="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
-                <link href="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-                <script defer src="<?= base_url(); ?>assets/js/owl.carousel.js" type="text/javascript"></script>
-
-                <!-- Current Page CSS -->
+                <link href="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
+                <link href="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.theme.default.css" rel="stylesheet" />
                 <link href="<?= base_url(); ?>assets/template/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
-
-                <!-- Skin -->
-                <link rel="stylesheet" href="<?= base_url(); ?>assets/template/css/skin/default.css">
-
-                <!-- Custom CSS -->
-                <link rel="stylesheet" href="<?= base_url(); ?>assets/template/css/custom.css">
-                    <link href="<?= base_url(); ?>assets/template/custom.css" rel="stylesheet" type="text/css" media="all" />
-                   <script src="<?= base_url(); ?>assets/template/js/jquery.min.js"></script>
+                <link href="<?= base_url(); ?>assets/template/css/skin/default.css" rel="stylesheet">
+                <link href="<?= base_url(); ?>assets/template/css/custom.css" rel="stylesheet">
+                <link href="<?= base_url(); ?>assets/template/custom.css" rel="stylesheet" type="text/css" media="all" />
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script defer src="<?= base_url(); ?>assets/template/plugins/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
             </head>
-
             <body>
               <header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 120}">
                   <div class="header-body">
@@ -151,7 +139,6 @@
                                                         Contact
                                                     </a>
                                                 </li>
-
                                               <?php if ($this->session->userdata("isuser")) {  ?>
                                                 <li class="dropdown dropdown-mega" >
                                                   <a href="<?= base_url("customers/dashboard/"); ?>"><i class="fa fa-bars" aria-hidden="true"></i>  &nbsp; Dashboard
@@ -161,7 +148,6 @@
                                                     <a class="dropdown-item pl-lg-4" href="<?= base_url(); ?>login/logout">Logout</a>
                                                 </li>
                                                   <?php } else { ?>
-
                                                 <li class="dropdown dropdown-mega dropdown-mega-signin signin ml-lg-3" id="headerAccount">
                                                     <a class="dropdown-item pl-lg-4" href="#!">Sign In</a>
                                                     <ul class="dropdown-menu">
@@ -209,15 +195,12 @@
                                                                                     </div>
                                                                                 </div>
                                                                               </div>
-
                                                                                 <div id="login_with_otp_div" style="display:none;">
-
                                                                                 <div class="form-row">
                                                                                     <div class="form-group col mb-2">
                                                                                         <input type="number" value="" maxlength="100" class="form-control" name="mobileno" id="mobileno" placeholder="Mobile Number" required>
                                                                                     </div>
                                                                                 </div>
-
                                                                                 <div class="col text-right">
                                                                                     <button type="button" id="sendotp" class="btn btn-primary btn-sm pull-right mb-0 mr-0"><i class="fa fa-lock"></i> Send OTP</button>
                                                                                 </div>
@@ -229,10 +212,7 @@
                                                                                 <div class="col text-right afterotp" style="display: none">
                                                                                     <button type="button" id="otplogin" class="btn btn-primary btn-sm pull-right mb-0 mr-0"><i class="fa fa-lock"></i> Send OTP</button>
                                                                                 </div>
-
                                                                               </div>
-
-
                                                                             </form>
                                                                             <hr/>
                                                                             <div class="form-group text-center" id="btn_login_with_otp" style="font-size: medium"><a href="#!" >OTP LOGIN</a></div>
@@ -296,12 +276,10 @@
                                             </ul>
                                           </nav>
                                       </div>
-
                                   </div>
                               </div>
                           </div>
                       </div>
                   </div>
               </header>
-
                 <!--End Header-->
