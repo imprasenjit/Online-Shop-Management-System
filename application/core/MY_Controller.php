@@ -67,11 +67,11 @@ class Aipl_admin extends MY_Controller
     if($this->router->class =="dashboard" && $this->router->method=="index"){
       return true;
     }
-    $access=false;
-    $user_rights=$this->session->rights;
+    $access=true;
+    $user_rights=$this->session->rights;//var_dump($user_rights);die;
     foreach ($user_rights as $key => $value) {
       if($value->controller_name == $this->router->class && $value->method_name==$this->router->method){
-        $access=true;
+        $access=false;
       }
     }
     return $access;
