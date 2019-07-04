@@ -19,9 +19,9 @@ class Contactus extends MY_Controller {
 
     function index() {
         $data = array("page" => "Contact us");
-        $this->view('requires/header', $data);
-        $this->view('contactus_view');
-        $this->view('requires/footer');
+        $this->html_view('requires/header', $data);
+        $this->html_view('contactus_view');
+        $this->html_view('requires/footer');
     }//End of index()
 
     function save() {
@@ -50,9 +50,9 @@ class Contactus extends MY_Controller {
 
     function thankyou() {
         $data = array("page" => "Thank you for contacting us");
-        $this->view('requires/header', $data);
-        $this->view('thankyou_view');
-        $this->view('requires/contact_page_footer');
+        $this->html_view('requires/header', $data);
+        $this->html_view('thankyou_view');
+        $this->html_view('requires/contact_page_footer');
     }//End of thankyou()
 
 }//End of Contactus

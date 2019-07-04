@@ -6,7 +6,7 @@ class MY_Controller extends CI_Controller
     parent::__construct();
   } //End of __construct()
 
-  public function view($viewname,$data=NULL)
+  public function html_view($viewname,$data=NULL)
   {
   //  var_dump($viewname);
     $default_theme=1;

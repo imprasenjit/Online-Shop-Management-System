@@ -16,46 +16,46 @@ class Home extends MY_Controller {
 	}
 	public function index() {
 		$data = array("page" => "Home");
-		$this->view('requires/header',$data);
-		$this->view('home');
-		$this->view('requires/footer');
+		$this->html_view('requires/header',$data);
+		$this->html_view('home');
+		$this->html_view('requires/footer');
 	}
 	public function contact() {
 		$data = array("page" => "Contact");
-		$this->view('requires/header',$data);
-		$this->view('contact');
-		$this->view('requires/footer');
+		$this->html_view('requires/header',$data);
+		$this->html_view('contact');
+		$this->html_view('requires/footer');
 	}
 	public function about() {
 		$data = array("page" => "About");
-		$this->view('requires/header',$data);
-		$this->view('about');
-		$this->view('requires/footer');
+		$this->html_view('requires/header',$data);
+		$this->html_view('about');
+		$this->html_view('requires/footer');
 	}
 	public function services() {
-		$this->view('requires/header');
-		$this->view('services');
-		$this->view('requires/footer');
+		$this->html_view('requires/header');
+		$this->html_view('services');
+		$this->html_view('requires/footer');
 	}
     function downloads() {
         $data = array("page" => "Downloads");
-        $this->view('requires/header', $data);
-        $this->view('downloads_view');
-        $this->view('requires/footer');
+        $this->html_view('requires/header', $data);
+        $this->html_view('downloads_view');
+        $this->html_view('requires/footer');
     }
     function partnerprograms() {
 		$this->load->model("suppliers_model");
         $data = array("page" => "Partner Programs");
-        $this->view('requires/header', $data);
-        $this->view('partnerprograms');
-        $this->view('requires/footer');
+        $this->html_view('requires/header', $data);
+        $this->html_view('partnerprograms');
+        $this->html_view('requires/footer');
     }
 	public function feedback()
 	{
 		$data = array("page" => "Feedback");
-		$this->view('requires/header',$data);
-		$this->view('get_feedback');
-		$this->view('requires/footer');
+		$this->html_view('requires/header',$data);
+		$this->html_view('get_feedback');
+		$this->html_view('requires/footer');
 	}
 
 	public function save_feedback_form()
@@ -86,9 +86,9 @@ class Home extends MY_Controller {
 	}
 	public function get_services()
 	{
-		$this->view('requires/header');
-		$this->view('services');
-		$this->view('requires/footer');
+		$this->html_view('requires/header');
+		$this->html_view('services');
+		$this->html_view('requires/footer');
 	}
 
 	public function save_services_form()

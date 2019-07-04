@@ -45,7 +45,7 @@ class Shopping extends MY_Controller
             'others' => $others,
         );
         $this->cart->insert($insert_data);
-        $this->view("requires/cart_table",array("cart"=>$this->cart->contents()));
+        $this->html_view("requires/cart_table",array("cart"=>$this->cart->contents()));
  }
 /**
  * remove
@@ -111,9 +111,9 @@ public function edit()
  */
 public function billing()
 {
-    $this->view('requires/header', array('page' => 'Enquiry'));
-    $this->view('shopping/billing_view');
-    $this->view('requires/footer');
+    $this->html_view('requires/header', array('page' => 'Enquiry'));
+    $this->html_view('shopping/billing_view');
+    $this->html_view('requires/footer');
 }
 /**
  * save_order
@@ -170,9 +170,9 @@ public function save_order()
  */
 public function billing_success()
 {
-    $this->view('requires/header', array('page' => 'Success'));
-    $this->view('shopping/billing_success');
-    $this->view('requires/footer');
+    $this->html_view('requires/header', array('page' => 'Success'));
+    $this->html_view('shopping/billing_success');
+    $this->html_view('requires/footer');
 }
 }
 ?>

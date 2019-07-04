@@ -20,9 +20,9 @@ class Partnerprograms extends MY_Controller {
 
     function index() {
         $data = array("page" => "Partner Programs");
-        $this->view('requires/header', $data);
-        $this->view('partnerprograms');
-        $this->view('requires/footer');
+        $this->html_view('requires/header', $data);
+        $this->html_view('partnerprograms');
+        $this->html_view('requires/footer');
     }
 
     function smesave() {

@@ -31,9 +31,9 @@ class Blogs extends MY_Controller {
       $data['search_term']='';
       $blog_tags=$this->blogs_model->get_tags();
       $data['tags']=$this->filter_tags($blog_tags);
-      $this->view('requires/header', $data);
-      $this->view('blogs/blog_list',$data);
-      $this->view('requires/footer');
+      $this->html_view('requires/header', $data);
+      $this->html_view('blogs/blog_list',$data);
+      $this->html_view('requires/footer');
     }
     public function search(){
       $data = array("page" => "Blogs");
@@ -42,9 +42,9 @@ class Blogs extends MY_Controller {
       $data['search_term']=$search_term;
       $blog_tags=$this->blogs_model->get_tags();
       $data['tags']=$this->filter_tags($blog_tags);
-      $this->view('requires/header', $data);
-      $this->view('blogs/blog_list',$data);
-      $this->view('requires/footer');
+      $this->html_view('requires/header', $data);
+      $this->html_view('blogs/blog_list',$data);
+      $this->html_view('requires/footer');
     }
     public function blog_details($title,$id){
       $blog_data=$this->blogs_model->get_by_id($id);
@@ -54,9 +54,9 @@ class Blogs extends MY_Controller {
       $data['blog_details']=$blog_data;//var_dump($data['blog_details']);die;
       $data['recent_blogs']=$this->blogs_model->get_recent_blogs();//var_dump($data['recent_blogs']);die;
       $data['tags']=$this->filter_tags($blog_tags);
-      $this->view('requires/header', $data);
-      $this->view('blogs/blog_details',$data);
-      $this->view('requires/footer');
+      $this->html_view('requires/header', $data);
+      $this->html_view('blogs/blog_details',$data);
+      $this->html_view('requires/footer');
     }
     function filter_tags($data){
       $tags=array();

@@ -22,18 +22,18 @@ class Products extends MY_Controller
         $data = array(
             'products_data' => $products,
         );
-        $this->view('requires/header',array('page'=>'Products'));
-        $this->view('products/products_list', $data);
-        $this->view('requires/footer');
+        $this->html_view('requires/header',array('page'=>'Products'));
+        $this->html_view('products/products_list', $data);
+        $this->html_view('requires/footer');
 	}
 	
 	public function product_view($id){
 	        $data=array(
 			'product'=>$this->byproducts_model->get_by_id($id)
 			);
-			$this->view('requires/header',array('page'=>'product'));
-			$this->view('products/product_view', $data);
-			$this->view('requires/footer');
+			$this->html_view('requires/header',array('page'=>'product'));
+			$this->html_view('products/product_view', $data);
+			$this->html_view('requires/footer');
 		}
 	
 
@@ -44,9 +44,9 @@ class Products extends MY_Controller
             'products_data' => $products,
             'category'=>'Steel'
         );
-        $this->view('requires/header',array('title'=>'product'));
-		$this->view('products/products_list', $data);
-		$this->view('requires/footer');
+        $this->html_view('requires/header',array('title'=>'product'));
+		$this->html_view('products/products_list', $data);
+		$this->html_view('requires/footer');
     }
 	
 	public function category($category) 
@@ -55,9 +55,9 @@ class Products extends MY_Controller
         $data = array(
             'products_data' => $products,
         );
-        $this->view('requires/header',array('page'=>'Products'));
-        $this->view('products/products_list', $data);
-        $this->view('requires/footer');
+        $this->html_view('requires/header',array('page'=>'Products'));
+        $this->html_view('products/products_list', $data);
+        $this->html_view('requires/footer');
     }
 
     public function subcategory()
@@ -66,9 +66,9 @@ class Products extends MY_Controller
         $data = array(
             'subcategory_list' => $sub_categories,
         );
-        $this->view('requires/header',array('page'=>'Products'));
-        $this->view('products/category_list', $data);
-        $this->view('requires/footer');
+        $this->html_view('requires/header',array('page'=>'Products'));
+        $this->html_view('products/category_list', $data);
+        $this->html_view('requires/footer');
     }
 	
     public function create() 
@@ -86,9 +86,9 @@ class Products extends MY_Controller
 			'picture' => set_value('picture'),
 			'status' => set_value('status'),
 		);
-        $this->view('requires/header',array('title'=>'products'));
-        $this->view('products/products_form', $data);
-        $this->view('requires/footer');
+        $this->html_view('requires/header',array('title'=>'products'));
+        $this->html_view('products/products_form', $data);
+        $this->html_view('requires/footer');
     }
     public function create_action() 
     {
@@ -128,7 +128,7 @@ class Products extends MY_Controller
 		'picture' => set_value('picture', $row->picture),
 		'status' => set_value('status', $row->status),
 	    );
-            $this->view('products/products_form', $data);
+            $this->html_view('products/products_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('products'));
