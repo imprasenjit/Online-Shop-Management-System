@@ -9,7 +9,7 @@ class MY_Controller extends CI_Controller
   public function html_view($viewname,$data=NULL)
   {
   //  var_dump($viewname);
-    $default_theme=1;
+    $default_theme=0;
     $theme_folder=array(
       0=>"site/theme0/",
       1=>"site/theme1/"
