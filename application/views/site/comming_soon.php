@@ -48,7 +48,6 @@
         </div>
         <div class="content">
             <h1 class="big-title font_serif ssa js-spanize">Coming Soon...</h1>
-            <h2 class="font_serif sa js-spanize">Created for your Business</h2>
             <br>
 
             <br>
