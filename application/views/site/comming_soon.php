@@ -26,26 +26,11 @@
     <link href="<?= base_url(); ?>assets/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="<?=base_url()?>assets/comming_soon/css/animate.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/comming_soon/css/style.css">
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-71483603-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
 </head>
 <body>
 <div class="wrapper">
 
     <div class="home">
-        <div class="background_youtube">
-            <!-- YouTube link -->
-            <img src="img/poster.png" class="img-responsive" alt="">
-            <a class="player" data-property="{videoURL:'https://youtu.be/0pXYp72dwl0'}"></a>
-        </div>
         <div class="content">
             <h1 class="big-title font_serif ssa js-spanize">Coming Soon...</h1>
             <br>
