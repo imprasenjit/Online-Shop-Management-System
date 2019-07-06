@@ -16,6 +16,10 @@ class Home extends MY_Controller {
 	}
 	public function index() {
 		$data = array("page" => "Home");
+		$this->load->view('site/comming_soon');
+	}
+	public function web() {
+		$data = array("page" => "Home");
 		$this->html_view('requires/header',$data);
 		$this->html_view('home');
 		$this->html_view('requires/footer');
