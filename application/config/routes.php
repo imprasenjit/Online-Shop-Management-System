@@ -63,6 +63,7 @@ $route['search'] = 'blogs/search';
 $route['blogs1/(:any)'] = 'blogs1/index/$1';
 $route['blogs1/(:any)/(:any)'] = 'blogs1/blog_details/$1/$2';
 $route['search1'] = 'blogs1/search';
+$route['web'] = 'home/web';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
