@@ -296,6 +296,7 @@ class Purchase_orders extends Aipl_admin
         } //End of if else
         $data = array();
         if (!empty($records)) {
+        //echo "<pre>";  var_dump($records);die;
             $sl_no = 1;
             foreach ($records as $rows) {
                 $purchase_order_supplier_id = $rows->purchase_order_supplier_id;
@@ -304,15 +305,16 @@ class Purchase_orders extends Aipl_admin
                 $this->load->library('encryption');
                 $encoded_purchase_order_supplier_id = $this->encryption->encrypt($purchase_order_supplier_id);
                 $encoded = str_replace(array('+', '/', '='), array('-', '_', '|'), $encoded_purchase_order_supplier_id);
-                if ($rows->invoice_status != NULL) {
+            //    if ($rows->invoice_status != NULL) {
                     if ($rows->send_to_warehouse_status == 1) {
                         $poBtn = '<a class="btn btn-success btn-sm"href="#!"><i class="glyphicon glyphicon-ok"></i>&nbsp;Sent</a>';
                     } else {
-                        $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/purchase_orders/send_to_warehouse/" . $encoded) . '">Send to Warehouse</a>';
+                        // $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/purchase_orders/send_to_warehouse/" . $encoded) . '">Send to Warehouse</a>';
+                        $poBtn = '<a class="btn btn-warning btn-sm"  href="' . base_url("admin/purchase_orders/send_po_to_warehouse_view/" . $encoded) . '">Send to Warehouse</a>';
                     }
-                } else {
-                    $poBtn = '';
-                }
+                // } else {
+                //     $poBtn = '';
+                // }
                 $viewBtn = anchor(site_url('admin/purchase_orders/purchase_order_to_supplier_view/' . $purchase_order_supplier_id), 'View', array('class' => 'btn btn-sm btn-primary')) . "&nbsp;";
                 $nestedData["sl_no"] = $sl_no++;
                 $nestedData["customer_id"] = $rows->customer_name;
@@ -430,7 +432,7 @@ class Purchase_orders extends Aipl_admin
         if ($send_id != NULL) {
             $this->load->library('encryption');
             $dec_send_id = str_replace(array('-', '_', '|'), array('+', '/', '='), $send_id);
-            $dec_send_id = $this->encryption->decrypt($dec_send_id);           
+            $dec_send_id = $this->encryption->decrypt($dec_send_id);
             $row = $this->purchase_order_model->get_by_id_purchase_order_to_supplier($dec_send_id);
             $data = array(
                 "purchase_order_to_supplier_id" => $row->purchase_order_supplier_id,
@@ -547,4 +549,128 @@ class Purchase_orders extends Aipl_admin
         $this->load->view('admin/requires/footer');
     }
     //** Purchase Order to Warehouse Functions */
+    public function send_po_to_warehouse_view($send_id= NULL){
+      $this->isAdminloggedin();
+      $data['send_id']=$send_id;
+      $this->load->view('admin/requires/header', array("title" => "Purchase Orders"));
+      $this->load->view('admin/purchase_order/po_to_warehouse_view',$data);
+      $this->load->view('admin/requires/footer');
+    }
+    public function send_po_to_warehouse_action($send_id= NULL)
+    {
+      //$this->pr($this->input->post());die;
+      $this->isAdminloggedin();
+
+      $this->form_validation->set_rules('send_to', 'Customer', 'trim|required');
+      $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      if ($this->form_validation->run() == FALSE) {
+          $this->session->set_flashdata('message', 'Purchase Order could not be Sent to warehouse <br/>');
+          $this->session->set_flashdata('type', 'danger');
+          $this->send_po_to_warehouse_view();
+      } else {
+          $attr_count = $this->input->post("product_attr_count");
+          $product_attributes = $this->input->post('product_attr', TRUE);
+          $product_ids = $this->input->post('product_id', TRUE);
+          $temp_array = array();
+          $d_key = 0;
+          foreach ($attr_count as $key => $key_value) {
+              $attributes = array();
+              $mykey = 0;
+              while ($key_value > 0) {
+                  $attributes[$mykey] = $product_attributes[$d_key];
+                  $key_value--;
+                  $d_key++;
+                  $mykey++;
+              }
+              array_push($temp_array, array($product_ids[$key] => $attributes));
+          }
+          $products = json_encode($product_ids);
+          $send_to = $this->input->post('send_to', TRUE);
+          $customer_address = $this->customers_model->get_address_by_address_id($this->input->post('address_selector', TRUE));
+          $editordata = $this->input->post('editordata', TRUE);
+          $editordata2 = $this->input->post('editordata2', TRUE);
+          $product_quantity = json_encode($this->input->post('quantity', TRUE));
+          $product_unit = json_encode($this->input->post('product_unit', TRUE));
+          $product_attributes = json_encode($temp_array);
+          $product_price = json_encode($this->input->post('product_price', TRUE));
+          $tax_rate = json_encode($this->input->post('tax_rate', TRUE));
+          $cgst = json_encode($this->input->post('cgst', TRUE));
+          $sgst = json_encode($this->input->post('sgst', TRUE));
+          $igst = json_encode($this->input->post('igst', TRUE));
+          $exyard = json_encode($this->input->post('exyard', TRUE));
+          $frieght = json_encode($this->input->post('frieght', TRUE));
+          $total = json_encode($this->input->post('total_price', TRUE));
+          $others = json_encode($this->input->post('others', TRUE));
+          $data = array(
+              'customer_id' => $send_to,
+              'customer_address' => $customer_address->address,
+              'products' => $products,
+              'quantity' =>  $product_quantity,
+              'product_unit' =>  $product_unit,
+              'attributes' =>  $product_attributes,
+              'product_price' =>  $product_price,
+              'tax_rate' =>  $tax_rate,
+              'cgst' =>  $cgst,
+              'sgst' =>  $sgst,
+              'igst' =>  $igst,
+              'exyard' =>  $exyard,
+              'frieght' =>  $frieght,
+              'total' =>  $total,
+              'others' => $others,
+              'created_at' => date("Y-m-d H:i:s"),
+              'created_by' => $this->session->userdata('id')
+          );
+
+          if ($send_id != NULL) {
+              $this->load->library('encryption');
+              $dec_send_id = str_replace(array('-', '_', '|'), array('+', '/', '='), $send_id);
+              $dec_send_id = $this->encryption->decrypt($dec_send_id);
+              $row = $this->purchase_order_model->get_by_id_purchase_order_to_supplier($dec_send_id);
+
+              $data["purchase_order_to_supplier_id"] = $row->purchase_order_supplier_id;
+              $data["supplier_id"] = $row->supplier_id;
+              $data["purchase_order_from_customer_id"] = $row->purchase_order_from_customer_id;
+            }
+          $purchase_order_to_warehouse_id=$this->purchase_order_model->insert_purchse_order_to_warehouse($data);
+         $this->save_invoice_details($data["purchase_order_to_supplier_id"]);
+          $this->session->set_flashdata('message', 'Purchase Order has been sent successfully');
+          $this->session->set_flashdata('type', 'success');
+          redirect(site_url('admin/purchase_orders/purchase_order_to_supplier_list'));
+      }
+
+    }
+
+    public function save_invoice_details($purchase_order_to_supplier_id)
+    {
+
+        // $this->form_validation->set_rules('purchase_order_to_supplier_id', 'Purchase Order', 'trim|required');
+        // $this->form_validation->set_rules('company_name', 'Company Name', 'trim|required');
+        // $this->form_validation->set_rules('invoice_no', 'Invoice No', 'trim|required');
+        // $this->form_validation->set_rules('invoice_date', 'Invoice Date', 'trim|required');
+        // $this->form_validation->set_rules('lorry_no', 'Lorry No', 'trim|required');
+        // $this->form_validation->set_rules('lorry_date', 'Lorry Date', 'trim|required');
+
+            $this->load->helper("fileupload");
+            if ($this->input->post("upload_invoice")) {
+                $invoice_doc = moveFile(0, $this->input->post("upload_invoice"), "invoice");
+            }
+            $data = array(
+                'purchase_order_to_supplier_id' => $purchase_order_to_supplier_id,
+                'company_name' => $this->input->post("company_name", TRUE),
+                'invoice_no' => $this->input->post("invoice_no", TRUE),
+                'invoice_date' => $this->input->post("invoice_date", TRUE),
+                'lorry_no' => $this->input->post("lorry_no", TRUE),
+                'lorry_date' => $this->input->post("lorry_date", TRUE),
+                'invoice_doc' => $invoice_doc[0],
+                'created_at' => date("Y-m-d H:i:s"),
+                'created_by' => $this->session->id
+            );
+            $insert_id = $this->suppliers_model->save_invoice_details($data);
+            if ($insert_id) {
+                $status_change = array("invoice_status" => 1, "invoice_id" => $insert_id);
+                $this->purchase_order_model->update_purchase_order_to_supplier($data["purchase_order_to_supplier_id"], $status_change);
+
+            }
+
+    }
 };
