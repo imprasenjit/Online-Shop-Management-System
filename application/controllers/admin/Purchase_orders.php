@@ -650,10 +650,7 @@ class Purchase_orders extends Aipl_admin
         // $this->form_validation->set_rules('lorry_no', 'Lorry No', 'trim|required');
         // $this->form_validation->set_rules('lorry_date', 'Lorry Date', 'trim|required');
 
-            $this->load->helper("fileupload");
-            if ($this->input->post("upload_invoice")) {
-                $invoice_doc = moveFile(0, $this->input->post("upload_invoice"), "invoice");
-            }
+
             $data = array(
                 'purchase_order_to_supplier_id' => $purchase_order_to_supplier_id,
                 'company_name' => $this->input->post("company_name", TRUE),
@@ -661,10 +658,16 @@ class Purchase_orders extends Aipl_admin
                 'invoice_date' => $this->input->post("invoice_date", TRUE),
                 'lorry_no' => $this->input->post("lorry_no", TRUE),
                 'lorry_date' => $this->input->post("lorry_date", TRUE),
-                'invoice_doc' => $invoice_doc[0],
+                'driver_name' => $this->input->post("driver_name", TRUE),
+                'driver_contact' => $this->input->post("driver_contact", TRUE),
                 'created_at' => date("Y-m-d H:i:s"),
                 'created_by' => $this->session->id
             );
+            $this->load->helper("fileupload");
+            if ($this->input->post("upload_invoice")) {
+                $invoice_doc = moveFile(0, $this->input->post("upload_invoice"), "invoice");
+                $data['invoice_doc'] = $invoice_doc[0];
+            }
             $insert_id = $this->suppliers_model->save_invoice_details($data);
             if ($insert_id) {
                 $status_change = array("invoice_status" => 1, "invoice_id" => $insert_id);

@@ -47,7 +47,7 @@
               <div class="row">
                 <div class="col-md-6">
   								<div class="form-group">
-                    <label for="varchar">Lorry Number</label>
+                    <label for="varchar">Vehicle Number</label>
                     <input type="text" class="form-control form-control-sm" name="lorry_no">
                   </div>
                 </div>
@@ -55,6 +55,20 @@
   								<div class="form-group">
                     <label for="varchar"> Date</label>
                     <input type="date" class="form-control form-control-sm" name="lorry_date">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+  								<div class="form-group">
+                    <label for="varchar">Driver Name</label>
+                    <input type="text" class="form-control form-control-sm" name="driver_name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+  								<div class="form-group">
+                    <label for="varchar"> Driver Contact</label>
+                    <input type="text" class="form-control form-control-sm" name="driver_contact">
                   </div>
                 </div>
               </div>
