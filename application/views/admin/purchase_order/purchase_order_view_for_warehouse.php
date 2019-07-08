@@ -12,14 +12,14 @@
                                                 <tr>
                                                     <td>Supplier Details</td>
                                                     <td>
-                                                        
+
                                                             <?php $supplier = $this->suppliers_model->get_by_id($supplier_id); ?>
                                                             <?php
                                                             echo $supplier->name . '<br/>';
                                                             echo $supplier->address . '<br/>';
                                                             echo $supplier->mobile . '<br/>';
                                                             ?>
-                                                        
+
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -38,20 +38,20 @@
                                                 <tr>
                                                     <td width="30%">Customer Details</td>
                                                     <td>
-                                                            <?php $customer_details = $this->customers_model->get_by_id($customer_id); 
+                                                            <?php $customer_details = $this->customers_model->get_by_id($customer_id);
                                                             ?>
                                                             <?php
-                                                            echo $customer_details->name . '<br/>';
-                                                            echo $customer_details->contact . '<br/>';                                                            
+                                                            echo !empty($customer_details->name) ?  $customer_details->name : ""; '<br/>';
+                                                            echo !empty($customer_details->contact) ? $customer_details->contact : ""; '<br/>';
                                                             ?>
                                                     <?php if($customer_address!=NULL){
-                                                        echo $customer_address . '<br/>';
+                                                        echo !empty($customer_address)?$customer_details->contact:"", '<br/>';
                                                     }else{
-                                                        echo $customer_details->address . '<br/>';
+                                                        echo !empty($customer_details->address)?$customer_details->address:""; '<br/>';
                                                     }?>
                                                     </td>
                                                 </tr>
-                                                <?php 
+                                                <?php
                                                 if($purchase_order_from_customer_id!=NULL){
                                                 $client_po_details=$this->purchase_order_model->get_by_id($purchase_order_from_customer_id);
                                                 ?>
@@ -60,7 +60,7 @@
                                                     Purchase Order No: <?=$purchase_order_from_customer_id?>
                                                     </td>
                                                     <td>
-                                                    Purchase Order  Date: <?php echo date("d-m-Y", strtotime($client_po_details->created_at)); ?>
+                                                    Purchase Order  Date: <?php echo !empty($client_po_details->created_at)? date("d-m-Y", strtotime($client_po_details->created_at)) :""; ?>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -118,13 +118,13 @@
                                         "exyard"=>$exyard,
                                         "frieght"=>$frieght,
                                         "total"=>$total,
-                                    );    
+                                    );
                                     $this->load->view("admin/products/product_table_format",array("product"=>(object)$product_details)); ?>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                     </div>
                     <div class="card-footer">
                     <a href="<?=base_url("admin/purchase_orders/purchase_order_to_warehouse_list");?>" class="btn btn-primary btn-sm">Close</a>
