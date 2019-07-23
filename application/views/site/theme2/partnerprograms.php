@@ -1,199 +1,241 @@
+<link href="<?= base_url(); ?>assets/theme2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link href="<?= base_url(); ?>assets/theme2/css/styles.css" rel="stylesheet" />
+<script src="<?= base_url(); ?>assets/theme2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+<script src="<?= base_url(); ?>assets/theme2/js/gsdk-bootstrap-wizard.js"></script>
 <script>
     $(document).ready(function () {
         $('#partnerprograms').addClass('active');
     });
 </script>
-<div class="page-background">
-    <div class="text-center container">
-        <h2 class="header-title-inner-page">Partner Programs</h2>
-    </div>
-</div>
+<div class="agile-banner">
+			<div class="text-center container" style="color:white; padding:200px 170px;">
+                    <h1 class="header-title-inner-page" style="font-size:4vh; font-weight:900;">Partner Programs</h1>
+            </div>
+	</div>
+	<!-- //banner -->
+	<!---728x90--->
 
-<div class="v-page-wrap" style="margin-top:50px;margin-bottom:40px;">
-    <div class="container pull-bottom-big pull-top">
-      <div class="container">
-          <div class="w3ls-heading">
-            <?php if ($this->session->flashdata("message")) { ?>
-              <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Success!</strong> <?= $this->session->flashdata("message") ?>
-              </div>
-            <?php } ?>
-              <h2 class="text-center" style="margin-bottom:20px;">CHOOSE US BUT WHY?</h2>
-              <h3></h3>
-
-              <div class="page-header">
-                <h1>For SMEs :<small></small></h1>
-              </div>
-
-
-          <p class="text-justify">
-                  SupplyOrigin is committed to sourcing of quality material from established manufacturers at the most
-                  effective prices in the Eastern part of India. Be our partner and get access to our range of products
-                  through a complete digitalized platform with automated workflow for the ease of dealing and providing
-                  never before services to SMEs. <br>
-                  We assure you trust and quality and you can decide on the services you receive from us.
-                  Let us know what you think –
-              </p>
-          </div>
-          <br/>
-          <div class="row">
-          <div class="col-md-6 pull-right">
-              <form action="<?=base_url('partnerprograms/smesave')?>" method="post">
-                  <div class="card-body">
-                      <div class="row">
-                          <div class=" col-md-12 form-group">
-                              <label>Name <span class="text-danger">*</span></label>
-                              <input type="text" name="sme_name" value="" class="form-control" autocomplete="off" />
-                              <?=form_error("sme_name")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-6 form-group">
-                              <label>Mobile No. <span class="text-danger">*</span></label>
-                              <input type="text" name="sme_mobile" value="" class="form-control" autocomplete="off" maxlength="10" />
-                              <?=form_error("sme_mobile")?>
-                          </div>
-                          <div class="col-md-6 form-group" style="display:block">
-                              <label>Email<span class="text-danger">*</span></label>
-                              <input name="sme_email" value="" class="form-control" type="email" autocomplete="off" />
-                              <?=form_error("sme_email")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-6 form-group">
-                              <label>State<span class="text-danger">*</span></label>
-                              <select name="sme_state" class="form-control">
-                                  <option value="">Select</option>
-                                  <?php $states = $this->suppliers_model->get_all_states();
-                                  foreach ($states as $state_detail) { ?>
-                                      <option value="<?=$state_detail->state_name?>"><?=$state_detail->state_name?></option>
-                                  <?php } ?>
-                              </select>
-                              <?=form_error("sme_state")?>
-                          </div>
-                          <div class="col-md-6 form-group" style="display:block">
-                              <label>District<span class="text-danger">*</span></label>
-                              <input name="sme_district" value="" class="form-control" type="text" />
-                              <?=form_error("sme_district")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-12 form-group">
-                              <label>Message <span class="text-danger">*</span></label>
-                              <textarea name="sme_msg" class="form-control"></textarea>
-                              <?=form_error("sme_msg")?>
-                          </div>
-                      </div><!-- End of .row -->
-                  </div><!--End of .card-body-->
-                  <div class="card-footer text-center">
-                      <button type="reset" class="btn btn-danger">
-                          <i class="fa fa-remove"></i> Reset
-                      </button>
-                      <button class="btn btn-success" type="submit">
-                          <i class="fa fa-check"></i> Send
-                      </button>
-                  </div><!--End of .card-footer-->
-              </form>
-          </div><!--End of .card-->
-          </div><!--End of .card-->
-  <div class="clearfix"></div>
-  <br/>
-    <div class="w3ls-heading">
-  <div class="page-header">
-    <h1>For Companies : <small></small></h1>
-  </div>
-
-
-          <p class="text-justify">
-              Companies who want to focus on manufacturing and quality of products looking for trusted partners to sell
-              and build their brand, get associated with SupplyOrigin and get access to our network of loyal channel
-              partners who believe in us and the products we source. <br>
-              We are open to diversifying our range of products. Send us your details and we’ll get back to you.
-          </p>
-
-</div>
-          <div>
-          <div class="row">
-          <div class="col-md-6">
-              <form action="<?=base_url('partnerprograms/companysave')?>" method="post">
-                  <div class="card-body">
-                      <div class="row">
-                          <div class=" col-md-12 form-group">
-                              <label>Company Name <span class="text-danger">*</span></label>
-                              <input type="text" name="company_name" value="" class="form-control" autocomplete="off" />
-                              <?=form_error("company_name")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-6 form-group">
-                              <label>Contact Person <span class="text-danger">*</span></label>
-                              <input type="text" name="contact_person" value="" class="form-control" />
-                              <?=form_error("contact_person")?>
-                          </div>
-                          <div class="col-md-6 form-group" style="display:block">
-                              <label>Designation <span class="text-danger">*</span></label>
-                              <input name="designation" value="" class="form-control" type="text" autocomplete="off" />
-                              <?=form_error("designation")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-6 form-group">
-                              <label>Contact No. <span class="text-danger">*</span></label>
-                              <input type="text" name="conatct_no" value="" class="form-control" autocomplete="off" maxlength="10" />
-                              <?=form_error("conatct_no")?>
-                          </div>
-                          <div class="col-md-6 form-group" style="display:block">
-                              <label>Email <span class="text-danger">*</span></label>
-                              <input name="contact_email" value="" class="form-control" type="email" autocomplete="off" />
-                              <?=form_error("contact_email")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-12 form-group">
-                              <label>Products Manufactured <span class="text-danger">*</span></label>
-                              <textarea name="product_manufactured" class="form-control"></textarea>
-                              <?=form_error("product_manufactured")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class="col-md-12 form-group" style="display:block">
-                              <label>Registered Office Address <span class="text-danger">*</span></label>
-                              <textarea name="office_address" class="form-control"></textarea>
-                              <?=form_error("office_address")?>
-                          </div>
-                      </div><!-- End of .row -->
-
-                      <div class="row">
-                          <div class=" col-md-12 form-group">
-                              <label>Factory/Plant Address <span class="text-danger">*</span></label>
-                              <textarea name="factory_address" class="form-control"></textarea>
-                              <?=form_error("factory_address")?>
-                          </div>
-                      </div><!-- End of .row -->
-                  </div><!--End of .card-body-->
-                  <div class="card-footer text-center">
-                      <button type="reset" class="btn btn-danger">
-                          <i class="fa fa-remove"></i> Reset
-                      </button>
-                      <button class="btn btn-success" type="submit">
-                          <i class="fa fa-check"></i> Submit
-                      </button>
-                  </div><!--End of .card-footer-->
-              </form>
-          </div><!--End of .card-->
-          </div><!--End of .card-->
-          <br/>
-          <br/>
-          <br/>
-      </div>
-  </div>
-    </div>
-</div>
+	<!-- products -->
+	<section style="padding-bottom: 100px; background-color:grey">
+			<div class="container">
+					<div class="row">
+					<div class="col-sm-12">
+			
+						<!--      Wizard container        -->
+						<div class="wizard-container">
+							<div class="card wizard-card" data-color="green" id="wizard">
+							<form action="" method="">
+							<!--        You can switch ' data-color="green" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+			
+									<div class="wizard-header">
+										<h3>
+										   <b>JOIN US</b> <br>
+										   <small>Connect to our platform catering a wide range of construction/building materials.</small>
+										</h3>
+									</div>
+									<div class="wizard-navigation">
+										<ul>
+											<li><a href="#location" data-toggle="tab">Details</a></li>
+											<li><a href="#type" data-toggle="tab">Category</a></li>
+											<li><a href="#facilities" data-toggle="tab">More</a></li>
+											<li><a href="#description" data-toggle="tab">Message</a></li>
+										</ul>
+									</div>
+			
+									<div class="tab-content">
+										<div class="tab-pane" id="location">
+										  <div class="row">
+											  <div class="col-sm-12">
+												<h4 class="info-text"> Let's start with the basic details</h4>
+											  </div>
+											  <div class="col-sm-5 col-sm-offset-1">
+													<div class="form-group">
+														<label>Name</label>
+														<div class="input-group">
+																<input type="text" class="form-control" placeholder="Please Enter fullname">
+																<span class="input-group-addon"></span>
+															</div>
+													</div>
+												</div>
+												<div class="col-sm-5">
+													<div class="form-group">
+														<label>Mobile No.</label>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="Enter contact number">
+															<span class="input-group-addon"></span>
+														</div>
+													</div>
+												</div>
+											  <div class="col-sm-5 col-sm-offset-1">
+												  <div class="form-group">
+													<label>Email</label>
+													<input type="text" class="form-control" id="exampleInputEmail1" placeholder="example@mail.com">
+												  </div>
+											  </div>
+											  <div class="col-sm-5">
+												   <div class="form-group">
+														<label>State</label><br>
+														 <select name="state" class="form-control">
+															<option disabled="" selected="">- State -</option>
+															<option value="Andaman and Nicobar ">Andaman and Nicobar </option>
+															<option value="Andhra Pradesh ">Andhra Pradesh </option>
+															<option value="Arunachal Pradesh ">Arunachal Pradesh </option>
+															<option value="Assam ">Assam </option>
+															<option value="Bihar ">Bihar </option>
+															<option value="Chandigarh ">Chandigarh </option>
+															<option value="Chhattisgarh ">Chhattisgarh </option>
+															<option value="Dadra and Nagar Haveli ">Dadra and Nagar Haveli </option>
+															<option value="Daman and Diu ">Daman and Diu </option>
+															<option value="Delhi ">Delhi </option>
+															<option value="Goa ">Goa </option>
+															<option value="Gujarat ">Gujarat </option>
+															<option value="Haryana ">Haryana </option>
+															<option value="Himachal Pradesh ">Himachal Pradesh </option>
+															<option value="Jammu and Kashmir ">Jammu and Kashmir </option>
+															<option value="Jharkhand ">Jharkhand </option>
+															<option value="Karnataka ">Karnataka </option>
+															<option value="Kerala ">Kerala </option>
+															<option value="Lakshadweep ">Lakshadweep </option>
+															<option value="Madhya Pradesh ">Madhya Pradesh </option>
+															<option value="Maharashtra ">Maharashtra </option>
+															<option value="Manipur ">Manipur </option>
+															<option value="Meghalaya ">Meghalaya </option>
+															<option value="Mizoram ">Mizoram </option>
+															<option value="Odisha ">Odisha </option>
+															<option value="Puducherry ">Puducherry </option>
+															<option value="Punjab ">Punjab </option>
+															<option value="Rajasthan ">Rajasthan </option>
+															<option value="Sikkim ">Sikkim </option>
+															<option value="Tamil Nadu ">Tamil Nadu </option>
+															<option value="Telangana ">Telangana </option>
+															<option value="Tripura ">Tripura </option>
+															<option value="Uttar Pradesh ">Uttar Pradesh </option>
+															<option value="Uttarakhand ">Uttarakhand </option>
+															<option value="West Bengal ">West Bengal </option>
+														</select>
+													  </div>
+											  </div>
+											  
+										  </div>
+										</div>
+										<div class="tab-pane" id="type">
+											<h4 class="info-text">What type of business do you have? </h4>
+											<div class="row">
+												<div class="col-sm-12 ">
+													<div class="col-sm-4">
+														<div class="choice" data-toggle="wizard-radio" >
+															<input type="radio" name="type" value="House">
+															<div class="icon">
+																<i class="fa fa-home"></i>
+															</div>
+															<h6>SME</h6>
+															<br>
+															<h7>If you are small medium enterprise,<br> shop owner or individuals looking for<br> quality and cost-effective products. </h7><br>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="choice" data-toggle="wizard-radio">
+															<input type="radio" name="type" value="Appartment">
+															<div class="icon">
+																<i class="fa fa-building"></i>
+															</div>
+															<h6>Company</h6>
+															<br>
+															<h7>If you are a company, looking for warehouse<br> and logistics solution in the northeast region. </h7><br>
+														</div>
+													</div>
+													<div class="col-sm-4">
+															<div class="choice" data-toggle="wizard-radio">
+																<input type="radio" name="type" value="Channel">
+																<div class="icon">
+																	<i class="fa fa-television"></i>
+																</div>
+																<h6>Channel Partnership</h6>
+																<br>
+															<h7>If you are a manufacturer and looking for<br> a channel partner in the northeast region.</h7><br>
+															</div>
+														</div>
+			
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="facilities">
+											<div class="row">
+											  <div class="col-sm-12">
+												<h4 class="info-text">Tell us more about you business.</h4>
+											  </div>
+											  <!--<small class="info-text">You can skip ahead if you are not a retailer/distributor.</small>-->
+											  <div class="col-sm-5 col-sm-offset-1">
+													<div class="form-group">
+														<label>Company Name</label>
+														<div class="input-group">
+																<input type="text" class="form-control" placeholder="Please Enter fullname">
+																<span class="input-group-addon"></span>
+															</div>
+													</div>
+												</div>
+												<div class="col-sm-5">
+													<div class="form-group">
+														<label>Products Manufactured</label>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="Enter you product details">
+															<span class="input-group-addon"></span>
+														</div>
+													</div>
+												</div>
+											  <div class="col-sm-5 col-sm-offset-1">
+												  <div class="form-group">
+													<label>Registered Office Address</label>
+													<input type="text" class="form-control" placeholder="Enter full address.">
+												  </div>
+											  </div>
+											  <div class="col-sm-5">
+												  <div class="form-group">
+													<label>Factory/Plant Address</label>
+													<input type="text" class="form-control" placeholder="Enter full address.">
+												  </div>
+											  </div>
+											  
+										  </div>
+										</div>
+										<div class="tab-pane" id="description">
+											<div class="row">
+												<h4 class="info-text"> Drop us a message. </h4>
+												<div class="col-sm-6 col-sm-offset-1">
+													 <div class="form-group">
+														<label>Your message</label>
+														<textarea class="form-control" placeholder="Your message" rows="9">
+			
+														</textarea>
+													  </div>
+												</div>
+												<div class="col-sm-4">
+													 <div class="form-group">
+														<!--<label>Example</label>-->
+														<label> </label>
+														<p class="description">"Drop us a message to know more about our services."</p>
+													  </div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="wizard-footer">
+											<div class="pull-right">
+												<input type='button' class='btn btn-next btn-fill btn-success btn-wd btn-sm' name='next' value='Next' />
+												<input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Finish' />
+			
+											</div>
+											<div class="pull-left">
+												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+											</div>
+											<div class="clearfix"></div>
+									</div>
+			
+								</form>
+							</div>
+						</div> <!-- wizard container -->
+					</div>
+					</div> <!-- row -->
+				</div>
+    </section>
+    

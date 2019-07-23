@@ -1,4 +1,3 @@
-
   <?php $imgRows = $this->home_page_slider_model->get_results();
   ?>
   <script>
@@ -18,7 +17,6 @@
               $('#exampleModalCenter').modal('show');
           });
       });
-
       function clear_cart() {
           var result = confirm('Are you sure want to clear cart?');
           if (result) {
@@ -63,13 +61,11 @@
             <?php }
         }
         ?>
-
   		</ul>
   	</div>
   	<!-- //main-slider -->
   	<!-- //top-header and slider -->
   	<!---728x90--->
-
   	<!-- Specialize-section -->
   			<section class="w3-about text-center">
   				<div class="container">
@@ -78,36 +74,28 @@
   					<hr><br><br>
   					<div class="w3l-about-grids">
   							<div class="col-md-6 w3ls-about-left">
-
   								<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/199001319?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-
   							</div>
   							<div class="col-md-6 w3ls-about-right">
   								<p align="justify" style="font-size:16.5px;margin-top:30px;">
   									We understand the challenges behind sourcing high-quality building materials from endless manufacturers in the market. Besides, when the goal is to deliver impeccable infrastructural properties, nobody wants their building foundation to be compromised, do they? <br><br>
   									This is precisely why, for the first time in Eastern India, we have introduced a ‘much-needed’ digital platform for purchasing the best quality raw and finished materials in a hassle-free transactional setup. We carry out regular third-party lab testing under NABL accreditation; so that, quality delivered to you is of the highest grade, every time.
-
   								</p><br><br>
-
   							</div>
   							<div class="clearfix"> </div>
   						</div>
-
   				</div>
   			</section>
-
   			<section style="padding:50px; background: #252525">
   				<div class="container">
   					<div class="row text-center" style="color:white">
   							<div class="col-md-2">
-
   									<div>
   										<img src="<?=base_url();?>assets/theme2/images/tests.png" width="150" height="150">
   									</div>
   									<div class="icon-right">
   										<h4>Test reports available</h4>
   									</div>
-
   							</div>
   							<div class="col-md-2">
   								<div class="agileits-icon-grid">
@@ -167,7 +155,6 @@
   						</div>
   					</div>
   			</section>
-
   			<section style="padding:50px;">
           <?php $products = $this->sub_category_model->get_all();?>
        <?php if($products){ ?>
@@ -184,7 +171,6 @@
                     <?php
                      }
                    ?>
-
   									</div>
   							<div class="owl-theme">
   								<div class="owl-controls">
@@ -227,94 +213,89 @@
   								});
   							});
   						</script>
-
   			</section>
-
-  			<section style="padding:50px;background-color:#E5E7E9;">
-  					<div class="container">
-  							<div class="row">
-  								<div class="col-sm-12">
-  									<h2 class="w3ls_head" style="padding-top:50px;"><span>Customer Testimonials</span></h2>
-  									<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  										<div><p><br><br></p></div>
-  										<!-- Carousel indicators -->
-  										<ol class="carousel-indicators">
-  											<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-  											<li data-target="#myCarousel" data-slide-to="1"></li>
-  											<li data-target="#myCarousel" data-slide-to="2"></li>
-  										</ol>
-  										<!-- Wrapper for carousel items -->
-  										<div class="carousel-inner">
-
+			  <section style="background-color:#E5E7E9;">    
+					<div classs="container" style="padding:30px;">
+							<div class="row">
+								<div class="col-sm-12">
+									<h2 class="w3ls_head" style="padding-top:50px;"><span>Customer Testimonials</span></h2>			
+									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+										<div><p><br><br></p></div>
+										<!-- Carousel indicators -->
+										<ol class="carousel-indicators">
+											<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+											<li data-target="#myCarousel" data-slide-to="1"></li>
+											<li data-target="#myCarousel" data-slide-to="2"></li>
+										</ol>
+										<!-- Wrapper for carousel items -->
+										<div class="carousel-inner">
                         <?php
                         $testimonials = $this->feedback_model->get_all_active_feedbacks();//echo "<pre>";var_dump($testimonials);die;
                         $i = 1;
                         if ($testimonials) {
                             foreach ($testimonials as $feedback) {
                                 ?>
-  											<div class="item carousel-item active">
-  												<div class="row">
-  													<br>
-  													<div class="col-sm-6">
-  														<div class="testimonial">
-  															<p><?php echo $feedback->message;?></p>
-  														</div>
-  														<div class="media">
-  															<div class="media-left d-flex mr-3">
-  																<img src="<?=base_url();?>assets/theme2/images/client.jpg" alt="">
-  															</div>
-  															<div class="media-body">
-  																<div class="overview">
-  																	<div class="name"><b><?=$feedback->name?></b></div>
-  																	<div class="details"><?=$feedback->address?></div>
-  																	<div class="star-rating">
-  																		<ul class="list-inline">
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-  																		</ul>
-  																	</div>
-  																	<br>
-  																</div>
-  															</div>
-  														</div>
-  													</div>
-  													<!-- <div class="col-sm-6">
-  														<div class="testimonial">
-  															<p>Vestibulum quis quam ut magna consequat faucibu. Eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra. Quis quam ut magna consequat faucibus quam.</p>
-  														</div>
-  														<div class="media">
-  															<div class="media-left d-flex mr-3">
-  																<img src="<?=base_url();?>assets/theme2/images/client.jpg" alt="">
-  															</div>
-  															<div class="media-body">
-  																<div class="overview">
-  																	<div class="name"><b>Antonio Moreno</b></div>
-  																	<div class="details">Web Developer / SoftBee</div>
-  																	<div class="star-rating">
-  																		<ul class="list-inline">
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
-  																			<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-  																		</ul>
-  																	</div>
-  																</div>
-  															</div>
-  														</div>
-  													</div> -->
-  												</div>
-  											</div>
+  									<div class="item carousel-item <?=($i==1)?"active":"";?>">
+												<div class="row">
+													<br>
+													<div class="col-sm-6">
+														<div class="testimonial">
+															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante.</p>
+														</div>
+														<div class="media">
+															<div class="media-left d-flex mr-3">
+																<img src="images/client.jpg" alt="">										
+															</div>
+															<div class="media-body">
+																<div class="overview">
+																	<div class="name"><b>Paula Wilson</b></div>
+																	<div class="details">Media Analyst / SkyNet</div>
+																	<div class="star-rating">
+																		<ul class="list-inline">
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+																		</ul>
+																	</div>
+																	<br>
+																</div>										
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="testimonial">
+															<p>Vestibulum quis quam ut magna consequat faucibu. Eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra. Quis quam ut magna consequat faucibus  malesuada ante.</p>
+														</div>
+														<div class="media">
+															<div class="media-left d-flex mr-3">
+																<img src="images/client.jpg" alt="">
+															</div>
+															<div class="media-body">
+																<div class="overview">
+																	<div class="name"><b>Antonio Moreno</b></div>
+																	<div class="details">Web Developer / SoftBee</div>
+																	<div class="star-rating">
+																		<ul class="list-inline">
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+																			<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+																		</ul>
+																	</div>
+																</div>										
+															</div>
+														</div>
+													</div>
+												</div>			
+											</div>
                               <?php
                               $i++;
                           }
                       }
                       ?>
-
-
   										</div>
   										<!-- Carousel controls -->
   										<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
@@ -328,7 +309,6 @@
   							</div>
   						</div>
   			</section>
-
   			<section style="padding:50px;">
   					<div class="two-grids">
   							<div class="container">
@@ -358,7 +338,6 @@
   								</div>
   							</div>
   						</div>
-
   						<script>
   							$(document).ready(function() {
   								  $('#testimonials-carousel').owlCarousel({
@@ -376,7 +355,7 @@
   											items: 2
   										},
   										1000: {
-  											items: 2
+  											items: 1
   										}
   									}
   								});
@@ -457,7 +436,6 @@
   							</div>
   							<div class="clearfix"></div>
   						</div>
-
   					</div>
   				</div> -->
   			<!--advantage-->
@@ -491,7 +469,6 @@
   			<div class="w3-agileits-rides-heading">
   				<h3 class="w3ls_head">Our Recent <span>Works</span></h3>
   			</div>
-
   			<div class="agileits-w3layouts-rides-grids">
   				<div class="col-sm-4 rides-grid">
   					<div class="agileinfo-work">
