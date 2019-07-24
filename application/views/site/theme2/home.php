@@ -232,8 +232,8 @@
                         <?php
                         $testimonials = $this->feedback_model->get_all_active_feedbacks();//echo "<pre>";var_dump($testimonials);die;
 						$i = 0;
-						echo '<pre>';
-						print_r($testimonials);
+						//echo '<pre>';
+						//print_r($testimonials);
                         if ($testimonials) {
                             while ($i < count($testimonials)) {
                                 ?>
