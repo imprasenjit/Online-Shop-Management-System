@@ -184,10 +184,11 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav">
             <li ><a id="home" href="<?= base_url(); ?>home">Home</a></li>
-            <li ><a id="about" href="<?= base_url(); ?>home/about">About</a></li>
+			<li ><a id="about" href="<?= base_url(); ?>home/about">About</a></li>
+			<li ><a id="products" href="<?= base_url("view-all-sub-category"); ?>">Products</a></li>
             <li ><a id="downloads" href="<?= base_url('home/downloads') ?>">Downloads</a></li>
             <li ><a id="partnerprograms" href="<?= base_url('home/partnerprograms') ?>">Partner Programs</a></li>
-            <li ><a id="products" href="<?= base_url("view-all-sub-category"); ?>">Products</a></li>
+            
             <li ><a id="blogs" href="<?= base_url("blogs"); ?>">Blogs</a></li>
             <li ><a id="contact" href="<?= base_url(); ?>home/contact">Contact</a></li>
 				  </ul>

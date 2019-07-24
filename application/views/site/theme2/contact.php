@@ -4,78 +4,47 @@
 		$('#contact').addClass('active');
 	});
 </script>
-<div class="page-background">
-    <div class="text-center container">
-        <h2 class="header-title-inner-page">Contact Us</h2>
-    </div>
-</div>
-<div class="v-page-wrap"  style="margin-top:50px;margin-bottom:40px;">
-    <div class="container pull-bottom-big pull-top">
-			<div class="">
-				<!-- <div class="wthree-heading">
-					<h2 class="header-title ">Contact Us</h2>
-				</div> -->
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile2" data-aos="flip-left">
-						<div class="contact-agileits">
-							<h4>Get In Touch</h4>
-							<form action="#" method="post">
-								<div class="control-group form-group">
-									<div class="controls">
-										<label class="contact-p1">Full Name:</label>
-										<input type="text" class="form-control" name="name" id="name" Placeholder=" " required="">
-										<p class="help-block"></p>
-									</div>
-								</div>
-								<div class="control-group form-group">
-									<div class="controls">
-										<label class="contact-p1">Phone Number:</label>
-										<input type="tel" class="form-control" name="phone" id="phone" Placeholder=" " required="">
-										<p class="help-block"></p>
-									</div>
-								</div>
-								<div class="control-group form-group">
-									<div class="controls">
-										<label class="contact-p1">Email Address:</label>
-										<input type="email" class="form-control" name="email" id="email" Placeholder=" " required="">
-										<p class="help-block"></p>
-									</div>
-								</div>
-
-								<div class="control-group form-group">
-									<div class="controls">
-										<label class="contact-p1">Message:</label>
-										<textarea type="text" class="form-control" name="comments" id="comments" Placeholder="Enter your Comments here" rows="5" required=""></textarea>
-										<p class="help-block"></p>
-									</div>
-								</div>
-								<div id="success"></div>
-								<!-- For success/fail messages -->
-								<button type="submit" class="btn btn-primary add_to_cart">Send</button>
-							</form>
+	<div class="agile-banner">
+			<div class="text-center container" style="color:white; padding:200px 150px;">
+                    <h1 class="header-title-inner-page">Contact Us</h1>
+            </div>
+	</div>
+	<div class="contact w3l-2">
+		<div class="container">
+				<div class="contact-grids">
+					<div class="col-md-7 contact-grid agileinfo-5">
+						<h4>Your Message</h4>
+						<p>Write to us about your queries here.</p>
+						<form action="#" method="post">
+							<label>Name</label>
+							<input type="text" name="Name" placeholder="Your name" required="">
+							<label>Email</label>
+							<input type="text" name="Email" placeholder="Email address" required="">
+							<label>Subject</label>
+							<input type="text" name="Subject" placeholder="Subject" required="">
+							<label>Message</label>
+							<textarea placeholder="Message" name="Message"></textarea>
+							<input type="submit" value="Send message">
+						</form>
+					</div>
+					<div class="col-md-5 contact-grid agileits-5">
+						<div class="contact-left">
+							<h4> Address</h4>
+							<div class="cont-info">
+								<h5>Address</h5>
+								<p>G.S. Road,Guwahati, Assam, India</p>
+								<h5>Email</h5>
+								<a href="mailto:sales@supplyorigin.com">sales@supplyorigin.com</a>
+								<h5>Phone</h5>
+								<a href="tel:+919706122341">+919706122341</a>
+							</div>
+						</div>
+						<div class="contact-bottom wthree-5">
+							<h4>Get connected</h4>
+							<p>Become a SupplyOrigin Partner today and get access to our wide product range via an automated workflow that gives you the ease of procuring reliable construction and building materials entirely online, backed by dedicated customer support.</p>
 						</div>
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile1" data-aos="flip-right">
-						<img src="<?= base_url(); ?>assets/images/supply_logo.png" width="250px">
-						<p class="contact-agile1"><strong>Phone :</strong> +91 9706122341</p>
-						<p class="contact-agile1"><strong>Email :</strong> <a href="mailto:name@supplyorigin.com">info@supplyorigin.com</a></p>
-						<p class="contact-agile1"><strong>Address :</strong> G.S. Road, Bhangagarh, Guwahati, Assam
-							<!-- <br>
-							<ul class="agileits_social_list">
-								<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="agile_twitter"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-							</ul> -->
-						</p>
-
-
-						<hr />
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.449362924448!2d91.78361241449409!3d26.149490983462186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59115cff362d%3A0x19261d66b7aa8d83!2sGS+Rd%2C+Guwahati%2C+Assam!5e0!3m2!1sen!2sin!4v1555066043105!5m2!1sen!2sin" width="100%" height="220" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
-					<div class="clearfix"></div>
+						<div class="clearfix"></div>
 				</div>
-			</div>
 		</div>
 	</div>
-<!-- <section class="contact-w3ls">
-
-</section> -->
