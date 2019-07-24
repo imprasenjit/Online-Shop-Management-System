@@ -231,16 +231,18 @@
 										<div class="carousel-inner">
                         <?php
                         $testimonials = $this->feedback_model->get_all_active_feedbacks();//echo "<pre>";var_dump($testimonials);die;
-                        $i = 1;
+						$i = 0;
+						//echo '<pre>';
+						//print_r($testimonials);
                         if ($testimonials) {
-                            foreach ($testimonials as $feedback) {
+                            while ($i < count($testimonials)) {
                                 ?>
   									<div class="item carousel-item <?=($i==1)?"active":"";?>">
 												<div class="row">
 													<br>
 													<div class="col-sm-6">
 														<div class="testimonial">
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante.</p>
+															<p><?=$testimonials[$i]->message?></p>
 														</div>
 														<div class="media">
 															<div class="media-left d-flex mr-3">
@@ -248,8 +250,8 @@
 															</div>
 															<div class="media-body">
 																<div class="overview">
-																	<div class="name"><b>Paula Wilson</b></div>
-																	<div class="details">Media Analyst / SkyNet</div>
+																	<div class="name"><b><?=$testimonials[$i]->name?></b></div>
+																	<div class="details"><?=$testimonials[$i]->address?></div>
 																	<div class="star-rating">
 																		<ul class="list-inline">
 																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -266,7 +268,7 @@
 													</div>
 													<div class="col-sm-6">
 														<div class="testimonial">
-															<p>Vestibulum quis quam ut magna consequat faucibu. Eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra. Quis quam ut magna consequat faucibus  malesuada ante.</p>
+															<p><?=$testimonials[$i+1]->message?></p>
 														</div>
 														<div class="media">
 															<div class="media-left d-flex mr-3">
@@ -274,8 +276,8 @@
 															</div>
 															<div class="media-body">
 																<div class="overview">
-																	<div class="name"><b>Antonio Moreno</b></div>
-																	<div class="details">Web Developer / SoftBee</div>
+																	<div class="name"><b><?=$testimonials[$i+1]->name?></b></div>
+																	<div class="details"><?=$testimonials[$i+1]->address?></div>
 																	<div class="star-rating">
 																		<ul class="list-inline">
 																			<li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -292,7 +294,7 @@
 												</div>			
 											</div>
                               <?php
-                              $i++;
+                              $i+=2;
                           }
                       }
                       ?>
