@@ -216,6 +216,7 @@
   			</section>
 			  <section style="background-color:#E5E7E9;">    
 					<div classs="container" style="padding:30px;">
+					<?php $testimonials = $this->feedback_model->get_all_active_feedbacks();//echo "<pre>";var_dump($testimonials);die;?>
 							<div class="row">
 								<div class="col-sm-12">
 									<h2 class="w3ls_head" style="padding-top:50px;"><span>Customer Testimonials</span></h2>			
@@ -223,21 +224,24 @@
 										<div><p><br><br></p></div>
 										<!-- Carousel indicators -->
 										<ol class="carousel-indicators">
-											<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-											<li data-target="#myCarousel" data-slide-to="1"></li>
-											<li data-target="#myCarousel" data-slide-to="2"></li>
+											<?php if (count($testimonials) > 0) { ?>
+											<?php foreach($testimonials as $key=>$value){ ?>
+											<li data-target="#myCarousel" data-slide-to="<?=$key?>" class="<?=($key==0)?"active":"";?>"></li>
+											<?php } ?>
+											<?php } ?>
 										</ol>
 										<!-- Wrapper for carousel items -->
 										<div class="carousel-inner">
                         <?php
-                        $testimonials = $this->feedback_model->get_all_active_feedbacks();//echo "<pre>";var_dump($testimonials);die;
+                        
 						$i = 0;
 						//echo '<pre>';
 						//print_r($testimonials);
-                        if (count($testimonials)>0) {
-                            while ($i < count($testimonials)) {
+						//echo count($testimonials);
+                        if (count($testimonials) > 0) {
+                            while (count($testimonials) > $i) {
                                 ?>
-  									<div class="item carousel-item <?=($i==1)?"active":"";?>">
+  									<div class="item carousel-item <?=($i==0)?"active":"";?>">
 												<div class="row">
 													<br>
 													<div class="col-sm-6">
