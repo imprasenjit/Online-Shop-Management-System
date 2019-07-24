@@ -234,7 +234,7 @@
 						$i = 0;
 						//echo '<pre>';
 						//print_r($testimonials);
-                        if ($testimonials) {
+                        if (count($testimonials)>0) {
                             while ($i < count($testimonials)) {
                                 ?>
   									<div class="item carousel-item <?=($i==1)?"active":"";?>">
