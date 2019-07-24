@@ -224,10 +224,10 @@
 										<div><p><br><br></p></div>
 										<!-- Carousel indicators -->
 										<ol class="carousel-indicators">
-											<?php if (count($testimonials) > 0) { ?>
-											<?php foreach($testimonials as $key=>$value){ ?>
-											<li data-target="#myCarousel" data-slide-to="<?=$key?>" class="<?=($key==0)?"active":"";?>"></li>
-											<?php } ?>
+											<?php if (count($testimonials) > 0) { $k=0; ?>
+											<?php foreach($testimonials as $key=>$value){ if($key%2==0){ ?>
+											<li data-target="#myCarousel" data-slide-to="<?=$k?>" class="<?=($key==0)?"active":"";?>"></li>
+											<?php $k++;} } ?>
 											<?php } ?>
 										</ol>
 										<!-- Wrapper for carousel items -->
