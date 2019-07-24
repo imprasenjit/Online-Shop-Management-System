@@ -97,7 +97,7 @@
             $('#cart_modal').modal("show");
         });
         $(document).on("click", ".login_modal", function () {
-            $('#login_modal').modal("show");
+            $('#loginModal').modal("show");
         });
         $(document).on("click", ".register_modal", function () {
             $('#register_modal').modal("show");

@@ -50,8 +50,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4"></label>
-                                    <div class="col-md-8 form-group">
-                                        <button type="submit" class="btn btn-primary blue_button submit col-md-12" id="submit_button">Register</button>
+                                    <div class="col-md-8 form-group login">
+                                        <button type="submit" class="btn btn-success btn-login submit col-md-12" id="submit_button">Register</button>
                                         <p class="text-center col-md-12">
                                             <a href="#">By clicking Register, I agree to your terms</a>
                                         </p>
