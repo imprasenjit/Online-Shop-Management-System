@@ -69,12 +69,13 @@
   	<!-- Specialize-section -->
   			<section class="w3-about text-center">
   				<div class="container">
-  					<hr style="margin-top:-20px;">
+  					<hr>
   					<h2 class="w3ls_head"><span>Your trusted Sourcing Partners</span></h2>
   					<hr><br><br>
   					<div class="w3l-about-grids">
   							<div class="col-md-6 w3ls-about-left">
-  								<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/199001319?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+								  <div style="padding:56.25% 0 0 0;position:relative;">
+								  </div>
   							</div>
   							<div class="col-md-6 w3ls-about-right">
   								<p align="justify" style="font-size:16.5px;margin-top:30px;">
@@ -222,7 +223,6 @@
 									<h2 class="w3ls_head" style="padding-top:50px;"><span>Customer Testimonials</span></h2>			
 									<div id="myCarousel" class="carousel slide" data-ride="carousel">
 										<div><p><br><br></p></div>
-										<!-- Carousel indicators -->
 										<ol class="carousel-indicators">
 											<?php if (count($testimonials) > 0) { $k=0; ?>
 											<?php foreach($testimonials as $key=>$value){ if($key%2==0){ ?>
@@ -230,14 +230,10 @@
 											<?php $k++;} } ?>
 											<?php } ?>
 										</ol>
-										<!-- Wrapper for carousel items -->
 										<div class="carousel-inner">
                         <?php
                         
 						$i = 0;
-						//echo '<pre>';
-						//print_r($testimonials);
-						//echo count($testimonials);
                         if (count($testimonials) > 0) {
                             while (count($testimonials) > $i) {
                                 ?>

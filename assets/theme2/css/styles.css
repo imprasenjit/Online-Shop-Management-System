@@ -4,15 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
-html,body
-{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden; 
-}
-
 
 .client-brand {
     padding: 5px;
@@ -69,6 +60,7 @@ label{
 
 /*-- header --*/
 .w3-slider {
+    margin-bottom: -135px;
     position: relative;
 }
 header {
@@ -232,7 +224,7 @@ header {
     animation-delay: 12s;
 }
 .cb-slideshow li:nth-child(4) span {
-    background-image: url(../images/4.jpg);
+    background-image: url(../images/supimg/bgcover.jpg);
     -webkit-animation-delay: 18s;
     -moz-animation-delay: 18s;
     -o-animation-delay: 18s;
@@ -354,7 +346,8 @@ header {
     line-height: 21px;
 	margin: 0;
 }
-/* .carousel .testimonial p::before {
+
+.carousel .testimonial p::before {
 	content: '\94';
     color: #fff;
     font-weight: bold;
@@ -363,7 +356,8 @@ header {
     position: absolute;
     left: -25px;
     top: 0;
-} */
+}
+
 .carousel .overview {
 	padding: 3px 0 0 15px;
 }
@@ -1163,12 +1157,8 @@ i.fa.fa-arrow-right {
 }
 /*-- //footer --*/
 .agile-banner{
-	background: url(../images/bgcover.jpg) no-repeat 0px 0px;
+	background: url(../images/supimg/bgcover.jpg) no-repeat 0px 0px;
     background-size: cover;
-	/* -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-    -ms-background-size: cover; */
     object-fit: contain;
 	min-height:450px;
 }
@@ -1263,7 +1253,7 @@ i.fa.fa-arrow-right {
     height: 500px;
 }
 .contact.w3l-2 {
-    padding: 2.5em 0;
+    padding: 5em 0;
 }
 .contact-grids {
     margin-top: 5em;
