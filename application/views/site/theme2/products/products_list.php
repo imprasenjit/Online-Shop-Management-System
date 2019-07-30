@@ -34,7 +34,7 @@
 							$sub_categories = $this->sub_category_model->get_subcategory_by_category($category->id);
 							foreach ($sub_categories as $sub_category) {
 								?>
-								<a href="#" class="list-group-item" style="font-size:17px;"">
+								<a href="<?=base_url("view-all-products-by-category/" . $sub_category->id) ?>" class="list-group-item" style="font-size:17px;"">
 									<?= $sub_category->sub_category; ?>
 										<span class=" pull-right">
 									<i class="fa fa-angle-down"></i>
@@ -87,37 +87,38 @@ foreach ($products_data as $byproducts) {
 	</section>
 	<!-- //products -->
 	<script>
-		$(function () {
-			$('#slide-submenu').on('click', function () {
-				$(this).closest('.list-group').fadeOut('slide', function () {
-					$('.mini-submenu').fadeIn();
-				});
+	$(function() {
+		$('#slide-submenu').on('click', function() {
+			$(this).closest('.list-group').fadeOut('slide', function() {
+				$('.mini-submenu').fadeIn();
 			});
-			$('.mini-submenu').on('click', function () {
-				$(this).next('.list-group').toggle('slide');
-				$('.mini-submenu').hide();
-			})
+		});
+		$('.mini-submenu').on('click', function() {
+			$(this).next('.list-group').toggle('slide');
+			$('.mini-submenu').hide();
 		})
-	</script>
-	<script>
-		function myFunction() {
-			var x = document.getElementById("drop");
-			if (x.className === "dropdown-container" ) {
-				if (x.style.display === "block") {
-					x.style.display = "none";
-				} else {
-					x.style.display = "block";
-				}
+	})
+</script>
+<script>
+	function myFunction1() {
+		var x = document.getElementById("drop1");
+		if (x.className === "dropdown-container1") {
+			if (x.style.display === "block") {
+				x.style.display = "none";
+			} else {
+				x.style.display = "block";
 			}
 		}
-		function myFunction2() {
-			var x = document.getElementById("drop2");
-			if (x.className === "dropdown-container2" ) {
-				if (x.style.display === "block") {
-					x.style.display = "none";
-				} else {
-					x.style.display = "block";
-				}
+	}
+
+	function myFunction2() {
+		var x = document.getElementById("drop2");
+		if (x.className === "dropdown-container2") {
+			if (x.style.display === "block") {
+				x.style.display = "none";
+			} else {
+				x.style.display = "block";
 			}
 		}
-	</script>
+	}
+</script>

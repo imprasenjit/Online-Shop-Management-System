@@ -34,7 +34,7 @@
 							$sub_categories = $this->sub_category_model->get_subcategory_by_category($category->id);
 							foreach ($sub_categories as $sub_category) {
 								?>
-								<a href="#" class="list-group-item" style="font-size:17px;"">
+								<a href="<?=base_url("view-all-products-by-category/" . $sub_category->id) ?>" class="list-group-item" style="font-size:17px;"">
 									<?= $sub_category->sub_category; ?>
 										<span class=" pull-right">
 									<i class="fa fa-angle-down"></i>

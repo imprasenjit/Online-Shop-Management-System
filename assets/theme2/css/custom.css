@@ -885,3 +885,6 @@ font-size: x-large;
      color:#fff;
      text-decoration:none;
 }
+.product-info table {
+    width: 100% !important;
+}

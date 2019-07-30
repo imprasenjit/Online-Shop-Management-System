@@ -70,7 +70,7 @@
 					<a href="<?=base_url()?>"><img src="<?= base_url() ?>assets/theme2/images/supply_logo.png" width="200px"></a>
 				</div>
 				<div class="w3ls-social-icons">
-					<a href="#"><i class="fa fa-shopping-cart"></i></a>
+					<a class="cart_modal" href="#!"><i class="fa fa-shopping-cart"></i></a>
           <?php if ($this->session->userdata("isuser")) {  ?>
             <a href="<?= base_url("customers/dashboard/"); ?>"><i class="fa fa-bars" aria-hidden="true"></i>
               Dashboard

@@ -353,7 +353,9 @@ p.w3layouts_dummy_para {
     margin-top: 10px;
 }
 
-.product-info {}
+.product-info table {
+    width: 100% !important;
+}
 
 /*********************************************
                       VIEW

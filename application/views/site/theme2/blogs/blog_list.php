@@ -4,7 +4,7 @@
     $('#blogs').addClass('active');
   });
 </script>
-<div class="agile-banner">
+<div class="agile-banner" >
   <div class="text-center container" style="color:white; padding:200px 200px;">
     <h1 class="header-title-inner-page">Blogs</h1>
   </div>

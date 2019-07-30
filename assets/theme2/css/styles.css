@@ -1157,7 +1157,7 @@ i.fa.fa-arrow-right {
 }
 /*-- //footer --*/
 .agile-banner{
-	background: url(../images/supimg/bgcover.jpg) no-repeat 0px 0px;
+	background: url(../images/bgcover.jpg) no-repeat 0px 0px;
     background-size: cover;
     object-fit: contain;
 	min-height:450px;
@@ -2544,4 +2544,7 @@ h4.stats-info {
 .w3layouts-top-strip {
     padding: 5px 0 10px;
 }
+}
+.product-info table {
+    width: 100% !important;
 }
