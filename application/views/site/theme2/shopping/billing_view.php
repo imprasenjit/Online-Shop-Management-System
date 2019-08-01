@@ -6,16 +6,18 @@ if ($cart = $this->cart->contents()) {
 	}
 }
 ?>
-<section class="services">
+<div class="agile-banner">
+	<div class="text-center container" style="color:white; padding:200px 200px;">
+		<h1 class="header-title-inner-page" style="font-size:4vh; font-weight:900;">Enquiry</h1>
+	</div>
+</div>
+<section class="services" style="padding:50px 0px;;">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<br />
-				<div class="card">
-					<div class="card-header">
-						Enquiry Cart
-					</div>
-					<div class="card-body">
+				<div class="panel panel-primary">
+					<div class="panel-heading" style="font-weight:800;">Enquiry Cart</div>
+					<div class="panel-body">
 						<span id="info_message"></span>
 						<div id="cart">
 							<div id="text">
@@ -54,17 +56,15 @@ if ($cart = $this->cart->contents()) {
 												<td>
 													<span id="cart_msg"></span>
 													<div class="row">
-													<div class="input-group col-md-6">
-														<input type="text" class="qty form-control" name="quantity" value="<?php echo intval($item['qty']); ?>" />
-														<div class="input-group-append">
-															<span class="input-group-text" id="basic-addon2"><?php echo $item['product_unit']; ?></span>
+														<div class="input-group col-md-6" style="float:left !important;">
+															<input type="text" class="qty form-control" name="quantity" value="<?php echo intval($item['qty']); ?>" />
+															<span class="input-group-addon" id="basic-addon2"><?php echo $item['product_unit']; ?></span>
 														</div>
-													</div>
-													<div class="col-md-6">
-													<a href="#!" rowid="<?= $item['rowid'] ?>" class="btn btn-warning btn-circle update_qty" title="Update Quantity">
-														<i class="fa fa-refresh" aria-hidden="true"></i>
-													</a>
-													</div>
+														<div class="col-md-6">
+															<a href="#!" rowid="<?= $item['rowid'] ?>" class="btn btn-warning btn-circle update_qty" title="Update Quantity">
+																<i class="fa fa-refresh" aria-hidden="true"></i>
+															</a>
+														</div>
 													</div>
 												</td>
 												<td>
@@ -101,7 +101,7 @@ if ($cart = $this->cart->contents()) {
 
 								<div class="container">
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-10">
 											<div class="clearx-fix"></div>
 											<div class="alert alert-success alert-dismissible" role="alert">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

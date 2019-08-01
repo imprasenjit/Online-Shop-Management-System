@@ -2548,3 +2548,12 @@ h4.stats-info {
 .product-info table {
     width: 100% !important;
 }
+
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #86c724 !important;
+    border-color: #86c724 !important;
+}
+.btn-circle{
+    border-radius: 50%;
+}
