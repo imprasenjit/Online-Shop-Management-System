@@ -6,19 +6,24 @@ $(document).ready(function(){
 $('#about').addClass('active');
 });
 </script>
+<div class="agile-banner">
+	<div class="text-center container" style="color:white; padding:200px 170px;">
+		<h1 class="header-title-inner-page" style="font-size:4vh; font-weight:900;">About Us</h1>
+	</div>
+</div>
     <section>
     <div class="container">
 	<div class="services-w3ls">
 			<h2 class="w3ls_head"><span>Vision</span></h2>
 			<div class="agile_banner_bottom_grids">
 				<div class="col-md-12 w3layouts_about_grid_left text-center">
-					<p align="justify">At SupplyOrigin, we understand the hassle behind material procurement. 
-                        So, we want to ensure that every SME unit, builder and individual involved 
-                        in managing or procuring supplies for various infrastructural development 
-                        projects can purchase them easily online from our digital platform, without 
+					<p align="justify">At SupplyOrigin, we understand the hassle behind material procurement.
+                        So, we want to ensure that every SME unit, builder and individual involved
+                        in managing or procuring supplies for various infrastructural development
+                        projects can purchase them easily online from our digital platform, without
                         worrying about its quality or certification of authenticity. </p>
 				</div>
-				
+
 				<div class="clearfix"> </div>
 			</div>
         </div>
@@ -85,7 +90,7 @@ $('#about').addClass('active');
                         <p>Delivering credibility through our services</p>
                         <p>Prioritizing people & performance</p>
                     </div>
-                    
+
                     <div class="clearfix"> </div>
                 </div>
         </div> -->
@@ -96,11 +101,11 @@ $('#about').addClass('active');
                     <div class="agile_banner_bottom_grids">
                         <div class="col-md-12 w3layouts_about_grid_left">
                             <p align="justify">Our goal is to bridge the ‘convenience’ gap in the process of sourcing and
-                             procuring high-quality materials, by bringing together established brands trusted for their 
-                             quality, and buyers of such products to meet their respective infrastructural development needs; 
+                             procuring high-quality materials, by bringing together established brands trusted for their
+                             quality, and buyers of such products to meet their respective infrastructural development needs;
                              all under one digital roof – www.supplyorigin.com </p>
                         </div>
-                        
+
                         <div class="clearfix"> </div>
                     </div>
                 </div>

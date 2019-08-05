@@ -5,6 +5,12 @@
 		$('#products').addClass('active');
 	});
 </script>
+
+<div class="agile-banner">
+			<div class="text-center container" style="color:white; padding:200px 170px;">
+                    <h1 class="header-title-inner-page" style="font-size:4vh; font-weight:900;">Products</h1>
+            </div>
+	</div>
 	<!-- products -->
 	<section style="padding-top:20px;">
 		<div class="container">
@@ -23,7 +29,7 @@
 					$i = 1;
 					$categories = $this->category_model->get_all();
 					foreach ($categories as $category) { ?>
-						<a href="#" class="list-group-item" style="font-size:20px; font-weight:800" onclick="myFunction<?=$i;?>()">
+						<a href="#!" class="list-group-item" style="font-size:20px; font-weight:800" onclick="myFunction<?=$i;?>()">
 							<?= $category->category_name; ?>
 							<span class="pull-right">
 								<i class="fa fa-angle-down"></i>
@@ -34,7 +40,7 @@
 							$sub_categories = $this->sub_category_model->get_subcategory_by_category($category->id);
 							foreach ($sub_categories as $sub_category) {
 								?>
-								<a href="<?=base_url("view-all-products-by-category/" . $sub_category->id) ?>" class="list-group-item" style="font-size:17px;"">
+								<a href="<?=base_url("view-all-products-by-category/" . $sub_category->id) ?>" class="list-group-item" style="font-size:17px;">
 									<?= $sub_category->sub_category; ?>
 										<span class=" pull-right">
 									<i class="fa fa-angle-down"></i>
@@ -55,7 +61,7 @@ $j=3;
 foreach ($products_data as $byproducts) {
 	?>
 
-						<?php 
+						<?php
 						if($j%3==0){
 						?>
 						<div class="row">
@@ -69,14 +75,14 @@ foreach ($products_data as $byproducts) {
 										<p></p>
 									</div>
 								</div>
-							</a>							
-							<?php 
+							</a>
+							<?php
 							$j++;
 						if($j%3==0){
 						?>
 						</div>
 						<?php } ?>
-						<?php 
+						<?php
 					     } ?>
 							</div>
 						</div>

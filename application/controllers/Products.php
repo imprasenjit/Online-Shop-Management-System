@@ -17,7 +17,7 @@ class Products extends MY_Controller
 		$this->load->helper('form');
     }
     public function index()
-    {        
+    {
         $products = $this->byproducts_model->index_limit(10);
         $data = array(
             'products_data' => $products,
@@ -26,18 +26,18 @@ class Products extends MY_Controller
         $this->html_view('products/products_list', $data);
         $this->html_view('requires/footer');
 	}
-	
+
 	public function product_view($id){
 	        $data=array(
 			'product'=>$this->byproducts_model->get_by_id($id)
-			);
+    );//var_dump($data);die;
 			$this->html_view('requires/header',array('page'=>'product'));
 			$this->html_view('products/product_view', $data);
 			$this->html_view('requires/footer');
 		}
-	
 
-	public function steel() 
+
+	public function steel()
     {
 		$products = $this->byproducts_model->get_all();
 		$data = array(
@@ -48,8 +48,8 @@ class Products extends MY_Controller
 		$this->html_view('products/products_list', $data);
 		$this->html_view('requires/footer');
     }
-	
-	public function category($category) 
+
+	public function category($category)
     {
 		$products = $this->byproducts_model->get_all_by_subcategory($category);
         $data = array(
@@ -70,8 +70,8 @@ class Products extends MY_Controller
         $this->html_view('products/category_list', $data);
         $this->html_view('requires/footer');
     }
-	
-    public function create() 
+
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -90,7 +90,7 @@ class Products extends MY_Controller
         $this->html_view('products/products_form', $data);
         $this->html_view('requires/footer');
     }
-    public function create_action() 
+    public function create_action()
     {
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
@@ -111,7 +111,7 @@ class Products extends MY_Controller
             redirect(site_url('products'));
         }
     }
-    public function update($id) 
+    public function update($id)
     {
         $row = $this->byproducts_model->get_by_id($id);
         if ($row) {
@@ -134,13 +134,13 @@ class Products extends MY_Controller
             redirect(site_url('products'));
         }
     }
-    public function update_action() 
+    public function update_action()
     {
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id', TRUE));
         } else {
-            $data = array( 
+            $data = array(
 		'product_name' => $this->input->post('product_name',TRUE),
 		'product_category' => $this->input->post('product_category',TRUE),
 		'product_sub_category' => $this->input->post('product_sub_category',TRUE),
@@ -155,7 +155,7 @@ class Products extends MY_Controller
             redirect(site_url('products'));
         }
     }
-    public function delete($id) 
+    public function delete($id)
     {
         $row = $this->byproducts_model->get_by_id($id);
         if ($row) {
@@ -167,13 +167,13 @@ class Products extends MY_Controller
             redirect(site_url('products'));
         }
     }
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('product_name', ' ', 'trim');
 	$this->form_validation->set_rules('product_category', ' ', 'trim');
 	$this->form_validation->set_rules('product_sub_category', ' ', 'trim');
 	$this->form_validation->set_rules('description', ' ', 'trim');
-	
+
 	$this->form_validation->set_rules('product_price', ' ', 'trim');
 	$this->form_validation->set_rules('picture', ' ', 'trim');
 	$this->form_validation->set_rules('status', ' ', 'trim');
