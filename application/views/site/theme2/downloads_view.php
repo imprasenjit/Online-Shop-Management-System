@@ -5,7 +5,7 @@
 </script>
 <div class="agile-banner">
 			<div class="text-center container" style="color:white; padding:200px 170px;">
-                    <h1 class="header-title-inner-page" style="font-size:4vh; font-weight:900;">Partner Programs</h1>
+                    <h1 class="header-title-inner-page" style="font-size:4vh; font-weight:900;">Downloads</h1>
             </div>
 	</div>
 <div class="v-page-wrap" style="margin-top:50px;margin-bottom:40px;">
